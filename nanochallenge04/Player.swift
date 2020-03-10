@@ -21,17 +21,15 @@ class Player: Updatable {
     internal init(scene: GameScene?, node: SKSpriteNode?) {
         self.scene = scene
         self.node = node
-        
+        self.configurePhysics()
     }
+    
     
     var scene: GameScene!
     var node: SKSpriteNode!
     
     func update(_ deltaTime: CGFloat) {
         checkLimits()
-        
-        
-        
         if self.node.zRotation > 0 {
             self.node.position.x -= abs(20 * self.node.zRotation)
 
@@ -39,12 +37,14 @@ class Player: Updatable {
             self.node.position.x += abs(20 * self.node.zRotation)
 
         }
-        
-        
-        
-        
-        
-        print(self.node.zRotation)
+    }
+    
+    func configurePhysics() {
+        if let body = self.node.physicsBody {
+            body.categoryBitMask = ContactMask.player.rawValue
+//            body.contactTestBitMask = ContactMask.walls.rawValue
+            body.collisionBitMask = ContactMask.walls.rawValue
+        }
     }
     
     func rollLeft() {

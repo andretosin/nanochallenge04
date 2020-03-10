@@ -1,0 +1,14 @@
+//
+//  ContactMask.swift
+//  nanochallenge04
+//
+//  Created by Andre Tosin on 10/03/20.
+//  Copyright © 2020 Apple Developer Academy. All rights reserved.
+//
+
+import Foundation
+
+enum ContactMask: UInt32 {
+    case player = 0b1
+    case walls = 0b10
+}

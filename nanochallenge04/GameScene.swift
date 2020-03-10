@@ -11,14 +11,17 @@ import SpriteKit
 class GameScene: SKScene {
     
     var player: Player!
+    var background: GameBackground!
     
     var lastTime: TimeInterval = TimeInterval(0)
     
     override func didMove(to view: SKView) {
+//        let bgNode = self.childNode(withName: "background") as! SKSpriteNode
+//        background = GameBackground(scene: self, node: bgNode)
+
         let playerNode = self.childNode(withName: "player") as! SKSpriteNode
         player = Player(scene: self, node: playerNode)
-        
-        
+                
         // swipe setup
         let swipeRight = UISwipeGestureRecognizer(target: self, action: Selector(("swipedRight")))
         swipeRight.direction = .right
@@ -37,6 +40,7 @@ class GameScene: SKScene {
         let deltaTime = currentTime - lastTime
         
         player.update(CGFloat(deltaTime))
+//        background.update(CGFloat(deltaTime))
 
     }
     
