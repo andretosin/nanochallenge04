@@ -20,6 +20,7 @@ class Player: Updatable {
             torqueApplied = false
         }
     }
+    
     var torqueApplied: Bool = false
     let zRotationAngle = CGFloat(Double.pi/4)
     let notification = UIImpactFeedbackGenerator(style: .heavy)
@@ -34,64 +35,9 @@ class Player: Updatable {
     
     var scene: GameScene!
     var node: SKSpriteNode!
-    
+
     func update(_ deltaTime: CGFloat) {
-        // testa o angulo limite de rotacao
-        checkRotationLimits()
-        
-        
-        
-        
-//        if resetPos {
-//            if self.node.position.x > 0 {
-//                if !torqueApplied {
-//                    rollLeft(rollRate)
-//                    torqueApplied = true
-//                }
-//            } else {
-//                if !torqueApplied {
-//                    rollRight(rollRate)
-//                    torqueApplied = true
-//
-//                }
-//            }
-//        }
-        
-        
-                if resetPos {
-                    if self.node.position.x > 0 {
-                        if !torqueApplied {
-                            rollLeft(rollRate)
-                            torqueApplied = true
-                        } else {
-                            if self.node.zRotation > 0 {
-                                self.node.physicsBody?.angularVelocity = 0
-                                self.node.zRotation = 0.0
-                                resetPos = false
-                            }
-                        }
-        
-        
-                    } else {
-                        if !torqueApplied {
-                            rollRight(rollRate)
-                            torqueApplied = true
-                        } else {
-                            if self.node.zRotation < 0 {
-                                self.node.physicsBody?.angularVelocity = 0
-                                self.node.zRotation = 0.0
-                                resetPos = false
-                            }
-                        }
-                    }
-                }
-        
-        
-        
-        // atualiza posicao com base no agulo de rotacao
-        self.node.position.x -= 20 * self.node.zRotation
-        
-        
+ 
     }
     
     func configurePhysics() {

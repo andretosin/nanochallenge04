@@ -20,22 +20,13 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     override func didMove(to view: SKView) {
         self.physicsWorld.contactDelegate = self
         
-
         
         let playerNode = self.childNode(withName: "player") as! SKSpriteNode
         playerNode.zPosition = 1
         player = Player(scene: self, node: playerNode)
         
-        // swipe setup
-        let swipeRight = UISwipeGestureRecognizer(target: self, action: Selector(("swipedRight")))
-        swipeRight.direction = .right
-        view.addGestureRecognizer(swipeRight)
         
-        let swipeLeft = UISwipeGestureRecognizer(target: self, action: Selector(("swipedLeft")))
-        swipeRight.direction = .left
-        view.addGestureRecognizer(swipeLeft)
         
-        self.rollRate = self.player.rollRate
     }
     
     override func update(_ currentTime: TimeInterval) {
@@ -45,54 +36,47 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         }
         let deltaTime = currentTime - lastTime
         player.update(CGFloat(deltaTime))
-        if abs(player.node.position.x) < 5 {
-            collisionFlag = false
-            print("saiu")
-
-        }
     }
     
     // MARK: - ContactDelegate
     func didBegin(_ contact: SKPhysicsContact) {
-        if !collisionFlag {
-            player.resetPos = true
-            print("entrou")
-            collisionFlag = true
-        }
+        
     }
     
     func didEnd(_ contact: SKPhysicsContact) {
-        if collisionFlag {
-            
-//            collisionFlag = false
-        }
-    }
-
-    // MARK: - Swipe methods
-
-    @objc func swipedRight() {
-
-        player.rollLeft(rollRate)
+        
     }
     
-    @objc func swipedLeft() {
-
-        player.rollRight(rollRate)
-    }
+    // MARK: - Swipe methods
+    
+    
     
     
     // MARK: - Touch methods
     
+    
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-
+        for touch in touches {
+            let location = touch.location(in: self)
+            print(abs(player.node.position.x - location.x))
+            player.node.run(SKAction.moveTo(x: location.x, duration: 0.03))
+        }
     }
+    
     
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
-        
+        for touch in touches {
+            let location = touch.location(in: self)
+            player.node.run(SKAction.moveTo(x: location.x, duration: 0.03))
+        }
     }
+    
     
     override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
-        
+        for touch in touches {
+            let location = touch.location(in: self)
+            player.node.run(SKAction.moveTo(x: location.x, duration: 0.03))
+        }
     }
-    
 }
+
