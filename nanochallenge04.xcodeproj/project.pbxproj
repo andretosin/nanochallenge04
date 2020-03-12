@@ -17,6 +17,7 @@
 		F98D33F5241022E900A12F15 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F98D33F3241022E900A12F15 /* Main.storyboard */; };
 		F98D33F7241022EB00A12F15 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F98D33F6241022EB00A12F15 /* Assets.xcassets */; };
 		F98D33FA241022EB00A12F15 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F98D33F8241022EB00A12F15 /* LaunchScreen.storyboard */; };
+		F9EEDD84241AA3D100AB586C /* Spawner.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9EEDD83241AA3D100AB586C /* Spawner.swift */; };
 		F9F5300624181B9300276183 /* GameBackground.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9F5300524181B9300276183 /* GameBackground.swift */; };
 		F9F530082418212600276183 /* ContactMask.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9F530072418212600276183 /* ContactMask.swift */; };
 		F9F5300C2419656900276183 /* Wall.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9F5300B2419656900276183 /* Wall.swift */; };
@@ -35,6 +36,7 @@
 		F98D33F6241022EB00A12F15 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F98D33F9241022EB00A12F15 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		F98D33FB241022EB00A12F15 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F9EEDD83241AA3D100AB586C /* Spawner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Spawner.swift; sourceTree = "<group>"; };
 		F9F5300524181B9300276183 /* GameBackground.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameBackground.swift; sourceTree = "<group>"; };
 		F9F530072418212600276183 /* ContactMask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactMask.swift; sourceTree = "<group>"; };
 		F9F5300B2419656900276183 /* Wall.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Wall.swift; sourceTree = "<group>"; };
@@ -72,6 +74,7 @@
 			children = (
 				F98D33E9241022E900A12F15 /* AppDelegate.swift */,
 				F98D33EB241022E900A12F15 /* GameScene.sks */,
+				F9EEDD83241AA3D100AB586C /* Spawner.swift */,
 				F9F5300B2419656900276183 /* Wall.swift */,
 				F9F530072418212600276183 /* ContactMask.swift */,
 				F958DC9B2412D271007FECFE /* Player.swift */,
@@ -161,6 +164,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F9EEDD84241AA3D100AB586C /* Spawner.swift in Sources */,
 				F958DC9E2412DC5D007FECFE /* Protocols.swift in Sources */,
 				F958DC9C2412D271007FECFE /* Player.swift in Sources */,
 				F98D33F0241022E900A12F15 /* GameScene.swift in Sources */,

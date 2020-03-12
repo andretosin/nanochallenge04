@@ -12,6 +12,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     var player: Player!
     var background: GameBackground!
+    var spawner: Spawner!
     var collisionFlag = false
     var rollRate: CGFloat!
     
@@ -19,11 +20,14 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     override func didMove(to view: SKView) {
         self.physicsWorld.contactDelegate = self
-        
-        
+        view.showsPhysics = true
+
         let playerNode = self.childNode(withName: "player") as! SKSpriteNode
         playerNode.zPosition = 1
         player = Player(scene: self, node: playerNode)
+        
+        let spawnerNode = self.childNode(withName: "spawner") as! SKSpriteNode
+        spawner = Spawner(scene: self, node: spawnerNode)
         
         
         
@@ -36,6 +40,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         }
         let deltaTime = currentTime - lastTime
         player.update(CGFloat(deltaTime))
+        spawner.update(CGFloat(deltaTime))
     }
     
     // MARK: - ContactDelegate
@@ -59,7 +64,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         for touch in touches {
             let location = touch.location(in: self)
             print(abs(player.node.position.x - location.x))
-            player.node.run(SKAction.moveTo(x: location.x, duration: 0.03))
+            player.node.run(SKAction.moveTo(x: location.x, duration: 0.05))
         }
     }
     
@@ -67,7 +72,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
         for touch in touches {
             let location = touch.location(in: self)
-            player.node.run(SKAction.moveTo(x: location.x, duration: 0.03))
+            player.node.run(SKAction.moveTo(x: location.x, duration: 0.05))
         }
     }
     
@@ -75,7 +80,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
         for touch in touches {
             let location = touch.location(in: self)
-            player.node.run(SKAction.moveTo(x: location.x, duration: 0.03))
+            player.node.run(SKAction.moveTo(x: location.x, duration: 0.05))
         }
     }
 }
