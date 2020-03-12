@@ -11,7 +11,7 @@ import SpriteKit
 class Spawner: Updatable {
     func update(_ deltaTime: CGFloat) {
         if deltaTime.truncatingRemainder(dividingBy: 2) > 1.9 {
-            
+     
             
         }
     }

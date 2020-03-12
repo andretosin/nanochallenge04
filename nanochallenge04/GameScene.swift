@@ -15,7 +15,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var spawner: Spawner!
     var collisionFlag = false
     var rollRate: CGFloat!
-    
+    var rock: SKSpriteNode!
     var lastTime: TimeInterval = TimeInterval(0)
     
     override func didMove(to view: SKView) {
@@ -26,8 +26,15 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         playerNode.zPosition = 1
         player = Player(scene: self, node: playerNode)
         
-        let spawnerNode = self.childNode(withName: "spawner") as! SKSpriteNode
-        spawner = Spawner(scene: self, node: spawnerNode)
+//        let spawnerNode = self.childNode(withName: "spawner") as! SKSpriteNode
+//        spawner = Spawner(scene: self, node: spawnerNode)
+        
+        rock = SKSpriteNode(imageNamed: "Rock")
+        rock.position = CGPoint(x: 0, y: 0)
+        rock.zPosition = 1
+        rock.physicsBody?.affectedByGravity = true
+        rock.physicsBody?.isDynamic = true
+        self.addChild(rock)
         
         
         
@@ -40,7 +47,15 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         }
         let deltaTime = currentTime - lastTime
         player.update(CGFloat(deltaTime))
-        spawner.update(CGFloat(deltaTime))
+//        spawner.update(CGFloat(deltaTime))
+        
+        
+        
+        
+        
+        
+        
+        
     }
     
     // MARK: - ContactDelegate
