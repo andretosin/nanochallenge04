@@ -8,12 +8,10 @@
 import SpriteKit
 
 
-class Spawner: Updatable {
+class rockSpawner: Updatable {
+    
     func update(_ deltaTime: CGFloat) {
-        if deltaTime.truncatingRemainder(dividingBy: 2) > 1.9 {
-     
-            
-        }
+
     }
     
     internal init(scene: GameScene?, node: SKSpriteNode?) {
@@ -21,10 +19,8 @@ class Spawner: Updatable {
         self.node = node
     }
     
-    func spawn() {
-        
-    }
     
     var scene: GameScene!
     var node: SKSpriteNode!
+
 }
