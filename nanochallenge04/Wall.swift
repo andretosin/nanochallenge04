@@ -9,22 +9,20 @@
 import SpriteKit
 import UIKit
 
-class GameBackground: Updatable {
+class Wall {
     internal init(scene: GameScene?, node: SKSpriteNode?) {
         self.scene = scene
         self.node = node
-    }    
+        self.configurePhysics()
+    }
     
     var scene: GameScene!
     var node: SKSpriteNode!
     
-    
-    
-    func update(_ deltaTime: CGFloat) {
-        self.node.position.y -= 0
-        print(self.node.position.y)
-        if self.node.position.y < -1000 {
-            self.node.position.y = 0
-        }
+    func configurePhysics() {
+        node.physicsBody?.categoryBitMask = ContactMask.walls.rawValue
+        node.physicsBody?.collisionBitMask = 0
+//        node.physicsBody?.contactTestBitMask = ContactMask.player.rawValue
     }
+    
 }

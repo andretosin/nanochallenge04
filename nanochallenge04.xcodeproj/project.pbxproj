@@ -19,6 +19,7 @@
 		F98D33FA241022EB00A12F15 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F98D33F8241022EB00A12F15 /* LaunchScreen.storyboard */; };
 		F9F5300624181B9300276183 /* GameBackground.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9F5300524181B9300276183 /* GameBackground.swift */; };
 		F9F530082418212600276183 /* ContactMask.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9F530072418212600276183 /* ContactMask.swift */; };
+		F9F5300C2419656900276183 /* Wall.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9F5300B2419656900276183 /* Wall.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,6 +37,7 @@
 		F98D33FB241022EB00A12F15 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F9F5300524181B9300276183 /* GameBackground.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameBackground.swift; sourceTree = "<group>"; };
 		F9F530072418212600276183 /* ContactMask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactMask.swift; sourceTree = "<group>"; };
+		F9F5300B2419656900276183 /* Wall.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Wall.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -70,6 +72,7 @@
 			children = (
 				F98D33E9241022E900A12F15 /* AppDelegate.swift */,
 				F98D33EB241022E900A12F15 /* GameScene.sks */,
+				F9F5300B2419656900276183 /* Wall.swift */,
 				F9F530072418212600276183 /* ContactMask.swift */,
 				F958DC9B2412D271007FECFE /* Player.swift */,
 				F958DC9D2412DC5D007FECFE /* Protocols.swift */,
@@ -163,6 +166,7 @@
 				F98D33F0241022E900A12F15 /* GameScene.swift in Sources */,
 				F9F5300624181B9300276183 /* GameBackground.swift in Sources */,
 				F9F530082418212600276183 /* ContactMask.swift in Sources */,
+				F9F5300C2419656900276183 /* Wall.swift in Sources */,
 				F98D33F2241022E900A12F15 /* GameViewController.swift in Sources */,
 				F98D33EA241022E900A12F15 /* AppDelegate.swift in Sources */,
 			);
