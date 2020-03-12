@@ -10,15 +10,23 @@ import SpriteKit
 
 
 class Rock: Updatable {
+    
     internal init(scene: SKScene?) {
         self.scene = scene
     }
     
-    func update(_ deltaTime: CGFloat) {
-        if deltaTime.truncatingRemainder(dividingBy: 2) > 1.99 {
+    func update(_  currentTime: TimeInterval) {
+        if lastTime == 0 {
+            lastTime = currentTime
+            return
+        }
+        let deltaTime = currentTime - lastTime
+        
+        if deltaTime > 2 {
+            lastTime = currentTime
             let node = SKSpriteNode(imageNamed: "Rock")
             node.physicsBody = SKPhysicsBody(texture: node.texture!, size: node.texture!.size())
-            node.scale(to: CGSize(width: 100, height: 100))
+            node.scale(to: CGSize(width: 300, height: 300))
             node.physicsBody?.affectedByGravity = false
             node.position.y = 1200
             node.position.x = CGFloat(Int.random(in: -400...200))
@@ -26,17 +34,11 @@ class Rock: Updatable {
             scene?.addChild(node)
         }
     }
-    
-    
-    
-    
+    var lastTime: TimeInterval = TimeInterval(0)
     var node = SKSpriteNode(imageNamed: "Rock")
     var scene: SKScene?
-    
-    
-
-
-    
-    
-
 }
+
+
+
+

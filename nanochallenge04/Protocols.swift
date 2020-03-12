@@ -9,7 +9,7 @@
 import SpriteKit
 
 protocol Updatable {
-    func update(_ deltaTime: CGFloat)
+    func update(_ currentTime: TimeInterval)
 }
 
 

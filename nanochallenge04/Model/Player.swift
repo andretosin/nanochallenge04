@@ -20,7 +20,7 @@ class Player: Updatable {
             torqueApplied = false
         }
     }
-    
+    var lastTime = TimeInterval(0)
     var torqueApplied: Bool = false
     let zRotationAngle = CGFloat(Double.pi/4)
     let notification = UIImpactFeedbackGenerator(style: .heavy)
@@ -35,9 +35,13 @@ class Player: Updatable {
     
     var scene: GameScene!
     var node: SKSpriteNode!
-
-    func update(_ deltaTime: CGFloat) {
- 
+    
+    func update(_ currentTime: TimeInterval) {
+        if lastTime == 0 {
+            lastTime = currentTime
+            return
+        }
+        let _ = currentTime - lastTime
     }
     
     func configurePhysics() {

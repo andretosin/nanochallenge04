@@ -15,17 +15,23 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var collisionFlag = false
     var rollRate: CGFloat!
     var rock: Rock!
+    var stars: SKSpriteNode!
     var lastTime: TimeInterval = TimeInterval(0)
     
     override func didMove(to view: SKView) {
         self.physicsWorld.contactDelegate = self
-        view.showsPhysics = true
+        view.showsPhysics = false
 
         let playerNode = self.childNode(withName: "player") as! SKSpriteNode
         playerNode.zPosition = 1
         player = Player(scene: self, node: playerNode)
-        
         rock = Rock(scene: self)
+        
+        let starNode = self.childNode(withName: "star-1") as! SKSpriteNode
+        starNode.zPosition = 1
+        starNode.physicsBody = SKPhysicsBody(texture: starNode.texture!, size: starNode.texture!.size())
+        starNode.physicsBody?.velocity = CGVector(dx: 0, dy: -200)
+        
         
         
         
@@ -36,16 +42,19 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     override func update(_ currentTime: TimeInterval) {
-        if lastTime == 0 {
-            lastTime = currentTime
-            return
+       
+        
+        player.update(currentTime)
+        rock.update(currentTime)
+        
+        
+        
+        
+        for node in children {
+            if abs(node.position.y) > 1300 || abs(node.position.x) > 600 {
+                node.removeFromParent()
+            }
         }
-        let deltaTime = currentTime - lastTime
-        
-        player.update(CGFloat(deltaTime))
-        rock.update(CGFloat(deltaTime))
-        
-        
 
         
         
