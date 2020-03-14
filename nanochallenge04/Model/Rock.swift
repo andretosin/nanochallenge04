@@ -59,7 +59,7 @@ class Rock: Spawnable {
         }
         let deltaTime = currentTime - lastTime
         
-        if deltaTime > 2000/Double(speed) {
+        if deltaTime > Double.random(in: (2000/3)/Double(speed)...5*2000/Double(speed))    {
             lastTime = currentTime
             if isSpawnActive {
                 for rock in rockArray {
