@@ -11,4 +11,6 @@ import Foundation
 enum ContactMask: UInt32 {
     case player = 0b1
     case walls = 0b10
+    case star = 0b100
+    case rock = 0b1000
 }

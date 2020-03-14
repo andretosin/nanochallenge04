@@ -36,19 +36,17 @@ class Player: Updatable {
     var scene: GameScene!
     var node: SKSpriteNode!
     
-    func update(_ currentTime: TimeInterval) {
-        if lastTime == 0 {
-            lastTime = currentTime
-            return
-        }
-        let _ = currentTime - lastTime
+    func update(_ deltaTime: CGFloat) {
+        
     }
     
     func configurePhysics() {
         if let body = self.node.physicsBody {
             body.categoryBitMask = ContactMask.player.rawValue
-            body.contactTestBitMask = ContactMask.walls.rawValue
-            body.collisionBitMask = 0
+            body.contactTestBitMask = ContactMask.star.rawValue
+            body.collisionBitMask = ContactMask.rock.rawValue
+            body.isDynamic = true
+            body.affectedByGravity = false
         }
     }
     

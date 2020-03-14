@@ -10,12 +10,9 @@ import SpriteKit
 import UIKit
 
 class GameBackground: Updatable {
-    func update(_ currentTime: TimeInterval) {
-        if lastTime == 0 {
-            lastTime = currentTime
-            return
-        }
-        let deltaTime = currentTime - lastTime
+    
+    func update(_ deltaTime: CGFloat) {
+
         
         
         self.node.position.y -= 0

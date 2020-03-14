@@ -16,21 +16,38 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var rollRate: CGFloat!
     var rock: Rock!
     var stars: SKSpriteNode!
+    var star: Star!
     var lastTime: TimeInterval = TimeInterval(0)
+    var isPlayerDead: Bool = false
+    let notification = UIImpactFeedbackGenerator(style: .heavy)
+    var currentScore = 0
+    
+    
+    
     
     override func didMove(to view: SKView) {
         self.physicsWorld.contactDelegate = self
-        view.showsPhysics = false
-
+        view.showsPhysics = true
+        
+        if let particles = SKEmitterNode(fileNamed: "Stars") {
+            particles.position = CGPoint(x: 0, y: 1200)
+            particles.advanceSimulationTime(40)
+            particles.zPosition = 0
+            
+            addChild(particles)
+        }
+        
         let playerNode = self.childNode(withName: "player") as! SKSpriteNode
         playerNode.zPosition = 1
         player = Player(scene: self, node: playerNode)
         rock = Rock(scene: self)
+        star = Star(scene: self)
         
-        let starNode = self.childNode(withName: "star-1") as! SKSpriteNode
-        starNode.zPosition = 1
-        starNode.physicsBody = SKPhysicsBody(texture: starNode.texture!, size: starNode.texture!.size())
-        starNode.physicsBody?.velocity = CGVector(dx: 0, dy: -200)
+        
+        //        let starNode = self.childNode(withName: "star-1") as! SKSpriteNode
+        //        starNode.zPosition = 1
+        //        starNode.physicsBody = SKPhysicsBody(texture: starNode.texture!, size: starNode.texture!.size())
+        //        starNode.physicsBody?.velocity = CGVector(dx: 0, dy: -200)
         
         
         
@@ -42,31 +59,45 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     override func update(_ currentTime: TimeInterval) {
-       
         
-        player.update(currentTime)
-        rock.update(currentTime)
-        
-        
-        
-        
-        for node in children {
-            if abs(node.position.y) > 1300 || abs(node.position.x) > 600 {
-                node.removeFromParent()
-            }
+        if lastTime == 0 {
+            lastTime = currentTime
+            return
         }
-
+        let deltaTime = currentTime - lastTime
         
+        player.update(CGFloat(deltaTime))
+        rock.update(currentTime)
+//        star.update(currentTime)
         
-        
-        
+        if currentScore > 25 {
+            star.speed = 3500
+        }
         
         
     }
     
     // MARK: - ContactDelegate
     func didBegin(_ contact: SKPhysicsContact) {
-        
+        let contactMask = contact.bodyA.categoryBitMask | contact.bodyB.categoryBitMask
+        switch contactMask {
+        case ContactMask.player.rawValue | ContactMask.star.rawValue:
+            for node in children {
+                if node.name == "star" {
+                    if node.position.y < (player.node.position.y + player.node.size.height) && node.position.y > player.node.position.y {
+                        node.removeFromParent()
+                        notification.impactOccurred()
+                        currentScore += 1
+                        print(currentScore)
+                    }
+                }
+            }
+        case ContactMask.player.rawValue | ContactMask.rock.rawValue:
+            self.isPlayerDead = true
+            star.isSpawnActive = false
+        default:
+            print("Unknown collision ocurred")
+        }
     }
     
     func didEnd(_ contact: SKPhysicsContact) {
@@ -82,26 +113,37 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        for touch in touches {
-            let location = touch.location(in: self)
-            print(abs(player.node.position.x - location.x))
-            player.node.run(SKAction.moveTo(x: location.x, duration: 0.05))
+        if !isPlayerDead {
+            for touch in touches {
+                let location = touch.location(in: self)
+                player.node.run(SKAction.moveTo(x: location.x, duration: 0.05))
+                rock.playerPosX = location.x
+            }
+            
         }
     }
     
     
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
-        for touch in touches {
-            let location = touch.location(in: self)
-            player.node.run(SKAction.moveTo(x: location.x, duration: 0.05))
+        if !isPlayerDead {
+            for touch in touches {
+                let location = touch.location(in: self)
+                player.node.run(SKAction.moveTo(x: location.x, duration: 0.05))
+                rock.playerPosX = location.x
+
+            }
         }
     }
     
     
     override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
-        for touch in touches {
-            let location = touch.location(in: self)
-            player.node.run(SKAction.moveTo(x: location.x, duration: 0.05))
+        if !isPlayerDead {
+            for touch in touches {
+                let location = touch.location(in: self)
+                player.node.run(SKAction.moveTo(x: location.x, duration: 0.05))
+                rock.playerPosX = location.x
+
+            }
         }
     }
 }

@@ -19,6 +19,8 @@
 		F98D33FA241022EB00A12F15 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F98D33F8241022EB00A12F15 /* LaunchScreen.storyboard */; };
 		F9EEDD86241AAB9400AB586C /* Rock.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9EEDD85241AAB9400AB586C /* Rock.swift */; };
 		F9EEDD88241AC5B500AB586C /* Star.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9EEDD87241AC5B400AB586C /* Star.swift */; };
+		F9EEDD8E241D5CBF00AB586C /* Stars.sks in Resources */ = {isa = PBXBuildFile; fileRef = F9EEDD8C241D5CBF00AB586C /* Stars.sks */; };
+		F9EEDD8F241D5CBF00AB586C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F9EEDD8D241D5CBF00AB586C /* Assets.xcassets */; };
 		F9F5300624181B9300276183 /* GameBackground.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9F5300524181B9300276183 /* GameBackground.swift */; };
 		F9F530082418212600276183 /* ContactMask.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9F530072418212600276183 /* ContactMask.swift */; };
 		F9F5300C2419656900276183 /* Wall.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9F5300B2419656900276183 /* Wall.swift */; };
@@ -39,6 +41,8 @@
 		F98D33FB241022EB00A12F15 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F9EEDD85241AAB9400AB586C /* Rock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Rock.swift; sourceTree = "<group>"; };
 		F9EEDD87241AC5B400AB586C /* Star.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Star.swift; sourceTree = "<group>"; };
+		F9EEDD8C241D5CBF00AB586C /* Stars.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Stars.sks; sourceTree = "<group>"; };
+		F9EEDD8D241D5CBF00AB586C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F9F5300524181B9300276183 /* GameBackground.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameBackground.swift; sourceTree = "<group>"; };
 		F9F530072418212600276183 /* ContactMask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactMask.swift; sourceTree = "<group>"; };
 		F9F5300B2419656900276183 /* Wall.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Wall.swift; sourceTree = "<group>"; };
@@ -78,6 +82,7 @@
 				F9EEDD8B241AC5F000AB586C /* GameScene */,
 				F98D33E9241022E900A12F15 /* AppDelegate.swift */,
 				F9F530072418212600276183 /* ContactMask.swift */,
+				F9EEDD8C241D5CBF00AB586C /* Stars.sks */,
 				F958DC9D2412DC5D007FECFE /* Protocols.swift */,
 				F98D33ED241022E900A12F15 /* Actions.sks */,
 				F98D33F3241022E900A12F15 /* Main.storyboard */,
@@ -91,6 +96,7 @@
 		F9EEDD8A241AC5D600AB586C /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				F9EEDD8D241D5CBF00AB586C /* Assets.xcassets */,
 				F9EEDD87241AC5B400AB586C /* Star.swift */,
 				F9EEDD85241AAB9400AB586C /* Rock.swift */,
 				F9F5300B2419656900276183 /* Wall.swift */,
@@ -103,8 +109,8 @@
 		F9EEDD8B241AC5F000AB586C /* GameScene */ = {
 			isa = PBXGroup;
 			children = (
-				F98D33EB241022E900A12F15 /* GameScene.sks */,
 				F98D33EF241022E900A12F15 /* GameScene.swift */,
+				F98D33EB241022E900A12F15 /* GameScene.sks */,
 				F98D33F1241022E900A12F15 /* GameViewController.swift */,
 			);
 			path = GameScene;
@@ -172,7 +178,9 @@
 				F98D33EC241022E900A12F15 /* GameScene.sks in Resources */,
 				F98D33F7241022EB00A12F15 /* Assets.xcassets in Resources */,
 				F98D33FA241022EB00A12F15 /* LaunchScreen.storyboard in Resources */,
+				F9EEDD8F241D5CBF00AB586C /* Assets.xcassets in Resources */,
 				F98D33EE241022E900A12F15 /* Actions.sks in Resources */,
+				F9EEDD8E241D5CBF00AB586C /* Stars.sks in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -346,7 +354,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.andretosin.nanochallenge04;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = 1;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
@@ -364,7 +372,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.andretosin.nanochallenge04;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = 1;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};
