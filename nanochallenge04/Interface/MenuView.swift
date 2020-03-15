@@ -26,6 +26,7 @@ struct MenuView: View {
     @State private var started = false
     
     @State private var isPlaying = false
+    @State private var topMenu: CGFloat = 0
     
     var body: some View {
         ZStack {
@@ -173,10 +174,20 @@ struct MenuView: View {
                             //                            .padding(.vertical, 20)
                             //                                .padding(.trailing, 20)
                         }
+                        .padding(.top, 40)
+                        .padding(.trailing, 20)
+                        .overlay(
+                            GeometryReader { geo2 in
+                                Color.clear
+                                    .onAppear {
+                                        self.topMenu = geo2.frame(in: .global).height
+                                        print("lala", self.topMenu)
+                                }
+                            }
+                        )
                             
                             //                        .padding(.vertical, 30)
-                            .padding(.top, 40)
-                            .padding(.trailing, 20)
+                            
                         VStack (spacing: geo.size.width/100) {
                             ZStack {
                                 if self.showLogo {
@@ -192,12 +203,13 @@ struct MenuView: View {
                                     VStack {
                                         VStack (spacing: 0) {
                                             HStack (spacing: 0) {
-                                                Text("242")
+                                                Text("243")
                                                     .font(.custom("nulshock", size: geo.size.width/5))
                                                     .foregroundColor(Color("CosmicPurple"))
                                                     .bold()
                                                     .shadow(color: Color.black.opacity(0.75), radius: 1, x: -1, y: 1)
                                                 .padding(.top, geo.size.width/60)
+                                                    .fixedSize(horizontal: true, vertical: false)
                                                 Text("ly")
                                                     .font(.custom("Audiowide-Regular", size: geo.size.width/12))
                                                     .foregroundColor(Color("CosmicPurple"))
@@ -216,17 +228,18 @@ struct MenuView: View {
                                                     //                                        .font(Font.system(.headline).weight(.bold))
                                                     .foregroundColor(Color("CosmicPurple"))
                                                     .shadow(color: Color.black.opacity(0.75), radius: 1, x: -1, y: 1)
-                                                    .offset(x: -geo.size.width/9)
+//                                                    .offset(x: geo.size.width/120)
 //                                                .frame(width: geo.size.width/10)
                                                 //                                                }
                                                 
-                                                Text("513")
+                                                Text("4")
                                                     .font(.custom("nulshock", size: geo.size.width/10))
                                                     .foregroundColor(Color("CosmicPurple"))
                                                     .bold()
                                                     .shadow(color: Color.black.opacity(0.75), radius: 1, x: -1, y: 1)
+                                                .fixedSize(horizontal: true, vertical: false)
                                                 }
-//                                            .offset(x: geo.size.width/20)
+                                            .offset(x: -geo.size.width/20)
                                                 
                                                 //                                        .multilineTextAlignment(.leading)
                                                 
@@ -283,8 +296,9 @@ struct MenuView: View {
 
                                             .mask(
                                                 Circle()
-                                                    .offset(y: 100)
-                                                    .padding(self.isPlaying ? -geo.size.height : geo.size.width/20)
+                                                    .offset(y: self.topMenu)
+                                                    .padding(self.isPlaying ? -geo.size.height : geo.size.width/10)
+                                                    .padding(.top, 20)
 
                                         )
                     Image(systemName: "play.circle.fill")
