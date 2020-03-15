@@ -16,7 +16,7 @@ class Star: Spawnable {
     var speed: CGFloat = 1000
     var starArray: [SKSpriteNode] = []
     var starCount = 1
-    var timeInterval: Double = 2
+    var timeInterval: Double = Double.random(in: Double(1)...Double(3))
     var resetPos = false
     
     internal init(scene: SKScene?) {
@@ -63,39 +63,40 @@ class Star: Spawnable {
     func spawnGroup(_ id: Int) {
         if id == 1 {
             let distance = 200
+            let xPos = CGFloat.random(in: CGFloat(-400)...CGFloat(400))
             for star in starArray {
                 if star.name == "starFalse" {
                     if starCount == 1 {
                         star.position.y = 1200 + CGFloat(starCount * distance)
-                        star.position.x = 0
+                        star.position.x = xPos
                         star.physicsBody?.velocity = CGVector(dx: 0, dy: -speed)
                         star.name = "starTrue"
                         starCount += 1
                     }
                     else if starCount == 2 {
                         star.position.y = 1200 + CGFloat(starCount * distance)
-                        star.position.x = 0
+                        star.position.x = xPos
                         star.physicsBody?.velocity = CGVector(dx: 0, dy: -speed)
                         star.name = "starTrue"
                         starCount += 1
                     }
                     else if starCount == 3 {
                         star.position.y = 1200 + CGFloat(starCount * distance)
-                        star.position.x = 0
+                        star.position.x = xPos
                         star.physicsBody?.velocity = CGVector(dx: 0, dy: -speed)
                         star.name = "starTrue"
                         starCount += 1
                     }
                     else if starCount == 4 {
                         star.position.y = 1200 + CGFloat(starCount * distance)
-                        star.position.x = 0
+                        star.position.x = xPos
                         star.physicsBody?.velocity = CGVector(dx: 0, dy: -speed)
                         star.name = "starTrue"
                         starCount += 1
                     }
                     else if starCount == 5 {
                         star.position.y = 1200 + CGFloat(starCount * distance)
-                        star.position.x = 0
+                        star.position.x = xPos
                         star.physicsBody?.velocity = CGVector(dx: 0, dy: -speed)
                         star.name = "starTrue"
                         starCount = 1
