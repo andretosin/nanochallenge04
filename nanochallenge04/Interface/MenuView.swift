@@ -20,6 +20,7 @@ import SwiftUI
 
 struct MenuView: View {
     
+    @State private var buttonIsShown = true
     @State private var showLogo = false
     @State private var showLastScore = true
     @State private var started = false
@@ -287,10 +288,14 @@ struct MenuView: View {
                         .font(.system(size: 100))
                         .foregroundColor(.blue)
                         .padding()
-                        .onTapGesture {
+                        .opacity(self.buttonIsShown ? 1.0 : 0.0)
+                                            .onTapGesture {
                             withAnimation {
                                 self.started.toggle()
+                                self.buttonIsShown.toggle()
+                                
                             }
+                        
                             //
                     }
                 }
