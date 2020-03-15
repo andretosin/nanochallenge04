@@ -21,7 +21,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var isPlayerDead: Bool = false
     let notification = UIImpactFeedbackGenerator(style: .heavy)
     var currentScore = 0
-    
+    var lblScore = SKLabelNode()
+    var particles = SKEmitterNode()
     
     
     
@@ -33,9 +34,12 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             particles.position = CGPoint(x: 0, y: 1200)
             particles.advanceSimulationTime(40)
             particles.zPosition = 0
-            
             addChild(particles)
         }
+        
+        lblScore = self.childNode(withName: "lblScore") as! SKLabelNode
+        lblScore.text = "\(currentScore)"
+
         
         let playerNode = self.childNode(withName: "player") as! SKSpriteNode
         playerNode.zPosition = 1
@@ -68,33 +72,38 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         player.update(CGFloat(deltaTime))
         rock.update(currentTime)
-//        star.update(currentTime)
+        star.update(currentTime)
         
-        if currentScore > 25 {
-            star.speed = 3500
-        }
+//        if currentScore > 25 {
+//            star.speed = 3500
+//        }
         
         
     }
     
     // MARK: - ContactDelegate
+    
     func didBegin(_ contact: SKPhysicsContact) {
         let contactMask = contact.bodyA.categoryBitMask | contact.bodyB.categoryBitMask
         switch contactMask {
         case ContactMask.player.rawValue | ContactMask.star.rawValue:
             for node in children {
-                if node.name == "star" {
+                if node.name == "starTrue" {
                     if node.position.y < (player.node.position.y + player.node.size.height) && node.position.y > player.node.position.y {
-                        node.removeFromParent()
+                        node.name = "starResetPos"
                         notification.impactOccurred()
                         currentScore += 1
-                        print(currentScore)
+                        rock.speed += 75
+                        star.speed += 75
+                        particles.speed = star.speed
+                        lblScore.text = "\(currentScore)"
                     }
                 }
             }
         case ContactMask.player.rawValue | ContactMask.rock.rawValue:
             self.isPlayerDead = true
             star.isSpawnActive = false
+            rock.isSpawnActive = false
         default:
             print("Unknown collision ocurred")
         }

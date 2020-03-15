@@ -15,6 +15,9 @@ class Star: Spawnable {
     var isSpawnActive = true
     var speed: CGFloat = 1000
     var starArray: [SKSpriteNode] = []
+    var starCount = 1
+    var timeInterval: Double = 2
+    var resetPos = false
     
     internal init(scene: SKScene?) {
         self.scene = scene
@@ -33,15 +36,22 @@ class Star: Spawnable {
             return
         }
         let deltaTime = currentTime - lastTime
-        
-        if deltaTime > 1 {
+
+        if deltaTime > timeInterval {
             lastTime = currentTime
             if isSpawnActive {
-                spawnGroup(1)
+                let dice = Int.random(in: 1...20)
+                if dice == 20 {
+                    spawnGroup(1)
+                } else {
+                    spawnGroup(2)
+                }
+                timeInterval = Double.random(in: 1.5...2.5)
+//                speed += 200
             }
         }
         for star in starArray {
-            if star.position.y < -1500 {
+            if star.position.y < -1500 || star.name == "starResetPos" {
                 star.position.x = 1001
                 star.position.y = 0
                 star.name = "starFalse"
@@ -52,10 +62,54 @@ class Star: Spawnable {
     
     func spawnGroup(_ id: Int) {
         if id == 1 {
+            let distance = 200
             for star in starArray {
-                if star.position.x > 1000 && star.name == "starFalse" {
+                if star.name == "starFalse" {
+                    if starCount == 1 {
+                        star.position.y = 1200 + CGFloat(starCount * distance)
+                        star.position.x = 0
+                        star.physicsBody?.velocity = CGVector(dx: 0, dy: -speed)
+                        star.name = "starTrue"
+                        starCount += 1
+                    }
+                    else if starCount == 2 {
+                        star.position.y = 1200 + CGFloat(starCount * distance)
+                        star.position.x = 0
+                        star.physicsBody?.velocity = CGVector(dx: 0, dy: -speed)
+                        star.name = "starTrue"
+                        starCount += 1
+                    }
+                    else if starCount == 3 {
+                        star.position.y = 1200 + CGFloat(starCount * distance)
+                        star.position.x = 0
+                        star.physicsBody?.velocity = CGVector(dx: 0, dy: -speed)
+                        star.name = "starTrue"
+                        starCount += 1
+                    }
+                    else if starCount == 4 {
+                        star.position.y = 1200 + CGFloat(starCount * distance)
+                        star.position.x = 0
+                        star.physicsBody?.velocity = CGVector(dx: 0, dy: -speed)
+                        star.name = "starTrue"
+                        starCount += 1
+                    }
+                    else if starCount == 5 {
+                        star.position.y = 1200 + CGFloat(starCount * distance)
+                        star.position.x = 0
+                        star.physicsBody?.velocity = CGVector(dx: 0, dy: -speed)
+                        star.name = "starTrue"
+                        starCount = 1
+                        return
+                    }
+                }
+            }
+        }
+        if id == 2 {
+            for star in starArray {
+                if star.name == "starFalse" {
                     star.position.y = 1200
-                    star.position.x = 0
+                    star.position.x = CGFloat.random(in: -400...400)
+                    star.physicsBody?.velocity = CGVector(dx: 0, dy: -speed)
                     star.name = "starTrue"
                     return
                 }
@@ -77,7 +131,7 @@ class Star: Spawnable {
         starNode.physicsBody?.velocity = CGVector(dx: 0, dy: -speed)
         starNode.name = "starFalse"
         starNode.physicsBody?.linearDamping = 0
-    
+        
     }
     
     
@@ -91,18 +145,18 @@ class Star: Spawnable {
 
 /*
  let randomPos = Int.random(in: -400...400)
-      let star1 = SKSpriteNode(texture: starTexture)
-      let star2 = SKSpriteNode(texture: starTexture)
-      let star3 = SKSpriteNode(texture: starTexture)
-      let star4 = SKSpriteNode(texture: starTexture)
-      let star5 = SKSpriteNode(texture: starTexture)
-      setupStar(star1, x: CGFloat(randomPos), y: 1200, speed: speed)
-      setupStar(star2, x: CGFloat(randomPos), y: 1400, speed: speed)
-      setupStar(star3, x: CGFloat(randomPos), y: 1600, speed: speed)
-      setupStar(star4, x: CGFloat(randomPos), y: 1800, speed: speed)
-      setupStar(star5, x: CGFloat(randomPos), y: 2000, speed: speed)
-      scene?.addChild(star1)
-      scene?.addChild(star2)
-      scene?.addChild(star3)
-      scene?.addChild(star4)
-      scene?.addChild(star5)*/
+ let star1 = SKSpriteNode(texture: starTexture)
+ let star2 = SKSpriteNode(texture: starTexture)
+ let star3 = SKSpriteNode(texture: starTexture)
+ let star4 = SKSpriteNode(texture: starTexture)
+ let star5 = SKSpriteNode(texture: starTexture)
+ setupStar(star1, x: CGFloat(randomPos), y: 1200, speed: speed)
+ setupStar(star2, x: CGFloat(randomPos), y: 1400, speed: speed)
+ setupStar(star3, x: CGFloat(randomPos), y: 1600, speed: speed)
+ setupStar(star4, x: CGFloat(randomPos), y: 1800, speed: speed)
+ setupStar(star5, x: CGFloat(randomPos), y: 2000, speed: speed)
+ scene?.addChild(star1)
+ scene?.addChild(star2)
+ scene?.addChild(star3)
+ scene?.addChild(star4)
+ scene?.addChild(star5)*/

@@ -16,6 +16,7 @@ class Rock: Spawnable {
     var rockArray: [SKSpriteNode] = []
     var speed: CGFloat = 1000
     var playerPosX: CGFloat = 0
+    var timeInterval: Double = 2
     
     internal init(scene: SKScene?) {
         self.scene = scene
@@ -59,7 +60,7 @@ class Rock: Spawnable {
         }
         let deltaTime = currentTime - lastTime
         
-        if deltaTime > Double.random(in: (2000/3)/Double(speed)...5*2000/Double(speed))    {
+        if deltaTime > timeInterval {
             lastTime = currentTime
             if isSpawnActive {
                 for rock in rockArray {
@@ -67,10 +68,11 @@ class Rock: Spawnable {
                         // spawn
                         rock.name = "rockTrue"
                         rock.physicsBody?.collisionBitMask = ContactMask.rock.rawValue | ContactMask.player.rawValue
-                        rock.position.x = playerPosX
+                        rock.position.x = CGFloat.random(in: playerPosX-100 ... playerPosX + 100)
 //                        rock.position.x = CGFloat(Int.random(in: -450...450))
                         rock.position.y = 1200
                         rock.physicsBody?.velocity = CGVector(dx: 0, dy: -speed)
+                        timeInterval = Double.random(in: (2000/3)/Double(speed)...2000/Double(speed))
                         return
                     }
                 }
@@ -79,18 +81,23 @@ class Rock: Spawnable {
         
         for rock in rockArray {
             if rock.position.y < -1500 {
-                rock.position.x = 1000
-                rock.position.y = 0
-                rock.physicsBody?.angularVelocity = 0
-                rock.physicsBody?.velocity = CGVector(dx: 0, dy: 0)
-                rock.name = "rockFalse"
-                rock.physicsBody?.collisionBitMask = 0
-                speed += 100
+                resetPos(rock: rock)
+//                speed += 100
                 print(speed)
                 return
             }
         }
     }
+    
+    func resetPos(rock: SKSpriteNode) {
+        rock.position.x = 1000
+        rock.position.y = 0
+        rock.physicsBody?.angularVelocity = 0
+        rock.physicsBody?.velocity = CGVector(dx: 0, dy: 0)
+        rock.name = "rockFalse"
+        rock.physicsBody?.collisionBitMask = 0
+    }
+    
 }
 
 
