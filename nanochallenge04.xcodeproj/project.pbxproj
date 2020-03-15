@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3F294035241EE69B006C346E /* BGView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F294034241EE69B006C346E /* BGView.swift */; };
 		3F6D9521241DA72800684229 /* MenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F6D9520241DA72800684229 /* MenuView.swift */; };
 		3FF59579241DB94700143510 /* GameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FF59578241DB94700143510 /* GameView.swift */; };
 		3FF5957B241DBCD800143510 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FF5957A241DBCD800143510 /* ViewController.swift */; };
@@ -32,12 +33,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		3F294034241EE69B006C346E /* BGView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BGView.swift; sourceTree = "<group>"; };
 		3F6D9520241DA72800684229 /* MenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuView.swift; sourceTree = "<group>"; };
 		3FF59578241DB94700143510 /* GameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameView.swift; sourceTree = "<group>"; };
 		3FF5957A241DBCD800143510 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		F958DC9B2412D271007FECFE /* Player.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
 		F958DC9D2412DC5D007FECFE /* Protocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Protocols.swift; sourceTree = "<group>"; };
-		F98D33E6241022E900A12F15 /* nanochallenge04.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = nanochallenge04.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		F98D33E6241022E900A12F15 /* Juicy Way.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Juicy Way.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F98D33E9241022E900A12F15 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F98D33EB241022E900A12F15 /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene.sks; sourceTree = "<group>"; };
 		F98D33ED241022E900A12F15 /* Actions.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Actions.sks; sourceTree = "<group>"; };
@@ -73,6 +75,7 @@
 			isa = PBXGroup;
 			children = (
 				3F6D9520241DA72800684229 /* MenuView.swift */,
+				3F294034241EE69B006C346E /* BGView.swift */,
 				3FF59578241DB94700143510 /* GameView.swift */,
 			);
 			path = Interface;
@@ -98,7 +101,7 @@
 		F98D33E7241022E900A12F15 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				F98D33E6241022E900A12F15 /* nanochallenge04.app */,
+				F98D33E6241022E900A12F15 /* Juicy Way.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -164,7 +167,7 @@
 			);
 			name = nanochallenge04;
 			productName = nanochallenge04;
-			productReference = F98D33E6241022E900A12F15 /* nanochallenge04.app */;
+			productReference = F98D33E6241022E900A12F15 /* Juicy Way.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -237,6 +240,7 @@
 				F98D33F2241022E900A12F15 /* GameViewController.swift in Sources */,
 				3FF59579241DB94700143510 /* GameView.swift in Sources */,
 				F98D33EA241022E900A12F15 /* AppDelegate.swift in Sources */,
+				3F294035241EE69B006C346E /* BGView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -381,14 +385,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = Y8J5WK586H;
+				DEVELOPMENT_TEAM = ZAZRKU3BQ9;
 				INFOPLIST_FILE = nanochallenge04/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.andretosin.nanochallenge04;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_BUNDLE_IDENTIFIER = com.rodolfodiniz.JuicyWay;
+				PRODUCT_NAME = "Juicy Way";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -399,14 +403,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = Y8J5WK586H;
+				DEVELOPMENT_TEAM = ZAZRKU3BQ9;
 				INFOPLIST_FILE = nanochallenge04/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.andretosin.nanochallenge04;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_BUNDLE_IDENTIFIER = com.rodolfodiniz.JuicyWay;
+				PRODUCT_NAME = "Juicy Way";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

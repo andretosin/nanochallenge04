@@ -8,15 +8,19 @@
 
 import SwiftUI
 
-//
-//  ContentView.swift
-//  CosmicRush
-//
-//  Created by APPLE DEVELOPER ACADEMY on 13/03/20.
-//  Copyright © 2020 Rodolfo Diniz. All rights reserved.
-//
 
-import SwiftUI
+struct Triangle: Shape {
+    func path(in rect: CGRect) -> Path {
+        var path = Path()
+
+        path.move(to: CGPoint(x: rect.midX, y: rect.minY))
+        path.addLine(to: CGPoint(x: rect.minX, y: rect.maxY))
+        path.addLine(to: CGPoint(x: rect.maxX, y: rect.maxY))
+        path.addLine(to: CGPoint(x: rect.midX, y: rect.minY))
+
+        return path
+    }
+}
 
 struct MenuView: View {
     
@@ -24,18 +28,13 @@ struct MenuView: View {
     @State private var showLogo = false
     @State private var showLastScore = true
     @State private var started = false
-    
     @State private var isPlaying = false
     @State private var topMenu: CGFloat = 0
     
-    var body: some View {
+    var body: some
+        View {
         ZStack {
-            //            Rectangle()
-            //                .fill(Color.blue)
-            //                .foregroundColor(.red)
-            //
-            Rectangle()
-                .overlay(LinearGradient(gradient: Gradient(colors: [Color("TopYellow"), Color("LowYellow")]), startPoint: .top, endPoint: .bottom))
+            BGView()
             GeometryReader { geo in
                 ZStack {
                     VStack {
@@ -44,31 +43,23 @@ struct MenuView: View {
                                 HStack {
                                     Image(systemName: "flag.fill")
                                         .font(.system(size: geo.size.width/22))
-                                        //                                        .font(Font.system(.headline).weight(.bold))
                                         .foregroundColor(.white)
                                         .shadow(color: Color.black.opacity(0.75), radius: 1, x: -1, y: 1)
-                                    
                                     HStack (spacing: geo.size.width/120) {
                                         Text("342")
                                             .font(.custom("nulshock", size: geo.size.width/18))
-                                            //                                        .font(.system(.headline))
                                             .foregroundColor(.white)
                                             .bold()
                                             .multilineTextAlignment(.leading)
                                             .shadow(color: Color.black.opacity(0.75), radius: 1, x: -1, y: 1)
-                                        
                                         Text("ly")
                                             .font(.custom("Audiowide-Regular", size: geo.size.width/30))
-                                            
-                                            //                                        .font(.system(.headline))
                                             .foregroundColor(.white)
                                             .bold()
                                             .padding(.top, geo.size.width/60)
                                             .shadow(color: Color.black.opacity(0.75), radius: 1, x: -1, y: 1)
                                     }
-                                    //                                        .baselineOffset(-10)
                                 }
-                                    
                                 .padding(.leading, 20)
                                 .padding(.trailing, 15)
                                 .padding(.vertical, 10)
@@ -79,50 +70,22 @@ struct MenuView: View {
                                 )
                                     .padding(.leading, 20)
                                     .frame(height: geo.size.height/10, alignment: .leading)
-                                    
                                     .clipShape(Capsule())
                                     .shadow(color: Color.black.opacity(0.4), radius: 4, x: 2, y: 0)
-                                
                             }
                             Spacer()
-                            
                             ZStack (alignment: .trailing) {
-                                
-                                //                                Capsule()
-                                //
-                                //
-                                //
-                                //                                    .fill(Color("LowerPurple"))
-                                //                                    .padding()
-                                //                                    //                .frame(width: 200)
-                                //                                    .frame(width: geo.size.width/2, height: geo.size.height/10)
-                                //                                    .shadow(color: Color.black.opacity(0.4), radius: 4, x: 0, y: 2)
-                                //                                Capsule()
-                                //
-                                //                                    .fill(Color("CosmicPurple"))
-                                //                                    .padding(.vertical, 20)
-                                //                                    //                .frame(width: 200)
-                                //                                    .frame(width: geo.size.width/2.6, height: geo.size.height/10)
                                 HStack {
                                     Image(systemName: "star.fill")
                                         .font(.system(size: geo.size.width/22, weight: .bold))
-                                        
-                                        //                                        .font(Font.system(.headline).weight(.bold))
                                         .foregroundColor(.white)
                                         .shadow(color: Color.black.opacity(0.75), radius: 1, x: -1, y: 1)
-                                    
                                     Text("009")
                                         .font(.custom("nulshock", size: geo.size.width/18))
                                         .foregroundColor(.white)
                                         .bold()
                                         .shadow(color: Color.black.opacity(0.75), radius: 1, x: -1, y: 1)
-                                    
-                                    //                                        .multilineTextAlignment(.leading)
-                                    
-                                    //                                                                                .frame(alignment: .leading)
                                 }
-                                    
-                                    
                                 .padding(.trailing, 20)
                                 .padding(.leading, 15)
                                 .padding(.vertical, 10)
@@ -132,49 +95,26 @@ struct MenuView: View {
                                     )
                                 )
                                     .padding(.trailing, geo.size.width/10)
-                                    //                                        .frame(alignment: .trailing)
-                                    //                                        .frame(width: geo.size.width/2.2, height: geo.size.height/10, alignment: .trailing)
-                                    
                                     .shadow(color: Color.black.opacity(0.4), radius: 4, x: 2, y: 0)
-                                    
                                     .clipShape(Capsule())
                                     .background(Capsule()
-                                        
-                                        
                                         .fill(Color("LowerPurple"))
-                                        //                                             .frame(alignment: .leading)
-                                        //                                .padding()
-                                        //                .frame(width: 200)
-                                        //                                .frame(width: geo.size.width/2, height: geo.size.height/10)
                                         .shadow(color: Color.black.opacity(0.4), radius: 4, x: 0, y: 2)
                                 )
-                                
-                                //
                                 VStack (alignment: .trailing) {
-                                    //                                    VStack {
                                     Button(action: {
                                         print("Store button tapped!")
                                     }) {
                                         Image(systemName: "plus")
                                             .font(.system(size: geo.size.width/14, weight: .black))
-                                            
                                             .padding(.trailing, geo.size.width/40)
-                                            //                                                .weight(.bold))
                                             .foregroundColor(.white)
                                             .shadow(color: Color.black.opacity(0.75), radius: 1, x: -1, y: 1)
                                     }
-                                    
-                                    
-                                    
-                                    
-                                    //                                        .clipShape(Capsule())
                                 }
                             }
                             .frame(height: geo.size.height/10, alignment: .trailing)
-                            //                            .padding(.vertical, 20)
-                            //                                .padding(.trailing, 20)
                         }
-                        .padding(.top, 40)
                         .padding(.trailing, 20)
                         .overlay(
                             GeometryReader { geo2 in
@@ -185,9 +125,6 @@ struct MenuView: View {
                                 }
                             }
                         )
-                            
-                            //                        .padding(.vertical, 30)
-                            
                         VStack (spacing: geo.size.width/100) {
                             ZStack {
                                 if self.showLogo {
@@ -197,8 +134,6 @@ struct MenuView: View {
                                         .scaledToFit()
                                         .frame(width: geo.size.width/1.3)
                                 }
-                                
-                                //                            Spacer()
                                 HStack (spacing: geo.size.width/120) {
                                     VStack {
                                         VStack (spacing: 0) {
@@ -208,118 +143,94 @@ struct MenuView: View {
                                                     .foregroundColor(Color("CosmicPurple"))
                                                     .bold()
                                                     .shadow(color: Color.black.opacity(0.75), radius: 1, x: -1, y: 1)
-                                                .padding(.top, geo.size.width/60)
+                                                    .padding(.top, geo.size.width/60)
                                                     .fixedSize(horizontal: true, vertical: false)
                                                 Text("ly")
                                                     .font(.custom("Audiowide-Regular", size: geo.size.width/12))
                                                     .foregroundColor(Color("CosmicPurple"))
                                                     .bold()
                                                     .padding(.top, geo.size.width/10)
-//                                                   .padding(.trailing, geo.size.width/2)
                                                     .frame(width: geo.size.width/10)
-                                                
                                             }.offset(x: geo.size.width/20)
-                                            
                                             HStack {
-                                                //                                            HStack {
                                                 Image(systemName: "star.fill")
                                                     .font(.system(size: geo.size.width/15, weight: .bold))
-                                                    
-                                                    //                                        .font(Font.system(.headline).weight(.bold))
                                                     .foregroundColor(Color("CosmicPurple"))
                                                     .shadow(color: Color.black.opacity(0.75), radius: 1, x: -1, y: 1)
-//                                                    .offset(x: geo.size.width/120)
-//                                                .frame(width: geo.size.width/10)
-                                                //                                                }
-                                                
-                                                Text("4")
+                                                Text("13")
                                                     .font(.custom("nulshock", size: geo.size.width/10))
                                                     .foregroundColor(Color("CosmicPurple"))
                                                     .bold()
                                                     .shadow(color: Color.black.opacity(0.75), radius: 1, x: -1, y: 1)
-                                                .fixedSize(horizontal: true, vertical: false)
-                                                }
+                                                    .fixedSize(horizontal: true, vertical: false)
+                                            }
                                             .offset(x: -geo.size.width/20)
-                                                
-                                                //                                        .multilineTextAlignment(.leading)
-                                                
-                                                //                                                                                .frame(alignment: .leading)
-                                            
                                         }
                                     }
-                                    //                                                                        Text("ly")
-                                    //                                                                            .font(.custom("Audiowide-Regular", size: geo.size.width/12))
-                                    //
-                                    //                                                                            //                                        .font(.system(.headline))
-                                    //                                                                            .foregroundColor(Color("CosmicPurple"))
-                                    //                                                                            .bold()
-                                    //                                    //                                        .shadow(color: Color.black.opacity(0.75), radius: 1, x: -1, y: 1)
-                                    //                                                                        .fixedSize(horizontal: true, vertical: false)
-                                    //                                                                        .padding(.top, geo.size.width/12)
-                                    //
-                                    //                                                                                                                .baselineOffset(-10)
                                 }
-                                    
                                 .frame(minWidth: 0, maxWidth: .infinity)
-                                
                             }
-                            
-                            //                            Spacer()
                         }
-                        //                        .frame(height: geo.size.height/2)
-                        
-                        
-                        
-                        //                            .padding(40)
-                        //                        HStack {
-                        //                        Circle()
-                        //                            Circle()
-                        //                            Circle()
-                        //                            Circle()
-                        //                        }
-                        //                    .padding()
-                        //                        HStack {
-                        //                            ConfButtonView()
-                        //                            ConfButtonView()
-                        //                            ConfButtonView()
-                        //                            ConfButtonView()
-                        //                        }
-                        //                        .frame(width: geo.size.width)
                         Spacer()
                     }
-                    
-                    //                    .scaleToFit()
-                    //                    .frame(width: 200, height: 200)
-                    //            }
                     GameView(isPlaying: self.isPlaying)
-//                                            .opacity(0.2)
-
-                                            .mask(
-                                                Circle()
-                                                    .offset(y: self.topMenu)
-                                                    .padding(self.isPlaying ? -geo.size.height : geo.size.width/10)
-                                                    .padding(.top, 20)
-
-                                        )
-                    Image(systemName: "play.circle.fill")
-                        .font(.system(size: 100))
-                        .foregroundColor(.blue)
-                        .padding()
+                        .mask(
+                            ZStack {
+                                Circle()
+                                    .offset(y: self.topMenu/2)
+                                    .padding(self.isPlaying ? -geo.size.height : geo.size.width/10)
+                                //                                .padding(.top, 20)
+                                Circle()
+                                    .offset(y: 2.4 * self.topMenu)
+                                    .padding(self.isPlaying ? -geo.size.height : geo.size.width/3.2)
+                                //                                .padding(100)
+                                //                                    .padding(geo.size.width/120)
+                            }
+                    )
+                    Circle()
+                        .offset(y: 2.4 * self.topMenu)
+                    .shadow(color: Color.black.opacity(0.75), radius: 1, x: -1, y: 1)
+                    .foregroundColor(Color("LowerPurple"))
+                        .frame(width: geo.size.width/3.4)
                         .opacity(self.buttonIsShown ? 1.0 : 0.0)
-                                            .onTapGesture {
+                                               .onTapGesture {
+                                                   withAnimation {
+                                                       self.isPlaying = true
+                                                       self.buttonIsShown.toggle()
+                                                   }
+                                           }
+                        
+
+                        Triangle()
+                        .fill(Color.white)
+                            .offset(x: 2.4 * self.topMenu, y: -0.1 * self.topMenu)
+                            .shadow(color: Color.black.opacity(0.5), radius: 4, x: 6, y: 1)
+                            .frame(width: geo.size.width/5.5, height: geo.size.width/7)
+                            .rotationEffect(.degrees(-270))
+                            .padding(30)
+//                    Image(systemName: "arrowtriangle.right.fill")
+//                        .font(.system(size: geo.size.width/6))
+//                        .foregroundColor(.white)
+//                        .shadow(color: Color.black.opacity(0.5), radius: 4, x: 1, y: 6)
+//
+//                        .padding(30)
+                        .opacity(self.buttonIsShown ? 1.0 : 0.0)
+                        .onTapGesture {
                             withAnimation {
                                 self.isPlaying = true
                                 self.buttonIsShown.toggle()
-                                
                             }
-                        
-                            //
                     }
+//                    .background(Circle()
+//
+//                    .shadow(color: Color.black.opacity(0.75), radius: 1, x: -1, y: 1)
+//                    .foregroundColor(Color("LowerPurple")
+//                        )
+                    
                 }
             }
-            
         }
-        .edgesIgnoringSafeArea(.all)
+//                .edgesIgnoringSafeArea(.all)
     }
 }
 
