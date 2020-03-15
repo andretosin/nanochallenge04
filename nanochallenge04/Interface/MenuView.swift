@@ -25,6 +25,8 @@ struct MenuView: View {
     @State private var showLastScore = true
     @State private var started = false
     
+    @State private var isPlaying = false
+    
     var body: some View {
         ZStack {
             //            Rectangle()
@@ -276,12 +278,13 @@ struct MenuView: View {
                     //                    .scaleToFit()
                     //                    .frame(width: 200, height: 200)
                     //            }
-                                        GameView()
+                    GameView(isPlaying: self.isPlaying)
 //                                            .opacity(0.2)
 
                                             .mask(
                                                 Circle()
-                                                    .padding(self.started ? -geo.size.height : geo.size.width/20)
+                                                    .offset(y: 100)
+                                                    .padding(self.isPlaying ? -geo.size.height : geo.size.width/20)
 
                                         )
                     Image(systemName: "play.circle.fill")
@@ -291,7 +294,7 @@ struct MenuView: View {
                         .opacity(self.buttonIsShown ? 1.0 : 0.0)
                                             .onTapGesture {
                             withAnimation {
-                                self.started.toggle()
+                                self.isPlaying = true
                                 self.buttonIsShown.toggle()
                                 
                             }

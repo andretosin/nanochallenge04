@@ -10,11 +10,17 @@ import UIKit
 import SwiftUI
 
 struct GameView: UIViewControllerRepresentable {
+    var isPlaying: Bool
     
     func makeUIViewController(context: Context) -> GameViewController {
         GameViewController()
     }
 
     func updateUIViewController(_ uiViewController: GameViewController, context: Context) {
+        if isPlaying {
+            uiViewController.gameScene.play()
+        } else {
+            uiViewController.gameScene.pause()
+        }
     }
 }

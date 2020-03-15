@@ -8,6 +8,9 @@
 
 import SpriteKit
 
+protocol GameDelegate {
+}
+
 class GameScene: SKScene, SKPhysicsContactDelegate {
     
     var player: Player!
@@ -23,8 +26,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var currentScore = 0
     var lblScore = SKLabelNode()
     var particles = SKEmitterNode()
-    
-    
     
     override func didMove(to view: SKView) {
         self.physicsWorld.contactDelegate = self
@@ -154,6 +155,14 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
 
             }
         }
+    }
+    
+    func play() {
+        print("playyyyy")
+    }
+    
+    func pause() {
+        
     }
 }
 

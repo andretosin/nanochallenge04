@@ -13,6 +13,8 @@ import GameplayKit
 
 class GameViewController: UIViewController {
     
+    var gameScene: GameScene!
+    
     init() {
         super.init(nibName: nil, bundle: nil)
     }
@@ -29,12 +31,13 @@ class GameViewController: UIViewController {
         
 //        if let view = self.view as? SKView {
             // Load the SKScene from 'GameScene.sks'
-            if let scene = SKScene(fileNamed: "GameScene") {
+            if let scene = SKScene(fileNamed: "GameScene") as? GameScene {
                 // Set the scale mode to scale to fit the window
                 scene.scaleMode = .aspectFill
                 
                 // Present the scene
                 sceneView.presentScene(scene)
+                self.gameScene = scene
             }
             sceneView.ignoresSiblingOrder = true
             
