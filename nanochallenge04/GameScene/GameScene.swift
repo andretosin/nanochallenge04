@@ -18,15 +18,19 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var collisionFlag = false
     var rollRate: CGFloat!
     var rock: Rock!
-    var stars: SKSpriteNode!
     var star: Star!
+    var stars: SKSpriteNode!
     var lastTime: TimeInterval = TimeInterval(0)
     var isPlayerDead: Bool = false
     let notification = UIImpactFeedbackGenerator(style: .heavy)
     var currentScore = 0
     var lblScore = SKLabelNode()
+    var lblDistance = SKLabelNode()
     var particles = SKEmitterNode()
     var gameStarted = false
+    var flightSpeed: CGFloat = 0
+    var flightDistance: CGFloat = 0
+
     
     override func didMove(to view: SKView) {
         self.physicsWorld.contactDelegate = self
@@ -41,6 +45,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         lblScore = self.childNode(withName: "lblScore") as! SKLabelNode
         lblScore.text = "\(currentScore)"
+        
+        lblDistance = self.childNode(withName: "lblDistance") as! SKLabelNode
+        lblDistance.text = "\(flightDistance)"
         
         
         let playerNode = self.childNode(withName: "player") as! SKSpriteNode
@@ -79,12 +86,16 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             player.update(CGFloat(deltaTime))
             rock.update(currentTime)
             star.update(currentTime)
+            
+            self.flightSpeed = rock.speed
+            self.flightDistance += flightSpeed
+            self.lblDistance.text = "\(Int(flightDistance/2000))"
+            self.lblDistance.alpha = 1
+            
+            
         }
         
         
-        //        if currentScore > 25 {
-        //            star.speed = 3500
-        //        }
         
         
     }

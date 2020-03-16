@@ -23,7 +23,7 @@ class Rock: Spawnable {
         let texture = SKTexture(imageNamed: "Rock")
         
         
-        for _ in 1...10 {
+        for _ in 1...5 {
             let rockNode = SKSpriteNode(texture: texture)
             setupRock(rockNode, x: 1000, y: 0, speed: speed)
             rockArray.append(rockNode)
