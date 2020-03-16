@@ -25,6 +25,8 @@ class Player: Updatable {
     let zRotationAngle = CGFloat(Double.pi/4)
     let notification = UIImpactFeedbackGenerator(style: .heavy)
     let rollRate: CGFloat = 50
+    var accelerateRight: Bool = false
+    var accelerateLeft: Bool = false
     
     internal init(scene: GameScene?, node: SKSpriteNode?) {
         self.scene = scene
@@ -37,6 +39,20 @@ class Player: Updatable {
     var node: SKSpriteNode!
     
     func update(_ deltaTime: CGFloat) {
+        
+        
+        
+        if accelerateLeft {
+            if self.node.physicsBody!.velocity.dx < CGFloat(-500) {
+                self.node.physicsBody?.applyForce(CGVector(dx: -2000, dy: 0))
+            }
+        } else if accelerateRight {
+            if self.node.physicsBody!.velocity.dx < CGFloat(500) {
+
+            self.node.physicsBody?.applyForce(CGVector(dx: 2000, dy: 0))
+            }
+        }
+        
         
     }
     
