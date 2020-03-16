@@ -43,17 +43,14 @@ class Player: Updatable {
         
         
         if accelerateLeft {
-            if self.node.physicsBody!.velocity.dx < CGFloat(-500) {
-                self.node.physicsBody?.applyForce(CGVector(dx: -2000, dy: 0))
+            if self.node.physicsBody!.velocity.dx > CGFloat(-1000) {
+                self.node.physicsBody?.applyForce(CGVector(dx: -5000, dy: 0))
             }
         } else if accelerateRight {
-            if self.node.physicsBody!.velocity.dx < CGFloat(500) {
-
-            self.node.physicsBody?.applyForce(CGVector(dx: 2000, dy: 0))
+            if self.node.physicsBody!.velocity.dx < CGFloat(1000) {
+                self.node.physicsBody?.applyForce(CGVector(dx: 5000, dy: 0))
             }
         }
-        
-        
     }
     
     func configurePhysics() {

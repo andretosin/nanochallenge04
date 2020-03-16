@@ -84,8 +84,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         if gameStarted {
             player.update(CGFloat(deltaTime))
-//            rock.update(currentTime)
-//            star.update(currentTime)
+            rock.update(currentTime)
+            star.update(currentTime)
             
             self.flightSpeed = rock.speed
             self.flightDistance += flightSpeed
