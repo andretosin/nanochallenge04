@@ -138,7 +138,8 @@ struct MenuView: View {
                                                 self.buttonIsShown.toggle()
                                             }
                                     }
-                                    .padding(.trailing, geo.size.width/10)
+                                .padding(.trailing, self.buttonIsShown ? geo.size.width/10 : 0)
+                                    
                                     .shadow(color: Color.black.opacity(0.4), radius: 4, x: 2, y: 0)
                                     .clipShape(Capsule())
                                     .background(Capsule()
@@ -169,7 +170,7 @@ struct MenuView: View {
                             
                         }
                         .padding(.trailing, 20)
-                        
+                        .opacity(self.buttonIsShown ? 1.0 : 0.5)
                         VStack (spacing: geo.size.width/100) {
                             ZStack {
                                 if self.showLogo {
