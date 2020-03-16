@@ -31,6 +31,7 @@ struct MenuView: View {
     @State private var isPlaying = false
     @State private var topMenu: CGFloat = 0
     
+    
     var body: some
         View {
         GeometryReader { geo in
@@ -74,20 +75,33 @@ struct MenuView: View {
                                             .bold()
                                             .padding(.top, geo.size.width/60)
                                             .shadow(color: Color.black.opacity(0.75), radius: 1, x: -1, y: 1)
+                                        
                                     }
                                 }
+                                        .opacity(self.buttonIsShown ? 1.0 : 0.0)
+                                        .onTapGesture {
+                                            withAnimation {
+                                                self.isPlaying = true
+                                                self.buttonIsShown.toggle()
+                                            }
+                                    }
                                 .padding(.leading, 20)
                                 .padding(.trailing, 15)
                                 .padding(.vertical, 10)
                                     
                                 .background(Capsule()
-                                .fill(Color("CosmicPurple")
-                                    )
+                                .fill(self.buttonIsShown ? Color("CosmicPurple") : Color("LowerPurple"))
                                 )
                                     .padding(.leading, 20)
                                     .frame(height: geo.size.height/10, alignment: .leading)
                                     .clipShape(Capsule())
                                     .shadow(color: Color.black.opacity(0.4), radius: 4, x: 2, y: 0)
+                                .onTapGesture {
+                                        withAnimation {
+                                            self.isPlaying = true
+                                            self.buttonIsShown.toggle()
+                                        }
+                                }
                             }
                             Spacer()
                             ZStack (alignment: .trailing) {
@@ -105,11 +119,25 @@ struct MenuView: View {
                                 .padding(.trailing, 20)
                                 .padding(.leading, 15)
                                 .padding(.vertical, 10)
-                                    
+                                    .opacity(self.buttonIsShown ? 1.0 : 0.0)
+                                        .onTapGesture {
+                                            withAnimation {
+                                                self.isPlaying = true
+                                                self.buttonIsShown.toggle()
+                                            }
+                                    }
                                 .background(Capsule()
-                                .fill(Color("CosmicPurple")
-                                    )
+                                .fill(self.buttonIsShown ? Color("CosmicPurple") : .white)
+                                    
+                                    
                                 )
+                                    .opacity(self.buttonIsShown ? 1.0 : 0.0)
+                                        .onTapGesture {
+                                            withAnimation {
+                                                self.isPlaying = true
+                                                self.buttonIsShown.toggle()
+                                            }
+                                    }
                                     .padding(.trailing, geo.size.width/10)
                                     .shadow(color: Color.black.opacity(0.4), radius: 4, x: 2, y: 0)
                                     .clipShape(Capsule())
@@ -117,6 +145,7 @@ struct MenuView: View {
                                         .fill(Color("LowerPurple"))
                                         .shadow(color: Color.black.opacity(0.4), radius: 4, x: 0, y: 2)
                                 )
+                                
                                 VStack (alignment: .trailing) {
                                     Button(action: {
                                         print("Store button tapped!")
@@ -128,10 +157,19 @@ struct MenuView: View {
                                             .shadow(color: Color.black.opacity(0.75), radius: 1, x: -1, y: 1)
                                     }
                                 }
+                                .opacity(self.buttonIsShown ? 1.0 : 0.0)
+                                                                       .onTapGesture {
+                                                                           withAnimation {
+                                                                               self.isPlaying = true
+                                                                               self.buttonIsShown.toggle()
+                                                                           }
+                                                                   }
                             }
                             .frame(height: geo.size.height/10, alignment: .trailing)
+                            
                         }
                         .padding(.trailing, 20)
+                        
                         VStack (spacing: geo.size.width/100) {
                             ZStack {
                                 if self.showLogo {
@@ -178,6 +216,13 @@ struct MenuView: View {
                                         
                                     }
                                 }
+                                    .opacity(self.buttonIsShown ? 1.0 : 0.0)
+                                        .onTapGesture {
+                                            withAnimation {
+                                                self.isPlaying = true
+                                                self.buttonIsShown.toggle()
+                                            }
+                                    }
                                 .frame(minWidth: 0, maxWidth: .infinity)
                             }
                             .overlay(
