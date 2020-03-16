@@ -156,7 +156,7 @@ struct MenuView: View {
                                                     .fixedSize(horizontal: true, vertical: false)
                                             }
                                                 
-                                            .offset(x: -geo.size.width/20)
+//                                            .offset(x: -geo.size.width/20)
                                             
                                         }
                                         
@@ -164,36 +164,40 @@ struct MenuView: View {
                                 }
                                 .frame(minWidth: 0, maxWidth: .infinity)
                             }
-                        }
-                        .overlay(
-                            GeometryReader { geo2 in
-                                Color.clear
-                                    .onAppear {
-                                        self.topMenu = geo2.frame(in: .global).height
-                                        print("lala", self.topMenu)
+                            .overlay(
+                                GeometryReader { geo2 in
+                                    Color.clear
+                                        .onAppear {
+                                            self.topMenu = geo2.frame(in: .global).width
+                                            print("lala", self.topMenu)
+                                    }
                                 }
-                            }
-                        )
+                            )
+                        }
+
 
                         Spacer()
                         
                     }
                     GameView(isPlaying: self.isPlaying)
+                    .edgesIgnoringSafeArea(.all)
                         .mask(
                             ZStack {
                                 Circle()
-                                    .offset(y: self.topMenu/2)
+                                    .offset(y: self.topMenu/5)
                                     .padding(self.isPlaying ? -geo.size.height : geo.size.width/10)
                                 //                                .padding(.top, 20)
                                 Circle()
-                                    .offset(y: 1.2 * self.topMenu)
+                                    .offset(y: 0.6 * self.topMenu)
                                     .padding(self.isPlaying ? -geo.size.height : geo.size.width/3.2)
                                 //                                .padding(100)
                                 //                                    .padding(geo.size.width/120)
                             }
                     )
+                        
+                    
                     Circle()
-                        .offset(y: 1.2 * self.topMenu)
+                        .offset(y: 0.6 * self.topMenu)
                         .shadow(color: Color.black.opacity(0.75), radius: 1, x: -1, y: 1)
                         .foregroundColor(Color("LowerPurple"))
                         .frame(width: geo.size.width/3.35)
@@ -208,7 +212,8 @@ struct MenuView: View {
                     
                     Triangle()
                         .fill(Color.white)
-                        .offset(x: 1.2 * self.topMenu, y: -0.05 * self.topMenu)
+                        .offset(x: 0.6 * self.topMenu, y: -0.02 * self.topMenu)
+//                        .offset(x: self.topMenu, y: self.topMenu)
                         .shadow(color: Color.black.opacity(0.5), radius: 4, x: 6, y: 1)
                         .frame(width: geo.size.width/6, height: geo.size.width/8)
                         .rotationEffect(.degrees(-270))
@@ -235,7 +240,7 @@ struct MenuView: View {
                 }
             }
         }
-        //                .edgesIgnoringSafeArea(.all)
+//                        .edgesIgnoringSafeArea(.all)
     }
 }
 
