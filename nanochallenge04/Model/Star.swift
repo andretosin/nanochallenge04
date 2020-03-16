@@ -21,9 +21,10 @@ class Star: Spawnable {
     
     internal init(scene: SKScene?) {
         self.scene = scene
+        let texture = SKTexture(imageNamed: "Star")
         
         for _ in 1...10 {
-            let starNode = SKSpriteNode(imageNamed: "Star")
+            let starNode = SKSpriteNode(texture: texture)
             setupStar(starNode, x: 1001, y: 0, speed: 1500)
             starArray.append(starNode)
             scene?.addChild(starNode)
@@ -36,7 +37,8 @@ class Star: Spawnable {
             return
         }
         let deltaTime = currentTime - lastTime
-
+        
+        
         if deltaTime > timeInterval {
             lastTime = currentTime
             if isSpawnActive {
@@ -47,7 +49,7 @@ class Star: Spawnable {
                     spawnGroup(2)
                 }
                 timeInterval = Double.random(in: 1.5...2.5)
-//                speed += 200
+                //                speed += 200
             }
         }
         for star in starArray {
@@ -108,8 +110,21 @@ class Star: Spawnable {
         if id == 2 {
             for star in starArray {
                 if star.name == "starFalse" {
+                    let spawnPadding: CGFloat = 300
                     star.position.y = 1200
                     star.position.x = CGFloat.random(in: -400...400)
+
+                    for node in scene!.children {
+                        if node.name == "rockTrue" {
+                            if abs(node.position.y - star.position.y) < spawnPadding {
+                                while abs(node.position.x - star.position.x) < spawnPadding {
+
+                                    star.position.x = CGFloat.random(in: -400...400)
+                                }
+                            }
+                        }
+                        
+                    }
                     star.physicsBody?.velocity = CGVector(dx: 0, dy: -speed)
                     star.name = "starTrue"
                     return

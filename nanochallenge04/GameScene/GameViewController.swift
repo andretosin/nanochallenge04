@@ -29,27 +29,26 @@ class GameViewController: UIViewController {
         let sceneView = SKView(frame: view.frame)
         view.addSubview(sceneView)
         
-//        if let view = self.view as? SKView {
-            // Load the SKScene from 'GameScene.sks'
-            if let scene = SKScene(fileNamed: "GameScene") as? GameScene {
-                // Set the scale mode to scale to fit the window
-                scene.scaleMode = .aspectFill
-                
-                // Present the scene
-                sceneView.presentScene(scene)
-                self.gameScene = scene
-            }
-            sceneView.ignoresSiblingOrder = true
+        //        if let view = self.view as? SKView {
+        // Load the SKScene from 'GameScene.sks'
+        if let scene = SKScene(fileNamed: "GameScene") as? GameScene {
+            // Set the scale mode to scale to fit the window
+            scene.scaleMode = .aspectFill
             
-            sceneView.showsFPS = true
-            sceneView.showsNodeCount = true
-//        }
+            // Present the scene
+            sceneView.presentScene(scene)
+            self.gameScene = scene
+        }
+        sceneView.ignoresSiblingOrder = true
+        sceneView.showsFPS = true
+        sceneView.showsNodeCount = true
+        //        }
     }
-
+    
     override var shouldAutorotate: Bool {
         return true
     }
-
+    
     override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
         if UIDevice.current.userInterfaceIdiom == .phone {
             return .allButUpsideDown
@@ -57,7 +56,7 @@ class GameViewController: UIViewController {
             return .all
         }
     }
-
+    
     override var prefersStatusBarHidden: Bool {
         return true
     }

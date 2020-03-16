@@ -20,9 +20,11 @@ class Rock: Spawnable {
     
     internal init(scene: SKScene?) {
         self.scene = scene
+        let texture = SKTexture(imageNamed: "Rock")
+        
         
         for _ in 1...10 {
-            let rockNode = SKSpriteNode(imageNamed: "Rock")
+            let rockNode = SKSpriteNode(texture: texture)
             setupRock(rockNode, x: 1000, y: 0, speed: speed)
             rockArray.append(rockNode)
             scene?.addChild(rockNode)
@@ -71,6 +73,21 @@ class Rock: Spawnable {
                         rock.position.x = CGFloat.random(in: playerPosX-100 ... playerPosX + 100)
 //                        rock.position.x = CGFloat(Int.random(in: -450...450))
                         rock.position.y = 1200
+                        
+                        
+                        
+                        for node in scene!.children {
+                            if node.name == "starTrue" {
+                                let spawnPadding: CGFloat = 300
+                                if abs(node.position.y - rock.position.y) < spawnPadding {
+                                    while abs(node.position.x - rock.position.x) < spawnPadding {
+                                        rock.position.x = CGFloat.random(in: -400...400)
+                                    }
+                                }
+                            }
+                        }
+                        
+                        
                         rock.physicsBody?.velocity = CGVector(dx: 0, dy: -speed)
                         timeInterval = Double.random(in: (2000/3)/Double(speed)...2000/Double(speed))
                         return
@@ -83,7 +100,7 @@ class Rock: Spawnable {
             if rock.position.y < -1500 {
                 resetPos(rock: rock)
 //                speed += 100
-                print(speed)
+//                print(speed)
                 return
             }
         }

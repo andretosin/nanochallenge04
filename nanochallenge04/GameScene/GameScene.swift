@@ -46,6 +46,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         let playerNode = self.childNode(withName: "player") as! SKSpriteNode
         playerNode.zPosition = 1
         player = Player(scene: self, node: playerNode)
+        
         rock = Rock(scene: self)
         star = Star(scene: self)
         
