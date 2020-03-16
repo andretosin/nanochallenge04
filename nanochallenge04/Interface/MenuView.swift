@@ -195,21 +195,21 @@ struct MenuView: View {
                         Spacer()
                         
                     }
-                    GameView(isPlaying: self.isPlaying)
-                    .edgesIgnoringSafeArea(.all)
-                        .mask(
-                            ZStack {
-                                Circle()
-                                    .offset(y: self.topMenu/5)
-//                                    .padding(self.isPlaying ? -geo.size.height : geo.size.width/10)
-                                //                                .padding(.top, 20)
-                                Circle()
-                                    .offset(y: 0.6 * self.topMenu)
-                                    .padding(self.isPlaying ? -geo.size.height : geo.size.width/3.2)
-                                //                                .padding(100)
-                                //                                    .padding(geo.size.width/120)
-                            }
-                    )
+//                    GameView(isPlaying: self.isPlaying)
+//                    .edgesIgnoringSafeArea(.all)
+//                        .mask(
+//                            ZStack {
+//                                Circle()
+//                                    .offset(y: self.topMenu/5)
+////                                    .padding(self.isPlaying ? -geo.size.height : geo.size.width/10)
+//                                //                                .padding(.top, 20)
+//                                Circle()
+//                                    .offset(y: 0.6 * self.topMenu)
+//                                    .padding(self.isPlaying ? -geo.size.height : geo.size.width/3.2)
+//                                //                                .padding(100)
+//                                //                                    .padding(geo.size.width/120)
+//                            }
+//                    )
                         
                     
                     Circle()
