@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "F98D33E5241022E900A12F15"
-               BuildableName = "nanochallenge04.app"
+               BuildableName = "Juicy Way.app"
                BlueprintName = "nanochallenge04"
                ReferencedContainer = "container:nanochallenge04.xcodeproj">
             </BuildableReference>
@@ -45,7 +45,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "F98D33E5241022E900A12F15"
-            BuildableName = "nanochallenge04.app"
+            BuildableName = "Juicy Way.app"
             BlueprintName = "nanochallenge04"
             ReferencedContainer = "container:nanochallenge04.xcodeproj">
          </BuildableReference>
@@ -62,7 +62,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "F98D33E5241022E900A12F15"
-            BuildableName = "nanochallenge04.app"
+            BuildableName = "Juicy Way.app"
             BlueprintName = "nanochallenge04"
             ReferencedContainer = "container:nanochallenge04.xcodeproj">
          </BuildableReference>

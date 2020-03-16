@@ -12,12 +12,12 @@ import SwiftUI
 struct Triangle: Shape {
     func path(in rect: CGRect) -> Path {
         var path = Path()
-
+        
         path.move(to: CGPoint(x: rect.midX, y: rect.minY))
         path.addLine(to: CGPoint(x: rect.minX, y: rect.maxY))
         path.addLine(to: CGPoint(x: rect.maxX, y: rect.maxY))
         path.addLine(to: CGPoint(x: rect.midX, y: rect.minY))
-
+        
         return path
     }
 }
@@ -116,15 +116,6 @@ struct MenuView: View {
                             .frame(height: geo.size.height/10, alignment: .trailing)
                         }
                         .padding(.trailing, 20)
-                        .overlay(
-                            GeometryReader { geo2 in
-                                Color.clear
-                                    .onAppear {
-                                        self.topMenu = geo2.frame(in: .global).height
-                                        print("lala", self.topMenu)
-                                }
-                            }
-                        )
                         VStack (spacing: geo.size.width/100) {
                             ZStack {
                                 if self.showLogo {
@@ -164,14 +155,28 @@ struct MenuView: View {
                                                     .shadow(color: Color.black.opacity(0.75), radius: 1, x: -1, y: 1)
                                                     .fixedSize(horizontal: true, vertical: false)
                                             }
+                                                
                                             .offset(x: -geo.size.width/20)
+                                            
                                         }
+                                        
                                     }
                                 }
                                 .frame(minWidth: 0, maxWidth: .infinity)
                             }
                         }
+                        .overlay(
+                            GeometryReader { geo2 in
+                                Color.clear
+                                    .onAppear {
+                                        self.topMenu = geo2.frame(in: .global).height
+                                        print("lala", self.topMenu)
+                                }
+                            }
+                        )
+
                         Spacer()
+                        
                     }
                     GameView(isPlaying: self.isPlaying)
                         .mask(
@@ -181,39 +186,17 @@ struct MenuView: View {
                                     .padding(self.isPlaying ? -geo.size.height : geo.size.width/10)
                                 //                                .padding(.top, 20)
                                 Circle()
-                                    .offset(y: 2.4 * self.topMenu)
+                                    .offset(y: 1.2 * self.topMenu)
                                     .padding(self.isPlaying ? -geo.size.height : geo.size.width/3.2)
                                 //                                .padding(100)
                                 //                                    .padding(geo.size.width/120)
                             }
                     )
                     Circle()
-                        .offset(y: 2.4 * self.topMenu)
-                    .shadow(color: Color.black.opacity(0.75), radius: 1, x: -1, y: 1)
-                    .foregroundColor(Color("LowerPurple"))
-                        .frame(width: geo.size.width/3.4)
-                        .opacity(self.buttonIsShown ? 1.0 : 0.0)
-                                               .onTapGesture {
-                                                   withAnimation {
-                                                       self.isPlaying = true
-                                                       self.buttonIsShown.toggle()
-                                                   }
-                                           }
-                        
-
-                        Triangle()
-                        .fill(Color.white)
-                            .offset(x: 2.4 * self.topMenu, y: -0.1 * self.topMenu)
-                            .shadow(color: Color.black.opacity(0.5), radius: 4, x: 6, y: 1)
-                            .frame(width: geo.size.width/5.5, height: geo.size.width/7)
-                            .rotationEffect(.degrees(-270))
-                            .padding(30)
-//                    Image(systemName: "arrowtriangle.right.fill")
-//                        .font(.system(size: geo.size.width/6))
-//                        .foregroundColor(.white)
-//                        .shadow(color: Color.black.opacity(0.5), radius: 4, x: 1, y: 6)
-//
-//                        .padding(30)
+                        .offset(y: 1.2 * self.topMenu)
+                        .shadow(color: Color.black.opacity(0.75), radius: 1, x: -1, y: 1)
+                        .foregroundColor(Color("LowerPurple"))
+                        .frame(width: geo.size.width/3.35)
                         .opacity(self.buttonIsShown ? 1.0 : 0.0)
                         .onTapGesture {
                             withAnimation {
@@ -221,16 +204,38 @@ struct MenuView: View {
                                 self.buttonIsShown.toggle()
                             }
                     }
-//                    .background(Circle()
-//
-//                    .shadow(color: Color.black.opacity(0.75), radius: 1, x: -1, y: 1)
-//                    .foregroundColor(Color("LowerPurple")
-//                        )
+                    
+                    
+                    Triangle()
+                        .fill(Color.white)
+                        .offset(x: 1.2 * self.topMenu, y: -0.05 * self.topMenu)
+                        .shadow(color: Color.black.opacity(0.5), radius: 4, x: 6, y: 1)
+                        .frame(width: geo.size.width/6, height: geo.size.width/8)
+                        .rotationEffect(.degrees(-270))
+                        .padding(30)
+                        //                    Image(systemName: "arrowtriangle.right.fill")
+                        //                        .font(.system(size: geo.size.width/6))
+                        //                        .foregroundColor(.white)
+                        //                        .shadow(color: Color.black.opacity(0.5), radius: 4, x: 1, y: 6)
+                        //
+                        //                        .padding(30)
+                        .opacity(self.buttonIsShown ? 1.0 : 0.0)
+                        .onTapGesture {
+                            withAnimation {
+                                self.isPlaying = true
+                                self.buttonIsShown.toggle()
+                            }
+                    }
+                    //                    .background(Circle()
+                    //
+                    //                    .shadow(color: Color.black.opacity(0.75), radius: 1, x: -1, y: 1)
+                    //                    .foregroundColor(Color("LowerPurple")
+                    //                        )
                     
                 }
             }
         }
-//                .edgesIgnoringSafeArea(.all)
+        //                .edgesIgnoringSafeArea(.all)
     }
 }
 
@@ -238,9 +243,9 @@ struct MenuView: View {
 //    static var previews: some View {
 //        Group {
 //            MenuView()
-////                                    ContentView()
-////                                        .previewDevice(PreviewDevice(rawValue: "iPhone SE"))
-////                                        .previewDisplayName("iPhone SE")
+//                                    MenuView()
+//                                        .previewDevice(PreviewDevice(rawValue: "iPhone SE"))
+//                                        .previewDisplayName("iPhone SE")
 ////
 ////                                    ContentView()
 ////                                        .previewDevice(PreviewDevice(rawValue: "iPhone 8"))
