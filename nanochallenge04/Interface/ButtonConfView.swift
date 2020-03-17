@@ -10,23 +10,32 @@ import SwiftUI
 
 struct ButtonConfView: View {
     var body: some View {
+        GeometryReader { geo3 in
         Button(action: {
             print("Conf button tapped!")
         }) {
             Image("RocketButt")
+
             .resizable()
             .scaledToFit()
+            .padding(3)
+//                .frame(width: geo3.size.width/2, height: geo3.size.width/2)
+                
+
                 //                .font(.system(size: geo.size.width/14, weight: .black))
                 //                .padding(.trailing, geo.size.width/40)
                 .foregroundColor(.white)
-            .padding(40)
-                .shadow(color: Color.black.opacity(0.5), radius: 4, x: 0, y: 5)
+                //                .padding(40)
+//                .shadow(color: Color.black.opacity(0.5), radius: 4, x: 0, y: 5)
                 .background(Circle()
-
-            .foregroundColor(Color("CosmicPurple"))
-                    .shadow(color: Color.black.opacity(0.75), radius: 1, x: -1, y: 1)
+//                    .padding()
+                    .foregroundColor(Color("CosmicPurple"))
+//                    .shadow(color: Color.black.opacity(0.75), radius: 1, x: -1, y: 1)
+//                    .padding(20)
+                    
             )
         }
+    }
     }
 }
 

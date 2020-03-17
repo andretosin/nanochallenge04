@@ -248,11 +248,11 @@ struct MenuView: View {
                         //                                                                               }
                         Spacer()
                             .frame(minHeight: 0, maxHeight: .infinity)
-                        HStack (spacing: 30) {
-                            Circle()
-                            Circle()
-                            Circle()
-                            Circle()
+                        HStack (spacing: 20) {
+                            ButtonConfView()
+                            ButtonConfView()
+                            ButtonConfView()
+                            ButtonConfView()
                         }
                             .foregroundColor(Color("CosmicPurple"))
                         .padding(.horizontal, 20)
