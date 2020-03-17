@@ -14,6 +14,8 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        
+//        let childView = GameViewController()
         let childView = UIHostingController(rootView: MenuView())
         addChild(childView)
         childView.view.frame = view.bounds

@@ -10,19 +10,24 @@ import UIKit
 import SwiftUI
 
 struct GameView: UIViewControllerRepresentable {
-    var isPlaying: Bool
+    
+    func makeCoordinator() -> GameView.Coordinator {
+        return Coordinator(parent: self)
+    }
+    
+    @Binding var isPlaying: Bool
     var isPadPlaying: Bool
     var isNoPadPlaying: Bool
     
     func makeUIViewController(context: Context) -> GameViewController {
-        GameViewController()
+        GameViewController(gameDelegate: context.coordinator)
     }
 
     func updateUIViewController(_ uiViewController: GameViewController, context: Context) {
         if isPlaying {
             uiViewController.gameScene.play()
         } else {
-            uiViewController.gameScene.pause()
+            uiViewController.gameScene.endRun()
         }
         
         if isPadPlaying {
@@ -37,6 +42,24 @@ struct GameView: UIViewControllerRepresentable {
             uiViewController.gameScene.stopNoPad()
         }
         
+    }
+    
+    class Coordinator: NSObject, GameDelegate {
+        var parent: GameView
         
+        init(parent: GameView) {
+            self.parent = parent
+        }
+        
+        func endRun() {
+            DispatchQueue.main.async {
+                withAnimation {
+                    self.parent.isPlaying = false
+                }
+            }
+        }
     }
 }
+
+
+

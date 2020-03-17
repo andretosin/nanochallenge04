@@ -15,8 +15,10 @@ import GameplayKit
 class GameViewController: UIViewController {
     
     var gameScene: GameScene!
+    var gameDelegate: GameDelegate
     
-    init() {
+    init(gameDelegate: GameDelegate) {
+        self.gameDelegate = gameDelegate
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -40,6 +42,7 @@ class GameViewController: UIViewController {
             // Present the scene
             sceneView.presentScene(scene)
             self.gameScene = scene
+            gameScene.gameDelegate = gameDelegate
         }
         sceneView.ignoresSiblingOrder = true
         sceneView.showsFPS = true

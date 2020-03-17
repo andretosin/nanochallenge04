@@ -10,10 +10,12 @@ import SpriteKit
 import AVFoundation
 
 protocol GameDelegate {
+    func endRun()
 }
 
 class GameScene: SKScene, SKPhysicsContactDelegate {
     
+    var gameDelegate: GameDelegate?
     var player: Player!
     var background: GameBackground!
     var collisionFlag = false
@@ -37,6 +39,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     override func didMove(to view: SKView) {
         self.physicsWorld.contactDelegate = self
+        
         view.showsPhysics = false
         
         
@@ -149,6 +152,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             star.isSpawnActive = false
             rock.isSpawnActive = false
             audioPlayerPad.stop()
+            endRun()
         default:
             print("Unknown collision ocurred")
         }
@@ -213,8 +217,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         gameStarted = true
     }
     
-    func pause() {
-        
+    func endRun() {
+        gameStarted = false
+        gameDelegate?.endRun()
     }
     
     func playPad() {

@@ -23,7 +23,7 @@ class Star: Spawnable {
         self.scene = scene
         let texture = SKTexture(imageNamed: "Star")
         
-        for _ in 1...5 {
+        for _ in 1...3 {
             let starNode = SKSpriteNode(texture: texture)
             setupStar(starNode, x: 1001, y: 0, speed: 1500)
             starArray.append(starNode)

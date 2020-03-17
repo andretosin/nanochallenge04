@@ -25,7 +25,9 @@ struct Triangle: Shape {
 
 struct MenuView: View {
     
-    @State private var buttonIsShown = true
+    private var buttonIsShown: Bool {
+        !isPlaying
+    }
     @State private var showLogo = false
     @State private var showLastScore = true
     @State private var started = false
@@ -39,7 +41,7 @@ struct MenuView: View {
         GeometryReader { geo in
             ZStack {
                 BGView()
-                GameView(isPlaying: self.isPlaying, isPadPlaying: self.isPadPlaying, isNoPadPlaying: self.isNoPadPlaying)
+                GameView(isPlaying: self.$isPlaying, isPadPlaying: self.isPadPlaying, isNoPadPlaying: self.isNoPadPlaying)
                     .edgesIgnoringSafeArea(.all)
                     .mask(
                         ZStack (alignment: .top) {
@@ -84,7 +86,6 @@ struct MenuView: View {
                                 .onTapGesture {
                                     withAnimation {
                                         self.isPlaying = true
-                                        self.buttonIsShown.toggle()
                                     }
                                 }
                                 .padding(.leading, 20)
@@ -100,8 +101,7 @@ struct MenuView: View {
                                     .shadow(color: Color.black.opacity(0.4), radius: 4, x: 2, y: 0)
                                     .onTapGesture {
                                         withAnimation {
-                                            self.isPlaying = true
-                                            self.buttonIsShown.toggle()
+                                            print("Record button tapped")
                                         }
                                 }
                             }
@@ -124,8 +124,7 @@ struct MenuView: View {
                                 .opacity(self.buttonIsShown ? 1.0 : 0.0)
                                 .onTapGesture {
                                     withAnimation {
-                                        self.isPlaying = true
-                                        self.buttonIsShown.toggle()
+                                        
                                     }
                                 }
                                 .background(Capsule()
@@ -136,8 +135,6 @@ struct MenuView: View {
                                     .opacity(self.buttonIsShown ? 1.0 : 0.0)
                                     .onTapGesture {
                                         withAnimation {
-                                            self.isPlaying = true
-                                            self.buttonIsShown.toggle()
                                         }
                                 }
                                 .padding(.trailing, self.buttonIsShown ? geo.size.width/10 : 0)
@@ -164,7 +161,6 @@ struct MenuView: View {
                                 .onTapGesture {
                                     withAnimation {
                                         self.isPlaying = true
-                                        self.buttonIsShown.toggle()
                                     }
                                 }
                             }
@@ -224,7 +220,6 @@ struct MenuView: View {
                                 .onTapGesture {
                                     withAnimation {
                                         self.isPlaying = true
-                                        self.buttonIsShown.toggle()
                                     }
                                 }
                                 .frame(minWidth: 0, maxWidth: .infinity)
@@ -237,7 +232,6 @@ struct MenuView: View {
                                     Color.clear
                                         .onAppear {
                                             self.topMenu = geo2.frame(in: .global).height
-                                            print("lala", self.topMenu)
                                     }
                                 }
                             )
@@ -267,8 +261,7 @@ struct MenuView: View {
                         .opacity(self.buttonIsShown ? 1.0 : 0.0)
                          .onTapGesture {
                              withAnimation {
-                                 self.isPlaying = true
-                                 self.buttonIsShown.toggle()
+                                print("Botoes de baix0")
                              }
                          }
                     }
@@ -299,7 +292,10 @@ struct MenuView: View {
                         .onTapGesture {
                             withAnimation {
                                 self.isPlaying = true
-                                self.buttonIsShown.toggle()
+                                self.isPlaying = true
+                                self.isPadPlaying = true
+                                self.isNoPadPlaying = false
+                                print("circle button tapped")
                             }
                     }
                     
@@ -322,9 +318,11 @@ struct MenuView: View {
                         .onTapGesture {
                             withAnimation {
                                 self.isPlaying = true
+                                self.isPlaying = true
                                 self.isPadPlaying = true
                                 self.isNoPadPlaying = false
-                                self.buttonIsShown.toggle()
+                                print("triangle button tapped")
+
                             }
                     }
                     //                    .background(Circle()

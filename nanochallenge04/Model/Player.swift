@@ -39,8 +39,6 @@ class Player: Updatable {
     var node: SKSpriteNode!
     
     func update(_ deltaTime: CGFloat) {
-        
-        
         if accelerateLeft {
             if self.node.physicsBody!.velocity.dx > CGFloat(-1000) {
                 self.node.physicsBody?.applyForce(CGVector(dx: -5000, dy: 0))
@@ -65,6 +63,7 @@ class Player: Updatable {
     
     func rollLeft(_ rollRate: CGFloat) {
         if rollingRight {
+            
             self.node.physicsBody?.angularVelocity = 0
             rollingRight = false
         }
