@@ -31,7 +31,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var gameStarted = false
     var flightSpeed: CGFloat = 0
     var flightDistance: CGFloat = 0
-    var audioPlayer: AVAudioPlayer!
+    var audioPlayerPad: AVAudioPlayer!
+    var audioPlayerNoPad: AVAudioPlayer!
     
     
     override func didMove(to view: SKView) {
@@ -42,7 +43,14 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         let sound = Bundle.main.path(forResource: "nopad", ofType: "wav")
         do {
-            audioPlayer = try AVAudioPlayer(contentsOf: URL(fileURLWithPath: sound!))
+            audioPlayerPad = try AVAudioPlayer(contentsOf: URL(fileURLWithPath: sound!))
+        } catch {
+            print("error")
+        }
+        
+        let sound2 = Bundle.main.path(forResource: "pad", ofType: "wav")
+        do {
+            audioPlayerNoPad = try AVAudioPlayer(contentsOf: URL(fileURLWithPath: sound2!))
         } catch {
             print("error")
         }
@@ -140,7 +148,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             self.player.node.physicsBody?.linearDamping = 0
             star.isSpawnActive = false
             rock.isSpawnActive = false
-            audioPlayer.stop()
+            audioPlayerPad.stop()
         default:
             print("Unknown collision ocurred")
         }
@@ -203,11 +211,28 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     func play() {
         gameStarted = true
-        audioPlayer.play()
     }
     
     func pause() {
         
     }
+    
+    func playPad() {
+        audioPlayerPad.play()
+    }
+    
+    func stopPad() {
+        audioPlayerPad.stop()
+    }
+    
+    func playNoPad() {
+        audioPlayerNoPad.play()
+    }
+    
+    func stopNoPad() {
+        audioPlayerNoPad.stop()
+    }
+    
+    
 }
 

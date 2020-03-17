@@ -31,14 +31,15 @@ struct MenuView: View {
     @State private var started = false
     @State private var isPlaying = false
     @State private var topMenu: CGFloat = 0
-    
+    @State private var isPadPlaying = false
+    @State private var isNoPadPlaying = true
     
     var body: some
         View {
         GeometryReader { geo in
             ZStack {
                 BGView()
-                GameView(isPlaying: self.isPlaying)
+                GameView(isPlaying: self.isPlaying, isPadPlaying: self.isPadPlaying, isNoPadPlaying: self.isNoPadPlaying)
                     .edgesIgnoringSafeArea(.all)
                     .mask(
                         ZStack (alignment: .top) {
@@ -79,13 +80,13 @@ struct MenuView: View {
                                         
                                     }
                                 }
-                                        .opacity(self.buttonIsShown ? 1.0 : 0.0)
-                                        .onTapGesture {
-                                            withAnimation {
-                                                self.isPlaying = true
-                                                self.buttonIsShown.toggle()
-                                            }
+                                .opacity(self.buttonIsShown ? 1.0 : 0.0)
+                                .onTapGesture {
+                                    withAnimation {
+                                        self.isPlaying = true
+                                        self.buttonIsShown.toggle()
                                     }
+                                }
                                 .padding(.leading, 20)
                                 .padding(.trailing, 15)
                                 .padding(.vertical, 10)
@@ -97,7 +98,7 @@ struct MenuView: View {
                                     .frame(height: geo.size.height/10, alignment: .leading)
                                     .clipShape(Capsule())
                                     .shadow(color: Color.black.opacity(0.4), radius: 4, x: 2, y: 0)
-                                .onTapGesture {
+                                    .onTapGesture {
                                         withAnimation {
                                             self.isPlaying = true
                                             self.buttonIsShown.toggle()
@@ -120,32 +121,32 @@ struct MenuView: View {
                                 .padding(.trailing, 20)
                                 .padding(.leading, 15)
                                 .padding(.vertical, 10)
-                                    .opacity(self.buttonIsShown ? 1.0 : 0.0)
-                                        .onTapGesture {
-                                            withAnimation {
-                                                self.isPlaying = true
-                                                self.buttonIsShown.toggle()
-                                            }
+                                .opacity(self.buttonIsShown ? 1.0 : 0.0)
+                                .onTapGesture {
+                                    withAnimation {
+                                        self.isPlaying = true
+                                        self.buttonIsShown.toggle()
                                     }
+                                }
                                 .background(Capsule()
                                 .fill(self.buttonIsShown ? Color("CosmicPurple") : .white)
                                     
                                     
                                 )
                                     .opacity(self.buttonIsShown ? 1.0 : 0.0)
-                                        .onTapGesture {
-                                            withAnimation {
-                                                self.isPlaying = true
-                                                self.buttonIsShown.toggle()
-                                            }
-                                    }
+                                    .onTapGesture {
+                                        withAnimation {
+                                            self.isPlaying = true
+                                            self.buttonIsShown.toggle()
+                                        }
+                                }
                                 .padding(.trailing, self.buttonIsShown ? geo.size.width/10 : 0)
                                     
-                                    .shadow(color: Color.black.opacity(0.4), radius: 4, x: 2, y: 0)
-                                    .clipShape(Capsule())
-                                    .background(Capsule()
-                                        .fill(Color("LowerPurple"))
-                                        .shadow(color: Color.black.opacity(0.4), radius: 4, x: 0, y: 2)
+                                .shadow(color: Color.black.opacity(0.4), radius: 4, x: 2, y: 0)
+                                .clipShape(Capsule())
+                                .background(Capsule()
+                                .fill(Color("LowerPurple"))
+                                .shadow(color: Color.black.opacity(0.4), radius: 4, x: 0, y: 2)
                                 )
                                 
                                 VStack (alignment: .trailing) {
@@ -160,12 +161,12 @@ struct MenuView: View {
                                     }
                                 }
                                 .opacity(self.buttonIsShown ? 1.0 : 0.0)
-                                                                       .onTapGesture {
-                                                                           withAnimation {
-                                                                               self.isPlaying = true
-                                                                               self.buttonIsShown.toggle()
-                                                                           }
-                                                                   }
+                                .onTapGesture {
+                                    withAnimation {
+                                        self.isPlaying = true
+                                        self.buttonIsShown.toggle()
+                                    }
+                                }
                             }
                             .frame(height: geo.size.height/10, alignment: .trailing)
                             
@@ -218,13 +219,13 @@ struct MenuView: View {
                                         
                                     }
                                 }
-                                    .opacity(self.buttonIsShown ? 1.0 : 0.0)
-                                        .onTapGesture {
-                                            withAnimation {
-                                                self.isPlaying = true
-                                                self.buttonIsShown.toggle()
-                                            }
+                                .opacity(self.buttonIsShown ? 1.0 : 0.0)
+                                .onTapGesture {
+                                    withAnimation {
+                                        self.isPlaying = true
+                                        self.buttonIsShown.toggle()
                                     }
+                                }
                                 .frame(minWidth: 0, maxWidth: .infinity)
                             }
                             .overlay(
@@ -242,22 +243,22 @@ struct MenuView: View {
                         Spacer()
                         
                     }
-//                    GameView(isPlaying: self.isPlaying)
-//                    .edgesIgnoringSafeArea(.all)
-//                        .mask(
-//                            ZStack {
-//                                Circle()
-//                                    .offset(y: self.topMenu/5)
-////                                    .padding(self.isPlaying ? -geo.size.height : geo.size.width/10)
-//                                //                                .padding(.top, 20)
-//                                Circle()
-//                                    .offset(y: 0.6 * self.topMenu)
-//                                    .padding(self.isPlaying ? -geo.size.height : geo.size.width/3.2)
-//                                //                                .padding(100)
-//                                //                                    .padding(geo.size.width/120)
-//                            }
-//                    )
-                        
+                    //                    GameView(isPlaying: self.isPlaying)
+                    //                    .edgesIgnoringSafeArea(.all)
+                    //                        .mask(
+                    //                            ZStack {
+                    //                                Circle()
+                    //                                    .offset(y: self.topMenu/5)
+                    ////                                    .padding(self.isPlaying ? -geo.size.height : geo.size.width/10)
+                    //                                //                                .padding(.top, 20)
+                    //                                Circle()
+                    //                                    .offset(y: 0.6 * self.topMenu)
+                    //                                    .padding(self.isPlaying ? -geo.size.height : geo.size.width/3.2)
+                    //                                //                                .padding(100)
+                    //                                //                                    .padding(geo.size.width/120)
+                    //                            }
+                    //                    )
+                    
                     
                     Circle()
                         .offset(y: 0.85 * self.topMenu)
@@ -291,6 +292,8 @@ struct MenuView: View {
                         .onTapGesture {
                             withAnimation {
                                 self.isPlaying = true
+                                self.isPadPlaying = true
+                                self.isNoPadPlaying = false
                                 self.buttonIsShown.toggle()
                             }
                     }
@@ -302,6 +305,8 @@ struct MenuView: View {
                     
                 }
             }
+                
+            
         }
         //                        .edgesIgnoringSafeArea(.all)
     }

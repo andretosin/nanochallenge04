@@ -11,6 +11,8 @@ import SwiftUI
 
 struct GameView: UIViewControllerRepresentable {
     var isPlaying: Bool
+    var isPadPlaying: Bool
+    var isNoPadPlaying: Bool
     
     func makeUIViewController(context: Context) -> GameViewController {
         GameViewController()
@@ -22,5 +24,19 @@ struct GameView: UIViewControllerRepresentable {
         } else {
             uiViewController.gameScene.pause()
         }
+        
+        if isPadPlaying {
+            uiViewController.gameScene.playPad()
+        } else {
+            uiViewController.gameScene.stopPad()
+        }
+        
+        if isNoPadPlaying {
+            uiViewController.gameScene.playNoPad()
+        } else {
+            uiViewController.gameScene.stopNoPad()
+        }
+        
+        
     }
 }
