@@ -215,11 +215,21 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     func play() {
         gameStarted = true
+        isPlayerDead = false
+        player.node.position = CGPoint(x: 0, y: -640)
+        player.node.physicsBody?.velocity = CGVector(dx: 0, dy: 0)
+        star.isSpawnActive = true
+        rock.isSpawnActive = true
+        flightDistance = 0
+        currentScore = 0
+        lblScore.text = "\(currentScore)"
+        lblDistance.text = "\(flightDistance)"
     }
     
     func endRun() {
         gameStarted = false
         gameDelegate?.endRun()
+        
     }
     
     func playPad() {
