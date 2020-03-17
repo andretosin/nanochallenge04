@@ -83,19 +83,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         rock = Rock(scene: self)
         star = Star(scene: self)
         
+        player.node.position = CGPoint(x: 0, y: 0)
         
-        //        let starNode = self.childNode(withName: "star-1") as! SKSpriteNode
-        //        starNode.zPosition = 1
-        //        starNode.physicsBody = SKPhysicsBody(texture: starNode.texture!, size: starNode.texture!.size())
-        //        starNode.physicsBody?.velocity = CGVector(dx: 0, dy: -200)
-        
-        
-        
-        
-        
-        
-        //        play()
-        
+ 
     }
     
     override func update(_ currentTime: TimeInterval) {
@@ -229,6 +219,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     func endRun() {
         gameStarted = false
         gameDelegate?.endRun()
+        player.node.physicsBody?.velocity = CGVector(dx: 0, dy: 0)
+        player.node.position = CGPoint(x: 0, y: 0)
         
     }
     
