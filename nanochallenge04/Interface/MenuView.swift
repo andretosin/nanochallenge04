@@ -9,7 +9,6 @@
 import SwiftUI
 import AVFoundation
 
-
 struct Triangle: Shape {
     func path(in rect: CGRect) -> Path {
         var path = Path()
@@ -46,16 +45,19 @@ struct MenuView: View {
                     .mask(
                         ZStack (alignment: .top) {
                             Circle2View()
-                                //                                                .offset(y: self.topMenu)
+                                .offset(y: 0.3 * self.topMenu)
                                 .padding(self.isPlaying ? -geo.size.height : geo.size.width/10)
+                            
                             //                                .padding(.top, 20)
-                            Circle()
-                                .offset(y: 0.85 * self.topMenu)
-                                .padding(self.isPlaying ? -geo.size.height : geo.size.width/3.2)
+                            Circle2View()
+                                .offset(y: 1.18 * self.topMenu)
+                                .padding(self.isPlaying ? -geo.size.height : geo.size.width/3.6)
+                           
                             //                                .padding(100)
                             //                                    .padding(geo.size.width/120)
                         }
                 )
+                
                 
                 ZStack {
                     VStack {
@@ -180,7 +182,7 @@ struct MenuView: View {
                                 }
                                 HStack (spacing: geo.size.width/120) {
                                     VStack {
-                                        VStack (spacing: 0) {
+                                        VStack (spacing: -10) {
                                             HStack (spacing: 0) {
                                                 Text("243")
                                                     .font(.custom("nulshock", size: geo.size.width/5))
@@ -193,7 +195,7 @@ struct MenuView: View {
                                                     .font(.custom("Audiowide-Regular", size: geo.size.width/12))
                                                     .foregroundColor(Color("CosmicPurple"))
                                                     .bold()
-                                                    .padding(.top, geo.size.width/10)
+                                                    .padding(.top, geo.size.width/11)
                                                     .frame(width: geo.size.width/10)
                                             }.offset(x: geo.size.width/20)
                                             HStack {
@@ -248,7 +250,7 @@ struct MenuView: View {
                         //                                                                               }
                         Spacer()
                             .frame(minHeight: 0, maxHeight: .infinity)
-                        HStack (spacing: 20) {
+                        HStack (spacing: 30) {
                             ButtonConfView()
                             ButtonConfView()
                             ButtonConfView()
@@ -258,6 +260,7 @@ struct MenuView: View {
                         .padding(.horizontal, 20)
                             .shadow(color: Color.black.opacity(0.75), radius: 1, x: -1, y: 1)
                         .padding(.top, geo.size.width/7)
+                        .padding(.bottom, -geo.size.width/7)
                         .opacity(self.buttonIsShown ? 1.0 : 0.0)
                          .onTapGesture {
                              withAnimation {
@@ -284,7 +287,7 @@ struct MenuView: View {
                     
                     .frame(minHeight: 0, maxHeight: .infinity)
                     Circle()
-                        .offset(y: 0.85 * self.topMenu)
+                        .offset(y: 1.18 * self.topMenu)
                         .shadow(color: Color.black.opacity(0.75), radius: 1, x: -1, y: 1)
                         .foregroundColor(Color("LowerPurple"))
                         .frame(width: geo.size.width/3.35)
@@ -302,7 +305,7 @@ struct MenuView: View {
                     
                     Triangle()
                         .fill(Color.white)
-                        .offset(x: 0.85 * self.topMenu, y: -0.05 * self.topMenu)
+                        .offset(x: 1.18 * self.topMenu, y: -0.05 * self.topMenu)
                         //                        .offset(x: self.topMenu, y: self.topMenu)
                         .shadow(color: Color.black.opacity(0.5), radius: 4, x: 6, y: 1)
                         .frame(width: geo.size.width/6, height: geo.size.width/8)
