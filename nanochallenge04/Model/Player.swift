@@ -41,7 +41,6 @@ class Player: Updatable {
     func update(_ deltaTime: CGFloat) {
         
         
-        
         if accelerateLeft {
             if self.node.physicsBody!.velocity.dx > CGFloat(-1000) {
                 self.node.physicsBody?.applyForce(CGVector(dx: -5000, dy: 0))
@@ -60,6 +59,7 @@ class Player: Updatable {
             body.collisionBitMask = ContactMask.rock.rawValue
             body.isDynamic = true
             body.affectedByGravity = false
+            body.linearDamping = 2
         }
     }
     

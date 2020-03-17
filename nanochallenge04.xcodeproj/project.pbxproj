@@ -12,6 +12,8 @@
 		3F6D9521241DA72800684229 /* MenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F6D9520241DA72800684229 /* MenuView.swift */; };
 		3FF59579241DB94700143510 /* GameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FF59578241DB94700143510 /* GameView.swift */; };
 		3FF5957B241DBCD800143510 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FF5957A241DBCD800143510 /* ViewController.swift */; };
+		F93D1606242144600073D4D8 /* nopad.wav in Resources */ = {isa = PBXBuildFile; fileRef = F93D16042421445F0073D4D8 /* nopad.wav */; };
+		F93D1607242144600073D4D8 /* pad.wav in Resources */ = {isa = PBXBuildFile; fileRef = F93D1605242144600073D4D8 /* pad.wav */; };
 		F958DC9C2412D271007FECFE /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = F958DC9B2412D271007FECFE /* Player.swift */; };
 		F958DC9E2412DC5D007FECFE /* Protocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = F958DC9D2412DC5D007FECFE /* Protocols.swift */; };
 		F98D33EA241022E900A12F15 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F98D33E9241022E900A12F15 /* AppDelegate.swift */; };
@@ -39,6 +41,8 @@
 		3F6D9520241DA72800684229 /* MenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuView.swift; sourceTree = "<group>"; };
 		3FF59578241DB94700143510 /* GameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameView.swift; sourceTree = "<group>"; };
 		3FF5957A241DBCD800143510 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		F93D16042421445F0073D4D8 /* nopad.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = nopad.wav; sourceTree = "<group>"; };
+		F93D1605242144600073D4D8 /* pad.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = pad.wav; sourceTree = "<group>"; };
 		F958DC9B2412D271007FECFE /* Player.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
 		F958DC9D2412DC5D007FECFE /* Protocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Protocols.swift; sourceTree = "<group>"; };
 		F98D33E6241022E900A12F15 /* Juicy Way.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Juicy Way.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -93,6 +97,15 @@
 			path = Fonts;
 			sourceTree = "<group>";
 		};
+		F93D1603242144510073D4D8 /* Sound */ = {
+			isa = PBXGroup;
+			children = (
+				F93D16042421445F0073D4D8 /* nopad.wav */,
+				F93D1605242144600073D4D8 /* pad.wav */,
+			);
+			path = Sound;
+			sourceTree = "<group>";
+		};
 		F98D33DD241022E900A12F15 = {
 			isa = PBXGroup;
 			children = (
@@ -115,6 +128,7 @@
 				F9EEDD8A241AC5D600AB586C /* Model */,
 				F9EEDD8B241AC5F000AB586C /* GameScene */,
 				3F44FF7D241DA5B900B323F0 /* Interface */,
+				F93D1603242144510073D4D8 /* Sound */,
 				F98D33E9241022E900A12F15 /* AppDelegate.swift */,
 				F9F530072418212600276183 /* ContactMask.swift */,
 				F958DC9D2412DC5D007FECFE /* Protocols.swift */,
@@ -214,11 +228,13 @@
 				F98D33F5241022E900A12F15 /* Main.storyboard in Resources */,
 				F9EEDD93241DC19E00AB586C /* nulshock.ttf in Resources */,
 				F98D33EC241022E900A12F15 /* GameScene.sks in Resources */,
+				F93D1607242144600073D4D8 /* pad.wav in Resources */,
 				F98D33F7241022EB00A12F15 /* Assets.xcassets in Resources */,
 				F98D33FA241022EB00A12F15 /* LaunchScreen.storyboard in Resources */,
 				F9EEDD8F241D5CBF00AB586C /* Assets.xcassets in Resources */,
 				F98D33EE241022E900A12F15 /* Actions.sks in Resources */,
 				F9EEDD94241DC19E00AB586C /* Audiowide-Regular.ttf in Resources */,
+				F93D1606242144600073D4D8 /* nopad.wav in Resources */,
 				F9EEDD8E241D5CBF00AB586C /* Stars.sks in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

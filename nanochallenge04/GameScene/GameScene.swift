@@ -7,6 +7,7 @@
 //
 
 import SpriteKit
+import AVFoundation
 
 protocol GameDelegate {
 }
@@ -30,11 +31,25 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var gameStarted = false
     var flightSpeed: CGFloat = 0
     var flightDistance: CGFloat = 0
-
+    var audioPlayer: AVAudioPlayer!
+    
     
     override func didMove(to view: SKView) {
         self.physicsWorld.contactDelegate = self
         view.showsPhysics = false
+        
+        
+        
+        let sound = Bundle.main.path(forResource: "nopad", ofType: "wav")
+        do {
+            audioPlayer = try AVAudioPlayer(contentsOf: URL(fileURLWithPath: sound!))
+        } catch {
+            print("error")
+        }
+        
+        
+        
+        
         
         if let particles = SKEmitterNode(fileNamed: "Stars") {
             particles.position = CGPoint(x: 0, y: 1200)
@@ -68,7 +83,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         
         
-//        play()
+        //        play()
         
     }
     
@@ -87,11 +102,12 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             rock.update(currentTime)
             star.update(currentTime)
             
-            self.flightSpeed = rock.speed
-            self.flightDistance += flightSpeed
-            self.lblDistance.text = "\(Int(flightDistance/2000))"
-            self.lblDistance.alpha = 1
-            
+            if !isPlayerDead {
+                self.flightSpeed = rock.speed
+                self.flightDistance += flightSpeed
+                self.lblDistance.text = "\(Int(flightDistance/2000))"
+                self.lblDistance.alpha = 1
+            }
             
         }
         
@@ -121,8 +137,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             }
         case ContactMask.player.rawValue | ContactMask.rock.rawValue:
             self.isPlayerDead = true
+            self.player.node.physicsBody?.linearDamping = 0
             star.isSpawnActive = false
             rock.isSpawnActive = false
+            audioPlayer.stop()
         default:
             print("Unknown collision ocurred")
         }
@@ -161,6 +179,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             if !isPlayerDead {
                 for touch in touches {
                     let location = touch.location(in: self)
+                    
                     player.accelerateRight = false
                     player.accelerateLeft = false
                 }
@@ -170,20 +189,21 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     
     override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
-//        if gameStarted {
-//            if !isPlayerDead {
-//                for touch in touches {
-//                    let location = touch.location(in: self)
-//                    player.node.run(SKAction.moveTo(x: location.x, duration: 0.05))
-//                    rock.playerPosX = location.x
-//
-//                }
-//            }
-//        }
+        //        if gameStarted {
+        //            if !isPlayerDead {
+        //                for touch in touches {
+        //                    let location = touch.location(in: self)
+        //                    player.node.run(SKAction.moveTo(x: location.x, duration: 0.05))
+        //                    rock.playerPosX = location.x
+        //
+        //                }
+        //            }
+        //        }
     }
     
     func play() {
         gameStarted = true
+        audioPlayer.play()
     }
     
     func pause() {

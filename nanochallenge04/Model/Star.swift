@@ -117,12 +117,10 @@ class Star: Spawnable {
                         if node.name == "rockTrue" {
                             if abs(node.position.y - star.position.y) < spawnPadding {
                                 while abs(node.position.x - star.position.x) < spawnPadding {
-
                                     star.position.x = CGFloat.random(in: -400...400)
                                 }
                             }
                         }
-                        
                     }
                     star.physicsBody?.velocity = CGVector(dx: 0, dy: -speed)
                     star.name = "starTrue"

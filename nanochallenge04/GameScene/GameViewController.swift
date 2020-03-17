@@ -11,6 +11,7 @@ import SwiftUI
 import SpriteKit
 import GameplayKit
 
+
 class GameViewController: UIViewController {
     
     var gameScene: GameScene!
@@ -25,6 +26,7 @@ class GameViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         
         let sceneView = SKView(frame: view.frame)
         view.addSubview(sceneView)
