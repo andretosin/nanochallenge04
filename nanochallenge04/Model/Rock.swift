@@ -41,7 +41,7 @@ class Rock: Spawnable {
         rockNode.physicsBody?.categoryBitMask = ContactMask.rock.rawValue
         rockNode.physicsBody?.contactTestBitMask = ContactMask.player.rawValue
         rockNode.physicsBody?.collisionBitMask = 0
-        rockNode.scale(to: CGSize(width: 300, height: 300))
+//        rockNode.scale(to: CGSize(width: 300, height: 300))
         rockNode.physicsBody?.affectedByGravity = false
         rockNode.position.y = y
         rockNode.position.x = x
