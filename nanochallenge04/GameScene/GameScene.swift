@@ -10,7 +10,7 @@ import SpriteKit
 import AVFoundation
 
 protocol GameDelegate {
-    func endRun()
+    func endRun(lastDistance: CGFloat)
 }
 
 class GameScene: SKScene, SKPhysicsContactDelegate {
@@ -106,7 +106,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             if !isPlayerDead {
                 self.flightSpeed = rock.speed
                 self.flightDistance += flightSpeed
-                self.lblDistance.text = "\(Int(flightDistance/2000))"
+                self.lblDistance.text = "\(Int(flightDistance/20000))"
                 self.lblDistance.alpha = 1
             }
             
@@ -218,7 +218,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     func endRun() {
         gameStarted = false
-        gameDelegate?.endRun()
+        gameDelegate?.endRun(lastDistance: self.flightDistance/20000)
         player.node.physicsBody?.velocity = CGVector(dx: 0, dy: 0)
         player.node.position = CGPoint(x: 0, y: 0)
         

@@ -16,6 +16,7 @@ struct GameView: UIViewControllerRepresentable {
     }
     
     @Binding var isPlaying: Bool
+    @Binding var lastDis: CGFloat
     var isPadPlaying: Bool
     var isNoPadPlaying: Bool
     
@@ -51,10 +52,12 @@ struct GameView: UIViewControllerRepresentable {
             self.parent = parent
         }
         
-        func endRun() {
+        
+        func endRun(lastDistance: CGFloat) {
             DispatchQueue.main.async {
                 withAnimation {
                     self.parent.isPlaying = false
+                    self.parent.lastDis = lastDistance
                 }
             }
         }

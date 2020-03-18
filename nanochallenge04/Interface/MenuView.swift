@@ -34,13 +34,14 @@ struct MenuView: View {
     @State private var topMenu: CGFloat = 0
     @State private var isPadPlaying = false
     @State private var isNoPadPlaying = true
+    @State private var lastDistance: CGFloat = 0
     
     var body: some
         View {
         GeometryReader { geo in
             ZStack {
                 BGView()
-                GameView(isPlaying: self.$isPlaying, isPadPlaying: self.isPadPlaying, isNoPadPlaying: self.isNoPadPlaying)
+                GameView(isPlaying: self.$isPlaying, lastDis: self.$lastDistance, isPadPlaying: self.isPadPlaying, isNoPadPlaying: self.isNoPadPlaying)
                     .edgesIgnoringSafeArea(.all)
                     .mask(
                         ZStack (alignment: .top) {
@@ -184,7 +185,7 @@ struct MenuView: View {
                                     VStack {
                                         VStack (spacing: -10) {
                                             HStack (spacing: 0) {
-                                                Text("243")
+                                                Text("\(Int(self.lastDistance))")
                                                     .font(.custom("nulshock", size: geo.size.width/5))
                                                     .foregroundColor(Color("CosmicPurple"))
                                                     .bold()
@@ -237,7 +238,6 @@ struct MenuView: View {
                                     }
                                 }
                             )
-                            
                         }
                         //                               Spacer()
                         //
