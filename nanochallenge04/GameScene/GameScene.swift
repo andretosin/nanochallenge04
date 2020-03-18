@@ -44,6 +44,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         view.showsPhysics = false
         
         
+        
         let sound = Bundle.main.path(forResource: "nopad", ofType: "wav")
         do {
             audioPlayerPad = try AVAudioPlayer(contentsOf: URL(fileURLWithPath: sound!))
@@ -84,8 +85,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         star = Star(scene: self)
         
         player.node.position = CGPoint(x: 0, y: 0)
-        play()
-
+        
  
     }
     

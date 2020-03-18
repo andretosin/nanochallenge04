@@ -22,7 +22,7 @@ struct GameView: UIViewControllerRepresentable {
     var isNoPadPlaying: Bool
     
     func makeUIViewController(context: Context) -> GameViewController {
-        GameViewController()
+        GameViewController(gameDelegate: context.coordinator)
     }
 
     func updateUIViewController(_ uiViewController: GameViewController, context: Context) {

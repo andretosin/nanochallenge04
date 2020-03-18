@@ -15,8 +15,8 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         
         
-        let childView = GameViewController()
-//        let childView = UIHostingController(rootView: MenuView())
+//        let childView = GameViewController()
+        let childView = UIHostingController(rootView: MenuView())
         addChild(childView)
         childView.view.frame = view.bounds
         view.addSubview(childView.view)

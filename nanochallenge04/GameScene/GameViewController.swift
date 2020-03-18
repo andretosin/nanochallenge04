@@ -15,11 +15,10 @@ import GameplayKit
 class GameViewController: UIViewController {
     
     var gameScene: GameScene!
-//    var gameDelegate: GameDelegate
+    var gameDelegate: GameDelegate
     
-//    init(gameDelegate: GameDelegate) {
-     init() {
-//        self.gameDelegate = gameDelegate
+    init(gameDelegate: GameDelegate) {
+        self.gameDelegate = gameDelegate
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -43,12 +42,12 @@ class GameViewController: UIViewController {
             // Present the scene
             sceneView.presentScene(scene)
             self.gameScene = scene
-//            gameScene.gameDelegate = gameDelegate
+            gameScene.gameDelegate = gameDelegate
         }
         sceneView.ignoresSiblingOrder = true
         sceneView.showsFPS = true
         sceneView.showsNodeCount = true
-//        sceneView.preferredFramesPerSecond = 60
+        sceneView.preferredFramesPerSecond = 30
         //        }
     }
     
