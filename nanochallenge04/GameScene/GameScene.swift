@@ -27,6 +27,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var lblDistance = SKLabelNode()
     var particles = SKEmitterNode()
     var gameStarted = false
+    var flightIncrement: CGFloat = 0
     var flightSpeed: CGFloat = 0
     var flightDistance: CGFloat = 0
     var currentScore = 0
@@ -39,11 +40,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         self.physicsWorld.contactDelegate = self
         view.showsPhysics = false
         setAudioPlayers()
-        
-        
-        
-        
-        
         
         if let particles = SKEmitterNode(fileNamed: "Stars") {
             particles.position = CGPoint(x: 0, y: 1200)
@@ -66,9 +62,13 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         rock = Rock(scene: self)
         star = Star(scene: self)
         
+        
         player.node.position = CGPoint(x: 0, y: 0)
         
     }
+    
+    
+    
     
     override func update(_ currentTime: TimeInterval) {
         
@@ -86,11 +86,12 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             star.update(currentTime)
             
             if !isPlayerDead {
-                self.flightSpeed = rock.speed
-                self.flightDistance += flightSpeed
+                self.flightIncrement = rock.speed
+                self.flightDistance += flightIncrement
                 self.lblDistance.text = "\(Int(flightDistance/20000))"
                 self.lblDistance.alpha = 1
                 rock.playerPosX = player.node.position.x
+                print(self.flightIncrement)
             }
             
         }
@@ -111,9 +112,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                         node.name = "starResetPos"
                         notification.impactOccurred()
                         currentScore += 1
-                        rock.speed += 75
-                        star.speed += 75
-                        particles.speed = star.speed
+                        setSpeeds(rock.speed + 75)
                         lblScore.text = "\(currentScore)"
                     }
                 }
@@ -190,12 +189,22 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         isPlayerDead = false
         player.node.position = CGPoint(x: 0, y: -640)
         player.node.physicsBody?.velocity = CGVector(dx: 0, dy: 0)
+        player.node.physicsBody?.applyTorque(500)
         star.isSpawnActive = true
         rock.isSpawnActive = true
+        setSpeeds(1000)
         flightDistance = 0
+        flightIncrement = 0
         currentScore = 0
         lblScore.text = "\(currentScore)"
         lblDistance.text = "\(flightDistance)"
+        
+    }
+    
+    func setSpeeds(_ speed: CGFloat) {
+        particles.speed = speed
+        rock.speed = speed
+        star.speed = speed
     }
     
     func endRun() {
