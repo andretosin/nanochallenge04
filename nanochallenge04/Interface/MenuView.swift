@@ -35,13 +35,14 @@ struct MenuView: View {
     @State private var isPadPlaying = false
     @State private var isNoPadPlaying = true
     @State private var lastDistance: CGFloat = 0
+    @State private var starsCollected: Int = 0
     
     var body: some
         View {
         GeometryReader { geo in
             ZStack {
                 BGView()
-                GameView(isPlaying: self.$isPlaying, lastDis: self.$lastDistance, isPadPlaying: self.isPadPlaying, isNoPadPlaying: self.isNoPadPlaying)
+                GameView(isPlaying: self.$isPlaying, lastDis: self.$lastDistance, starsCollec: self.$starsCollected, isPadPlaying: self.isPadPlaying, isNoPadPlaying: self.isNoPadPlaying)
                     .edgesIgnoringSafeArea(.all)
                     .mask(
                         ZStack (alignment: .top) {
@@ -204,7 +205,7 @@ struct MenuView: View {
                                                     .font(.system(size: geo.size.width/15, weight: .bold))
                                                     .foregroundColor(Color("CosmicPurple"))
                                                     .shadow(color: Color.black.opacity(0.75), radius: 1, x: -1, y: 1)
-                                                Text("13")
+                                                Text("\(self.starsCollected)")
                                                     .font(.custom("nulshock", size: geo.size.width/10))
                                                     .foregroundColor(Color("CosmicPurple"))
                                                     .bold()

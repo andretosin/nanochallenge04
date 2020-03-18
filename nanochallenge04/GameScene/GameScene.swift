@@ -10,7 +10,8 @@ import SpriteKit
 import AVFoundation
 
 protocol GameDelegate {
-    func endRun(lastDistance: CGFloat)
+    func endRun(lastDistance: CGFloat, starsCollected: Int)
+    
 }
 
 class GameScene: SKScene, SKPhysicsContactDelegate {
@@ -218,7 +219,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     func endRun() {
         gameStarted = false
-        gameDelegate?.endRun(lastDistance: self.flightDistance/20000)
+        gameDelegate?.endRun(lastDistance: self.flightDistance/20000, starsCollected: self.currentScore)
         player.node.physicsBody?.velocity = CGVector(dx: 0, dy: 0)
         player.node.position = CGPoint(x: 0, y: 0)
         
