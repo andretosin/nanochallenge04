@@ -12,7 +12,7 @@ import SpriteKit
 class Rock: Spawnable {
     var node = SKSpriteNode(imageNamed: "Rock")
     var scene: SKScene?
-    var isSpawnActive = true
+    var isSpawnActive = false
     var rockArray: [SKSpriteNode] = []
     var speed: CGFloat = 1000
     var playerPosX: CGFloat = 0
@@ -70,8 +70,10 @@ class Rock: Spawnable {
                         // spawn
                         rock.name = "rockTrue"
                         rock.physicsBody?.collisionBitMask = ContactMask.rock.rawValue | ContactMask.player.rawValue
-                        rock.position.x = CGFloat.random(in: playerPosX-100 ... playerPosX + 100)
+                        rock.position.x = CGFloat.random(in: playerPosX-5 ... playerPosX + 5)
 //                        rock.position.x = CGFloat(Int.random(in: -450...450))
+                        print("player x: \(playerPosX)")
+                        print("rock x: \(rock.position.x)")
                         rock.position.y = 1200
                         
                         

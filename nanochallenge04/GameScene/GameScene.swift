@@ -17,47 +17,29 @@ protocol GameDelegate {
 class GameScene: SKScene, SKPhysicsContactDelegate {
     
     var gameDelegate: GameDelegate?
-    var player: Player!
     var background: GameBackground!
-    var collisionFlag = false
-    var rollRate: CGFloat!
     var rock: Rock!
     var star: Star!
     var stars: SKSpriteNode!
-    var lastTime: TimeInterval = TimeInterval(0)
+    var player: Player!
     var isPlayerDead: Bool = false
-    let notification = UIImpactFeedbackGenerator(style: .heavy)
-    var currentScore = 0
     var lblScore = SKLabelNode()
     var lblDistance = SKLabelNode()
     var particles = SKEmitterNode()
     var gameStarted = false
     var flightSpeed: CGFloat = 0
     var flightDistance: CGFloat = 0
+    var currentScore = 0
     var audioPlayerPad: AVAudioPlayer!
     var audioPlayerNoPad: AVAudioPlayer!
-    
-    
+    var lastTime: TimeInterval = TimeInterval(0)
+    let notification = UIImpactFeedbackGenerator(style: .heavy)
+
     override func didMove(to view: SKView) {
         self.physicsWorld.contactDelegate = self
-        
         view.showsPhysics = false
+        setAudioPlayers()
         
-        
-        
-        let sound = Bundle.main.path(forResource: "nopad", ofType: "wav")
-        do {
-            audioPlayerPad = try AVAudioPlayer(contentsOf: URL(fileURLWithPath: sound!))
-        } catch {
-            print("error")
-        }
-        
-        let sound2 = Bundle.main.path(forResource: "pad", ofType: "wav")
-        do {
-            audioPlayerNoPad = try AVAudioPlayer(contentsOf: URL(fileURLWithPath: sound2!))
-        } catch {
-            print("error")
-        }
         
         
         
@@ -86,7 +68,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         player.node.position = CGPoint(x: 0, y: 0)
         
- 
     }
     
     override func update(_ currentTime: TimeInterval) {
@@ -109,10 +90,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 self.flightDistance += flightSpeed
                 self.lblDistance.text = "\(Int(flightDistance/20000))"
                 self.lblDistance.alpha = 1
+                rock.playerPosX = player.node.position.x
             }
             
         }
-        
         
         
         
@@ -223,6 +204,22 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         player.node.physicsBody?.velocity = CGVector(dx: 0, dy: 0)
         player.node.position = CGPoint(x: 0, y: 0)
         
+    }
+    
+    func setAudioPlayers() {
+        let sound = Bundle.main.path(forResource: "nopad", ofType: "wav")
+        do {
+            audioPlayerPad = try AVAudioPlayer(contentsOf: URL(fileURLWithPath: sound!))
+        } catch {
+            print("error")
+        }
+
+        let sound2 = Bundle.main.path(forResource: "pad", ofType: "wav")
+        do {
+            audioPlayerNoPad = try AVAudioPlayer(contentsOf: URL(fileURLWithPath: sound2!))
+        } catch {
+            print("error")
+        }
     }
     
     func playPad() {
