@@ -72,8 +72,7 @@ class Rock: Spawnable {
                         rock.physicsBody?.collisionBitMask = ContactMask.rock.rawValue | ContactMask.player.rawValue
                         rock.position.x = CGFloat.random(in: playerPosX-5 ... playerPosX + 5)
 //                        rock.position.x = CGFloat(Int.random(in: -450...450))
-                        print("player x: \(playerPosX)")
-                        print("rock x: \(rock.position.x)")
+
                         rock.position.y = 1200
                         
                         

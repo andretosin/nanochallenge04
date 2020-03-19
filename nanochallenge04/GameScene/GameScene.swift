@@ -10,17 +10,20 @@ import SpriteKit
 import AVFoundation
 
 protocol GameDelegate {
-    func endRun(lastDistance: CGFloat, starsCollected: Int)
+    func endRun(lastDistance: CGFloat, starsCollected: Int, totalStars: Int)
     
 }
 
 class GameScene: SKScene, SKPhysicsContactDelegate {
+    
+    var deuPrimeiroContato: Bool = false
     
     var gameDelegate: GameDelegate?
     var background: GameBackground!
     var rock: Rock!
     var star: Star!
     var stars: SKSpriteNode!
+    var totalStars: Int! = 0
     var player: Player!
     var isPlayerDead: Bool = false
     var lblScore = SKLabelNode()
@@ -35,7 +38,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var audioPlayerNoPad: AVAudioPlayer!
     var lastTime: TimeInterval = TimeInterval(0)
     let notification = UIImpactFeedbackGenerator(style: .heavy)
-
+    
     override func didMove(to view: SKView) {
         self.physicsWorld.contactDelegate = self
         view.showsPhysics = false
@@ -91,13 +94,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 self.lblDistance.text = "\(Int(flightDistance/20000))"
                 self.lblDistance.alpha = 1
                 rock.playerPosX = player.node.position.x
-                print(self.flightIncrement)
             }
             
+        } else {
+            self.player.node.position = CGPoint(x: 0, y: 0)
         }
-        
-        
-        
     }
     
     // MARK: - ContactDelegate
@@ -118,12 +119,16 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 }
             }
         case ContactMask.player.rawValue | ContactMask.rock.rawValue:
-            self.isPlayerDead = true
-            self.player.node.physicsBody?.linearDamping = 0
-            star.isSpawnActive = false
-            rock.isSpawnActive = false
-            audioPlayerPad.stop()
-            endRun()
+            if !deuPrimeiroContato {
+                deuPrimeiroContato = true
+                self.isPlayerDead = true
+                star.isSpawnActive = false
+                rock.isSpawnActive = false
+                audioPlayerPad.stop()
+                print("deu contato player e rock")
+                totalStars += self.currentScore
+                endRun()
+            }
         default:
             print("Unknown collision ocurred")
         }
@@ -146,15 +151,15 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             if !isPlayerDead {
                 for touch in touches {
                     let location = touch.location(in: self)
-
+                    
                     player.node.run(SKAction.moveTo(x: location.x, duration: 0.05))
                     rock.playerPosX = location.x
                     
-//                    if location.x > 0 {
-//                        player.accelerateRight = true
-//                    } else {
-//                        player.accelerateLeft = true
-//                    }
+                    //                    if location.x > 0 {
+                    //                        player.accelerateRight = true
+                    //                    } else {
+                    //                        player.accelerateLeft = true
+                    //                    }
                 }
             }
         }
@@ -170,8 +175,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                     player.node.run(SKAction.moveTo(x: location.x, duration: 0.05))
                     rock.playerPosX = location.x
                     
-//                    player.accelerateRight = false
-//                    player.accelerateLeft = false
+                    //                    player.accelerateRight = false
+                    //                    player.accelerateLeft = false
                 }
             }
         }
@@ -179,28 +184,29 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     
     override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
-                if gameStarted {
-                    if !isPlayerDead {
-                        for touch in touches {
-                            let location = touch.location(in: self)
-                            
-                            player.node.run(SKAction.moveTo(x: location.x, duration: 0.05))
-                            rock.playerPosX = location.x
-                            
-
-//                            player.node.run(SKAction.moveTo(x: location.x, duration: 0.05))
-//                            rock.playerPosX = location.x
-                        }
-                    }
+        if gameStarted {
+            if !isPlayerDead {
+                for touch in touches {
+                    let location = touch.location(in: self)
+                    
+                    player.node.run(SKAction.moveTo(x: location.x, duration: 0.05))
+                    rock.playerPosX = location.x
+                    
+                    
+                    //                            player.node.run(SKAction.moveTo(x: location.x, duration: 0.05))
+                    //                            rock.playerPosX = location.x
                 }
+            }
+        }
     }
     
-    func play() {
+    func play(totalStars: Int) {
         gameStarted = true
         isPlayerDead = false
+        self.totalStars = totalStars
         player.node.position = CGPoint(x: 0, y: -640)
         player.node.physicsBody?.velocity = CGVector(dx: 0, dy: 0)
-        player.node.physicsBody?.applyTorque(500)
+        deuPrimeiroContato = false
         star.isSpawnActive = true
         rock.isSpawnActive = true
         setSpeeds(1000)
@@ -220,7 +226,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     func endRun() {
         gameStarted = false
-        gameDelegate?.endRun(lastDistance: self.flightDistance/20000, starsCollected: self.currentScore)
+        gameDelegate?.endRun(lastDistance: self.flightDistance/20000, starsCollected: self.currentScore, totalStars: totalStars)
         player.node.physicsBody?.velocity = CGVector(dx: 0, dy: 0)
         player.node.position = CGPoint(x: 0, y: 0)
         
@@ -233,7 +239,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         } catch {
             print("error")
         }
-
+        
         let sound2 = Bundle.main.path(forResource: "pad", ofType: "wav")
         do {
             audioPlayerNoPad = try AVAudioPlayer(contentsOf: URL(fileURLWithPath: sound2!))
