@@ -16,8 +16,7 @@ protocol GameDelegate {
 
 class GameScene: SKScene, SKPhysicsContactDelegate {
     
-    var deuPrimeiroContato: Bool = false
-    
+    var firstContactFlag: Bool = false
     var gameDelegate: GameDelegate?
     var background: GameBackground!
     var rock: Rock!
@@ -102,12 +101,12 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             lastTime = currentTime
             return
         }
-        let deltaTime = currentTime - lastTime
+//      let deltaTime = currentTime - lastTime
         
         
         
         if gameStarted {
-            player.update(CGFloat(deltaTime))
+//          player.update(CGFloat(deltaTime))
             rock.update(currentTime)
             star.update(currentTime)
             
@@ -130,6 +129,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         let contactMask = contact.bodyA.categoryBitMask | contact.bodyB.categoryBitMask
         switch contactMask {
         case ContactMask.player.rawValue | ContactMask.star.rawValue:
+            // se enconstou numa estrela
             for node in children {
                 if node.name == "starTrue" {
                     if node.position.y < (player.node.position.y + player.node.size.height) && node.position.y > player.node.position.y {
@@ -142,19 +142,20 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 }
             }
         case ContactMask.player.rawValue | ContactMask.rock.rawValue:
-            if !deuPrimeiroContato {
-                deuPrimeiroContato = true
-                self.isPlayerDead = true
+            // se encostou numa pedra
+            if !firstContactFlag {
+                firstContactFlag = true
+                isPlayerDead = true
                 star.isSpawnActive = false
                 rock.isSpawnActive = false
                 audioPlayerAmbience.stop()
-                print("deu contato player e rock")
                 totalStars += self.currentScore
                 
+                // salva a quantidade de moedas
                 let defaults = UserDefaults.standard
                 defaults.set(totalStars, forKey: "starsCollected")
                 
-                
+                // pequeno delay após morrer para voltar par ao menu
                 DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
                     self.endRun()
                 }
@@ -184,12 +185,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                     
                     player.node.run(SKAction.moveTo(x: location.x, duration: 0.05))
                     rock.playerPosX = location.x
-                    
-                    //                    if location.x > 0 {
-                    //                        player.accelerateRight = true
-                    //                    } else {
-                    //                        player.accelerateLeft = true
-                    //                    }
+           
                 }
             }
         }
@@ -204,9 +200,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                     
                     player.node.run(SKAction.moveTo(x: location.x, duration: 0.05))
                     rock.playerPosX = location.x
-                    
-                    //                    player.accelerateRight = false
-                    //                    player.accelerateLeft = false
                 }
             }
         }
@@ -218,13 +211,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             if !isPlayerDead {
                 for touch in touches {
                     let location = touch.location(in: self)
-                    
                     player.node.run(SKAction.moveTo(x: location.x, duration: 0.05))
                     rock.playerPosX = location.x
-                    
-                    
-                    //                            player.node.run(SKAction.moveTo(x: location.x, duration: 0.05))
-                    //                            rock.playerPosX = location.x
                 }
             }
         }
@@ -236,7 +224,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         self.totalStars = totalStars
         player.node.position = CGPoint(x: 0, y: -640)
         player.node.physicsBody?.velocity = CGVector(dx: 0, dy: 0)
-        deuPrimeiroContato = false
+        firstContactFlag = false
         star.isSpawnActive = true
         rock.isSpawnActive = true
         setSpeeds(1000)
@@ -245,7 +233,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         currentScore = 0
         lblScore.text = "\(currentScore)"
         lblDistance.text = "\(flightDistance)"
-        
     }
     
     func setSpeeds(_ speed: CGFloat) {
