@@ -14,11 +14,13 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let childView = UIHostingController(rootView: MenuView())
-        addChild(childView)
-        childView.view.frame = view.bounds
-        view.addSubview(childView.view)
-        childView.didMove(toParent: self)
+        
+//        let childView = GameViewController()
+//        let childView = UIHostingController(rootView: MenuView())
+//        addChild(childView)
+//        childView.view.frame = view.bounds
+//        view.addSubview(childView.view)
+//        childView.didMove(toParent: self)
         
     }
 }

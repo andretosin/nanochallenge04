@@ -7,7 +7,7 @@
 //
 
 import SwiftUI
-
+import AVFoundation
 
 struct Triangle: Shape {
     func path(in rect: CGRect) -> Path {
@@ -24,12 +24,25 @@ struct Triangle: Shape {
 
 struct MenuView: View {
     
-    @State private var buttonIsShown = true
-    @State private var showLogo = false
+    private var buttonIsShown: Bool {
+        !isPlaying
+    }
+    
+    
+//   private var showLogo: Bool {
+//        !showText
+//    }
+    @State private var showLogo: Bool = true
+    @State private var showText = false
     @State private var showLastScore = true
     @State private var started = false
     @State private var isPlaying = false
     @State private var topMenu: CGFloat = 0
+    @State private var lastDistance: CGFloat = 0
+    @State private var lastStarsCollected: Int = 0
+    @State private var highScore: CGFloat = 0
+    @State private var totalStarsCollected: Int = 0
+    
     
     
     var body: some
@@ -37,21 +50,24 @@ struct MenuView: View {
         GeometryReader { geo in
             ZStack {
                 BGView()
-                GameView(isPlaying: self.isPlaying)
+                GameView(isPlaying: self.$isPlaying, lastDis: self.$lastDistance, starsCollec: self.$lastStarsCollected, highscore: self.$highScore, totalStars: self.$totalStarsCollected, showText: self.$showText)
                     .edgesIgnoringSafeArea(.all)
                     .mask(
                         ZStack (alignment: .top) {
                             Circle2View()
-                                //                                                .offset(y: self.topMenu)
+                                .offset(y: 0.3 * self.topMenu)
                                 .padding(self.isPlaying ? -geo.size.height : geo.size.width/10)
+                            
                             //                                .padding(.top, 20)
-                            //                                Circle()
-                            //                                    .offset(y: 0.6 * self.topMenu)
-                            //                                    .padding(self.isPlaying ? -geo.size.height : geo.size.width/3.2)
+                            Circle2View()
+                                .offset(y: 1.18 * self.topMenu)
+                                .padding(self.isPlaying ? -geo.size.height : geo.size.width/3.6)
+                            
                             //                                .padding(100)
                             //                                    .padding(geo.size.width/120)
                         }
                 )
+                
                 
                 ZStack {
                     VStack {
@@ -63,7 +79,7 @@ struct MenuView: View {
                                         .foregroundColor(.white)
                                         .shadow(color: Color.black.opacity(0.75), radius: 1, x: -1, y: 1)
                                     HStack (spacing: geo.size.width/120) {
-                                        Text("342")
+                                        Text("\(Int(self.highScore))")
                                             .font(.custom("nulshock", size: geo.size.width/18))
                                             .foregroundColor(.white)
                                             .bold()
@@ -78,13 +94,12 @@ struct MenuView: View {
                                         
                                     }
                                 }
-                                        .opacity(self.buttonIsShown ? 1.0 : 0.0)
-                                        .onTapGesture {
-                                            withAnimation {
-                                                self.isPlaying = true
-                                                self.buttonIsShown.toggle()
-                                            }
+                                .opacity(self.buttonIsShown ? 1.0 : 0.0)
+                                .onTapGesture {
+                                    withAnimation {
+                                        self.isPlaying = true
                                     }
+                                }
                                 .padding(.leading, 20)
                                 .padding(.trailing, 15)
                                 .padding(.vertical, 10)
@@ -96,13 +111,18 @@ struct MenuView: View {
                                     .frame(height: geo.size.height/10, alignment: .leading)
                                     .clipShape(Capsule())
                                     .shadow(color: Color.black.opacity(0.4), radius: 4, x: 2, y: 0)
-                                .onTapGesture {
+                                    .onTapGesture {
                                         withAnimation {
-                                            self.isPlaying = true
-                                            self.buttonIsShown.toggle()
+                                            print("Record button tapped")
                                         }
                                 }
                             }
+                            //                            Spacer()
+                            //                            ZStack {
+                            //                            Circle()
+                            //                                .frame(width: geo.size.width/6)
+                            //                             .opacity(self.buttonIsShown ? 0.0 : 1.0)
+                            //                            }
                             Spacer()
                             ZStack (alignment: .trailing) {
                                 HStack {
@@ -110,7 +130,7 @@ struct MenuView: View {
                                         .font(.system(size: geo.size.width/22, weight: .bold))
                                         .foregroundColor(.white)
                                         .shadow(color: Color.black.opacity(0.75), radius: 1, x: -1, y: 1)
-                                    Text("009")
+                                    Text("\(self.totalStarsCollected)")
                                         .font(.custom("nulshock", size: geo.size.width/18))
                                         .foregroundColor(.white)
                                         .bold()
@@ -119,32 +139,29 @@ struct MenuView: View {
                                 .padding(.trailing, 20)
                                 .padding(.leading, 15)
                                 .padding(.vertical, 10)
-                                    .opacity(self.buttonIsShown ? 1.0 : 0.0)
-                                        .onTapGesture {
-                                            withAnimation {
-                                                self.isPlaying = true
-                                                self.buttonIsShown.toggle()
-                                            }
+                                .opacity(self.buttonIsShown ? 1.0 : 0.0)
+                                .onTapGesture {
+                                    withAnimation {
+                                        
                                     }
+                                }
                                 .background(Capsule()
                                 .fill(self.buttonIsShown ? Color("CosmicPurple") : .white)
                                     
                                     
                                 )
                                     .opacity(self.buttonIsShown ? 1.0 : 0.0)
-                                        .onTapGesture {
-                                            withAnimation {
-                                                self.isPlaying = true
-                                                self.buttonIsShown.toggle()
-                                            }
-                                    }
+                                    .onTapGesture {
+                                        withAnimation {
+                                        }
+                                }
                                 .padding(.trailing, self.buttonIsShown ? geo.size.width/10 : 0)
                                     
-                                    .shadow(color: Color.black.opacity(0.4), radius: 4, x: 2, y: 0)
-                                    .clipShape(Capsule())
-                                    .background(Capsule()
-                                        .fill(Color("LowerPurple"))
-                                        .shadow(color: Color.black.opacity(0.4), radius: 4, x: 0, y: 2)
+                                .shadow(color: Color.black.opacity(0.4), radius: 4, x: 2, y: 0)
+                                .clipShape(Capsule())
+                                .background(Capsule()
+                                .fill(Color("LowerPurple"))
+                                .shadow(color: Color.black.opacity(0.4), radius: 4, x: 0, y: 2)
                                 )
                                 
                                 VStack (alignment: .trailing) {
@@ -159,12 +176,11 @@ struct MenuView: View {
                                     }
                                 }
                                 .opacity(self.buttonIsShown ? 1.0 : 0.0)
-                                                                       .onTapGesture {
-                                                                           withAnimation {
-                                                                               self.isPlaying = true
-                                                                               self.buttonIsShown.toggle()
-                                                                           }
-                                                                   }
+                                .onTapGesture {
+                                    withAnimation {
+                                        self.isPlaying = true
+                                    }
+                                }
                             }
                             .frame(height: geo.size.height/10, alignment: .trailing)
                             
@@ -172,38 +188,46 @@ struct MenuView: View {
                         .padding(.trailing, 20)
                         .opacity(self.buttonIsShown ? 1.0 : 0.5)
                         VStack (spacing: geo.size.width/100) {
+                            
                             ZStack {
+                                
                                 if self.showLogo {
-                                    Image("appollo")
+                                    
+                                    Image("PurpleLogo")
                                         .resizable()
-                                        .padding()
                                         .scaledToFit()
                                         .frame(width: geo.size.width/1.3)
+                                        .opacity(self.buttonIsShown ? 1.0 : 0.0)
                                 }
+                                
                                 HStack (spacing: geo.size.width/120) {
                                     VStack {
-                                        VStack (spacing: 0) {
+                                        VStack (spacing: -10) {
                                             HStack (spacing: 0) {
-                                                Text("243")
-                                                    .font(.custom("nulshock", size: geo.size.width/5))
-                                                    .foregroundColor(Color("CosmicPurple"))
-                                                    .bold()
-                                                    .shadow(color: Color.black.opacity(0.75), radius: 1, x: -1, y: 1)
-                                                    .padding(.top, geo.size.width/60)
-                                                    .fixedSize(horizontal: true, vertical: false)
-                                                Text("ly")
-                                                    .font(.custom("Audiowide-Regular", size: geo.size.width/12))
-                                                    .foregroundColor(Color("CosmicPurple"))
-                                                    .bold()
-                                                    .padding(.top, geo.size.width/10)
-                                                    .frame(width: geo.size.width/10)
+                                                    Text("\(Int(self.lastDistance))")
+                                                        .font(.custom("nulshock", size: geo.size.width/5))
+                                                        .foregroundColor(Color("CosmicPurple"))
+                                                        .bold()
+                                                        .shadow(color: Color.black.opacity(0.75), radius: 1, x: -1, y: 1)
+                                                        .padding(.top, geo.size.width/60)
+                                                        .fixedSize(horizontal: true, vertical: false)
+                                                    Text("ly")
+                                                        .font(.custom("Audiowide-Regular", size: geo.size.width/12))
+                                                        .foregroundColor(Color("CosmicPurple"))
+                                                        .bold()
+                                                        .padding(.top, geo.size.width/11)
+                                                        .frame(width: geo.size.width/10)
                                             }.offset(x: geo.size.width/20)
+                                                .onAppear() {
+                                                    
+                                            }
+                                            
                                             HStack {
                                                 Image(systemName: "star.fill")
                                                     .font(.system(size: geo.size.width/15, weight: .bold))
                                                     .foregroundColor(Color("CosmicPurple"))
                                                     .shadow(color: Color.black.opacity(0.75), radius: 1, x: -1, y: 1)
-                                                Text("13")
+                                                Text("\(self.lastStarsCollected)")
                                                     .font(.custom("nulshock", size: geo.size.width/10))
                                                     .foregroundColor(Color("CosmicPurple"))
                                                     .bold()
@@ -214,52 +238,80 @@ struct MenuView: View {
                                             //                                            .offset(x: -geo.size.width/20)
                                             
                                         }
+                                        .opacity(self.showText ? 1.0 : 0.0)
                                         
                                     }
+                                    
                                 }
-                                    .opacity(self.buttonIsShown ? 1.0 : 0.0)
-                                        .onTapGesture {
-                                            withAnimation {
-                                                self.isPlaying = true
-                                                self.buttonIsShown.toggle()
-                                            }
+                                .opacity(self.buttonIsShown ? 1.0 : 0.0)
+                                .onTapGesture {
+                                    withAnimation {
+                                        self.isPlaying = true
                                     }
+                                }
                                 .frame(minWidth: 0, maxWidth: .infinity)
+                                
+                                //                                .frame(minWidth: 0, maxWidth: .infinity)
                             }
+                                
                             .overlay(
                                 GeometryReader { geo2 in
                                     Color.clear
                                         .onAppear {
                                             self.topMenu = geo2.frame(in: .global).height
-                                            print("lala", self.topMenu)
                                     }
                                 }
                             )
                         }
-                        
-                        
+                        //                               Spacer()
+                        //
+                        //                                  HStack {
+                        //                                                                                   Circle()
+                        //                                                                                   Circle()
+                        //
+                        //                                                                                   Circle()
+                        //                                                                                   Circle()
+                        //                                                                               }
                         Spacer()
-                        
+                            .frame(minHeight: 0, maxHeight: .infinity)
+                        HStack (spacing: 30) {
+                            ButtonConfView(content: ButtonType(iconName: "RocketB"))
+                            ButtonConfView(content: ButtonType(iconName: "EmblemB"))
+                            ButtonConfView(content: ButtonType(iconName: "RankingB"))
+                            ButtonConfView(content: ButtonType(iconName: "SoundOnB"))
+                        }
+                        .foregroundColor(Color("CosmicPurple"))
+                        .padding(.horizontal, 20)
+                        .shadow(color: Color.black.opacity(0.75), radius: 1, x: -1, y: 1)
+                        .padding(.top, geo.size.width/7)
+                        .padding(.bottom, -geo.size.width/7)
+                        .opacity(self.buttonIsShown ? 1.0 : 0.0)
+                        .onTapGesture {
+                            withAnimation {
+                                print("Botoes de baix0")
+                            }
+                        }
                     }
-//                    GameView(isPlaying: self.isPlaying)
-//                    .edgesIgnoringSafeArea(.all)
-//                        .mask(
-//                            ZStack {
-//                                Circle()
-//                                    .offset(y: self.topMenu/5)
-////                                    .padding(self.isPlaying ? -geo.size.height : geo.size.width/10)
-//                                //                                .padding(.top, 20)
-//                                Circle()
-//                                    .offset(y: 0.6 * self.topMenu)
-//                                    .padding(self.isPlaying ? -geo.size.height : geo.size.width/3.2)
-//                                //                                .padding(100)
-//                                //                                    .padding(geo.size.width/120)
-//                            }
-//                    )
+                        //                    GameView(isPlaying: self.isPlaying)
+                        //                    .edgesIgnoringSafeArea(.all)
+                        //                        .mask(
+                        //                            ZStack {
+                        //                                Circle()
+                        //                                    .offset(y: self.topMenu/5)
+                        ////                                    .padding(self.isPlaying ? -geo.size.height : geo.size.width/10)
+                        //                                //                                .padding(.top, 20)
+                        //                                Circle()
+                        //                                    .offset(y: 0.6 * self.topMenu)
+                        //                                    .padding(self.isPlaying ? -geo.size.height : geo.size.width/3.2)
+                        //                                //                                .padding(100)
+                        //                                //                                    .padding(geo.size.width/120)
+                        //                            }
+                        //                    )
                         
-                    
+                        
+                        .frame(minHeight: 0, maxHeight: .infinity)
                     Circle()
-                        .offset(y: 0.6 * self.topMenu)
+                        .offset(y: 1.18 * self.topMenu)
                         .shadow(color: Color.black.opacity(0.75), radius: 1, x: -1, y: 1)
                         .foregroundColor(Color("LowerPurple"))
                         .frame(width: geo.size.width/3.35)
@@ -267,14 +319,15 @@ struct MenuView: View {
                         .onTapGesture {
                             withAnimation {
                                 self.isPlaying = true
-                                self.buttonIsShown.toggle()
+                                self.showLogo = false
+                                print("circle button tapped")
                             }
                     }
                     
                     
                     Triangle()
                         .fill(Color.white)
-                        .offset(x: 0.6 * self.topMenu, y: -0.02 * self.topMenu)
+                        .offset(x: 1.18 * self.topMenu, y: -0.05 * self.topMenu)
                         //                        .offset(x: self.topMenu, y: self.topMenu)
                         .shadow(color: Color.black.opacity(0.5), radius: 4, x: 6, y: 1)
                         .frame(width: geo.size.width/6, height: geo.size.width/8)
@@ -290,7 +343,9 @@ struct MenuView: View {
                         .onTapGesture {
                             withAnimation {
                                 self.isPlaying = true
-                                self.buttonIsShown.toggle()
+                                self.showLogo = false
+                                print("triangle button tapped")
+                                
                             }
                     }
                     //                    .background(Circle()
@@ -301,6 +356,8 @@ struct MenuView: View {
                     
                 }
             }
+            
+            
         }
         //                        .edgesIgnoringSafeArea(.all)
     }

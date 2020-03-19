@@ -11,11 +11,14 @@ import SwiftUI
 import SpriteKit
 import GameplayKit
 
+
 class GameViewController: UIViewController {
     
     var gameScene: GameScene!
+    var gameDelegate: GameDelegate
     
-    init() {
+    init(gameDelegate: GameDelegate) {
+        self.gameDelegate = gameDelegate
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -25,6 +28,7 @@ class GameViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         
         let sceneView = SKView(frame: view.frame)
         view.addSubview(sceneView)
@@ -38,11 +42,12 @@ class GameViewController: UIViewController {
             // Present the scene
             sceneView.presentScene(scene)
             self.gameScene = scene
+            gameScene.gameDelegate = gameDelegate
         }
         sceneView.ignoresSiblingOrder = true
         sceneView.showsFPS = true
         sceneView.showsNodeCount = true
-        //        }
+        sceneView.preferredFramesPerSecond = 120
     }
     
     override var shouldAutorotate: Bool {
