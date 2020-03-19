@@ -57,7 +57,6 @@ class Player: Updatable {
             body.collisionBitMask = ContactMask.rock.rawValue
             body.isDynamic = true
             body.affectedByGravity = false
-            body.linearDamping = 2
         }
     }
     

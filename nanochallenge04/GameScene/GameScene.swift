@@ -40,6 +40,27 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     let notification = UIImpactFeedbackGenerator(style: .heavy)
     
     override func didMove(to view: SKView) {
+        
+        let defaults = UserDefaults.standard
+        let highscore = defaults.value(forKey: "highscore")
+        let stars = defaults.value(forKey: "starsCollected") as? Int
+        if highscore == nil {
+            defaults.set(0, forKey: "highscore")
+        }
+        if stars == nil {
+            defaults.set(0, forKey: "starsCollected")
+        } else {
+            totalStars = stars
+        }
+        
+        
+        
+             
+        
+        
+        
+        
+        
         self.physicsWorld.contactDelegate = self
         view.showsPhysics = false
         setAudioPlayers()
@@ -50,6 +71,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             particles.zPosition = 0
             addChild(particles)
         }
+        
+        
         
         lblScore = self.childNode(withName: "lblScore") as! SKLabelNode
         lblScore.text = "\(currentScore)"
@@ -127,7 +150,14 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 audioPlayerPad.stop()
                 print("deu contato player e rock")
                 totalStars += self.currentScore
-                endRun()
+                
+                let defaults = UserDefaults.standard
+                defaults.set(totalStars, forKey: "starsCollected")
+                
+                
+                DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                    self.endRun()
+                }
             }
         default:
             print("Unknown collision ocurred")

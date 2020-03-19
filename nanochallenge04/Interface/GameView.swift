@@ -8,6 +8,7 @@
 
 import UIKit
 import SwiftUI
+import Foundation
 
 struct GameView: UIViewControllerRepresentable {
     
@@ -59,11 +60,19 @@ struct GameView: UIViewControllerRepresentable {
         func endRun(lastDistance: CGFloat, starsCollected: Int, totalStars: Int) {
             DispatchQueue.main.async {
                 withAnimation {
+                    
+                    let defaults = UserDefaults.standard
+                    let highscore = defaults.value(forKey: "highscore") as! CGFloat
+                    
+                    
                     self.parent.isPlaying = false
                     self.parent.lastDis = lastDistance
                     self.parent.starsCollec = starsCollected
-                    if self.parent.lastDis > self.parent.highscore {
+                    if self.parent.lastDis > highscore {
                         self.parent.highscore = self.parent.lastDis
+                        defaults.set(self.parent.lastDis, forKey: "highscore")
+                    } else {
+                        self.parent.highscore = highscore
                     }
                     self.parent.totalStars = totalStars
                 }
