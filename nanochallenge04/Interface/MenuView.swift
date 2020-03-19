@@ -37,6 +37,14 @@ struct MenuView: View {
     @State private var lastDistance: CGFloat = 0
     @State private var starsCollected: Int = 0
     
+    func firstGame() {
+        if self.lastDistance == CGFloat(0) && self.starsCollected == 0 {
+            self.showLogo = true
+        } else {
+            self.showLogo = false
+        }
+    }
+    
     var body: some
         View {
         GeometryReader { geo in
@@ -54,7 +62,7 @@ struct MenuView: View {
                             Circle2View()
                                 .offset(y: 1.18 * self.topMenu)
                                 .padding(self.isPlaying ? -geo.size.height : geo.size.width/3.6)
-                           
+                            
                             //                                .padding(100)
                             //                                    .padding(geo.size.width/120)
                         }
@@ -109,6 +117,12 @@ struct MenuView: View {
                                         }
                                 }
                             }
+                            //                            Spacer()
+                            //                            ZStack {
+                            //                            Circle()
+                            //                                .frame(width: geo.size.width/6)
+                            //                             .opacity(self.buttonIsShown ? 0.0 : 1.0)
+                            //                            }
                             Spacer()
                             ZStack (alignment: .trailing) {
                                 HStack {
@@ -174,18 +188,23 @@ struct MenuView: View {
                         .padding(.trailing, 20)
                         .opacity(self.buttonIsShown ? 1.0 : 0.5)
                         VStack (spacing: geo.size.width/100) {
+                            
                             ZStack {
+                                
                                 if self.showLogo {
-                                    Image("appollo")
+                                    
+                                    Image("PurpleLogo")
                                         .resizable()
-                                        .padding()
                                         .scaledToFit()
                                         .frame(width: geo.size.width/1.3)
+                                        .opacity(self.buttonIsShown ? 1.0 : 0.0)
                                 }
+                                
                                 HStack (spacing: geo.size.width/120) {
                                     VStack {
                                         VStack (spacing: -10) {
                                             HStack (spacing: 0) {
+                                                
                                                 Text("\(Int(self.lastDistance))")
                                                     .font(.custom("nulshock", size: geo.size.width/5))
                                                     .foregroundColor(Color("CosmicPurple"))
@@ -200,6 +219,10 @@ struct MenuView: View {
                                                     .padding(.top, geo.size.width/11)
                                                     .frame(width: geo.size.width/10)
                                             }.offset(x: geo.size.width/20)
+                                                .onAppear() {
+                                                    self.firstGame()
+                                            }
+                                            
                                             HStack {
                                                 Image(systemName: "star.fill")
                                                     .font(.system(size: geo.size.width/15, weight: .bold))
@@ -252,41 +275,41 @@ struct MenuView: View {
                         Spacer()
                             .frame(minHeight: 0, maxHeight: .infinity)
                         HStack (spacing: 30) {
-                            ButtonConfView()
-                            ButtonConfView()
-                            ButtonConfView()
-                            ButtonConfView()
+                            ButtonConfView(content: ButtonType(iconName: "RocketB"))
+                            ButtonConfView(content: ButtonType(iconName: "EmblemB"))
+                            ButtonConfView(content: ButtonType(iconName: "RankingB"))
+                            ButtonConfView(content: ButtonType(iconName: "SoundOnB"))
                         }
-                            .foregroundColor(Color("CosmicPurple"))
+                        .foregroundColor(Color("CosmicPurple"))
                         .padding(.horizontal, 20)
-                            .shadow(color: Color.black.opacity(0.75), radius: 1, x: -1, y: 1)
-                        .padding(.top, geo.size.width/7)
-                        .padding(.bottom, -geo.size.width/7)
-                        .opacity(self.buttonIsShown ? 1.0 : 0.0)
-                         .onTapGesture {
-                             withAnimation {
-                                print("Botoes de baix0")
-                             }
-                         }
+                            //                            .shadow(color: Color.black.opacity(0.75), radius: 1, x: -1, y: 1)
+                            .padding(.top, geo.size.width/7)
+                            .padding(.bottom, -geo.size.width/7)
+                            .opacity(self.buttonIsShown ? 1.0 : 0.0)
+                            .onTapGesture {
+                                withAnimation {
+                                    print("Botoes de baix0")
+                                }
+                        }
                     }
-                    //                    GameView(isPlaying: self.isPlaying)
-                    //                    .edgesIgnoringSafeArea(.all)
-                    //                        .mask(
-                    //                            ZStack {
-                    //                                Circle()
-                    //                                    .offset(y: self.topMenu/5)
-                    ////                                    .padding(self.isPlaying ? -geo.size.height : geo.size.width/10)
-                    //                                //                                .padding(.top, 20)
-                    //                                Circle()
-                    //                                    .offset(y: 0.6 * self.topMenu)
-                    //                                    .padding(self.isPlaying ? -geo.size.height : geo.size.width/3.2)
-                    //                                //                                .padding(100)
-                    //                                //                                    .padding(geo.size.width/120)
-                    //                            }
-                    //                    )
-                    
-                    
-                    .frame(minHeight: 0, maxHeight: .infinity)
+                        //                    GameView(isPlaying: self.isPlaying)
+                        //                    .edgesIgnoringSafeArea(.all)
+                        //                        .mask(
+                        //                            ZStack {
+                        //                                Circle()
+                        //                                    .offset(y: self.topMenu/5)
+                        ////                                    .padding(self.isPlaying ? -geo.size.height : geo.size.width/10)
+                        //                                //                                .padding(.top, 20)
+                        //                                Circle()
+                        //                                    .offset(y: 0.6 * self.topMenu)
+                        //                                    .padding(self.isPlaying ? -geo.size.height : geo.size.width/3.2)
+                        //                                //                                .padding(100)
+                        //                                //                                    .padding(geo.size.width/120)
+                        //                            }
+                        //                    )
+                        
+                        
+                        .frame(minHeight: 0, maxHeight: .infinity)
                     Circle()
                         .offset(y: 1.18 * self.topMenu)
                         .shadow(color: Color.black.opacity(0.75), radius: 1, x: -1, y: 1)
@@ -326,7 +349,7 @@ struct MenuView: View {
                                 self.isPadPlaying = true
                                 self.isNoPadPlaying = false
                                 print("triangle button tapped")
-
+                                
                             }
                     }
                     //                    .background(Circle()
@@ -337,7 +360,8 @@ struct MenuView: View {
                     
                 }
             }
-                
+            
+            
             
         }
         //                        .edgesIgnoringSafeArea(.all)

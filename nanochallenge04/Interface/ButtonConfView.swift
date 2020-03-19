@@ -8,17 +8,29 @@
 
 import SwiftUI
 
+class ButtonType: Identifiable {
+    var iconName: String
+
+    init(iconName: String) {
+        self.iconName = iconName
+    }
+}
+
 struct ButtonConfView: View {
+    
+     @State public var content: ButtonType
+    
     var body: some View {
         GeometryReader { geo3 in
         Button(action: {
             print("Conf button tapped!")
         }) {
-            Image("RocketButt")
+            Image("\(self.content.iconName)")
+//            Image("RocketButtt")
 
             .resizable()
             .scaledToFit()
-            .padding(3)
+            .padding(8)
 //                .frame(width: geo3.size.width/2, height: geo3.size.width/2)
                 
 
@@ -30,6 +42,7 @@ struct ButtonConfView: View {
                 .background(Circle()
 //                    .padding()
                     .foregroundColor(Color("CosmicPurple"))
+                    .shadow(color: Color.black.opacity(0.75), radius: 1, x: -1, y: 1)
 //                    .shadow(color: Color.black.opacity(0.75), radius: 1, x: -1, y: 1)
 //                    .padding(20)
                     
@@ -41,6 +54,6 @@ struct ButtonConfView: View {
 
 struct ButtonConfView_Previews: PreviewProvider {
     static var previews: some View {
-        ButtonConfView()
+        ButtonConfView(content: ButtonType(iconName: "RocketButt"))
     }
 }
