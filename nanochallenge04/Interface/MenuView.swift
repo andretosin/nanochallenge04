@@ -282,7 +282,7 @@ struct MenuView: View {
                         }
                         .foregroundColor(Color("CosmicPurple"))
                         .padding(.horizontal, 20)
-                        .shadow(color: Color.black.opacity(0.75), radius: 1, x: -1, y: 1)
+//                        .shadow(color: Color.black.opacity(0.75), radius: 1, x: -1, y: 1)
                         .padding(.top, geo.size.width/7)
                         .padding(.bottom, -geo.size.width/7)
                         .opacity(self.buttonIsShown ? 1.0 : 0.0)
