@@ -19,10 +19,9 @@ struct GameView: UIViewControllerRepresentable {
     @Binding var isPlaying: Bool
     @Binding var lastDis: CGFloat
     @Binding var starsCollec: Int
-    var isPadPlaying: Bool
-    var isNoPadPlaying: Bool
     @Binding var highscore: CGFloat
     @Binding var totalStars: Int
+    @Binding var showText: Bool
     
     func makeUIViewController(context: Context) -> GameViewController {
         GameViewController(gameDelegate: context.coordinator)
@@ -35,17 +34,7 @@ struct GameView: UIViewControllerRepresentable {
             uiViewController.gameScene.endRun()
         }
         
-        if isPadPlaying {
-            uiViewController.gameScene.playPad()
-        } else {
-            uiViewController.gameScene.stopPad()
-        }
-        
-        if isNoPadPlaying {
-            uiViewController.gameScene.playNoPad()
-        } else {
-            uiViewController.gameScene.stopNoPad()
-        }
+      
         
     }
     
@@ -75,6 +64,11 @@ struct GameView: UIViewControllerRepresentable {
                         self.parent.highscore = highscore
                     }
                     self.parent.totalStars = totalStars
+                    if self.parent.lastDis == 0 && self.parent.starsCollec == 0 {
+                        self.parent.showText = false
+                    } else {
+                        self.parent.showText = true
+                    }
                 }
             }
         }

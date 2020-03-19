@@ -47,7 +47,7 @@ class GameViewController: UIViewController {
         sceneView.ignoresSiblingOrder = true
         sceneView.showsFPS = true
         sceneView.showsNodeCount = true
-
+        sceneView.preferredFramesPerSecond = 120
     }
     
     override var shouldAutorotate: Bool {
