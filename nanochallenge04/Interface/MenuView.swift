@@ -43,13 +43,7 @@ struct MenuView: View {
     @State private var highScore: CGFloat = 0
     @State private var totalStarsCollected: Int = 0
     
-    func firstGame() {
-        if self.lastDistance == CGFloat(0) && self.starsCollected == 0 {
-            self.showLogo = true
-        } else {
-            self.showLogo = false
-        }
-    }
+    
     
     var body: some
         View {
@@ -225,7 +219,7 @@ struct MenuView: View {
                                                         .frame(width: geo.size.width/10)
                                             }.offset(x: geo.size.width/20)
                                                 .onAppear() {
-                                                    self.firstGame()
+                                                    
                                             }
                                             
                                             HStack {
