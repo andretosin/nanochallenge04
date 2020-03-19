@@ -8,6 +8,7 @@
 
 import UIKit
 import SwiftUI
+import Foundation
 
 struct GameView: UIViewControllerRepresentable {
     
@@ -20,6 +21,8 @@ struct GameView: UIViewControllerRepresentable {
     @Binding var starsCollec: Int
     var isPadPlaying: Bool
     var isNoPadPlaying: Bool
+    @Binding var highscore: CGFloat
+    @Binding var totalStars: Int
     
     func makeUIViewController(context: Context) -> GameViewController {
         GameViewController(gameDelegate: context.coordinator)
@@ -27,7 +30,7 @@ struct GameView: UIViewControllerRepresentable {
 
     func updateUIViewController(_ uiViewController: GameViewController, context: Context) {
         if isPlaying {
-            uiViewController.gameScene.play()
+            uiViewController.gameScene.play(totalStars: totalStars)
         } else {
             uiViewController.gameScene.endRun()
         }
@@ -54,12 +57,24 @@ struct GameView: UIViewControllerRepresentable {
         }
         
         
-        func endRun(lastDistance: CGFloat, starsCollected: Int) {
+        func endRun(lastDistance: CGFloat, starsCollected: Int, totalStars: Int) {
             DispatchQueue.main.async {
                 withAnimation {
+                    
+                    let defaults = UserDefaults.standard
+                    let highscore = defaults.value(forKey: "highscore") as! CGFloat
+                    
+                    
                     self.parent.isPlaying = false
                     self.parent.lastDis = lastDistance
                     self.parent.starsCollec = starsCollected
+                    if self.parent.lastDis > highscore {
+                        self.parent.highscore = self.parent.lastDis
+                        defaults.set(self.parent.lastDis, forKey: "highscore")
+                    } else {
+                        self.parent.highscore = highscore
+                    }
+                    self.parent.totalStars = totalStars
                 }
             }
         }

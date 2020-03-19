@@ -27,6 +27,8 @@ struct MenuView: View {
     private var buttonIsShown: Bool {
         !isPlaying
     }
+    
+
     @State private var showLogo = false
     @State private var showLastScore = true
     @State private var started = false
@@ -35,7 +37,9 @@ struct MenuView: View {
     @State private var isPadPlaying = false
     @State private var isNoPadPlaying = true
     @State private var lastDistance: CGFloat = 0
-    @State private var starsCollected: Int = 0
+    @State private var lastStarsCollected: Int = 0
+    @State private var highScore: CGFloat = 0
+    @State private var totalStarsCollected: Int = 0
     
     func firstGame() {
         if self.lastDistance == CGFloat(0) && self.starsCollected == 0 {
@@ -50,7 +54,7 @@ struct MenuView: View {
         GeometryReader { geo in
             ZStack {
                 BGView()
-                GameView(isPlaying: self.$isPlaying, lastDis: self.$lastDistance, starsCollec: self.$starsCollected, isPadPlaying: self.isPadPlaying, isNoPadPlaying: self.isNoPadPlaying)
+                GameView(isPlaying: self.$isPlaying, lastDis: self.$lastDistance, starsCollec: self.$lastStarsCollected, isPadPlaying: self.isPadPlaying, isNoPadPlaying: self.isNoPadPlaying, highscore: self.$highScore, totalStars: self.$totalStarsCollected)
                     .edgesIgnoringSafeArea(.all)
                     .mask(
                         ZStack (alignment: .top) {
@@ -79,7 +83,7 @@ struct MenuView: View {
                                         .foregroundColor(.white)
                                         .shadow(color: Color.black.opacity(0.75), radius: 1, x: -1, y: 1)
                                     HStack (spacing: geo.size.width/120) {
-                                        Text("342")
+                                        Text("\(Int(self.highScore))")
                                             .font(.custom("nulshock", size: geo.size.width/18))
                                             .foregroundColor(.white)
                                             .bold()
@@ -130,7 +134,7 @@ struct MenuView: View {
                                         .font(.system(size: geo.size.width/22, weight: .bold))
                                         .foregroundColor(.white)
                                         .shadow(color: Color.black.opacity(0.75), radius: 1, x: -1, y: 1)
-                                    Text("009")
+                                    Text("\(self.totalStarsCollected)")
                                         .font(.custom("nulshock", size: geo.size.width/18))
                                         .foregroundColor(.white)
                                         .bold()
@@ -228,7 +232,7 @@ struct MenuView: View {
                                                     .font(.system(size: geo.size.width/15, weight: .bold))
                                                     .foregroundColor(Color("CosmicPurple"))
                                                     .shadow(color: Color.black.opacity(0.75), radius: 1, x: -1, y: 1)
-                                                Text("\(self.starsCollected)")
+                                                Text("\(self.lastStarsCollected)")
                                                     .font(.custom("nulshock", size: geo.size.width/10))
                                                     .foregroundColor(Color("CosmicPurple"))
                                                     .bold()

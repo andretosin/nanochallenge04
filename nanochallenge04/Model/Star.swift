@@ -12,7 +12,7 @@ class Star: Spawnable {
     var lastTime: TimeInterval = TimeInterval(0)
     var scene: SKScene?
     let starTexture = SKTexture(imageNamed: "Star")
-    var isSpawnActive = true
+    var isSpawnActive = false
     var speed: CGFloat = 1000
     var starArray: [SKSpriteNode] = []
     var starCount = 1
