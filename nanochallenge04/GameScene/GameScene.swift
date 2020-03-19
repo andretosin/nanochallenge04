@@ -34,8 +34,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var flightSpeed: CGFloat = 0
     var flightDistance: CGFloat = 0
     var currentScore = 0
-    var audioPlayerPad: AVAudioPlayer!
-    var audioPlayerNoPad: AVAudioPlayer!
+    var audioPlayerAmbience: AVAudioPlayer!
+    var audioPlayerPads: AVAudioPlayer!
     var lastTime: TimeInterval = TimeInterval(0)
     let notification = UIImpactFeedbackGenerator(style: .heavy)
     
@@ -147,7 +147,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 self.isPlayerDead = true
                 star.isSpawnActive = false
                 rock.isSpawnActive = false
-                audioPlayerPad.stop()
+                audioPlayerAmbience.stop()
                 print("deu contato player e rock")
                 totalStars += self.currentScore
                 
@@ -263,35 +263,35 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     func setAudioPlayers() {
-        let sound = Bundle.main.path(forResource: "nopad", ofType: "wav")
+        let sound = Bundle.main.path(forResource: "ambience", ofType: "wav")
         do {
-            audioPlayerPad = try AVAudioPlayer(contentsOf: URL(fileURLWithPath: sound!))
+            audioPlayerAmbience = try AVAudioPlayer(contentsOf: URL(fileURLWithPath: sound!))
         } catch {
             print("error")
         }
         
-        let sound2 = Bundle.main.path(forResource: "pad", ofType: "wav")
+        let sound2 = Bundle.main.path(forResource: "pads", ofType: "wav")
         do {
-            audioPlayerNoPad = try AVAudioPlayer(contentsOf: URL(fileURLWithPath: sound2!))
+            audioPlayerPads = try AVAudioPlayer(contentsOf: URL(fileURLWithPath: sound2!))
         } catch {
             print("error")
         }
     }
     
     func playPad() {
-        audioPlayerPad.play()
+        audioPlayerAmbience.play()
     }
     
     func stopPad() {
-        audioPlayerPad.stop()
+        audioPlayerAmbience.stop()
     }
     
     func playNoPad() {
-        audioPlayerNoPad.play()
+        audioPlayerPads.play()
     }
     
     func stopNoPad() {
-        audioPlayerNoPad.stop()
+        audioPlayerPads.stop()
     }
     
     
