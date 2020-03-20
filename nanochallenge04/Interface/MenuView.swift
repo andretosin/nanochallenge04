@@ -42,8 +42,7 @@ struct MenuView: View {
     @State private var lastStarsCollected: Int = 0
     @State private var highScore: CGFloat = 0
     @State private var totalStarsCollected: Int = 0
-    
-    
+    @State private var active = false
     
     var body: some
         View {
@@ -79,6 +78,8 @@ struct MenuView: View {
                                         .foregroundColor(.white)
                                         .shadow(color: Color.black.opacity(0.75), radius: 1, x: -1, y: 1)
                                     HStack (spacing: geo.size.width/120) {
+                
+                                                                       
                                         Text("\(Int(self.highScore))")
                                             .font(.custom("nulshock", size: geo.size.width/18))
                                             .foregroundColor(.white)
@@ -95,6 +96,8 @@ struct MenuView: View {
                                     }
                                 }
                                 .opacity(self.buttonIsShown ? 1.0 : 0.0)
+                                    
+                               
                                 .onTapGesture {
                                     withAnimation {
                                         self.isPlaying = true
@@ -283,8 +286,8 @@ struct MenuView: View {
                         .foregroundColor(Color("CosmicPurple"))
                         .padding(.horizontal, 20)
 //                        .shadow(color: Color.black.opacity(0.75), radius: 1, x: -1, y: 1)
-                        .padding(.top, geo.size.width/7)
-                        .padding(.bottom, -geo.size.width/7)
+//                            .padding(.top, geo.size.width/7)
+                        .padding(.bottom, geo.size.width/10)
                         .opacity(self.buttonIsShown ? 1.0 : 0.0)
                         .onTapGesture {
                             withAnimation {
