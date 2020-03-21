@@ -29,9 +29,9 @@ struct MenuView: View {
     }
     
     
-//   private var showLogo: Bool {
-//        !showText
-//    }
+    //   private var showLogo: Bool {
+    //        !showText
+    //    }
     @State private var showLogo: Bool = true
     @State private var showText = false
     @State private var showLastScore = true
@@ -44,18 +44,26 @@ struct MenuView: View {
     @State private var totalStarsCollected: Int = 0
     @State private var active = false
     
+    var rockets = ("RocketOff 2")
+    
+    
     var body: some
         View {
         GeometryReader { geo in
+            
             ZStack {
                 BGView()
+                
                 GameView(isPlaying: self.$isPlaying, lastDis: self.$lastDistance, starsCollec: self.$lastStarsCollected, highscore: self.$highScore, totalStars: self.$totalStarsCollected, showText: self.$showText)
+                    
                     .edgesIgnoringSafeArea(.all)
                     .mask(
                         ZStack (alignment: .top) {
+                            
                             Circle2View()
                                 .offset(y: 0.3 * self.topMenu)
                                 .padding(self.isPlaying ? -geo.size.height : geo.size.width/10)
+                                
                             
                             //                                .padding(.top, 20)
                             Circle2View()
@@ -65,8 +73,12 @@ struct MenuView: View {
                             //                                .padding(100)
                             //                                    .padding(geo.size.width/120)
                         }
+                            
+                    
                 )
-                
+                RocketView()
+                    
+
                 
                 ZStack {
                     VStack {
@@ -78,8 +90,8 @@ struct MenuView: View {
                                         .foregroundColor(.white)
                                         .shadow(color: Color.black.opacity(0.75), radius: 1, x: -1, y: 1)
                                     HStack (spacing: geo.size.width/120) {
-                
-                                                                       
+                                        
+                                        
                                         Text("\(Int(self.highScore))")
                                             .font(.custom("nulshock", size: geo.size.width/18))
                                             .foregroundColor(.white)
@@ -97,7 +109,7 @@ struct MenuView: View {
                                 }
                                 .opacity(self.buttonIsShown ? 1.0 : 0.0)
                                     
-                               
+                                    
                                 .onTapGesture {
                                     withAnimation {
                                         self.isPlaying = true
@@ -207,19 +219,19 @@ struct MenuView: View {
                                     VStack {
                                         VStack (spacing: -10) {
                                             HStack (spacing: 0) {
-                                                    Text("\(Int(self.lastDistance))")
-                                                        .font(.custom("nulshock", size: geo.size.width/5))
-                                                        .foregroundColor(Color("CosmicPurple"))
-                                                        .bold()
-                                                        .shadow(color: Color.black.opacity(0.75), radius: 1, x: -1, y: 1)
-                                                        .padding(.top, geo.size.width/60)
-                                                        .fixedSize(horizontal: true, vertical: false)
-                                                    Text("ly")
-                                                        .font(.custom("Audiowide-Regular", size: geo.size.width/12))
-                                                        .foregroundColor(Color("CosmicPurple"))
-                                                        .bold()
-                                                        .padding(.top, geo.size.width/11)
-                                                        .frame(width: geo.size.width/10)
+                                                Text("\(Int(self.lastDistance))")
+                                                    .font(.custom("nulshock", size: geo.size.width/5))
+                                                    .foregroundColor(Color("CosmicPurple"))
+                                                    .bold()
+                                                    .shadow(color: Color.black.opacity(0.75), radius: 1, x: -1, y: 1)
+                                                    .padding(.top, geo.size.width/60)
+                                                    .fixedSize(horizontal: true, vertical: false)
+                                                Text("ly")
+                                                    .font(.custom("Audiowide-Regular", size: geo.size.width/12))
+                                                    .foregroundColor(Color("CosmicPurple"))
+                                                    .bold()
+                                                    .padding(.top, geo.size.width/11)
+                                                    .frame(width: geo.size.width/10)
                                             }.offset(x: geo.size.width/20)
                                                 .onAppear() {
                                                     
@@ -285,14 +297,14 @@ struct MenuView: View {
                         }
                         .foregroundColor(Color("CosmicPurple"))
                         .padding(.horizontal, 20)
-//                        .shadow(color: Color.black.opacity(0.75), radius: 1, x: -1, y: 1)
-//                            .padding(.top, geo.size.width/7)
-                        .padding(.bottom, geo.size.width/10)
-                        .opacity(self.buttonIsShown ? 1.0 : 0.0)
-                        .onTapGesture {
-                            withAnimation {
-                                print("Botoes de baix0")
-                            }
+                            //                        .shadow(color: Color.black.opacity(0.75), radius: 1, x: -1, y: 1)
+                            //                            .padding(.top, geo.size.width/7)
+                            .padding(.bottom, geo.size.width/10)
+                            .opacity(self.buttonIsShown ? 1.0 : 0.0)
+                            .onTapGesture {
+                                withAnimation {
+                                    print("Botoes de baix0")
+                                }
                         }
                     }
                         //                    GameView(isPlaying: self.isPlaying)
