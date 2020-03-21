@@ -16,11 +16,11 @@ struct RocketView: View {
                 ForEach(1..<10) { item in
                     GeometryReader { geoRocket in
                         Image("\("RocketOff 2")")
-                                                    .rotationEffect(Angle(degrees: Double(geoRocket.frame(in: .global).minX))/30)
+//                                                    .rotationEffect(Angle(degrees: Double(geoRocket.frame(in: .global).minX))/30)
 //                                                        .rotation3DEffect(Angle(degrees: Double(geoRocket.frame(in: .global).minX)), axis: (x: 0, y: 10.0, z: 0))
                     }
                 }
-            .frame(width: 200)
+//            .frame(width: 200)
             .padding(20)
             }
         }

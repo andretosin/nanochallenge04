@@ -43,6 +43,8 @@ struct MenuView: View {
     @State private var highScore: CGFloat = 0
     @State private var totalStarsCollected: Int = 0
     @State private var active = false
+    @State private var chooseRocket: Bool = true
+
     
     var rockets = ("RocketOff 2")
     
@@ -76,9 +78,18 @@ struct MenuView: View {
                             
                     
                 )
+                        if self.chooseRocket {
                 RocketView()
-                    
-
+                .mask(
+                ZStack (alignment: .top) {
+                    Circle2View()
+                        .offset(y: 0.3 * self.topMenu)
+                        .padding(self.isPlaying ? -geo.size.height : geo.size.width/10)
+                    }
+                    )
+                }
+                
+                
                 
                 ZStack {
                     VStack {
@@ -291,7 +302,11 @@ struct MenuView: View {
                             .frame(minHeight: 0, maxHeight: .infinity)
                         HStack (spacing: 30) {
                             ButtonConfView(content: ButtonType(iconName: "RocketB"))
+                                .onTapGesture {
+                                    self.chooseRocket = true
+                            }
                             ButtonConfView(content: ButtonType(iconName: "EmblemB"))
+
                             ButtonConfView(content: ButtonType(iconName: "RankingB"))
                             ButtonConfView(content: ButtonType(iconName: "SoundOnB"))
                         }
