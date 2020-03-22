@@ -44,18 +44,14 @@ struct MenuView: View {
     @State private var totalStarsCollected: Int = 0
     @State private var active = false
     @State private var chooseRocket: Bool = true
-
-    
-    var rockets = ("RocketOff 2")
-    
+    @State var textfield_val = ""
+    @State var heartFilled = false
     
     var body: some
         View {
         GeometryReader { geo in
-            
             ZStack {
                 BGView()
-                
                 GameView(isPlaying: self.$isPlaying, lastDis: self.$lastDistance, starsCollec: self.$lastStarsCollected, highscore: self.$highScore, totalStars: self.$totalStarsCollected, showText: self.$showText)
                     
                     .edgesIgnoringSafeArea(.all)
@@ -65,8 +61,6 @@ struct MenuView: View {
                             Circle2View()
                                 .offset(y: 0.3 * self.topMenu)
                                 .padding(self.isPlaying ? -geo.size.height : geo.size.width/10)
-                                
-                            
                             //                                .padding(.top, 20)
                             Circle2View()
                                 .offset(y: 1.18 * self.topMenu)
@@ -75,19 +69,10 @@ struct MenuView: View {
                             //                                .padding(100)
                             //                                    .padding(geo.size.width/120)
                         }
-                            
-                    
+                        
+                        
                 )
-                        if self.chooseRocket {
-                RocketView()
-                .mask(
-                ZStack (alignment: .top) {
-                    Circle2View()
-                        .offset(y: 0.3 * self.topMenu)
-                        .padding(self.isPlaying ? -geo.size.height : geo.size.width/10)
-                    }
-                    )
-                }
+              
                 
                 
                 
@@ -302,11 +287,9 @@ struct MenuView: View {
                             .frame(minHeight: 0, maxHeight: .infinity)
                         HStack (spacing: 30) {
                             ButtonConfView(content: ButtonType(iconName: "RocketB"))
-                                .onTapGesture {
-                                    self.chooseRocket = true
-                            }
+                            
                             ButtonConfView(content: ButtonType(iconName: "EmblemB"))
-
+                            
                             ButtonConfView(content: ButtonType(iconName: "RankingB"))
                             ButtonConfView(content: ButtonType(iconName: "SoundOnB"))
                         }
@@ -377,13 +360,40 @@ struct MenuView: View {
                                 print("triangle button tapped")
                                 
                             }
+                            
                     }
+                    //                    CarouselView(itemHeight: 400, views: [
+                    //                    AnyView(RocketView()),
+                    //                    AnyView(RocketView()),
+                    //                    AnyView(RocketView()),
+                    //                    AnyView(RocketView()),
+                    //                    AnyView(RocketView()),
+                    //                    AnyView(RocketView()),
+                    //                    ])
                     //                    .background(Circle()
                     //
                     //                    .shadow(color: Color.black.opacity(0.75), radius: 1, x: -1, y: 1)
                     //                    .foregroundColor(Color("LowerPurple")
                     //                        )
                     
+                                  ZStack{
+                                      VStack{
+                                          Spacer().frame(height:30)
+                                          Text("Rocket 01").font(.system(size: 50, weight: .semibold)).multilineTextAlignment(.center)
+                                          Spacer()
+                                      }
+                                      CarouselView(itemHeight: 400, views: [
+AnyView(Image("RocketFull")),
+                                          AnyView(Image("RocketOff 23")),
+                                          AnyView(Image("RocketFull")),
+                                          AnyView(Image("RocketOff 23")),
+                                          AnyView(Image("RocketFull")),
+                                          AnyView(Image("RocketOff 23")),
+                                          AnyView(Image("RocketFull")
+                                          ),
+                                          AnyView(Image("RocketOff 23")),
+                                      ])
+                                  }
                 }
             }
             

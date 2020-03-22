@@ -54,6 +54,7 @@ struct ColorfulBackground<S: Shape>: View {
 struct ColorfulToggleStyle: ToggleStyle {
     func makeBody(configuration: Self.Configuration) -> some View {
         Button(action: {
+            print("Button is clicked")
             configuration.isOn.toggle()
         }) {
             configuration.label
@@ -81,11 +82,13 @@ struct ButtonConfView: View {
     var body: some View {
 
             Toggle(isOn: self.$isToggled) {
+                
                     Image("\(self.content.iconName)")
                         .resizable()
                         .scaledToFit()
                         .foregroundColor(Color.white)
                 }
+                
                 .toggleStyle(ColorfulToggleStyle())
         }
 }

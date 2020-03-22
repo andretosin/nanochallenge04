@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		3F1E98AD2425E57A0092375E /* RocketView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F1E98AC2425E57A0092375E /* RocketView.swift */; };
+		3F1E98AF24272F330092375E /* CarouselView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F1E98AE24272F330092375E /* CarouselView.swift */; };
 		3F294035241EE69B006C346E /* BGView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F294034241EE69B006C346E /* BGView.swift */; };
 		3F56E9A324201CCC002C7010 /* Circle2View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F56E9A224201CCC002C7010 /* Circle2View.swift */; };
 		3F56E9A524214CC3002C7010 /* ButtonConfView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F56E9A424214CC3002C7010 /* ButtonConfView.swift */; };
@@ -38,6 +39,7 @@
 
 /* Begin PBXFileReference section */
 		3F1E98AC2425E57A0092375E /* RocketView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RocketView.swift; sourceTree = "<group>"; };
+		3F1E98AE24272F330092375E /* CarouselView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarouselView.swift; sourceTree = "<group>"; };
 		3F294034241EE69B006C346E /* BGView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BGView.swift; sourceTree = "<group>"; };
 		3F56E9A224201CCC002C7010 /* Circle2View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Circle2View.swift; sourceTree = "<group>"; };
 		3F56E9A424214CC3002C7010 /* ButtonConfView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonConfView.swift; sourceTree = "<group>"; };
@@ -89,6 +91,7 @@
 				3F294034241EE69B006C346E /* BGView.swift */,
 				3FF59578241DB94700143510 /* GameView.swift */,
 				3F56E9A224201CCC002C7010 /* Circle2View.swift */,
+				3F1E98AE24272F330092375E /* CarouselView.swift */,
 			);
 			path = Interface;
 			sourceTree = "<group>";
@@ -254,6 +257,7 @@
 				F958DC9E2412DC5D007FECFE /* Protocols.swift in Sources */,
 				F958DC9C2412D271007FECFE /* Player.swift in Sources */,
 				3F56E9A324201CCC002C7010 /* Circle2View.swift in Sources */,
+				3F1E98AF24272F330092375E /* CarouselView.swift in Sources */,
 				F9EEDD88241AC5B500AB586C /* Star.swift in Sources */,
 				F98D33F0241022E900A12F15 /* GameScene.swift in Sources */,
 				F9F5300624181B9300276183 /* GameBackground.swift in Sources */,
