@@ -43,7 +43,7 @@ struct MenuView: View {
     @State private var highScore: CGFloat = 0
     @State private var totalStarsCollected: Int = 0
     @State private var active = false
-    @State private var chooseRocket: Bool = true
+    @State private var chooseRocket: Bool = false
     @State var textfield_val = ""
     @State var heartFilled = false
     
@@ -72,7 +72,7 @@ struct MenuView: View {
                         
                         
                 )
-              
+                
                 
                 
                 
@@ -323,6 +323,27 @@ struct MenuView: View {
                         
                         
                         .frame(minHeight: 0, maxHeight: .infinity)
+                    
+                    ZStack {
+                        if self.chooseRocket {
+                        VStack {
+                            Spacer().frame(height:30)
+                            Text("Rocket 01").font(.system(size: 50, weight: .semibold)).multilineTextAlignment(.center)
+                            Spacer()
+                        }
+                        CarouselView(itemHeight: 400, views: [
+                            AnyView(Image("RocketFull")),
+                            AnyView(Image("RocketOff 23")),
+                            AnyView(Image("RocketFull")),
+                            AnyView(Image("RocketOff 23")),
+                            AnyView(Image("RocketFull")),
+                            AnyView(Image("RocketOff 23")),
+                            AnyView(Image("RocketFull")
+                            ),
+                            AnyView(Image("RocketOff 23")),
+                        ])
+                    }
+                    }
                     Circle()
                         .offset(y: 1.18 * self.topMenu)
                         .shadow(color: Color.black.opacity(0.75), radius: 1, x: -1, y: 1)
@@ -352,6 +373,7 @@ struct MenuView: View {
                         //                        .shadow(color: Color.black.opacity(0.5), radius: 4, x: 1, y: 6)
                         //
                         //                        .padding(30)
+                        
                         .opacity(self.buttonIsShown ? 1.0 : 0.0)
                         .onTapGesture {
                             withAnimation {
@@ -376,24 +398,7 @@ struct MenuView: View {
                     //                    .foregroundColor(Color("LowerPurple")
                     //                        )
                     
-                                  ZStack{
-                                      VStack{
-                                          Spacer().frame(height:30)
-                                          Text("Rocket 01").font(.system(size: 50, weight: .semibold)).multilineTextAlignment(.center)
-                                          Spacer()
-                                      }
-                                      CarouselView(itemHeight: 400, views: [
-AnyView(Image("RocketFull")),
-                                          AnyView(Image("RocketOff 23")),
-                                          AnyView(Image("RocketFull")),
-                                          AnyView(Image("RocketOff 23")),
-                                          AnyView(Image("RocketFull")),
-                                          AnyView(Image("RocketOff 23")),
-                                          AnyView(Image("RocketFull")
-                                          ),
-                                          AnyView(Image("RocketOff 23")),
-                                      ])
-                                  }
+                    
                 }
             }
             

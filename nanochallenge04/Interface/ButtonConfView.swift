@@ -27,7 +27,7 @@ extension LinearGradient {
 struct ColorfulBackground<S: Shape>: View {
     var isHighlighted: Bool
     var shape: S
-
+    
     var body: some View {
         ZStack {
             if isHighlighted {
@@ -52,11 +52,17 @@ struct ColorfulBackground<S: Shape>: View {
 }
 
 struct ColorfulToggleStyle: ToggleStyle {
+//    @Binding var chooseRocket: Bool
+    @State var showDetails = false
     func makeBody(configuration: Self.Configuration) -> some View {
         Button(action: {
             print("Button is clicked")
             configuration.isOn.toggle()
+            self.showDetails.toggle()
+             print("showDetailsTogged")
+//            self.chooseRocket = true
         }) {
+            
             configuration.label
                 .padding(10)
                 .contentShape(Circle())
@@ -80,16 +86,13 @@ struct ButtonConfView: View {
     @State public var content: ButtonType
      @State private var isToggled = false
     var body: some View {
-
             Toggle(isOn: self.$isToggled) {
-                
                     Image("\(self.content.iconName)")
                         .resizable()
                         .scaledToFit()
                         .foregroundColor(Color.white)
                 }
-                
-                .toggleStyle(ColorfulToggleStyle())
+            .toggleStyle(ColorfulToggleStyle())
         }
 }
 
