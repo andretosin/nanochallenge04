@@ -374,14 +374,15 @@ struct MenuView: View {
                             }
                     }
                     
-                    
-                    Triangle()
-                        .fill(Color.white)
-                        .offset(x: 1.18 * self.topMenu, y: -0.05 * self.topMenu)
-                        //                        .offset(x: self.topMenu, y: self.topMenu)
-                        .shadow(color: Color.black.opacity(0.5), radius: 4, x: 6, y: 1)
-                        .frame(width: geo.size.width/6, height: geo.size.width/8)
-                        .rotationEffect(.degrees(-270))
+                    Image(systemName: "arrowtriangle.right.fill")
+                                                                       .font(.system(size: geo.size.width/6, weight: .bold))
+//                    Triangle()
+                        .foregroundColor(Color.white)
+                        .offset(x: 0.03 * self.topMenu, y: 1.2 * self.topMenu)
+//                                                .offset(x: self.topMenu, y: self.topMenu)
+                        .shadow(color: Color.black.opacity(0.5), radius: 1, x: 1, y: 1)
+//                        .frame(width: geo.size.width/6, height: geo.size.width/8)
+//                        .rotationEffect(.degrees(-270))
                         .padding(30)
                         //                    Image(systemName: "arrowtriangle.right.fill")
                         //                        .font(.system(size: geo.size.width/6))
