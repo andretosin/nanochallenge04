@@ -44,7 +44,7 @@ struct MenuView: View {
     @State private var highScore: CGFloat = 0
     @State private var totalStarsCollected: Int = 0
     @State private var active = false
-    @State private var chooseRocket: Bool = true
+    @State private var chooseRocket: Bool = false
     @State var textfield_val = ""
     @State var heartFilled = false
     @State private var showOptions: Bool = false

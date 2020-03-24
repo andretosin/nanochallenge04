@@ -49,9 +49,9 @@ class Player: Updatable {
     let limitAngle = CGFloat(Double.pi/6)
     let speedLimit = CGFloat(6)
     let positionLimit = CGFloat(350)
-    let torque = CGFloat(40)
+    let torque = CGFloat(50)
     let damping = CGFloat(30)
-    let xSpeed = CGFloat(1500)
+    let xSpeed = CGFloat(1000)
     
     
     internal init(scene: GameScene?) {
@@ -124,12 +124,16 @@ class Player: Updatable {
         if isIdle && self.node.zRotation != 0 {
             if self.node.zRotation > 0.2 {
                 self.node.physicsBody?.angularDamping = 0
-                self.node.physicsBody?.applyTorque(-torque)
-                self.node.texture = leftTexture
+                if abs(self.node.physicsBody!.angularVelocity) < speedLimit {
+                    self.node.physicsBody?.applyTorque(-torque)
+                    self.node.texture = leftTexture
+                }
             } else if self.node.zRotation < -0.2 {
                 self.node.physicsBody?.angularDamping = 0
-                self.node.physicsBody?.applyTorque(torque)
-                self.node.texture = rightTexture
+                if abs(self.node.physicsBody!.angularVelocity) < speedLimit {
+                    self.node.physicsBody?.applyTorque(torque)
+                    self.node.texture = rightTexture
+                }
             } else {
                 self.node.zRotation = 0
                 self.node.physicsBody?.angularVelocity = 0
