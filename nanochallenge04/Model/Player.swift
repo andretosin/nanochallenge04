@@ -39,12 +39,20 @@ class Player: Updatable {
     var leftTexture = SKTexture(imageNamed: "RocketLeft")
     var rightTexture = SKTexture(imageNamed: "RocketRight")
     var offTexture = SKTexture(imageNamed: "RocketOff 2")
-
+    
     
     var applyTorqueLeft: Bool = false
     var applyTorqueRight: Bool = false
-    let limitAngle = CGFloat(Double.pi/5)
-    var lastTorque: String = ""
+    var isIdle: Bool = false
+    
+    
+    let limitAngle = CGFloat(Double.pi/6)
+    let speedLimit = CGFloat(6)
+    let positionLimit = CGFloat(350)
+    let torque = CGFloat(40)
+    let damping = CGFloat(30)
+    let xSpeed = CGFloat(1500)
+    
     
     internal init(scene: GameScene?) {
         self.configurePhysics()
@@ -70,7 +78,7 @@ class Player: Updatable {
     func update(_ deltaTime: CGFloat) {
         
         
-//        self.node.physicsBody?.velocity = CGVector(dx: -1000 * self.node.zRotation, dy: 0)
+        self.node.physicsBody?.velocity = CGVector(dx: -xSpeed * self.node.zRotation, dy: 0)
         
         
         
@@ -78,54 +86,75 @@ class Player: Updatable {
         
         
         
+        if applyTorqueRight {
+            if self.node.position.x < CGFloat(positionLimit) {
+                if self.node.zRotation > -limitAngle {
+                    self.node.physicsBody?.angularDamping = 0
+                    if abs(self.node.physicsBody!.angularVelocity) < speedLimit {
+                        self.node.physicsBody?.applyTorque(-torque)
+                    }
+                    self.node.texture = leftTexture
+                    
+                } else {
+                    self.node.physicsBody?.angularDamping = damping
+                }
+            } else {
+                isIdle = true
+                applyTorqueRight = false
+            }
+        }
         
-//        aqui tava ok
+        if applyTorqueLeft {
+            if self.node.position.x > CGFloat(-positionLimit) {
+                if self.node.zRotation < limitAngle {
+                    self.node.physicsBody?.angularDamping = 0
+                    if abs(self.node.physicsBody!.angularVelocity) < speedLimit {
+                        self.node.physicsBody?.applyTorque(torque)
+                    }
+                    self.node.texture = rightTexture
+                } else {
+                    self.node.physicsBody?.angularDamping = damping
+                }
+            } else {
+                isIdle = true
+                applyTorqueLeft = false
+            }
+        }
         
-//        if applyTorqueLeft {
-//            if self.node.zRotation < limitAngle {
-//                if self.node.physicsBody!.angularVelocity < CGFloat(3.5) {
-//                    self.node.texture = rightTexture
-//                    self.node.physicsBody?.applyTorque(20)
-//                    self.node.physicsBody?.angularDamping = 0
-//                }
-//            } else {
-//                self.node.physicsBody?.angularDamping = 40
-//            }
-//        } else {
-//            if self.node.zRotation > 0 {
-//                self.node.physicsBody?.angularDamping = 0
-//                self.node.physicsBody?.applyTorque(-20)
-//                self.node.texture = leftTexture
-//            }
-//        }
+        if isIdle && self.node.zRotation != 0 {
+            if self.node.zRotation > 0.2 {
+                self.node.physicsBody?.angularDamping = 0
+                self.node.physicsBody?.applyTorque(-torque)
+                self.node.texture = leftTexture
+            } else if self.node.zRotation < -0.2 {
+                self.node.physicsBody?.angularDamping = 0
+                self.node.physicsBody?.applyTorque(torque)
+                self.node.texture = rightTexture
+            } else {
+                self.node.zRotation = 0
+                self.node.physicsBody?.angularVelocity = 0
+                self.node.texture = offTexture
+            }
+        }
+        
+        
+        
+        //        else {
+        //            if self.node.zRotation > 0 {
+        //                self.node.physicsBody?.angularDamping = 0
+        //                self.node.physicsBody?.applyTorque(-20)
+        //                self.node.texture = leftTexture
+        //
+        //            } else {
+        //                self.node.physicsBody?.angularVelocity = 0
+        //                self.node.zRotation = 0
+        //                self.node.texture = offTexture
+        //            }
+        //        }
         
         
         
         
-//
-//        else {
-//            if self.lastTorque == "left" {
-//                if self.node.zRotation > 0 {
-//                    self.node.physicsBody?.angularDamping = 0
-//                    self.node.physicsBody?.applyTorque(-20)
-//                    self.node.texture = leftTexture
-//                } else {
-//                    self.node.physicsBody?.angularDamping = 20
-//                    self.node.texture = offTexture
-//                    self.node.zRotation = 0
-//                }
-//            } else if self.lastTorque == "right" {
-//                if self.node.zRotation < 0 {
-//                    self.node.physicsBody?.angularDamping = 0
-//                    self.node.physicsBody?.applyTorque(20)
-//                    self.node.texture = leftTexture
-//                } else {
-//                    self.node.physicsBody?.angularDamping = 20
-//                    self.node.texture = offTexture
-//                    self.node.zRotation = 0
-//                }
-//            }
-//        }
         
     }
 }

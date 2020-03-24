@@ -172,12 +172,16 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             if !isPlayerDead {
                 for touch in touches {
                     let location = touch.location(in: self)
-                                        player.node.run(SKAction.moveTo(x: location.x, duration: 0.05))
-//                    if location.x > 0 {
-//                        player.applyTorqueRight = true
-//                    } else if location.x < 0 {
-//                        player.applyTorqueLeft = true
-//                    }
+//                    player.node.run(SKAction.moveTo(x: location.x, duration: 0.05))
+                    
+                    
+                    if location.x > 0 {
+                        player.applyTorqueRight = true
+                    } else {
+                        player.applyTorqueLeft = true
+                    }
+                    player.isIdle = false
+
                     
 
                     rock.playerPosX = location.x
@@ -193,14 +197,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             if !isPlayerDead {
                 for touch in touches {
                     let location = touch.location(in: self)
-                                        player.node.run(SKAction.moveTo(x: location.x, duration: 0.05))
-                    
-//                    if location.x > 0 {
-//                        player.applyTorqueRight = false
-//                    } else if location.x < 0 {
-//                        player.applyTorqueLeft = false
-//                    }
-
+//                    player.node.run(SKAction.moveTo(x: location.x, duration: 0.05))
+                    player.applyTorqueRight = false
+                    player.applyTorqueLeft = false
+                    player.isIdle = true
                     rock.playerPosX = location.x
                 }
             }
@@ -211,18 +211,19 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
         if gameStarted {
             if !isPlayerDead {
-                for touch in touches {
-                    let location = touch.location(in: self)
-                                        player.node.run(SKAction.moveTo(x: location.x, duration: 0.05))
-                    
+                
+//                for touch in touches {
+//                    let location = touch.location(in: self)
+////                    player.node.run(SKAction.moveTo(x: location.x, duration: 0.05))
 //                    if location.x > 0 {
 //                        player.applyTorqueRight = true
-//                    } else if location.x < 0 {
+//                    } else {
 //                        player.applyTorqueLeft = true
 //                    }
-                    
-                    rock.playerPosX = location.x
-                }
+//                    player.isIdle = false
+//
+//                    rock.playerPosX = location.x
+//                }
             }
         }
     }
