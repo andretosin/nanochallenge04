@@ -61,10 +61,13 @@ struct CarouselView: View {
                             .animation(.interpolatingSpring(stiffness: 300.0, damping: 30.0, initialVelocity: 10.0))
                             Spacer()
                         }
+                        .onTapGesture {
+                            print("clicou no \(self.carouselLocation)")
+                        }
                     }
-                    
-                }.gesture(
-                    
+
+                }
+                .gesture(
                     DragGesture()
                         .updating($dragState) { drag, state, transaction in
                             state = .dragging(translation: drag.translation)
