@@ -22,7 +22,6 @@ class Wall {
     func configurePhysics() {
         node.physicsBody?.categoryBitMask = ContactMask.walls.rawValue
         node.physicsBody?.collisionBitMask = 0
-//        node.physicsBody?.contactTestBitMask = ContactMask.player.rawValue
     }
     
 }

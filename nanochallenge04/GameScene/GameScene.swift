@@ -40,6 +40,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     override func didMove(to view: SKView) {
         
+        // se já existe um highscore e estrelas coletadas, carrega, se não, carrega 0
         let defaults = UserDefaults.standard
         let highscore = defaults.value(forKey: "highscore")
         let stars = defaults.value(forKey: "starsCollected") as? Int
@@ -52,18 +53,12 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             totalStars = stars
         }
         
-        
-        
-             
-        
-        
-        
-        
-        
         self.physicsWorld.contactDelegate = self
         view.showsPhysics = false
+        
         setAudioPlayers()
         
+        // carrega particulas de fundo
         if let particles = SKEmitterNode(fileNamed: "Stars") {
             particles.position = CGPoint(x: 0, y: 1200)
             particles.advanceSimulationTime(40)
@@ -79,17 +74,13 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         lblDistance = self.childNode(withName: "lblDistance") as! SKLabelNode
         lblDistance.text = "\(flightDistance)"
         
+        // carrega o nó do jogador vindo da gamescene.sks
+        player = Player(scene: self)
+//        player.node.position = CGPoint(x: 0, y: -50)
         
-        let playerNode = self.childNode(withName: "player") as! SKSpriteNode
-        playerNode.zPosition = 1
-        player = Player(scene: self, node: playerNode)
-        
+        // carrega as estrelas e as pedras programaticamente
         rock = Rock(scene: self)
         star = Star(scene: self)
-        
-        
-        player.node.position = CGPoint(x: 0, y: 0)
-        
     }
     
     
@@ -101,25 +92,24 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             lastTime = currentTime
             return
         }
-//      let deltaTime = currentTime - lastTime
+        let deltaTime = currentTime - lastTime
         
         
         
         if gameStarted {
-//          player.update(CGFloat(deltaTime))
-            rock.update(currentTime)
-            star.update(currentTime)
+            player.update(CGFloat(deltaTime))
+            //            rock.update(currentTime)
+            //            star.update(currentTime)
             
             if !isPlayerDead {
                 self.flightIncrement = rock.speed
                 self.flightDistance += flightIncrement
                 self.lblDistance.text = "\(Int(flightDistance/20000))"
                 self.lblDistance.alpha = 1
-                rock.playerPosX = player.node.position.x
             }
             
         } else {
-            self.player.node.position = CGPoint(x: 0, y: 0)
+            self.player.node.position = CGPoint(x: 0, y: -50)
         }
     }
     
@@ -182,10 +172,16 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             if !isPlayerDead {
                 for touch in touches {
                     let location = touch.location(in: self)
+                                        player.node.run(SKAction.moveTo(x: location.x, duration: 0.05))
+//                    if location.x > 0 {
+//                        player.applyTorqueRight = true
+//                    } else if location.x < 0 {
+//                        player.applyTorqueLeft = true
+//                    }
                     
-                    player.node.run(SKAction.moveTo(x: location.x, duration: 0.05))
+
                     rock.playerPosX = location.x
-           
+                    
                 }
             }
         }
@@ -197,8 +193,14 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             if !isPlayerDead {
                 for touch in touches {
                     let location = touch.location(in: self)
+                                        player.node.run(SKAction.moveTo(x: location.x, duration: 0.05))
                     
-                    player.node.run(SKAction.moveTo(x: location.x, duration: 0.05))
+//                    if location.x > 0 {
+//                        player.applyTorqueRight = false
+//                    } else if location.x < 0 {
+//                        player.applyTorqueLeft = false
+//                    }
+
                     rock.playerPosX = location.x
                 }
             }
@@ -211,7 +213,14 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             if !isPlayerDead {
                 for touch in touches {
                     let location = touch.location(in: self)
-                    player.node.run(SKAction.moveTo(x: location.x, duration: 0.05))
+                                        player.node.run(SKAction.moveTo(x: location.x, duration: 0.05))
+                    
+//                    if location.x > 0 {
+//                        player.applyTorqueRight = true
+//                    } else if location.x < 0 {
+//                        player.applyTorqueLeft = true
+//                    }
+                    
                     rock.playerPosX = location.x
                 }
             }
