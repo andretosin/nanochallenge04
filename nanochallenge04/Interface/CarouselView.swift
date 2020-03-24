@@ -50,7 +50,7 @@ struct CarouselView: View {
                             
                             .frame(width: 300, height: self.getHeight(i))
                             .animation(.interpolatingSpring(stiffness: 300.0, damping: 30.0, initialVelocity: 10.0))
-                                .background(Color.white)
+//                                .background(Color.white)
                             .cornerRadius(10)
                             .shadow(radius: 3)
                                 
