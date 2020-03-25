@@ -51,7 +51,7 @@ struct MenuView: View {
     @State private var starAds: Int = 10
     @State private var shipIndex = 1
     
-   
+    
     
     var body: some
         View {
@@ -149,7 +149,7 @@ struct MenuView: View {
                                         .foregroundColor(.white)
                                         .bold()
                                         .shadow(color: Color.black.opacity(0.75), radius: 1, x: -1, y: 1)
-                                     .fixedSize()
+                                        .fixedSize()
                                 }
                                 .padding(.trailing, 20)
                                 .padding(.leading, 15)
@@ -171,7 +171,7 @@ struct MenuView: View {
                                         }
                                 }
                                 .padding(.trailing, self.buttonIsShown ? geo.size.width/6.5 : 0)
-                                    .padding(.trailing, self.adsIsShown ? geo.size.width/6.5 : 0)
+                                .padding(.trailing, self.adsIsShown ? geo.size.width/6.5 : 0)
                                     
                                 .shadow(color: Color.black.opacity(0.4), radius: 4, x: 2, y: 0)
                                 .clipShape(Capsule())
@@ -183,22 +183,22 @@ struct MenuView: View {
                                 VStack (alignment: .trailing, spacing: 0) {
                                     Button(action: {
                                         print("Store button tapped!")
-//                                        self.showModal = true
+                                        //                                        self.showModal = true
                                     }) {
                                         HStack (spacing: 3) {
-                                        Image(systemName: "plus")
-                                            .font(.system(size: geo.size.width/22, weight: .black))
-//                                            .padding(.trailing, geo.size.width/40)
-                                            .foregroundColor(.white)
-                                            .shadow(color: Color.black.opacity(0.75), radius: 1, x: -1, y: 1)
-                                                                                     Text("\(self.starAds)")
-                                                                                        
-                                                                                                                   .font(.custom("nulshock", size: geo.size.width/18))
-                                                                                                                   .foregroundColor(.white)
-                                                                                        
-                                                                                                                   .bold()
-                                                                                                                   .shadow(color: Color.black.opacity(0.75), radius: 1, x: -1, y: 1)
-                                            .fixedSize()
+                                            Image(systemName: "plus")
+                                                .font(.system(size: geo.size.width/22, weight: .black))
+                                                //                                            .padding(.trailing, geo.size.width/40)
+                                                .foregroundColor(.white)
+                                                .shadow(color: Color.black.opacity(0.75), radius: 1, x: -1, y: 1)
+                                            Text("\(self.starAds)")
+                                                
+                                                .font(.custom("nulshock", size: geo.size.width/18))
+                                                .foregroundColor(.white)
+                                                
+                                                .bold()
+                                                .shadow(color: Color.black.opacity(0.75), radius: 1, x: -1, y: 1)
+                                                .fixedSize()
                                             
                                         }
                                     } .padding(.trailing, geo.size.width/40)
@@ -218,9 +218,7 @@ struct MenuView: View {
                         VStack (spacing: geo.size.width/100) {
                             
                             ZStack {
-                                
                                 if self.showLogo {
-                                    
                                     Image("PurpleLogo")
                                         .resizable()
                                         .scaledToFit()
@@ -239,7 +237,7 @@ struct MenuView: View {
                                                     .shadow(color: Color.black.opacity(0.75), radius: 1, x: -1, y: 1)
                                                     .padding(.top, geo.size.width/60)
                                                     .fixedSize(horizontal: true, vertical: false)
-                                                 .fixedSize()
+                                                    .fixedSize()
                                                 Text("ly")
                                                     .font(.custom("Audiowide-Regular", size: geo.size.width/12))
                                                     .foregroundColor(Color("CosmicPurple"))
@@ -264,14 +262,9 @@ struct MenuView: View {
                                                     .fixedSize(horizontal: true, vertical: false)
                                                 
                                             }
-                                            
-                                            //                                            .offset(x: -geo.size.width/20)
-                                            
                                         }
                                         .opacity(self.showText ? 1.0 : 0.0)
-                                        
                                     }
-                                    
                                 }
                                 .opacity(self.buttonIsShown ? 1.0 : 0.0)
                                 .onTapGesture {
@@ -280,8 +273,6 @@ struct MenuView: View {
                                     }
                                 }
                                 .frame(minWidth: 0, maxWidth: .infinity)
-                                
-                                //                                .frame(minWidth: 0, maxWidth: .infinity)
                             }
                                 
                             .overlay(
@@ -311,7 +302,6 @@ struct MenuView: View {
                             ButtonConfView(content: ButtonType(iconName: "EmblemB"))
                             ButtonConfView(content: ButtonType(iconName: "RankingB"))
                             ButtonConfView(content: ButtonType(iconName: "SoundOnB"))
-                            
                         }
                         .foregroundColor(Color("CosmicPurple"))
                         .padding(.horizontal, 20)
@@ -346,15 +336,38 @@ struct MenuView: View {
                     
                     ZStack {
                         if self.chooseRocket {
-                        VStack {
-                            Spacer().frame(height:30)
-                            Text("Rocket 01").font(.system(size: 50, weight: .semibold)).multilineTextAlignment(.center)
-                            Spacer()
-                        }
-                            
-                            
-
-                                                
+                            VStack {
+                                Spacer()
+                                //                                .frame(height:30)
+                                Text("Rocket 01").font(.system(size: 50, weight: .semibold)).multilineTextAlignment(.center)
+//                                Spacer()
+                                HStack {
+                                    Button(action: {
+                                        print("Delete tapped!")
+                                    }) {
+                                        Image(systemName: "chevron.left")
+                                            .font(.title)
+                                            .padding()
+                                            .foregroundColor(.white)
+                                            .background(Color("LowerPurple"))
+                                            .mask(Circle())
+                                    }
+                                    Spacer()
+                                    Button(action: {
+                                        print("Delete tapped!")
+                                    }) {
+                                        Image(systemName: "chevron.right")
+                                            .font(.title)
+                                            .padding()
+                                            .foregroundColor(.white)
+                                            .background(Color("LowerPurple"))
+                                            .mask(Circle())
+                                    }
+                                }
+                                .padding(40)
+                                Spacer()
+                                
+                            }
                             
                             CarouselView(itemHeight: 400, views: [
                                 AnyView(Image("RocketFull-2")),
@@ -370,10 +383,7 @@ struct MenuView: View {
                             ]) { index in
                                 self.shipIndex = index
                             }
-                            
-                            
-                            
-                    }
+                        }
                     }
                     Circle()
                         .offset(y: 1.18 * self.topMenu)
@@ -390,14 +400,14 @@ struct MenuView: View {
                     }
                     
                     Image(systemName: "arrowtriangle.right.fill")
-                                                                       .font(.system(size: geo.size.width/6, weight: .bold))
-//                    Triangle()
+                        .font(.system(size: geo.size.width/6, weight: .bold))
+                        //                    Triangle()
                         .foregroundColor(Color.white)
                         .offset(x: 0.03 * self.topMenu, y: 1.2 * self.topMenu)
-//                                                .offset(x: self.topMenu, y: self.topMenu)
+                        //                                                .offset(x: self.topMenu, y: self.topMenu)
                         .shadow(color: Color.black.opacity(0.5), radius: 1, x: 1, y: 1)
-//                        .frame(width: geo.size.width/6, height: geo.size.width/8)
-//                        .rotationEffect(.degrees(-270))
+                        //                        .frame(width: geo.size.width/6, height: geo.size.width/8)
+                        //                        .rotationEffect(.degrees(-270))
                         .padding(30)
                         //                    Image(systemName: "arrowtriangle.right.fill")
                         //                        .font(.system(size: geo.size.width/6))
@@ -407,6 +417,7 @@ struct MenuView: View {
                         //                        .padding(30)
                         
                         .opacity(self.buttonIsShown ? 1.0 : 0.0)
+                        .opacity(self.chooseRocket ? 0.0 : 1.0)
                         .onTapGesture {
                             withAnimation {
                                 self.isPlaying = true
