@@ -22,6 +22,7 @@ struct GameView: UIViewControllerRepresentable {
     @Binding var highscore: CGFloat
     @Binding var totalStars: Int
     @Binding var showText: Bool
+    @Binding var shipIndex: Int
     
     func makeUIViewController(context: Context) -> GameViewController {
         GameViewController(gameDelegate: context.coordinator)
@@ -32,6 +33,13 @@ struct GameView: UIViewControllerRepresentable {
             uiViewController.gameScene.play(totalStars: totalStars)
         } else {
             uiViewController.gameScene.endRun()
+        }
+        
+        if shipIndex == 1 {
+            uiViewController.gameScene.player.setSkin(index: 2)
+        }
+        if shipIndex == 2 {
+            uiViewController.gameScene.player.setSkin(index: 1)
         }
         
       

@@ -35,15 +35,16 @@ class Player: Updatable {
     
     
     var scene: GameScene!
-    var node: SKSpriteNode = SKSpriteNode(imageNamed: "RocketOff 2")
-    var leftTexture = SKTexture(imageNamed: "RocketLeft")
-    var rightTexture = SKTexture(imageNamed: "RocketRight")
-    var offTexture = SKTexture(imageNamed: "RocketOff 2")
+    var node: SKSpriteNode = SKSpriteNode(imageNamed: "RocketOff-1")
+    var leftTexture = SKTexture(imageNamed: "RocketLeft-1")
+    var rightTexture = SKTexture(imageNamed: "RocketRight-1")
+    var offTexture = SKTexture(imageNamed: "RocketOff-1")
     
     
     var applyTorqueLeft: Bool = false
     var applyTorqueRight: Bool = false
-    var isIdle: Bool = false
+    var isIdle: Bool = true
+    var isDead: Bool = false
     
     
     let limitAngle = CGFloat(Double.pi/6)
@@ -63,8 +64,6 @@ class Player: Updatable {
     }
     
     func configurePhysics() {
-        
-        
         self.node.physicsBody = SKPhysicsBody(texture: self.node.texture!, size: self.node.texture!.size())
         let body = self.node.physicsBody
         body?.categoryBitMask = ContactMask.player.rawValue
@@ -73,6 +72,13 @@ class Player: Updatable {
         body?.isDynamic = true
         body?.affectedByGravity = false
         body?.allowsRotation = true
+    }
+    
+    func setSkin(index: Int) {
+        self.node.texture = SKTexture(imageNamed: "RocketOff-" + String(index))
+        self.leftTexture = SKTexture(imageNamed: "RocketLeft-" + String(index))
+        self.rightTexture = SKTexture(imageNamed: "RocketRight-" + String(index))
+        self.offTexture = SKTexture(imageNamed: "RocketOff-" + String(index))
     }
     
     func update(_ deltaTime: CGFloat) {
@@ -135,6 +141,10 @@ class Player: Updatable {
                 self.node.texture = offTexture
             }
         }
+        
+     
+        
+        
         
         
         

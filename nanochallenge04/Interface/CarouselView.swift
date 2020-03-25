@@ -15,6 +15,8 @@ struct CarouselView: View {
     
     var itemHeight:CGFloat
     var views:[AnyView]
+    var selectShip: (Int) -> Void
+    
     
     
     private func onDragEnded(drag: DragGesture.Value) {
@@ -62,7 +64,14 @@ struct CarouselView: View {
                             Spacer()
                         }
                         .onTapGesture {
-                            print("clicou no \(self.carouselLocation)")
+                            if self.carouselLocation % 2 == 0 {
+                                // set skin 1
+                                self.selectShip(1)
+                            } else if self.carouselLocation % 2 == 1 {
+                                // set skin 2
+                                self.selectShip(2)
+                            }
+                            
                         }
                     }
 

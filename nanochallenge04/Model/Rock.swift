@@ -110,6 +110,12 @@ class Rock: Spawnable {
         rock.physicsBody?.velocity = CGVector(dx: 0, dy: 0)
         rock.name = "rockFalse"
     }
+    
+    func resetAllPos() {
+        for rock in rockArray {
+            resetPos(rock: rock)
+        }
+    }
 }
 
 

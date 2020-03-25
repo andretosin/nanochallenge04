@@ -49,13 +49,16 @@ struct MenuView: View {
     @State var heartFilled = false
     @State private var showOptions: Bool = false
     @State private var starAds: Int = 10
+    @State private var shipIndex = 1
+    
+   
     
     var body: some
         View {
         GeometryReader { geo in
             ZStack {
                 BGView()
-                GameView(isPlaying: self.$isPlaying, lastDis: self.$lastDistance, starsCollec: self.$lastStarsCollected, highscore: self.$highScore, totalStars: self.$totalStarsCollected, showText: self.$showText)
+                GameView(isPlaying: self.$isPlaying, lastDis: self.$lastDistance, starsCollec: self.$lastStarsCollected, highscore: self.$highScore, totalStars: self.$totalStarsCollected, showText: self.$showText, shipIndex: self.$shipIndex)
                     
                     .edgesIgnoringSafeArea(.all)
                     .mask(
@@ -348,17 +351,28 @@ struct MenuView: View {
                             Text("Rocket 01").font(.system(size: 50, weight: .semibold)).multilineTextAlignment(.center)
                             Spacer()
                         }
-                        CarouselView(itemHeight: 400, views: [
-                            AnyView(Image("RocketFull")),
-                            AnyView(Image("RocketOff 23")),
-                            AnyView(Image("RocketFull")),
-                            AnyView(Image("RocketOff 23")),
-                            AnyView(Image("RocketFull")),
-                            AnyView(Image("RocketOff 23")),
-                            AnyView(Image("RocketFull")
-                            ),
-                            AnyView(Image("RocketOff 23")),
-                        ])
+                            
+                            
+
+                                                
+                            
+                            CarouselView(itemHeight: 400, views: [
+                                AnyView(Image("RocketFull-2")),
+                                AnyView(Image("RocketFull-1")),
+                                AnyView(Image("RocketOff-2")),
+                                AnyView(Image("RocketFull-1")),
+                                AnyView(Image("RocketOff-2")),
+                                AnyView(Image("RocketFull-1")),
+                                AnyView(Image("RocketOff-2")),
+                                AnyView(Image("RocketFull-1")),
+                                AnyView(Image("RocketOff-2")),
+                                AnyView(Image("RocketFull-1")),
+                            ]) { index in
+                                self.shipIndex = index
+                            }
+                            
+                            
+                            
                     }
                     }
                     Circle()

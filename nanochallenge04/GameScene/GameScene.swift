@@ -137,6 +137,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 firstContactFlag = true
                 isPlayerDead = true
                 star.isSpawnActive = false
+                player.isDead = true
+//                player.node.physicsBody?.allowsRotation = false
                 rock.isSpawnActive = false
                 audioPlayerAmbience.stop()
                 totalStars += self.currentScore
@@ -197,7 +199,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             if !isPlayerDead {
                 for touch in touches {
                     let location = touch.location(in: self)
-                    //                    player.node.run(SKAction.moveTo(x: location.x, duration: 0.05))
                     player.applyTorqueRight = false
                     player.applyTorqueLeft = false
                     player.isIdle = true
@@ -234,8 +235,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         self.totalStars = totalStars
         player.node.position = CGPoint(x: 0, y: -640)
         player.node.physicsBody?.velocity = CGVector(dx: 0, dy: 0)
+//        player.node.physicsBody?.allowsRotation = true
         firstContactFlag = false
         star.isSpawnActive = true
+        rock.resetAllPos()
         rock.isSpawnActive = true
         setSpeeds(1000)
         flightDistance = 0
@@ -243,6 +246,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         currentScore = 0
         lblScore.text = "\(currentScore)"
         lblDistance.text = "\(flightDistance)"
+        
+        
+     
+        
     }
     
     func setSpeeds(_ speed: CGFloat) {
