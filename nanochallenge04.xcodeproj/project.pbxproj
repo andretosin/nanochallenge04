@@ -15,6 +15,7 @@
 		3F56E9A324201CCC002C7010 /* Circle2View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F56E9A224201CCC002C7010 /* Circle2View.swift */; };
 		3F56E9A524214CC3002C7010 /* ButtonConfView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F56E9A424214CC3002C7010 /* ButtonConfView.swift */; };
 		3F6D9521241DA72800684229 /* MenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F6D9520241DA72800684229 /* MenuView.swift */; };
+		3FD8CC86242C0DF600581DC1 /* Audiowide-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3FD8CC85242C0DF600581DC1 /* Audiowide-Regular.ttf */; };
 		3FF59579241DB94700143510 /* GameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FF59578241DB94700143510 /* GameView.swift */; };
 		3FF5957B241DBCD800143510 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FF5957A241DBCD800143510 /* ViewController.swift */; };
 		F93C7E1C2423BC620098FFB5 /* ambience.wav in Resources */ = {isa = PBXBuildFile; fileRef = F93C7E1A2423BC620098FFB5 /* ambience.wav */; };
@@ -48,9 +49,9 @@
 		3F56E9A224201CCC002C7010 /* Circle2View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Circle2View.swift; sourceTree = "<group>"; };
 		3F56E9A424214CC3002C7010 /* ButtonConfView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonConfView.swift; sourceTree = "<group>"; };
 		3F6D9520241DA72800684229 /* MenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuView.swift; sourceTree = "<group>"; };
+		3FD8CC85242C0DF600581DC1 /* Audiowide-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Audiowide-Regular.ttf"; path = "../../../../Audiowide-Regular.ttf"; sourceTree = "<group>"; };
 		3FF59578241DB94700143510 /* GameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameView.swift; sourceTree = "<group>"; };
 		3FF5957A241DBCD800143510 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		D77F50FC24240DE600A87D21 /* Audiowide-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Audiowide-Regular.ttf"; path = "../../../../Downloads/Audiowide-Regular.ttf"; sourceTree = "<group>"; };
 		F93C7E1A2423BC620098FFB5 /* ambience.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = ambience.wav; sourceTree = "<group>"; };
 		F93C7E1B2423BC620098FFB5 /* pads.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = pads.wav; sourceTree = "<group>"; };
 		F958DC9B2412D271007FECFE /* Player.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
@@ -106,7 +107,7 @@
 			isa = PBXGroup;
 			children = (
 				F9EEDD91241DC19E00AB586C /* nulshock.ttf */,
-				D77F50FC24240DE600A87D21 /* Audiowide-Regular.ttf */,
+				3FD8CC85242C0DF600581DC1 /* Audiowide-Regular.ttf */,
 			);
 			path = Fonts;
 			sourceTree = "<group>";
@@ -248,6 +249,7 @@
 				F98D33FA241022EB00A12F15 /* LaunchScreen.storyboard in Resources */,
 				F9EEDD8F241D5CBF00AB586C /* Assets.xcassets in Resources */,
 				F98D33EE241022E900A12F15 /* Actions.sks in Resources */,
+				3FD8CC86242C0DF600581DC1 /* Audiowide-Regular.ttf in Resources */,
 				F9EEDD8E241D5CBF00AB586C /* Stars.sks in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
