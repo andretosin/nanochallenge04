@@ -76,7 +76,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         // carrega o nó do jogador vindo da gamescene.sks
         player = Player(scene: self)
-//        player.node.position = CGPoint(x: 0, y: -50)
+        //        player.node.position = CGPoint(x: 0, y: -50)
         
         // carrega as estrelas e as pedras programaticamente
         rock = Rock(scene: self)
@@ -98,8 +98,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         if gameStarted {
             player.update(CGFloat(deltaTime))
-            //            rock.update(currentTime)
-            //            star.update(currentTime)
+            rock.update(currentTime)
+            star.update(currentTime)
             
             if !isPlayerDead {
                 self.flightIncrement = rock.speed
@@ -172,7 +172,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             if !isPlayerDead {
                 for touch in touches {
                     let location = touch.location(in: self)
-//                    player.node.run(SKAction.moveTo(x: location.x, duration: 0.05))
+                    //                    player.node.run(SKAction.moveTo(x: location.x, duration: 0.05))
                     
                     
                     if location.x > 0 {
@@ -181,9 +181,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                         player.applyTorqueLeft = true
                     }
                     player.isIdle = false
-
                     
-
+                    
+                    
                     rock.playerPosX = location.x
                     
                 }
@@ -197,7 +197,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             if !isPlayerDead {
                 for touch in touches {
                     let location = touch.location(in: self)
-//                    player.node.run(SKAction.moveTo(x: location.x, duration: 0.05))
+                    //                    player.node.run(SKAction.moveTo(x: location.x, duration: 0.05))
                     player.applyTorqueRight = false
                     player.applyTorqueLeft = false
                     player.isIdle = true
@@ -212,18 +212,18 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         if gameStarted {
             if !isPlayerDead {
                 
-//                for touch in touches {
-//                    let location = touch.location(in: self)
-////                    player.node.run(SKAction.moveTo(x: location.x, duration: 0.05))
-//                    if location.x > 0 {
-//                        player.applyTorqueRight = true
-//                    } else {
-//                        player.applyTorqueLeft = true
-//                    }
-//                    player.isIdle = false
-//
-//                    rock.playerPosX = location.x
-//                }
+                //                for touch in touches {
+                //                    let location = touch.location(in: self)
+                ////                    player.node.run(SKAction.moveTo(x: location.x, duration: 0.05))
+                //                    if location.x > 0 {
+                //                        player.applyTorqueRight = true
+                //                    } else {
+                //                        player.applyTorqueLeft = true
+                //                    }
+                //                    player.isIdle = false
+                //
+                //                    rock.playerPosX = location.x
+                //                }
             }
         }
     }
