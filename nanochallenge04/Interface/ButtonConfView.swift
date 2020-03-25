@@ -52,15 +52,16 @@ struct ColorfulBackground<S: Shape>: View {
 }
 
 struct ColorfulToggleStyle: ToggleStyle {
-//    @Binding var chooseRocket: Bool
     @State var showDetails = false
+    var ailtonAction: () -> Void
+    
     func makeBody(configuration: Self.Configuration) -> some View {
         Button(action: {
             print("Button is clicked")
             configuration.isOn.toggle()
             self.showDetails.toggle()
-             print("showDetailsTogged")
-//            self.chooseRocket = true
+            print("showDetailsTogged")
+            self.ailtonAction()
         }) {
             
             configuration.label
@@ -84,7 +85,8 @@ class ButtonType: Identifiable {
 struct ButtonConfView: View {
     
     @State public var content: ButtonType
-     @State private var isToggled = false
+    @State private var isToggled = false
+    var ailtonAction: () -> Void = {}
     var body: some View {
             Toggle(isOn: self.$isToggled) {
                     Image("\(self.content.iconName)")
@@ -92,12 +94,12 @@ struct ButtonConfView: View {
                         .scaledToFit()
                         .foregroundColor(Color.white)
                 }
-            .toggleStyle(ColorfulToggleStyle())
+            .toggleStyle(ColorfulToggleStyle(ailtonAction: ailtonAction))
         }
 }
 
 struct ButtonConfView_Previews: PreviewProvider {
     static var previews: some View {
-        ButtonConfView(content: ButtonType(iconName: "RocketButt"))
+        ButtonConfView(content: ButtonType(iconName: "RocketButt"), ailtonAction: {})
     }
 }

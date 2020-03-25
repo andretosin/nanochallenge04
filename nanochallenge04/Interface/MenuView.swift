@@ -302,12 +302,13 @@ struct MenuView: View {
                         Spacer()
                             .frame(minHeight: 0, maxHeight: .infinity)
                         HStack (spacing: 30) {
-                            ButtonConfView(content: ButtonType(iconName: "RocketB"))
-                            
+                            ButtonConfView(content: ButtonType(iconName: "RocketB")) {
+                                self.chooseRocket.toggle()
+                            }
                             ButtonConfView(content: ButtonType(iconName: "EmblemB"))
-                            
                             ButtonConfView(content: ButtonType(iconName: "RankingB"))
                             ButtonConfView(content: ButtonType(iconName: "SoundOnB"))
+                            
                         }
                         .foregroundColor(Color("CosmicPurple"))
                         .padding(.horizontal, 20)
