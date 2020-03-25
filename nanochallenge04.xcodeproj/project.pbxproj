@@ -15,7 +15,6 @@
 		3F56E9A324201CCC002C7010 /* Circle2View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F56E9A224201CCC002C7010 /* Circle2View.swift */; };
 		3F56E9A524214CC3002C7010 /* ButtonConfView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F56E9A424214CC3002C7010 /* ButtonConfView.swift */; };
 		3F6D9521241DA72800684229 /* MenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F6D9520241DA72800684229 /* MenuView.swift */; };
-		3FD8CC86242C0DF600581DC1 /* Audiowide-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3FD8CC85242C0DF600581DC1 /* Audiowide-Regular.ttf */; };
 		3FF59579241DB94700143510 /* GameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FF59578241DB94700143510 /* GameView.swift */; };
 		3FF5957B241DBCD800143510 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FF5957A241DBCD800143510 /* ViewController.swift */; };
 		F93C7E1C2423BC620098FFB5 /* ambience.wav in Resources */ = {isa = PBXBuildFile; fileRef = F93C7E1A2423BC620098FFB5 /* ambience.wav */; };
@@ -38,6 +37,7 @@
 		F9F5300624181B9300276183 /* GameBackground.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9F5300524181B9300276183 /* GameBackground.swift */; };
 		F9F530082418212600276183 /* ContactMask.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9F530072418212600276183 /* ContactMask.swift */; };
 		F9F5300C2419656900276183 /* Wall.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9F5300B2419656900276183 /* Wall.swift */; };
+		F9FA492A242C162C000E16C9 /* Audiowide-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F9FA4929242C162C000E16C9 /* Audiowide-Regular.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -49,7 +49,6 @@
 		3F56E9A224201CCC002C7010 /* Circle2View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Circle2View.swift; sourceTree = "<group>"; };
 		3F56E9A424214CC3002C7010 /* ButtonConfView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonConfView.swift; sourceTree = "<group>"; };
 		3F6D9520241DA72800684229 /* MenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuView.swift; sourceTree = "<group>"; };
-		3FD8CC85242C0DF600581DC1 /* Audiowide-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Audiowide-Regular.ttf"; path = "../../../../Audiowide-Regular.ttf"; sourceTree = "<group>"; };
 		3FF59578241DB94700143510 /* GameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameView.swift; sourceTree = "<group>"; };
 		3FF5957A241DBCD800143510 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		F93C7E1A2423BC620098FFB5 /* ambience.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = ambience.wav; sourceTree = "<group>"; };
@@ -74,6 +73,7 @@
 		F9F5300524181B9300276183 /* GameBackground.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameBackground.swift; sourceTree = "<group>"; };
 		F9F530072418212600276183 /* ContactMask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactMask.swift; sourceTree = "<group>"; };
 		F9F5300B2419656900276183 /* Wall.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Wall.swift; sourceTree = "<group>"; };
+		F9FA4929242C162C000E16C9 /* Audiowide-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Audiowide-Regular.ttf"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -107,7 +107,7 @@
 			isa = PBXGroup;
 			children = (
 				F9EEDD91241DC19E00AB586C /* nulshock.ttf */,
-				3FD8CC85242C0DF600581DC1 /* Audiowide-Regular.ttf */,
+				F9FA4929242C162C000E16C9 /* Audiowide-Regular.ttf */,
 			);
 			path = Fonts;
 			sourceTree = "<group>";
@@ -249,8 +249,8 @@
 				F98D33FA241022EB00A12F15 /* LaunchScreen.storyboard in Resources */,
 				F9EEDD8F241D5CBF00AB586C /* Assets.xcassets in Resources */,
 				F98D33EE241022E900A12F15 /* Actions.sks in Resources */,
-				3FD8CC86242C0DF600581DC1 /* Audiowide-Regular.ttf in Resources */,
 				F9EEDD8E241D5CBF00AB586C /* Stars.sks in Resources */,
+				F9FA492A242C162C000E16C9 /* Audiowide-Regular.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

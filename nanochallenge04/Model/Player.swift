@@ -52,7 +52,7 @@ class Player: Updatable {
     let positionLimit = CGFloat(350)
     let torque = CGFloat(50)
     let damping = CGFloat(30)
-    let xSpeed = CGFloat(1000)
+    var xSpeed = CGFloat(1000)
     
     
     internal init(scene: GameScene?) {
@@ -123,16 +123,16 @@ class Player: Updatable {
         }
         
         if isIdle && self.node.zRotation != 0 {
-            if self.node.zRotation > 0.08 {
+            if self.node.zRotation > 0.2 {
                 self.node.physicsBody?.angularDamping = 0
 //                if abs(self.node.physicsBody!.angularVelocity) < speedLimit {
-                self.node.physicsBody?.applyTorque(-torque/3.2)
+                self.node.physicsBody?.applyTorque(-torque/1.5)
                     self.node.texture = leftTexture
 //                }
-            } else if self.node.zRotation < -0.08 {
+            } else if self.node.zRotation < -0.2 {
                 self.node.physicsBody?.angularDamping = 0
 //                if abs(self.node.physicsBody!.angularVelocity) < speedLimit {
-                self.node.physicsBody?.applyTorque(torque/3.2)
+                self.node.physicsBody?.applyTorque(torque/1.5)
                     self.node.texture = rightTexture
 //                }
             } else {
@@ -141,6 +141,28 @@ class Player: Updatable {
                 self.node.texture = offTexture
             }
         }
+        
+        //        if isIdle && self.node.zRotation != 0 {
+        //            if self.node.zRotation > 0.08 {
+        //                self.node.physicsBody?.angularDamping = 0
+        ////                if abs(self.node.physicsBody!.angularVelocity) < speedLimit {
+        //                self.node.physicsBody?.applyTorque(-torque/3.2)
+        //                    self.node.texture = leftTexture
+        ////                }
+        //            } else if self.node.zRotation < -0.08 {
+        //                self.node.physicsBody?.angularDamping = 0
+        ////                if abs(self.node.physicsBody!.angularVelocity) < speedLimit {
+        //                self.node.physicsBody?.applyTorque(torque/3.2)
+        //                    self.node.texture = rightTexture
+        ////                }
+        //            } else {
+        //                self.node.zRotation = 0
+        //                self.node.physicsBody?.angularVelocity = 0
+        //                self.node.texture = offTexture
+        //            }
+        //        }
+        
+        
         
      
         

@@ -127,7 +127,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                         node.name = "starResetPos"
                         notification.impactOccurred()
                         currentScore += 1
-                        setSpeeds(rock.speed + 75)
+                        setSpeeds(rock.speed + 35)
                         lblScore.text = "\(currentScore)"
                     }
                 }
@@ -257,6 +257,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         particles.speed = speed
         rock.speed = speed
         star.speed = speed
+        player.xSpeed = speed
     }
     
     func endRun() {
