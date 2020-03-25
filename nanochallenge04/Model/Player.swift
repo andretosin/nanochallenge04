@@ -123,18 +123,18 @@ class Player: Updatable {
         }
         
         if isIdle && self.node.zRotation != 0 {
-            if self.node.zRotation > 0.2 {
+            if self.node.zRotation > 0.08 {
                 self.node.physicsBody?.angularDamping = 0
-                if abs(self.node.physicsBody!.angularVelocity) < speedLimit {
-                    self.node.physicsBody?.applyTorque(-torque)
+//                if abs(self.node.physicsBody!.angularVelocity) < speedLimit {
+                self.node.physicsBody?.applyTorque(-torque/3.2)
                     self.node.texture = leftTexture
-                }
-            } else if self.node.zRotation < -0.2 {
+//                }
+            } else if self.node.zRotation < -0.08 {
                 self.node.physicsBody?.angularDamping = 0
-                if abs(self.node.physicsBody!.angularVelocity) < speedLimit {
-                    self.node.physicsBody?.applyTorque(torque)
+//                if abs(self.node.physicsBody!.angularVelocity) < speedLimit {
+                self.node.physicsBody?.applyTorque(torque/3.2)
                     self.node.texture = rightTexture
-                }
+//                }
             } else {
                 self.node.zRotation = 0
                 self.node.physicsBody?.angularVelocity = 0

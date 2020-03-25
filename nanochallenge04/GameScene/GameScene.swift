@@ -100,6 +100,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             player.update(CGFloat(deltaTime))
             rock.update(currentTime)
             star.update(currentTime)
+            rock.playerPosX = player.node.position.x
             
             if !isPlayerDead {
                 self.flightIncrement = rock.speed
@@ -186,7 +187,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                     
                     
                     
-                    rock.playerPosX = location.x
+//                    rock.playerPosX = location.x
                     
                 }
             }
@@ -202,7 +203,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                     player.applyTorqueRight = false
                     player.applyTorqueLeft = false
                     player.isIdle = true
-                    rock.playerPosX = location.x
+//                    rock.playerPosX = location.x
                 }
             }
         }
