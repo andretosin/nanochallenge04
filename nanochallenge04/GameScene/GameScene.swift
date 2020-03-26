@@ -102,6 +102,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             star.update(currentTime)
             rock.playerPosX = player.node.position.x
             
+            
             if !isPlayerDead {
                 self.flightIncrement = rock.speed
                 self.flightDistance += flightIncrement
@@ -115,23 +116,43 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     // MARK: - ContactDelegate
-    
+    var lastHapticTimestamp: TimeInterval?
     func didBegin(_ contact: SKPhysicsContact) {
         let contactMask = contact.bodyA.categoryBitMask | contact.bodyB.categoryBitMask
         switch contactMask {
         case ContactMask.player.rawValue | ContactMask.star.rawValue:
             // se enconstou numa estrela
+            
+            
             for node in children {
                 if node.name == "starTrue" {
                     if node.position.y < (player.node.position.y + player.node.size.height) && node.position.y > player.node.position.y {
                         node.name = "starResetPos"
-                        notification.impactOccurred()
+
+                        print("--------")
+                        DispatchQueue.global().async {
+                            let now = Date().timeIntervalSince1970
+                            defer { self.lastHapticTimestamp = now }
+                            
+                            if let last = self.lastHapticTimestamp {
+                                let deltaTime = now - last
+                                
+                                print(deltaTime)
+                                if deltaTime < 0.1 { return }
+                            }
+                            
+                            
+                            
+                            self.notification.impactOccurred()
+                        }
                         currentScore += 1
-                        setSpeeds(rock.speed + 35)
+                        setSpeeds(rock.speed + 0)
                         lblScore.text = "\(currentScore)"
                     }
                 }
             }
+            
+            
         case ContactMask.player.rawValue | ContactMask.rock.rawValue:
             // se encostou numa pedra
             if !firstContactFlag {
@@ -139,7 +160,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 isPlayerDead = true
                 star.isSpawnActive = false
                 player.isDead = true
-//                player.node.physicsBody?.allowsRotation = false
                 rock.isSpawnActive = false
                 audioPlayerAmbience.stop()
                 totalStars += self.currentScore
@@ -187,7 +207,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                     
                     
                     
-//                    rock.playerPosX = location.x
                     
                 }
             }
@@ -198,36 +217,17 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
         if gameStarted {
             if !isPlayerDead {
-                for touch in touches {
-                    let location = touch.location(in: self)
-                    player.applyTorqueRight = false
-                    player.applyTorqueLeft = false
-                    player.isIdle = true
-//                    rock.playerPosX = location.x
-                }
+                player.applyTorqueRight = false
+                player.applyTorqueLeft = false
+                player.isIdle = true
+                
             }
         }
     }
     
     
     override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
-        if gameStarted {
-            if !isPlayerDead {
-                
-                //                for touch in touches {
-                //                    let location = touch.location(in: self)
-                ////                    player.node.run(SKAction.moveTo(x: location.x, duration: 0.05))
-                //                    if location.x > 0 {
-                //                        player.applyTorqueRight = true
-                //                    } else {
-                //                        player.applyTorqueLeft = true
-                //                    }
-                //                    player.isIdle = false
-                //
-                //                    rock.playerPosX = location.x
-                //                }
-            }
-        }
+        
     }
     
     func play(totalStars: Int) {
@@ -236,7 +236,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         self.totalStars = totalStars
         player.node.position = CGPoint(x: 0, y: -640)
         player.node.physicsBody?.velocity = CGVector(dx: 0, dy: 0)
-//        player.node.physicsBody?.allowsRotation = true
         firstContactFlag = false
         star.isSpawnActive = true
         rock.resetAllPos()
@@ -247,10 +246,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         currentScore = 0
         lblScore.text = "\(currentScore)"
         lblDistance.text = "\(flightDistance)"
-        
-        
-     
-        
     }
     
     func setSpeeds(_ speed: CGFloat) {

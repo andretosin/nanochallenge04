@@ -384,16 +384,16 @@ struct MenuView: View {
                             }
                             
                             CarouselView(itemHeight: 400, views: [
-                                AnyView(Image("RocketFull-2")),
+                                AnyView(Image("generic")),
                                 AnyView(Image("RocketFull-1")),
                                 AnyView(Image("RocketOff-2")),
-                                AnyView(Image("RocketFull-1")),
-                                AnyView(Image("RocketOff-2")),
-                                AnyView(Image("RocketFull-1")),
-                                AnyView(Image("RocketOff-2")),
-                                AnyView(Image("RocketFull-1")),
-                                AnyView(Image("RocketOff-2")),
-                                AnyView(Image("RocketFull-1")),
+                                AnyView(Image("generic")),
+                                AnyView(Image("generic")),
+                                AnyView(Image("generic")),
+                                AnyView(Image("generic")),
+                                AnyView(Image("generic")),
+                                AnyView(Image("generic")),
+                                AnyView(Image("generic")),
                             ]) { index in
                                 self.shipIndex = index
                             }
