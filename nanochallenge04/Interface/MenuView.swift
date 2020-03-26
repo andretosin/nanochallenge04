@@ -96,10 +96,13 @@ struct MenuView: View {
                                         
                                         Text("\(Int(self.highScore))")
                                             .font(.custom("nulshock", size: geo.size.width/18))
+                                            
                                             .foregroundColor(.white)
                                             .bold()
+                                            
                                             .multilineTextAlignment(.leading)
                                             .shadow(color: Color.black.opacity(0.75), radius: 1, x: -1, y: 1)
+                                        
                                         Text("ly")
                                             .font(.custom("Audiowide-Regular", size: geo.size.width/30))
                                             .foregroundColor(.white)
@@ -131,13 +134,17 @@ struct MenuView: View {
                                         }
                                 }
                             }
-                            //                            Spacer()
-                            //                            ZStack {
-                            //                            Circle()
-                            //                                .frame(width: geo.size.width/6)
-                            //                             .opacity(self.buttonIsShown ? 0.0 : 1.0)
-                            //                            }
                             Spacer()
+                            if self.buttonIsShown == false {
+                            ZStack {
+                                Image("Orangemeter")
+                                    .resizable()
+                                    .scaledToFit()
+                                    .frame(width: geo.size.width/6)
+                            }
+                                Spacer()
+                            }
+//                            Spacer()
                             ZStack (alignment: .trailing) {
                                 HStack {
                                     Image(systemName: "star.fill")
@@ -340,19 +347,19 @@ struct MenuView: View {
                                 Spacer()
                                 //                                .frame(height:30)
                                 Text("Rocket 01").font(.system(size: 50, weight: .semibold)).multilineTextAlignment(.center)
-//                                Spacer()
+                                //                                Spacer()
                                 HStack {
                                     Button(action: {
                                         print("Delete tapped!")
                                     }) {
                                         Image(systemName: "chevron.left")
-                                             .font(Font.title.weight(.bold))
+                                            .font(Font.title.weight(.bold))
                                             .offset(x: -0.005 * geo.size.width)
                                             .padding()
                                             .foregroundColor(.white)
                                             .background(Color("LowerPurple"))
                                             .mask(Circle())
-                                        .shadow(color: Color.black.opacity(0.75), radius: 1, x: -1, y: 1)
+                                            .shadow(color: Color.black.opacity(0.75), radius: 1, x: -1, y: 1)
                                     }
                                     .offset(x: geo.size.width/11)
                                     Spacer()
@@ -361,17 +368,17 @@ struct MenuView: View {
                                     }) {
                                         Image(systemName: "chevron.right")
                                             .offset(x: 0.005 * geo.size.width)
-                                        .font(Font.title.weight(.bold))
+                                            .font(Font.title.weight(.bold))
                                             .foregroundColor(.white)
-                                                                                        .padding()
+                                            .padding()
                                             .background(Color("LowerPurple"))
                                             .mask(Circle())
-                                        .shadow(color: Color.black.opacity(0.75), radius: 1, x: -1, y: 1)
-//
+                                            .shadow(color: Color.black.opacity(0.75), radius: 1, x: -1, y: 1)
+                                        //
                                     }
                                     .offset(x: -geo.size.width/11)
                                 }
-//                                .padding(40)
+                                //                                .padding(40)
                                 Spacer()
                                 
                             }
