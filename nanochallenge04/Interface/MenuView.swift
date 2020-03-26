@@ -346,25 +346,32 @@ struct MenuView: View {
                                         print("Delete tapped!")
                                     }) {
                                         Image(systemName: "chevron.left")
-                                            .font(.title)
+                                             .font(Font.title.weight(.bold))
+                                            .offset(x: -0.005 * geo.size.width)
                                             .padding()
                                             .foregroundColor(.white)
                                             .background(Color("LowerPurple"))
                                             .mask(Circle())
+                                        .shadow(color: Color.black.opacity(0.75), radius: 1, x: -1, y: 1)
                                     }
+                                    .offset(x: geo.size.width/11)
                                     Spacer()
                                     Button(action: {
                                         print("Delete tapped!")
                                     }) {
                                         Image(systemName: "chevron.right")
-                                            .font(.title)
-                                            .padding()
+                                            .offset(x: 0.005 * geo.size.width)
+                                        .font(Font.title.weight(.bold))
                                             .foregroundColor(.white)
+                                                                                        .padding()
                                             .background(Color("LowerPurple"))
                                             .mask(Circle())
+                                        .shadow(color: Color.black.opacity(0.75), radius: 1, x: -1, y: 1)
+//
                                     }
+                                    .offset(x: -geo.size.width/11)
                                 }
-                                .padding(40)
+//                                .padding(40)
                                 Spacer()
                                 
                             }

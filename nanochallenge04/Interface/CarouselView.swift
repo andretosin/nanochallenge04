@@ -34,13 +34,13 @@ struct CarouselView: View {
     
     var body: some View {
         ZStack{
-            VStack{
-                Text("\(dragState.translation.width)")
-                Text("Carousel Location = \(carouselLocation)")
-                Text("Relative Location = \(relativeLoc())")
-                Text("\(relativeLoc()) / \(views.count-1)")
-                Spacer()
-            }
+//            VStack{
+//                Text("\(dragState.translation.width)")
+//                Text("Carousel Location = \(carouselLocation)")
+//                Text("Relative Location = \(relativeLoc())")
+//                Text("\(relativeLoc()) / \(views.count-1)")
+//                Spacer()
+//            }
             VStack{
                 
                 ZStack{
