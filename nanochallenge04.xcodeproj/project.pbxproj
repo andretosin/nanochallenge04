@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3F0F7911242D4959002C5DFE /* OrangemeterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F0F7910242D4959002C5DFE /* OrangemeterView.swift */; };
 		3F1E98AD2425E57A0092375E /* RocketView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F1E98AC2425E57A0092375E /* RocketView.swift */; };
 		3F1E98AF24272F330092375E /* CarouselView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F1E98AE24272F330092375E /* CarouselView.swift */; };
 		3F1E98B124281B1C0092375E /* ModalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F1E98B024281B1C0092375E /* ModalView.swift */; };
@@ -41,6 +42,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		3F0F7910242D4959002C5DFE /* OrangemeterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrangemeterView.swift; sourceTree = "<group>"; };
 		3F1E98AC2425E57A0092375E /* RocketView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RocketView.swift; sourceTree = "<group>"; };
 		3F1E98AE24272F330092375E /* CarouselView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarouselView.swift; sourceTree = "<group>"; };
 		3F1E98B024281B1C0092375E /* ModalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModalView.swift; sourceTree = "<group>"; };
@@ -99,6 +101,7 @@
 				3FF59578241DB94700143510 /* GameView.swift */,
 				3F56E9A224201CCC002C7010 /* Circle2View.swift */,
 				3F1E98AE24272F330092375E /* CarouselView.swift */,
+				3F0F7910242D4959002C5DFE /* OrangemeterView.swift */,
 			);
 			path = Interface;
 			sourceTree = "<group>";
@@ -279,6 +282,7 @@
 				F98D33F2241022E900A12F15 /* GameViewController.swift in Sources */,
 				3F56E9A524214CC3002C7010 /* ButtonConfView.swift in Sources */,
 				3FF59579241DB94700143510 /* GameView.swift in Sources */,
+				3F0F7911242D4959002C5DFE /* OrangemeterView.swift in Sources */,
 				F98D33EA241022E900A12F15 /* AppDelegate.swift in Sources */,
 				3F294035241EE69B006C346E /* BGView.swift in Sources */,
 			);

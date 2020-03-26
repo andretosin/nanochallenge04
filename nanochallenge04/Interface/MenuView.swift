@@ -75,13 +75,7 @@ struct MenuView: View {
                             //                                .padding(100)
                             //                                    .padding(geo.size.width/120)
                         }
-                        
-                        
                 )
-                
-                
-                
-                
                 ZStack {
                     VStack {
                         HStack {
@@ -136,15 +130,16 @@ struct MenuView: View {
                             }
                             Spacer()
                             if self.buttonIsShown == false {
-                            ZStack {
-                                Image("Orangemeter")
-                                    .resizable()
-                                    .scaledToFit()
-                                    .frame(width: geo.size.width/6)
-                            }
+                                ZStack {
+                                    Image("Orangemeter")
+                                        .resizable()
+                                        .scaledToFit()
+                                        .shadow(color: Color.black.opacity(0.4), radius: 4, x: 2, y: 0)
+                                        .frame(width: geo.size.width/6)
+                                }
                                 Spacer()
                             }
-//                            Spacer()
+                            //                            Spacer()
                             ZStack (alignment: .trailing) {
                                 HStack {
                                     Image(systemName: "star.fill")
@@ -322,24 +317,7 @@ struct MenuView: View {
                                 }
                         }
                     }
-                        //                    GameView(isPlaying: self.isPlaying)
-                        //                    .edgesIgnoringSafeArea(.all)
-                        //                        .mask(
-                        //                            ZStack {
-                        //                                Circle()
-                        //                                    .offset(y: self.topMenu/5)
-                        ////                                    .padding(self.isPlaying ? -geo.size.height : geo.size.width/10)
-                        //                                //                                .padding(.top, 20)
-                        //                                Circle()
-                        //                                    .offset(y: 0.6 * self.topMenu)
-                        //                                    .padding(self.isPlaying ? -geo.size.height : geo.size.width/3.2)
-                        //                                //                                .padding(100)
-                        //                                //                                    .padding(geo.size.width/120)
-                        //                            }
-                        //                    )
-                        
-                        
-                        .frame(minHeight: 0, maxHeight: .infinity)
+                    .frame(minHeight: 0, maxHeight: .infinity)
                     
                     ZStack {
                         if self.chooseRocket {
@@ -348,38 +326,7 @@ struct MenuView: View {
                                 //                                .frame(height:30)
                                 Text("Rocket 01").font(.system(size: 50, weight: .semibold)).multilineTextAlignment(.center)
                                 //                                Spacer()
-                                HStack {
-                                    Button(action: {
-                                        print("Delete tapped!")
-                                    }) {
-                                        Image(systemName: "chevron.left")
-                                            .font(Font.title.weight(.bold))
-                                            .offset(x: -0.005 * geo.size.width)
-                                            .padding()
-                                            .foregroundColor(.white)
-                                            .background(Color("LowerPurple"))
-                                            .mask(Circle())
-                                            .shadow(color: Color.black.opacity(0.75), radius: 1, x: -1, y: 1)
-                                    }
-                                    .offset(x: geo.size.width/11)
-                                    Spacer()
-                                    Button(action: {
-                                        print("Delete tapped!")
-                                    }) {
-                                        Image(systemName: "chevron.right")
-                                            .offset(x: 0.005 * geo.size.width)
-                                            .font(Font.title.weight(.bold))
-                                            .foregroundColor(.white)
-                                            .padding()
-                                            .background(Color("LowerPurple"))
-                                            .mask(Circle())
-                                            .shadow(color: Color.black.opacity(0.75), radius: 1, x: -1, y: 1)
-                                        //
-                                    }
-                                    .offset(x: -geo.size.width/11)
-                                }
-                                //                                .padding(40)
-                                Spacer()
+                                
                                 
                             }
                             
@@ -397,7 +344,40 @@ struct MenuView: View {
                             ]) { index in
                                 self.shipIndex = index
                             }
+                            HStack {
+                                Button(action: {
+                                    print("Delete tapped!")
+                                }) {
+                                    Image(systemName: "chevron.left")
+                                        .font(Font.title.weight(.bold))
+                                        .offset(x: -0.005 * geo.size.width)
+                                        .padding()
+                                        .foregroundColor(.white)
+                                        .background(Color("LowerPurple"))
+                                        .mask(Circle())
+                                        .shadow(color: Color.black.opacity(0.75), radius: 1, x: -1, y: 1)
+                                }
+                                .offset(x: geo.size.width/11, y: geo.size.height/20)
+                                Spacer()
+                                Button(action: {
+                                    print("Delete tapped!")
+                                }) {
+                                    Image(systemName: "chevron.right")
+                                        .offset(x: 0.005 * geo.size.width)
+                                        .font(Font.title.weight(.bold))
+                                        .foregroundColor(.white)
+                                        .padding()
+                                        .background(Color("LowerPurple"))
+                                        .mask(Circle())
+                                        .shadow(color: Color.black.opacity(0.75), radius: 1, x: -1, y: 1)
+                                    //
+                                }
+                                .offset(x: -geo.size.width/11, y: geo.size.height/20)
+                            }
+                            //                                .padding(40)
+                            Spacer()
                         }
+                        
                     }
                     Circle()
                         .offset(y: 1.18 * self.topMenu)
