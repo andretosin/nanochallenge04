@@ -116,23 +116,43 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     // MARK: - ContactDelegate
-    
+    var lastHapticTimestamp: TimeInterval?
     func didBegin(_ contact: SKPhysicsContact) {
         let contactMask = contact.bodyA.categoryBitMask | contact.bodyB.categoryBitMask
         switch contactMask {
         case ContactMask.player.rawValue | ContactMask.star.rawValue:
             // se enconstou numa estrela
+            
+            
             for node in children {
                 if node.name == "starTrue" {
                     if node.position.y < (player.node.position.y + player.node.size.height) && node.position.y > player.node.position.y {
                         node.name = "starResetPos"
-                        notification.impactOccurred()
+
+                        print("--------")
+                        DispatchQueue.global().async {
+                            let now = Date().timeIntervalSince1970
+                            defer { self.lastHapticTimestamp = now }
+                            
+                            if let last = self.lastHapticTimestamp {
+                                let deltaTime = now - last
+                                
+                                print(deltaTime)
+                                if deltaTime < 0.1 { return }
+                            }
+                            
+                            
+                            
+                            self.notification.impactOccurred()
+                        }
                         currentScore += 1
-                        setSpeeds(rock.speed + 35)
+                        setSpeeds(rock.speed + 0)
                         lblScore.text = "\(currentScore)"
                     }
                 }
             }
+            
+            
         case ContactMask.player.rawValue | ContactMask.rock.rawValue:
             // se encostou numa pedra
             if !firstContactFlag {
