@@ -47,12 +47,18 @@ struct GameView: UIViewControllerRepresentable {
     }
     
     class Coordinator: NSObject, GameDelegate {
+        
+        
         var parent: GameView
         
         init(parent: GameView) {
             self.parent = parent
         }
         
+        
+        func updateLabels(flightDistance: String, currentScore: String) {
+            
+        }
         
         func endRun(lastDistance: CGFloat, starsCollected: Int, totalStars: Int) {
             DispatchQueue.main.async {

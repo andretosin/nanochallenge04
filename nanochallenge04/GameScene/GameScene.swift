@@ -12,6 +12,8 @@ import AVFoundation
 protocol GameDelegate {
     func endRun(lastDistance: CGFloat, starsCollected: Int, totalStars: Int)
     
+    func updateLabels(flightDistance: String, currentScore: String)
+    
 }
 
 class GameScene: SKScene, SKPhysicsContactDelegate {
