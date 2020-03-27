@@ -12,11 +12,11 @@ struct OrangemeterView: View {
     var body: some View {
         GeometryReader { goma in
             ZStack {
-                Image("OrangemeterFull")
-                    .resizable()
-                    .scaledToFit()
-                    .frame(width: goma.size.width/4)
-                    .opacity(0.5)
+//                Image("OrangemeterFull")
+//                    .resizable()
+//                    .scaledToFit()
+//                    .frame(width: goma.size.width/4)
+//                    .opacity(0.5)
                 Image("Goma1")
                     .resizable()
                     .scaledToFit()
@@ -42,11 +42,13 @@ struct OrangemeterView: View {
                     .scaledToFit()
                     .frame(width: goma.size.width/12)
                     .offset(x: -0.064 * goma.size.width)
+                .opacity(0.15)
                 Image("Goma6")
                     .resizable()
                     .scaledToFit()
                     .frame(width: goma.size.width/12.8)
                     .offset(x: -0.044 * goma.size.width, y: -0.06 * goma.size.width)
+                .opacity(0.15)
             }
         }
     }

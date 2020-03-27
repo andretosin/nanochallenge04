@@ -29,8 +29,8 @@ class Orange: Spawnable {
         
         setupOrange(fullNode: fullNode, halfNode: halfNode, x: -1000, y: 0, speed: speed)
         
-        self.fullNode.scale(to: CGSize(width: 323*0.8, height: 310*0.8))
-        self.halfNode.scale(to: CGSize(width: 323*0.8, height: 310*0.8))
+        self.fullNode.scale(to: CGSize(width: 420*0.7, height: 424*0.7))
+        self.halfNode.scale(to: CGSize(width: 420*0.7, height: 424*0.7))
 
         
         

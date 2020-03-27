@@ -86,8 +86,6 @@ struct MenuView: View {
                                         .foregroundColor(.white)
                                         .shadow(color: Color.black.opacity(0.75), radius: 1, x: -1, y: 1)
                                     HStack (spacing: geo.size.width/120) {
-                                        
-                                        
                                         Text("\(Int(self.highScore))")
                                             .font(.custom("nulshock", size: geo.size.width/18))
                                             
@@ -131,11 +129,9 @@ struct MenuView: View {
                             Spacer()
                             if self.buttonIsShown == false {
                                 ZStack {
-                                    Image("Orangemeter")
-                                        .resizable()
-                                        .scaledToFit()
+                                    OrangemeterView()
                                         .shadow(color: Color.black.opacity(0.4), radius: 4, x: 2, y: 0)
-                                        .frame(width: geo.size.width/6)
+//                                        .frame(width: geo.size.width/6)
                                 }
                                 Spacer()
                             }
