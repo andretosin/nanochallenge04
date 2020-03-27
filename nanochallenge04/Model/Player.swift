@@ -45,6 +45,7 @@ class Player: Updatable {
     var applyTorqueRight: Bool = false
     var isIdle: Bool = true
     var isDead: Bool = false
+    var refPosX: CGFloat = 0
     
     
     let limitAngle = CGFloat(Double.pi/6)
@@ -83,39 +84,56 @@ class Player: Updatable {
     
     func update(_ deltaTime: CGFloat) {
         
+        if !isDead {
+            self.node.physicsBody?.velocity = CGVector(dx: -xSpeed * self.node.zRotation, dy: 0)
+        }
         
-        self.node.physicsBody?.velocity = CGVector(dx: -xSpeed * self.node.zRotation, dy: 0)
-        
+        print("refPos: \(refPosX)")
+        print("pos.x : \(self.node.position.x)")
+        print("resultado: \(self.node.position.x - refPosX - 80 + xSpeed/15)")
+        print("\n")
         
         if applyTorqueRight {
             if self.node.position.x < CGFloat(positionLimit) {
-                if self.node.zRotation > -limitAngle {
-                    self.node.physicsBody?.angularDamping = 0
-                    if abs(self.node.physicsBody!.angularVelocity) < speedLimit {
-                        self.node.physicsBody?.applyTorque(-torque)
+//                if self.node.position.x - refPosX + 80 + xSpeed/15 < 5 {
+                    if self.node.zRotation > -limitAngle {
+                        self.node.physicsBody?.angularDamping = 0
+                        if abs(self.node.physicsBody!.angularVelocity) < speedLimit {
+                            self.node.physicsBody?.applyTorque(-torque)
+                        }
+                        self.node.texture = leftTexture
+                        
+                    } else {
+                        self.node.physicsBody?.angularDamping = damping
                     }
-                    self.node.texture = leftTexture
-                    
-                } else {
-                    self.node.physicsBody?.angularDamping = damping
-                }
+//                } else {
+//                    isIdle = true
+//                    applyTorqueRight = false
+//                }
             } else {
                 isIdle = true
                 applyTorqueRight = false
             }
         }
         
+        
+        
         if applyTorqueLeft {
             if self.node.position.x > CGFloat(-positionLimit) {
-                if self.node.zRotation < limitAngle {
-                    self.node.physicsBody?.angularDamping = 0
-                    if abs(self.node.physicsBody!.angularVelocity) < speedLimit {
-                        self.node.physicsBody?.applyTorque(torque)
+//                if self.node.position.x - refPosX - 80 - xSpeed/15 > 5 {
+                    if self.node.zRotation < limitAngle {
+                        self.node.physicsBody?.angularDamping = 0
+                        if abs(self.node.physicsBody!.angularVelocity) < speedLimit {
+                            self.node.physicsBody?.applyTorque(torque)
+                        }
+                        self.node.texture = rightTexture
+                    } else {
+                        self.node.physicsBody?.angularDamping = damping
                     }
-                    self.node.texture = rightTexture
-                } else {
-                    self.node.physicsBody?.angularDamping = damping
-                }
+//                } else {
+//                    isIdle = true
+//                    applyTorqueLeft = false
+//                }
             } else {
                 isIdle = true
                 applyTorqueLeft = false
@@ -125,67 +143,21 @@ class Player: Updatable {
         if isIdle && self.node.zRotation != 0 {
             if self.node.zRotation > 0.2 {
                 self.node.physicsBody?.angularDamping = 0
-//                if abs(self.node.physicsBody!.angularVelocity) < speedLimit {
+                //                if abs(self.node.physicsBody!.angularVelocity) < speedLimit {
                 self.node.physicsBody?.applyTorque(-torque/1.5)
-                    self.node.texture = leftTexture
-//                }
+                self.node.texture = leftTexture
+                //                }
             } else if self.node.zRotation < -0.2 {
                 self.node.physicsBody?.angularDamping = 0
-//                if abs(self.node.physicsBody!.angularVelocity) < speedLimit {
+                //                if abs(self.node.physicsBody!.angularVelocity) < speedLimit {
                 self.node.physicsBody?.applyTorque(torque/1.5)
-                    self.node.texture = rightTexture
-//                }
+                self.node.texture = rightTexture
+                //                }
             } else {
                 self.node.zRotation = 0
                 self.node.physicsBody?.angularVelocity = 0
                 self.node.texture = offTexture
             }
         }
-        
-        //        if isIdle && self.node.zRotation != 0 {
-        //            if self.node.zRotation > 0.08 {
-        //                self.node.physicsBody?.angularDamping = 0
-        ////                if abs(self.node.physicsBody!.angularVelocity) < speedLimit {
-        //                self.node.physicsBody?.applyTorque(-torque/3.2)
-        //                    self.node.texture = leftTexture
-        ////                }
-        //            } else if self.node.zRotation < -0.08 {
-        //                self.node.physicsBody?.angularDamping = 0
-        ////                if abs(self.node.physicsBody!.angularVelocity) < speedLimit {
-        //                self.node.physicsBody?.applyTorque(torque/3.2)
-        //                    self.node.texture = rightTexture
-        ////                }
-        //            } else {
-        //                self.node.zRotation = 0
-        //                self.node.physicsBody?.angularVelocity = 0
-        //                self.node.texture = offTexture
-        //            }
-        //        }
-        
-        
-        
-     
-        
-        
-        
-        
-        
-        //        else {
-        //            if self.node.zRotation > 0 {
-        //                self.node.physicsBody?.angularDamping = 0
-        //                self.node.physicsBody?.applyTorque(-20)
-        //                self.node.texture = leftTexture
-        //
-        //            } else {
-        //                self.node.physicsBody?.angularVelocity = 0
-        //                self.node.zRotation = 0
-        //                self.node.texture = offTexture
-        //            }
-        //        }
-        
-        
-        
-        
-        
     }
 }
