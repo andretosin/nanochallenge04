@@ -210,7 +210,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                     //                    player.node.run(SKAction.moveTo(x: location.x, duration: 0.05))
                     
                     
-                    if location.x > 0 {
+                    if location.x > player.node.position.x {
                         player.applyTorqueRight = true
                     } else {
                         player.applyTorqueLeft = true
