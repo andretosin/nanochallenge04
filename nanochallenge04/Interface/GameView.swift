@@ -17,6 +17,7 @@ struct GameView: UIViewControllerRepresentable {
     }
     
     @Binding var isPlaying: Bool
+    @Binding var isMuted: Bool
     @Binding var lastDis: CGFloat
     @Binding var starsCollec: Int
     @Binding var highscore: CGFloat
@@ -27,12 +28,22 @@ struct GameView: UIViewControllerRepresentable {
     func makeUIViewController(context: Context) -> GameViewController {
         GameViewController(gameDelegate: context.coordinator)
     }
-
+    
     func updateUIViewController(_ uiViewController: GameViewController, context: Context) {
         if isPlaying {
             uiViewController.gameScene.startRun(totalStars: totalStars)
         } else {
             uiViewController.gameScene.endRun()
+        }
+        
+        if isMuted {
+            uiViewController.gameScene.isSoundMuted = true
+            uiViewController.gameScene.mute()
+        } else {
+            uiViewController.gameScene.isSoundMuted = false
+            uiViewController.gameScene.unmute()
+
+
         }
         
         if shipIndex == 1 {
@@ -42,7 +53,7 @@ struct GameView: UIViewControllerRepresentable {
             uiViewController.gameScene.player.setSkin(index: 1)
         }
         
-      
+        
         
     }
     

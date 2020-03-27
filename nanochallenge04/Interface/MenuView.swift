@@ -38,6 +38,7 @@ struct MenuView: View {
     @State private var showLastScore = true
     @State private var started = false
     @State private var isPlaying = false
+    @State private var isMuted = false
     @State private var topMenu: CGFloat = 0
     @State private var lastDistance: CGFloat = 0
     @State private var lastStarsCollected: Int = 0
@@ -57,7 +58,7 @@ struct MenuView: View {
         GeometryReader { geo in
             ZStack {
                 BGView()
-                GameView(isPlaying: self.$isPlaying, lastDis: self.$lastDistance, starsCollec: self.$lastStarsCollected, highscore: self.$highScore, totalStars: self.$totalStarsCollected, showText: self.$showText, shipIndex: self.$shipIndex)
+                GameView(isPlaying: self.$isPlaying, isMuted: self.$isMuted, lastDis: self.$lastDistance, starsCollec: self.$lastStarsCollected, highscore: self.$highScore, totalStars: self.$totalStarsCollected, showText: self.$showText, shipIndex: self.$shipIndex)
                     
                     .edgesIgnoringSafeArea(.all)
                     .mask(
@@ -302,7 +303,9 @@ struct MenuView: View {
                             }
                             ButtonConfView(content: ButtonType(iconName: "EmblemB"))
                             ButtonConfView(content: ButtonType(iconName: "RankingB"))
-                            ButtonConfView(content: ButtonType(iconName: "SoundOnB"))
+                            ButtonConfView(content: ButtonType(iconName: "SoundOnB")) {
+                                self.isMuted.toggle()
+                            }
                         }
                         .foregroundColor(Color("CosmicPurple"))
                         .padding(.horizontal, 20)

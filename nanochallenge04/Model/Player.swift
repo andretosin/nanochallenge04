@@ -51,9 +51,10 @@ class Player: Updatable {
     let limitAngle = CGFloat(Double.pi/6)
     let speedLimit = CGFloat(6)
     let positionLimit = CGFloat(350)
-    let torque = CGFloat(50)
     let damping = CGFloat(30)
     var xSpeed = CGFloat(1000)
+    var torque = CGFloat(30)
+
     
     
     internal init(scene: GameScene?) {

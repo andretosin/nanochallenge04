@@ -88,13 +88,13 @@ class Orange: Spawnable {
                         orange.name = "orangeTrue"
                     }
                 }
-                timeInterval = Double.random(in: 3...9)
+                timeInterval = Double.random(in: 2...2)
             }
         }
         
         for orange in orangeArray {
-            if orange.position.y < -1500 {
-                orange.position.x = -1000
+            if orange.position.y < -1000 {
+                orange.position.x = -1200
                 orange.position.y = 0
                 orange.name = "orangeFalse"
             }

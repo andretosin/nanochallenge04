@@ -29,6 +29,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var totalStars: Int! = 0
     var player: Player!
     var isPlayerDead: Bool = false
+    var isSoundMuted: Bool = false
     var lblScore = SKLabelNode()
     var lblDistance = SKLabelNode()
     var particles = SKEmitterNode()
@@ -94,6 +95,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         orange = Orange(scene: self, resetFlag: {
             self.firstContactFlagPlayerOrange = false
         })
+        
+        audioPlayerPads.play()
+        audioPlayerAmbience.play()
+        
     }
     
     
@@ -155,6 +160,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 }
             }
         case ContactMask.player.rawValue | ContactMask.orange.rawValue:
+            // se encosotu numa laranja
             if !firstContactFlagPlayerOrange {
                 firstContactFlagPlayerOrange = true
                 self.flightSpeed += 700
@@ -173,7 +179,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 orange.isSpawnActive = false
                 player.isDead = true
                 //                player.node.physicsBody?.allowsRotation = false
-                audioPlayerAmbience.stop()
                 totalStars += self.currentScore
                 
                 player.node.physicsBody?.velocity = CGVector(dx: 0, dy: 0)
@@ -279,6 +284,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         currentScore = 0
         lblScore.text = "\(currentScore)"
         lblDistance.text = "\(flightDistance)"
+        playPads()
     }
     
     func endRun() {
@@ -290,6 +296,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         player.node.position = CGPoint(x: 0, y: 0)
         player.node.zRotation = 0
         player.node.physicsBody?.angularVelocity = 0
+        stopPads()
         
     }
     
@@ -298,6 +305,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         rock.speed = speed
         star.speed = speed
         player.xSpeed = speed
+//        player.torque = speed/16
         orange.speed = speed
     }
     
@@ -310,6 +318,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         } catch {
             print("error")
         }
+        audioPlayerAmbience.numberOfLoops = -1
+        
         
         let sound2 = Bundle.main.path(forResource: "pads", ofType: "wav")
         do {
@@ -317,22 +327,37 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         } catch {
             print("error")
         }
+        audioPlayerPads.volume = 0.0
+        audioPlayerPads.numberOfLoops = -1
     }
     
-    func playPad() {
-        audioPlayerAmbience.play()
+ 
+    
+    func mute() {
+        audioPlayerAmbience.setVolume(0.0, fadeDuration: 0.1)
     }
     
-    func stopPad() {
-        audioPlayerAmbience.stop()
+    func unmute() {
+        audioPlayerAmbience.setVolume(1.0, fadeDuration: 0.1)
     }
     
-    func playNoPad() {
-        audioPlayerPads.play()
+    
+    func playAmbience() {
+        audioPlayerAmbience.setVolume(1.0, fadeDuration: 1)
     }
     
-    func stopNoPad() {
-        audioPlayerPads.stop()
+    func stopAmbience() {
+        audioPlayerAmbience.setVolume(0.0, fadeDuration: 1)
+    }
+    
+    func playPads() {
+        if !isSoundMuted {
+            audioPlayerPads.setVolume(0.1, fadeDuration: 1)
+        }
+    }
+    
+    func stopPads() {
+        audioPlayerPads.setVolume(0.0, fadeDuration: 1)
     }
     
     
