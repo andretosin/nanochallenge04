@@ -35,8 +35,6 @@ class Rock: Spawnable {
     
     
     func setupRock(_ rockNode: SKSpriteNode, x: CGFloat, y: CGFloat, speed: CGFloat) {
-//        rockNode.physicsBody = SKPhysicsBody(texture: rockNode.texture!, size: rockNode.texture!.size())
-        
         rockNode.physicsBody = SKPhysicsBody(circleOfRadius: rockNode.texture!.size().width / 2)
         
         rockNode.physicsBody?.categoryBitMask = ContactMask.rock.rawValue

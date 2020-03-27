@@ -146,7 +146,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                             self.notification.impactOccurred()
                         }
                         currentScore += 1
-                        setSpeeds(rock.speed + 0)
+                        setSpeeds(rock.speed + 35)
                         lblScore.text = "\(currentScore)"
                     }
                 }
