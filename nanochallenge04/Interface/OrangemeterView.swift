@@ -8,10 +8,94 @@
 
 import SwiftUI
 
+struct PercentageIndicator: AnimatableModifier {
+    var pct: CGFloat = 0
+    
+    var animatableData: CGFloat {
+        get { pct }
+        set { pct = newValue }
+    }
+    
+    func body(content: Content) -> some View {
+        content
+            .overlay(ArcShape(pct: pct).foregroundColor(.red))
+            .overlay(LabelView(pct: pct))
+    }
+    
+    struct ArcShape: Shape {
+        let pct: CGFloat
+        
+        func path(in rect: CGRect) -> Path {
+
+            var p = Path()
+
+            p.addArc(center: CGPoint(x: rect.width / 2.0, y:rect.height / 2.0),
+                     radius: rect.height / 2.1,
+                     startAngle: .degrees(0),
+                     endAngle: .degrees(360.0 * Double(pct)), clockwise: false)
+
+            return p.strokedPath(.init(lineWidth: 2.8))
+        }
+    }
+    
+    struct LabelView: View {
+        let pct: CGFloat
+        
+        var body: some View {
+            Text("\(Int(pct * 100)) %")
+                .font(.largeTitle)
+                .fontWeight(.bold)
+                .foregroundColor(.white)
+        }
+    }
+}
+
+struct Indicator: View {
+    var pct: CGFloat
+    
+    var body: some View {
+        return Circle()
+            .fill(Color.clear)
+//            .fill(LinearGradient(gradient: Gradient(colors: [.yellow, .orange]), startPoint: .topLeading, endPoint: .bottomTrailing))
+            .modifier(PercentageIndicator(pct: self.pct))
+    }
+}
+
+struct MyButton: View {
+    let label: String
+    var font: Font = .title
+    var textColor: Color = .white
+    let action: () -> ()
+    
+    var body: some View {
+        Button(action: {
+            self.action()
+        }, label: {
+            Text(label)
+                .font(font)
+                .padding(10)
+                .frame(width: 70)
+                .background(RoundedRectangle(cornerRadius: 10).foregroundColor(Color.green).shadow(radius: 2))
+                .foregroundColor(textColor)
+            
+        })
+    }
+}
+
 struct OrangemeterView: View {
+@State private var percent: CGFloat = 0
     var body: some View {
         GeometryReader { goma in
             ZStack {
+                VStack {
+                    HStack(spacing: 10) {
+                        MyButton(label: "0%", font: .headline) { withAnimation(.easeInOut(duration: 1.0)) { self.percent = 0 } }
+
+                        MyButton(label: "27%", font: .headline) { withAnimation(.easeInOut(duration: 1.0)) { self.percent = 0.27 } }
+
+                        MyButton(label: "100%", font: .headline) { withAnimation(.easeInOut(duration: 1.0)) { self.percent = 1.0 } }
+                    }
+                }
 //                Image("OrangemeterFull")
 //                    .resizable()
 //                    .scaledToFit()
@@ -21,7 +105,8 @@ struct OrangemeterView: View {
                 .resizable()
                 .scaledToFit()
                 .frame(width: goma.size.width/4)
-                .opacity(0.15)
+                .overlay(Indicator(pct: self.percent))
+//                .opacity(0.15)
                 Image("Goma1")
                     .resizable()
                     .scaledToFit()
@@ -47,13 +132,13 @@ struct OrangemeterView: View {
                     .scaledToFit()
                     .frame(width: goma.size.width/12)
                     .offset(x: -0.064 * goma.size.width)
-                .opacity(0.15)
+//                .opacity(0.15)
                 Image("Goma6")
                     .resizable()
                     .scaledToFit()
                     .frame(width: goma.size.width/12.8)
                     .offset(x: -0.044 * goma.size.width, y: -0.06 * goma.size.width)
-                .opacity(0.15)
+//                .opacity(0.15)
             }
         }
     }
