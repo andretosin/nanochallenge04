@@ -41,7 +41,7 @@ class Star: Spawnable {
         starNode.physicsBody?.categoryBitMask = ContactMask.star.rawValue
         starNode.physicsBody?.contactTestBitMask = ContactMask.player.rawValue
         starNode.physicsBody?.collisionBitMask = 0
-        starNode.scale(to: CGSize(width: 200, height: 200))
+        starNode.scale(to: CGSize(width: 260, height: 260))
         starNode.physicsBody?.affectedByGravity = false
         starNode.position.y = y
         starNode.position.x = x

@@ -127,15 +127,16 @@ struct MenuView: View {
                                 }
                             }
                             Spacer()
-                            if self.buttonIsShown == false {
-                                ZStack {
-                                    OrangemeterView()
-                                        .shadow(color: Color.black.opacity(0.4), radius: 4, x: 2, y: 0)
+//                            if self.buttonIsShown == false {
+//                                ZStack {
+////                                    OrangemeterView()
+//                                    Circle()
+//                                        .shadow(color: Color.black.opacity(0.4), radius: 4, x: 2, y: 0)
 //                                        .frame(width: geo.size.width/6)
-                                }
-                                Spacer()
-                            }
-                            //                            Spacer()
+//                                }
+//////                                Spacer()
+//                            }
+//                                                        Spacer()
                             ZStack (alignment: .trailing) {
                                 HStack {
                                     Image(systemName: "star.fill")
@@ -431,7 +432,16 @@ struct MenuView: View {
                     //                    .foregroundColor(Color("LowerPurple")
                     //                        )
                     
-                    
+                                             if self.buttonIsShown == false {
+                                                    ZStack {
+                                                        OrangemeterView()
+//                                                        Circle()
+                                                            .shadow(color: Color.black.opacity(0.4), radius: 4, x: 2, y: 0)
+                                                            .frame(width: 0.7 * geo.size.width)
+                                                            .offset(y: -geo.size.width/1.13)
+                                                    }
+//                                                    Spacer()
+                                                }
                 }
             }
             
