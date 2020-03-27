@@ -20,8 +20,8 @@ struct OrangemeterView: View {
                 Image("Goma1")
                     .resizable()
                     .scaledToFit()
-                    .frame(width: goma.size.width/12)
-                    .offset(x: 0.045 * goma.size.width, y: -0.06 * goma.size.width)
+                    .frame(width: goma.size.width/12.9)
+                    .offset(x: 0.044 * goma.size.width, y: -0.06 * goma.size.width)
                 Image("Goma2")
                     .resizable()
                     .scaledToFit()
@@ -41,12 +41,12 @@ struct OrangemeterView: View {
                     .resizable()
                     .scaledToFit()
                     .frame(width: goma.size.width/12)
-                    .offset(x: -0.0625 * goma.size.width)
+                    .offset(x: -0.064 * goma.size.width)
                 Image("Goma6")
                     .resizable()
                     .scaledToFit()
-                    .frame(width: goma.size.width/12)
-                    .offset(x: -0.045 * goma.size.width, y: -0.06 * goma.size.width)
+                    .frame(width: goma.size.width/12.8)
+                    .offset(x: -0.044 * goma.size.width, y: -0.06 * goma.size.width)
             }
         }
     }
