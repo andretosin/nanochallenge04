@@ -13,5 +13,5 @@ enum ContactMask: UInt32 {
     case walls = 0b10
     case star = 0b100
     case rock = 0b1000
-    // oi
+    case orange = 0b10000
 }

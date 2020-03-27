@@ -16,11 +16,13 @@ protocol GameDelegate {
 
 class GameScene: SKScene, SKPhysicsContactDelegate {
     
-    var firstContactFlag: Bool = false
+    var firstContactFlagPlayerRock: Bool = false
+    var firstContactFlagPlayerOrange: Bool = false
     var gameDelegate: GameDelegate?
     var background: GameBackground!
     var rock: Rock!
     var star: Star!
+    var orange: Orange!
     var stars: SKSpriteNode!
     var totalStars: Int! = 0
     var player: Player!
@@ -30,13 +32,14 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var particles = SKEmitterNode()
     var gameStarted = false
     var flightIncrement: CGFloat = 0
-    var flightSpeed: CGFloat = 0
+    var flightSpeed: CGFloat = 1000
     var flightDistance: CGFloat = 0
     var currentScore = 0
     var audioPlayerAmbience: AVAudioPlayer!
     var audioPlayerPads: AVAudioPlayer!
     var lastTime: TimeInterval = TimeInterval(0)
     let notification = UIImpactFeedbackGenerator(style: .heavy)
+    var didGetBoost = false
     
     override func didMove(to view: SKView) {
         
@@ -54,17 +57,18 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         }
         
         self.physicsWorld.contactDelegate = self
-        view.showsPhysics = false
+        view.showsPhysics = true
         
         setAudioPlayers()
         
         // carrega particulas de fundo
-        if let particles = SKEmitterNode(fileNamed: "Stars") {
-            particles.position = CGPoint(x: 0, y: 1200)
-            particles.advanceSimulationTime(40)
-            particles.zPosition = 0
-            addChild(particles)
-        }
+        particles = SKEmitterNode(fileNamed: "Stars")!
+        particles.position = CGPoint(x: 0, y: 1200)
+        particles.advanceSimulationTime(40)
+        particles.zPosition = 0
+        particles.particleSpeed = 1000
+        addChild(particles)
+        
         
         
         
@@ -81,12 +85,17 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         // carrega as estrelas e as pedras programaticamente
         rock = Rock(scene: self)
         star = Star(scene: self)
+        orange = Orange(scene: self, resetFlag: {
+            self.firstContactFlagPlayerOrange = false
+        })
     }
     
     
     
     
+    
     override func update(_ currentTime: TimeInterval) {
+        
         
         if lastTime == 0 {
             lastTime = currentTime
@@ -95,12 +104,21 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         let deltaTime = currentTime - lastTime
         
         
+        orange.update(currentTime)
         
         if gameStarted {
             player.update(CGFloat(deltaTime))
             rock.update(currentTime)
-            star.update(currentTime)
-            rock.playerPosX = player.node.position.x
+//            star.update(currentTime)
+//            rock.playerPosX = player.node.position.x
+            orange.update(currentTime)
+            
+            if self.flightSpeed > 1000 {
+                self.flightSpeed -= 5
+                setSpeeds(self.flightSpeed)
+            }
+            
+            print(flightSpeed)
             
             if !isPlayerDead {
                 self.flightIncrement = rock.speed
@@ -127,20 +145,29 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                         node.name = "starResetPos"
                         notification.impactOccurred()
                         currentScore += 1
-                        setSpeeds(rock.speed + 35)
                         lblScore.text = "\(currentScore)"
                     }
                 }
             }
+        case ContactMask.player.rawValue | ContactMask.orange.rawValue:
+            if !firstContactFlagPlayerOrange {
+                firstContactFlagPlayerOrange = true
+                self.flightSpeed += 1000
+                setSpeeds(self.flightSpeed)
+            }
+            
+
+            
         case ContactMask.player.rawValue | ContactMask.rock.rawValue:
             // se encostou numa pedra
-            if !firstContactFlag {
-                firstContactFlag = true
+            if !firstContactFlagPlayerRock {
+                firstContactFlagPlayerRock = true
                 isPlayerDead = true
                 star.isSpawnActive = false
+                rock.isSpawnActive = false
+                orange.isSpawnActive = false
                 player.isDead = true
 //                player.node.physicsBody?.allowsRotation = false
-                rock.isSpawnActive = false
                 audioPlayerAmbience.stop()
                 totalStars += self.currentScore
                 
@@ -234,14 +261,16 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         gameStarted = true
         isPlayerDead = false
         self.totalStars = totalStars
+        flightSpeed = 1000
         player.node.position = CGPoint(x: 0, y: -640)
         player.node.physicsBody?.velocity = CGVector(dx: 0, dy: 0)
 //        player.node.physicsBody?.allowsRotation = true
-        firstContactFlag = false
+        firstContactFlagPlayerRock = false
         star.isSpawnActive = true
-        rock.resetAllPos()
+        orange.isSpawnActive = true
         rock.isSpawnActive = true
-        setSpeeds(1000)
+        rock.resetAllPos()
+        setSpeeds(flightSpeed)
         flightDistance = 0
         flightIncrement = 0
         currentScore = 0
@@ -254,10 +283,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     func setSpeeds(_ speed: CGFloat) {
-        particles.speed = speed
+        particles.particleSpeed = speed
         rock.speed = speed
         star.speed = speed
         player.xSpeed = speed
+        orange.speed = speed
     }
     
     func endRun() {

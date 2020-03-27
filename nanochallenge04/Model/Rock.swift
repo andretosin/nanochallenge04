@@ -83,6 +83,9 @@ class Rock: Spawnable {
                                 }
                             }
                         }
+                        
+                        
+                        
                         rock.physicsBody?.velocity = CGVector(dx: 0, dy: -speed)
                         
                         // sorteia um tempo para spawnar a nova pedra
@@ -98,6 +101,12 @@ class Rock: Spawnable {
             if rock.position.y < -1500 {
                 resetPos(rock: rock)
                 return
+            }
+        }
+        
+        for rock in rockArray {
+            if rock.name == "rockTrue" {
+                rock.physicsBody?.velocity = CGVector(dx: 0, dy: -speed)
             }
         }
     }
