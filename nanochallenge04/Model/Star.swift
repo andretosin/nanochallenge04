@@ -77,6 +77,12 @@ class Star: Spawnable {
                 star.name = "starFalse"
             }
         }
+        
+        for star in starArray {
+            if star.name == "starTrue" {
+                star.physicsBody?.velocity = CGVector(dx: 0, dy: -speed)
+            }
+        }
     }
     
     
