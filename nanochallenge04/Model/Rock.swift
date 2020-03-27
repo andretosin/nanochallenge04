@@ -35,10 +35,10 @@ class Rock: Spawnable {
     
     
     func setupRock(_ rockNode: SKSpriteNode, x: CGFloat, y: CGFloat, speed: CGFloat) {
-        rockNode.physicsBody = SKPhysicsBody(texture: rockNode.texture!, size: rockNode.texture!.size())
+        rockNode.physicsBody = SKPhysicsBody(circleOfRadius: rockNode.texture!.size().width/2)
         rockNode.physicsBody?.categoryBitMask = ContactMask.rock.rawValue
         rockNode.physicsBody?.contactTestBitMask = ContactMask.player.rawValue
-        rockNode.physicsBody?.collisionBitMask = ContactMask.rock.rawValue | ContactMask.player.rawValue
+        rockNode.physicsBody?.collisionBitMask = 0
         rockNode.scale(to: CGSize(width: 150, height: 150))
         rockNode.physicsBody?.affectedByGravity = false
         rockNode.position.y = y
@@ -47,7 +47,11 @@ class Rock: Spawnable {
         rockNode.physicsBody?.mass = 10
         rockNode.physicsBody?.velocity = CGVector(dx: 0, dy: 0)
         rockNode.physicsBody?.linearDamping = 0
+        rockNode.physicsBody?.friction = 0
+        rockNode.physicsBody?.restitution = 0
         rockNode.name = "rockFalse"
+        
+        
     }
     
     

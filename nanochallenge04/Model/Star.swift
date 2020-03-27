@@ -33,7 +33,11 @@ class Star: Spawnable {
     }
     
     func setupStar(_ starNode: SKSpriteNode, x: CGFloat, y: CGFloat, speed: CGFloat) {
-        starNode.physicsBody = SKPhysicsBody(texture: starNode.texture!, size: starNode.texture!.size())
+
+        let collisionMask = SKTexture(imageNamed: "starCollisionMask")
+        starNode.physicsBody = SKPhysicsBody(texture: collisionMask, size: collisionMask.size())
+        
+        
         starNode.physicsBody?.categoryBitMask = ContactMask.star.rawValue
         starNode.physicsBody?.contactTestBitMask = ContactMask.player.rawValue
         starNode.physicsBody?.collisionBitMask = 0
@@ -43,8 +47,11 @@ class Star: Spawnable {
         starNode.position.x = x
         starNode.zPosition = 2
         starNode.physicsBody?.velocity = CGVector(dx: 0, dy: -speed)
-        starNode.name = "starFalse"
         starNode.physicsBody?.linearDamping = 0
+        starNode.physicsBody?.friction = 0
+        starNode.physicsBody?.restitution = 0
+        starNode.physicsBody?.mass = 0
+        starNode.name = "starFalse"
     }
     
     func update(_  currentTime: TimeInterval) {
