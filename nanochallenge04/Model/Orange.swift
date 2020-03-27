@@ -88,7 +88,7 @@ class Orange: Spawnable {
                         orange.name = "orangeTrue"
                     }
                 }
-                timeInterval = Double.random(in: 3...10)
+                timeInterval = Double.random(in: 3...9)
             }
         }
         

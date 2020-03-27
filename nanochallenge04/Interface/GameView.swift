@@ -30,7 +30,7 @@ struct GameView: UIViewControllerRepresentable {
 
     func updateUIViewController(_ uiViewController: GameViewController, context: Context) {
         if isPlaying {
-            uiViewController.gameScene.play(totalStars: totalStars)
+            uiViewController.gameScene.startRun(totalStars: totalStars)
         } else {
             uiViewController.gameScene.endRun()
         }
