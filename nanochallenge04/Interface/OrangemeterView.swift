@@ -75,7 +75,8 @@ struct MyButton: View {
 }
 
 struct OrangemeterView: View {
-@State private var percent: CGFloat = 0
+    @State var slices: Int
+    @State var percent: CGFloat = 0
     var body: some View {
         GeometryReader { goma in
             ZStack {
@@ -104,32 +105,39 @@ struct OrangemeterView: View {
                     .scaledToFit()
                     .frame(width: goma.size.width/12.9)
                     .offset(x: 0.044 * goma.size.width, y: -0.06 * goma.size.width)
+                    .opacity(self.slices >= 1 ? 1.0 : 0.0)
                 Image("Goma2")
                     .resizable()
                     .scaledToFit()
                     .frame(width: goma.size.width/12)
                     .offset(x: 0.0625 * goma.size.width)
+                    .opacity(self.slices > 2 ? 1.0 : 0.0)
+                    
                 Image("Goma3")
                     .resizable()
                     .scaledToFit()
                     .frame(width: goma.size.width/12.7)
                     .offset(x: 0.042 * goma.size.width, y: 0.06 * goma.size.width)
+                    .opacity(self.slices > 3 ? 1.0 : 0.0)
                 Image("Goma4")
                     .resizable()
                     .scaledToFit()
                     .frame(width: goma.size.width/13.1)
                     .offset(x: -0.046 * goma.size.width, y: 0.06 * goma.size.width)
+                    .opacity(self.slices > 4 ? 1.0 : 0.0)
                 Image("Goma5")
                     .resizable()
                     .scaledToFit()
                     .frame(width: goma.size.width/12)
                     .offset(x: -0.064 * goma.size.width)
+                    .opacity(self.slices > 5 ? 1.0 : 0.0)
 //                .opacity(0.15)
                 Image("Goma6")
                     .resizable()
                     .scaledToFit()
                     .frame(width: goma.size.width/12.8)
                     .offset(x: -0.044 * goma.size.width, y: -0.06 * goma.size.width)
+                    .opacity(self.slices > 6 ? 1.0 : 0.0)
 //                .opacity(0.15)
             }
         }
@@ -138,6 +146,6 @@ struct OrangemeterView: View {
 
 struct OrangemeterView_Previews: PreviewProvider {
     static var previews: some View {
-        OrangemeterView()
+        OrangemeterView(slices: 5)
     }
 }

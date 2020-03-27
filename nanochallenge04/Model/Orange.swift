@@ -93,7 +93,7 @@ class Orange: Spawnable {
         }
         
         for orange in orangeArray {
-            if orange.position.y < -1000 {
+            if orange.position.y < -1200 {
                 orange.position.x = -1200
                 orange.position.y = 0
                 orange.name = "orangeFalse"

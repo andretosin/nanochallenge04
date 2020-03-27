@@ -44,7 +44,7 @@ class Rock: Spawnable {
         rockNode.position.y = y
         rockNode.position.x = x
         rockNode.zPosition = 1
-        rockNode.physicsBody?.mass = 10
+        rockNode.physicsBody?.mass = 1000
         rockNode.physicsBody?.velocity = CGVector(dx: 0, dy: 0)
         rockNode.physicsBody?.linearDamping = 0
         rockNode.physicsBody?.friction = 0
