@@ -57,7 +57,7 @@ class Player: Updatable {
     
     internal init(scene: GameScene?) {
         self.configurePhysics()
-        self.node.scale(to: CGSize(width: 150, height: 150))
+        self.node.scale(to: CGSize(width: 300, height: 300))
         self.node.position = CGPoint(x: 0, y: -50)
         self.node.zPosition = 2
         scene?.addChild(self.node)
