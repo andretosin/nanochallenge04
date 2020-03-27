@@ -48,7 +48,6 @@ struct MenuView: View {
     @State var textfield_val = ""
     @State var heartFilled = false
     @State private var showOptions: Bool = false
-    @State private var starAds: Int = 10
     @State private var shipIndex = 1
     
     
@@ -124,7 +123,7 @@ struct MenuView: View {
                                     .padding(.leading, 20)
                                     .frame(height: geo.size.height/10, alignment: .leading)
                                     .clipShape(Capsule())
-                                    .shadow(color: Color.black.opacity(0.4), radius: 4, x: 2, y: 0)
+                                    .shadow(color: Color("CosmicPurple").opacity(0.3), radius: 2, x: 0, y: 0)
                                     
                                     .onTapGesture {
                                         withAnimation {
@@ -176,14 +175,14 @@ struct MenuView: View {
                                         withAnimation {
                                         }
                                 }
-                                .padding(.trailing, self.buttonIsShown ? geo.size.width/6.5 : 0)
-                                .padding(.trailing, self.adsIsShown ? geo.size.width/6.5 : 0)
-                                    
-                                .shadow(color: Color.black.opacity(0.4), radius: 4, x: 2, y: 0)
+                                .padding(.trailing, self.buttonIsShown ? geo.size.width/9.5 : 0)
+//                                .padding(.trailing, self.adsIsShown ? geo.size.width/3.5 : 0)
+                                    .shadow(color: Color("CosmicPurple").opacity(0.3), radius: 2, x: 0, y: 0)
+//                                .shadow(color: Color.black.opacity(0.4), radius: 4, x: 2, y: 0)
                                 .clipShape(Capsule())
                                 .background(Capsule()
                                 .fill(Color("LowerPurple"))
-                                .shadow(color: Color.black.opacity(0.4), radius: 4, x: 0, y: 2)
+                                .shadow(color: Color("CosmicPurple").opacity(0.3), radius: 2, x: 0, y: 0)
                                 )
                                 
                                 VStack (alignment: .trailing, spacing: 0) {
@@ -191,23 +190,19 @@ struct MenuView: View {
                                         print("Store button tapped!")
                                         //                                        self.showModal = true
                                     }) {
-                                        HStack (spacing: 3) {
-                                            Image(systemName: "plus")
-                                                .font(.system(size: geo.size.width/22, weight: .black))
+                                        HStack (spacing: 0) {
+                                            Image(systemName: "bag.fill")
+                                                .font(.system(size: geo.size.width/18, weight: .regular))
                                                 //                                            .padding(.trailing, geo.size.width/40)
                                                 .foregroundColor(.white)
                                                 .shadow(color: Color.black.opacity(0.75), radius: 1, x: -1, y: 1)
-                                            Text("\(self.starAds)")
-                                                
-                                                .font(.custom("nulshock", size: geo.size.width/18))
-                                                .foregroundColor(.white)
-                                                
-                                                .bold()
-                                                .shadow(color: Color.black.opacity(0.75), radius: 1, x: -1, y: 1)
+                                        
                                                 .fixedSize()
                                             
                                         }
-                                    } .padding(.trailing, geo.size.width/40)
+                                    }
+                                    .padding(.trailing, geo.size.width/28)
+                                    .offset(y: 0.001 * -geo.size.width)
                                 }
                                 .opacity(self.buttonIsShown ? 1.0 : 0.0)
                                 .onTapGesture {
@@ -216,7 +211,7 @@ struct MenuView: View {
                                     }
                                 }
                             }
-                            .frame(height: geo.size.height/10, alignment: .trailing)
+//                            .frame(height: geo.size.height/10, alignment: .trailing)
                             
                         }
                         .padding(.trailing, 20)

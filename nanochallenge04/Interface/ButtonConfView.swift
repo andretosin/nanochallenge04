@@ -36,16 +36,14 @@ struct ColorfulBackground<S: Shape>: View {
 //                    .overlay(shape.stroke(LinearGradient(Color.lightStart, Color.lightEnd), lineWidth: 4))
 //                    .shadow(color: Color.black.opacity(0.75), radius: 1, x: 1, y: -1)
 //                    .shadow(color: Color.black.opacity(0.75), radius: 1, x: -1, y: 1)
-                .shadow(color: Color.black.opacity(0.75), radius: 1, x: 1, y: 1)
-                    .shadow(color: Color.black.opacity(0.75), radius: 1, x: -1, y: -1)
+                .shadow(color: Color.black.opacity(0.75), radius: 1, x: -1, y: 1)
             } else {
                 shape
                     .fill(Color("CosmicPurple"))
 //                    .overlay(shape.stroke(LinearGradient(Color.lightStart, Color.lightEnd), lineWidth: 4))
 //                    .shadow(color: Color.darkStart, radius: 10, x: -10, y: -10)
 //                    .shadow(color: Color.darkEnd, radius: 10, x: 10, y: 10)
-                    .shadow(color: Color.black.opacity(0.75), radius: 1, x: -1, y: -1)
-                .shadow(color: Color.black.opacity(0.75), radius: 1, x: 1, y: 1)
+                   .shadow(color: Color.black.opacity(0.75), radius: 1, x: -1, y: 1)
             }
         }
     }
