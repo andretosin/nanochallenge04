@@ -11,7 +11,7 @@ import SpriteKit
 class Orange: Spawnable {
     
     var lastTime: TimeInterval = TimeInterval(0)
-    var timeInterval: Double = Double.random(in: Double(1)...Double(3))
+    var timeInterval: Double = Double.random(in: Double(2)...Double(10))
     var scene: SKScene?
     let fullTexture = SKTexture(imageNamed: "OrangeFull")
     let halfTexture = SKTexture(imageNamed: "OrangeHalf")
@@ -29,8 +29,8 @@ class Orange: Spawnable {
         
         setupOrange(fullNode: fullNode, halfNode: halfNode, x: -1000, y: 0, speed: speed)
         
-        self.fullNode.scale(to: CGSize(width: 200, height: 200))
-        self.halfNode.scale(to: CGSize(width: 200, height: 200))
+        self.fullNode.scale(to: CGSize(width: 393*0.5, height: 310*0.5))
+        self.halfNode.scale(to: CGSize(width: 393*0.5, height: 310*0.5))
 
         
         
@@ -50,7 +50,8 @@ class Orange: Spawnable {
         fullNode.zPosition = 4
 //        fullNode.scale(to: CGSize(width: 200, height: 200))
 
-        halfNode.position =  fullNode.position
+        halfNode.position.x = fullNode.position.x
+        halfNode.position.y = fullNode.position.y
         halfNode.zPosition = 6
 //        halfNode.scale(to: CGSize(width: 200, height: 200))
         
@@ -82,12 +83,12 @@ class Orange: Spawnable {
                     if orange.name == "orangeFalse" {
                         self.resetFlagFunc()
                         orange.position.y = 1200
-                        orange.position.x = 200
+                        orange.position.x = CGFloat.random(in: CGFloat(-300)...CGFloat(300))
                         orange.physicsBody?.velocity = CGVector(dx: 0, dy: -speed)
                         orange.name = "orangeTrue"
                     }
                 }
-                timeInterval = Double.random(in: 1.5...2.5)
+                timeInterval = Double.random(in: 3...10)
             }
         }
         
@@ -111,7 +112,7 @@ class Orange: Spawnable {
         
         
         
-        halfNode.position = fullNode.position
+        halfNode.position.y = fullNode.position.y - 5
         
         
     }

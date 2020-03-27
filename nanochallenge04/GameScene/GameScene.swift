@@ -32,7 +32,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var particles = SKEmitterNode()
     var gameStarted = false
     var flightIncrement: CGFloat = 0
-    var flightSpeed: CGFloat = 1000
+    var flightSpeed: CGFloat = 1000 {
+        didSet {
+                setSpeeds(self.flightSpeed)
+        }
+    }
     var flightDistance: CGFloat = 0
     var currentScore = 0
     var audioPlayerAmbience: AVAudioPlayer!
@@ -57,7 +61,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         }
         
         self.physicsWorld.contactDelegate = self
-        view.showsPhysics = true
+        view.showsPhysics = false
         
         setAudioPlayers()
         
@@ -109,16 +113,15 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         if gameStarted {
             player.update(CGFloat(deltaTime))
             rock.update(currentTime)
-//            star.update(currentTime)
-//            rock.playerPosX = player.node.position.x
+            star.update(currentTime)
             orange.update(currentTime)
+
+            rock.playerPosX = player.node.position.x
             
             if self.flightSpeed > 1000 {
-                self.flightSpeed -= 5
-                setSpeeds(self.flightSpeed)
+                self.flightSpeed -= 3.5
             }
             
-            print(flightSpeed)
             
             if !isPlayerDead {
                 self.flightIncrement = rock.speed
@@ -152,7 +155,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         case ContactMask.player.rawValue | ContactMask.orange.rawValue:
             if !firstContactFlagPlayerOrange {
                 firstContactFlagPlayerOrange = true
-                self.flightSpeed += 1000
+                self.flightSpeed += 700
                 setSpeeds(self.flightSpeed)
             }
             
@@ -276,6 +279,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         currentScore = 0
         lblScore.text = "\(currentScore)"
         lblDistance.text = "\(flightDistance)"
+        
         
         
      
