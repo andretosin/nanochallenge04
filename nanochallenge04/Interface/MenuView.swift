@@ -94,19 +94,23 @@ struct MenuView: View {
                                             
                                             .multilineTextAlignment(.leading)
                                             .shadow(color: Color.black.opacity(0.75), radius: 1, x: -1, y: 1)
-                                        
+                                            .animation(.spring(response: 0.0, dampingFraction:0.2))
+                                        .fixedSize()
                                         Text("ly")
+                                            
                                             .font(.custom("Audiowide-Regular", size: geo.size.width/30))
                                             .foregroundColor(.white)
                                             .bold()
                                             .padding(.top, geo.size.width/60)
                                             .shadow(color: Color.black.opacity(0.75), radius: 1, x: -1, y: 1)
-                                        
+                                        .fixedSize()
+                                        .animation(.spring(response: 0.0, dampingFraction:0.2))
                                     }
                                 }
                                 .opacity(self.buttonIsShown ? 1.0 : 0.0)
                                 .onTapGesture {
                                     withAnimation {
+                                        
                                         self.isPlaying = true
                                     }
                                 }
@@ -116,20 +120,23 @@ struct MenuView: View {
                                 .background(Capsule()
                                 .fill(self.buttonIsShown ? Color("CosmicPurple") : Color("LowerPurple"))
                                 )
+                                    
                                     .padding(.leading, 20)
                                     .frame(height: geo.size.height/10, alignment: .leading)
                                     .clipShape(Capsule())
                                     .shadow(color: Color.black.opacity(0.4), radius: 4, x: 2, y: 0)
+                                    
                                     .onTapGesture {
                                         withAnimation {
                                             print("Record button tapped")
                                         }
                                 }
+                                
                             }
                             Spacer()
 //                            if self.buttonIsShown == false {
 //                                ZStack {
-////                                    OrangemeterView()
+//                                    OrangemeterView()
 //                                    Circle()
 //                                        .shadow(color: Color.black.opacity(0.4), radius: 4, x: 2, y: 0)
 //                                        .frame(width: geo.size.width/6)

@@ -18,8 +18,11 @@ struct PercentageIndicator: AnimatableModifier {
     
     func body(content: Content) -> some View {
         content
-            .overlay(ArcShape(pct: pct).foregroundColor(.red))
-            .overlay(LabelView(pct: pct))
+            .overlay(ArcShape(pct: pct)
+//                .fill(LinearGradient(gradient: Gradient(colors: [Color("LowYellow"), Color("TopYellow")]), startPoint: .top, endPoint: .bottom)))
+                .foregroundColor(.red))
+//            .overlay(LabelView(pct: pct))
+//        .rotationEffect(.degrees(-90))
     }
     
     struct ArcShape: Shape {
@@ -29,23 +32,12 @@ struct PercentageIndicator: AnimatableModifier {
 
             var p = Path()
 
-            p.addArc(center: CGPoint(x: rect.width / 2.0, y:rect.height / 2.0),
+            p.addArc(center: CGPoint(x: rect.width / 2.0, y: rect.height / 2.0),
                      radius: rect.height / 2.1,
-                     startAngle: .degrees(0),
-                     endAngle: .degrees(360.0 * Double(pct)), clockwise: false)
+                     startAngle: .degrees(-90),
+                     endAngle: .degrees(360.0 * Double(pct) - 90), clockwise: false)
 
-            return p.strokedPath(.init(lineWidth: 2.8))
-        }
-    }
-    
-    struct LabelView: View {
-        let pct: CGFloat
-        
-        var body: some View {
-            Text("\(Int(pct * 100)) %")
-                .font(.largeTitle)
-                .fontWeight(.bold)
-                .foregroundColor(.white)
+            return p.strokedPath(.init(lineWidth: 2.9))
         }
     }
 }
@@ -91,7 +83,7 @@ struct OrangemeterView: View {
                     HStack(spacing: 10) {
                         MyButton(label: "0%", font: .headline) { withAnimation(.easeInOut(duration: 1.0)) { self.percent = 0 } }
 
-                        MyButton(label: "27%", font: .headline) { withAnimation(.easeInOut(duration: 1.0)) { self.percent = 0.27 } }
+                        Spacer()
 
                         MyButton(label: "100%", font: .headline) { withAnimation(.easeInOut(duration: 1.0)) { self.percent = 1.0 } }
                     }
