@@ -33,10 +33,13 @@ class Star: Spawnable {
     }
     
     func setupStar(_ starNode: SKSpriteNode, x: CGFloat, y: CGFloat, speed: CGFloat) {
-        starNode.physicsBody = SKPhysicsBody(texture: starNode.texture!, size: starNode.texture!.size())
+//        starNode.physicsBody = SKPhysicsBody(texture: starNode.texture!, size: starNode.texture!.size())
+//
+        starNode.physicsBody = SKPhysicsBody(circleOfRadius: starNode.texture!.size().height / 2)
         starNode.physicsBody?.categoryBitMask = ContactMask.star.rawValue
         starNode.physicsBody?.contactTestBitMask = ContactMask.player.rawValue
         starNode.physicsBody?.collisionBitMask = 0
+        starNode.physicsBody?.mass = 0
         starNode.scale(to: CGSize(width: 150, height: 150))
         starNode.physicsBody?.affectedByGravity = false
         starNode.position.y = y
@@ -45,6 +48,12 @@ class Star: Spawnable {
         starNode.physicsBody?.velocity = CGVector(dx: 0, dy: -speed)
         starNode.name = "starFalse"
         starNode.physicsBody?.linearDamping = 0
+        
+        
+        starNode.physicsBody?.linearDamping = 0
+        starNode.physicsBody?.friction = 0
+        starNode.physicsBody?.restitution = 0
+        starNode.physicsBody?.mass = 0
     }
     
     func update(_  currentTime: TimeInterval) {
@@ -132,7 +141,7 @@ class Star: Spawnable {
                 if star.name == "starFalse" {
                     let spawnPadding: CGFloat = 300
                     star.position.y = 1200
-                    star.position.x = CGFloat.random(in: -400...400)
+                    star.position.x = 0 //CGFloat.random(in: -400...400)
 
                     for node in scene!.children {
                         if node.name == "rockTrue" {

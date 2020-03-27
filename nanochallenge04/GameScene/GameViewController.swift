@@ -44,9 +44,13 @@ class GameViewController: UIViewController {
             self.gameScene = scene
             gameScene.gameDelegate = gameDelegate
         }
+        
         sceneView.ignoresSiblingOrder = true
         sceneView.showsFPS = true
         sceneView.showsNodeCount = true
+        sceneView.showsPhysics = true
+        sceneView.showsDrawCount = true
+        sceneView.showsQuadCount = true
         sceneView.preferredFramesPerSecond = 120
     }
     
