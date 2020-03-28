@@ -75,8 +75,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         addChild(particles)
         
         
-        
-        
         lblScore = self.childNode(withName: "lblScore") as! SKLabelNode
         lblScore.text = "\(currentScore)"
         
@@ -109,9 +107,31 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             return
         }
         let deltaTime = currentTime - lastTime
-        //        print("speed: \(flightSpeed)")
-        if flightSpeed > 1500 {
-            gameDelegate?.updateSlices(slices: 3)
+//        print("speed: \(flightSpeed)")
+        if flightSpeed > 1000 {
+            if flightSpeed > 1200 {
+                if flightSpeed > 1400 {
+                    if flightSpeed > 1600 {
+                        if flightSpeed > 1800 {
+                            if flightSpeed >= 2000 {
+                                gameDelegate?.updateSlices(slices: 6)
+                            } else {
+                                gameDelegate?.updateSlices(slices: 5)
+                            }
+                        } else {
+                            gameDelegate?.updateSlices(slices: 4)
+                        }
+                    } else {
+                        gameDelegate?.updateSlices(slices: 3)
+                    }
+                } else {
+                    gameDelegate?.updateSlices(slices: 2)
+                }
+            } else {
+                gameDelegate?.updateSlices(slices: 1)
+            }
+        } else {
+            gameDelegate?.updateSlices(slices: 0)
         }
         
         if gameStarted {
@@ -121,7 +141,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             orange.update(currentTime)
             rock.playerPosX = player.node.position.x
             if self.flightSpeed > 1000 {
-                self.flightSpeed -= 3.5
+                self.flightSpeed -= 1.0
             }
             
             
@@ -171,7 +191,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             // se encosotu numa laranja
             if !firstContactFlagPlayerOrange {
                 firstContactFlagPlayerOrange = true
-                self.flightSpeed += 700
+                self.flightSpeed += 300
+                if self.flightSpeed > 2000 {
+                    self.flightSpeed = 2000
+                }
                 setSpeeds(self.flightSpeed)
             }
             

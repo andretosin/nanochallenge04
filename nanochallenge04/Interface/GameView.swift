@@ -66,8 +66,9 @@ struct GameView: UIViewControllerRepresentable {
         
         
         func updateSlices(slices: Int) {
-            self.parent.slices = slices
-            print("setou slices")
+            withAnimation {
+                self.parent.slices = slices
+            }
         }
         
         func updateLabels(flightDistance: String, currentScore: String) {
