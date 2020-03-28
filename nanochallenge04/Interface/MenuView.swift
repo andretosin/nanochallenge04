@@ -442,6 +442,7 @@ struct MenuView: View {
                     
                                              if self.buttonIsShown == false {
                                                     ZStack {
+                                                        Text("\(self.orangeSlices)")
                                                         OrangemeterView(slices: self.orangeSlices)
 //                                                        Circle()
                                                             .shadow(color: Color.black.opacity(0.4), radius: 4, x: 2, y: 0)

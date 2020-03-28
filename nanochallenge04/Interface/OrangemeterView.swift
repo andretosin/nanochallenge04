@@ -75,8 +75,9 @@ struct MyButton: View {
 }
 
 struct OrangemeterView: View {
-    @State var slices: Int = 0
     @State var percent: CGFloat = 0
+    
+    var slices: Int = 0
     var body: some View {
         GeometryReader { goma in
             ZStack {

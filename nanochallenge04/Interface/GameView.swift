@@ -64,9 +64,10 @@ struct GameView: UIViewControllerRepresentable {
             self.parent = parent
         }
         
-        // informar coisas ao menu a partir do jogo
+        
         func updateSlices(slices: Int) {
             self.parent.slices = slices
+            print("setou slices")
         }
         
         func updateLabels(flightDistance: String, currentScore: String) {
