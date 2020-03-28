@@ -11,9 +11,8 @@ import AVFoundation
 
 protocol GameDelegate {
     func endRun(lastDistance: CGFloat, starsCollected: Int, totalStars: Int)
-    
     func updateLabels(flightDistance: String, currentScore: String)
-    
+    func updateSlices(slices: Int)
 }
 
 class GameScene: SKScene, SKPhysicsContactDelegate {
@@ -25,9 +24,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var rock: Rock!
     var star: Star!
     var orange: Orange!
-    var stars: SKSpriteNode!
-    var totalStars: Int! = 0
     var player: Player!
+    var totalStars: Int! = 0
     var isPlayerDead: Bool = false
     var isSoundMuted: Bool = false
     var lblScore = SKLabelNode()
@@ -106,29 +104,40 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     
     override func update(_ currentTime: TimeInterval) {
-        
-        
         if lastTime == 0 {
             lastTime = currentTime
             return
         }
         let deltaTime = currentTime - lastTime
-        
-        
-        orange.update(currentTime)
+        //        print("speed: \(flightSpeed)")
+        if flightSpeed > 1500 {
+            gameDelegate?.updateSlices(slices: 3)
+        }
         
         if gameStarted {
             player.update(CGFloat(deltaTime))
             rock.update(currentTime)
             star.update(currentTime)
             orange.update(currentTime)
-            
             rock.playerPosX = player.node.position.x
-            
             if self.flightSpeed > 1000 {
                 self.flightSpeed -= 3.5
             }
             
+            
+            //            if self.flightSpeed > 1000 {
+            //                if self.flightSpeed >= 1600 {
+            //                    if self.flightSpeed >= 2200 {
+            //                        gameDelegate?.updateSlices(slices: 3)
+            //                    } else {
+            //                        gameDelegate?.updateSlices(slices: 2)
+            //                    }
+            //                } else {
+            //                    gameDelegate?.updateSlices(slices: 1)
+            //                }
+            //            } else {
+            //                gameDelegate?.updateSlices(slices: 0)
+            //            }
             
             if !player.isDead {
                 self.flightIncrement = rock.speed
@@ -136,7 +145,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 self.lblDistance.text = "\(Int(flightDistance/20000))"
                 self.lblDistance.alpha = 1
             }
-            
         } else {
             self.player.node.position = CGPoint(x: 0, y: -50)
         }
@@ -217,6 +225,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                     //                    player.node.run(SKAction.moveTo(x: location.x, duration: 0.05))
                     
                     
+                    
+                    
                     if location.x > 0 {
                         player.applyTorqueRight = true
                         
@@ -264,27 +274,30 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     func startRun(totalStars: Int) {
-        gameStarted = true
-//        isPlayerDead = false
-        player.isDead = false
-        player.node.physicsBody?.isDynamic = true
-        self.totalStars = totalStars
-        flightSpeed = 1000
-        player.node.position = CGPoint(x: 0, y: -640)
-        player.node.physicsBody?.velocity = CGVector(dx: 0, dy: 0)
-        //        player.node.physicsBody?.allowsRotation = true
-        firstContactFlagPlayerRock = false
-        star.isSpawnActive = true
-        orange.isSpawnActive = true
-        rock.isSpawnActive = true
-        rock.resetAllPos()
-        setSpeeds(flightSpeed)
-        flightDistance = 0
-        flightIncrement = 0
-        currentScore = 0
-        lblScore.text = "\(currentScore)"
-        lblDistance.text = "\(flightDistance)"
-        playPads()
+        if !gameStarted {
+            gameStarted = true
+            //        isPlayerDead = false
+            player.isDead = false
+            player.node.physicsBody?.isDynamic = true
+            self.totalStars = totalStars
+            flightSpeed = 1000
+            player.node.position = CGPoint(x: 0, y: -640)
+            player.node.physicsBody?.velocity = CGVector(dx: 0, dy: 0)
+            //        player.node.physicsBody?.allowsRotation = true
+            firstContactFlagPlayerRock = false
+            star.isSpawnActive = true
+            orange.isSpawnActive = true
+            rock.isSpawnActive = true
+            rock.resetAllPos()
+            setSpeeds(flightSpeed)
+            flightDistance = 0
+            flightIncrement = 0
+            currentScore = 0
+            lblScore.text = "\(currentScore)"
+            lblDistance.text = "\(flightDistance)"
+            playPads()
+        }
+        //        print("startou run \(totalStars)")
     }
     
     func endRun() {
@@ -305,7 +318,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         rock.speed = speed
         star.speed = speed
         player.xSpeed = speed
-//        player.torque = speed/16
+        //        player.torque = speed/16
         orange.speed = speed
     }
     
@@ -331,7 +344,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         audioPlayerPads.numberOfLoops = -1
     }
     
- 
+    
     
     func mute() {
         audioPlayerAmbience.setVolume(0.0, fadeDuration: 0.1)

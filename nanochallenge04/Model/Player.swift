@@ -89,10 +89,7 @@ class Player: Updatable {
             self.node.physicsBody?.velocity = CGVector(dx: -xSpeed * self.node.zRotation, dy: 0)
         }
         
-        print("refPos: \(refPosX)")
-        print("pos.x : \(self.node.position.x)")
-        print("resultado: \(self.node.position.x - refPosX - 80 + xSpeed/15)")
-        print("\n")
+      
         
         if applyTorqueRight {
             if self.node.position.x < CGFloat(positionLimit) {

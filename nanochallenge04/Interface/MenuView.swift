@@ -40,7 +40,7 @@ struct MenuView: View {
     @State private var isPlaying = false
     @State private var isMuted = false
     @State private var topMenu: CGFloat = 0
-    @State private var lastDistance: CGFloat = 0
+    @State private var lastDistance: CGFloat = 0 
     @State private var lastStarsCollected: Int = 0
     @State private var highScore: CGFloat = 0
     @State private var totalStarsCollected: Int = 0
@@ -50,6 +50,7 @@ struct MenuView: View {
     @State var heartFilled = false
     @State private var showOptions: Bool = false
     @State private var shipIndex = 1
+    @State private var orangeSlices: Int = 0 
     
     
     
@@ -58,7 +59,7 @@ struct MenuView: View {
         GeometryReader { geo in
             ZStack {
                 BGView()
-                GameView(isPlaying: self.$isPlaying, isMuted: self.$isMuted, lastDis: self.$lastDistance, starsCollec: self.$lastStarsCollected, highscore: self.$highScore, totalStars: self.$totalStarsCollected, showText: self.$showText, shipIndex: self.$shipIndex)
+                GameView(isPlaying: self.$isPlaying, isMuted: self.$isMuted, lastDis: self.$lastDistance, starsCollec: self.$lastStarsCollected, highscore: self.$highScore, totalStars: self.$totalStarsCollected, showText: self.$showText, shipIndex: self.$shipIndex, slices: self.$orangeSlices)
                     
                     .edgesIgnoringSafeArea(.all)
                     .mask(
@@ -439,7 +440,7 @@ struct MenuView: View {
                     
                                              if self.buttonIsShown == false {
                                                     ZStack {
-                                                        OrangemeterView()
+                                                        OrangemeterView(slices: self.orangeSlices)
 //                                                        Circle()
                                                             .shadow(color: Color.black.opacity(0.4), radius: 4, x: 2, y: 0)
                                                             .frame(width: 0.7 * geo.size.width)

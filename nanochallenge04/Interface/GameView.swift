@@ -24,12 +24,14 @@ struct GameView: UIViewControllerRepresentable {
     @Binding var totalStars: Int
     @Binding var showText: Bool
     @Binding var shipIndex: Int
+    @Binding var slices: Int
     
     func makeUIViewController(context: Context) -> GameViewController {
         GameViewController(gameDelegate: context.coordinator)
     }
     
     func updateUIViewController(_ uiViewController: GameViewController, context: Context) {
+        // executar funções no jogo vindo do menu
         if isPlaying {
             uiViewController.gameScene.startRun(totalStars: totalStars)
         } else {
@@ -42,8 +44,6 @@ struct GameView: UIViewControllerRepresentable {
         } else {
             uiViewController.gameScene.isSoundMuted = false
             uiViewController.gameScene.unmute()
-
-
         }
         
         if shipIndex == 1 {
@@ -58,14 +58,16 @@ struct GameView: UIViewControllerRepresentable {
     }
     
     class Coordinator: NSObject, GameDelegate {
-        
-        
         var parent: GameView
         
         init(parent: GameView) {
             self.parent = parent
         }
         
+        // informar coisas ao menu a partir do jogo
+        func updateSlices(slices: Int) {
+            self.parent.slices = slices
+        }
         
         func updateLabels(flightDistance: String, currentScore: String) {
             

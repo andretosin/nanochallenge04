@@ -75,7 +75,7 @@ struct MyButton: View {
 }
 
 struct OrangemeterView: View {
-    @State var slices: Int
+    @State var slices: Int = 0
     @State var percent: CGFloat = 0
     var body: some View {
         GeometryReader { goma in
@@ -99,7 +99,7 @@ struct OrangemeterView: View {
                 .scaledToFit()
                 .frame(width: goma.size.width/4)
                 .overlay(Indicator(pct: self.percent))
-//                .opacity(0.15)
+                .opacity(0.15)
                 Image("Goma1")
                     .resizable()
                     .scaledToFit()
