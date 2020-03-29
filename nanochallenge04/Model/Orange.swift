@@ -14,23 +14,20 @@ class Orange: Spawnable {
     var timeInterval: Double = Double.random(in: Double(2)...Double(10))
     var scene: SKScene?
     let fullTexture = SKTexture(imageNamed: "OrangeFull")
-    let halfTexture = SKTexture(imageNamed: "OrangeHalf")
     var isSpawnActive = false
     var orangeArray: [SKSpriteNode] = []
     var speed = CGFloat(1000)
     var resetFlagFunc: (() -> Void)!
     
     let fullNode: SKSpriteNode = SKSpriteNode(imageNamed: "OrangeFull")
-    let halfNode: SKSpriteNode = SKSpriteNode(imageNamed: "OrangeHalf")
     
     internal init(scene: SKScene?, resetFlag: @escaping () -> Void) {
         self.scene = scene
         self.resetFlagFunc = resetFlag
         
-        setupOrange(fullNode: fullNode, halfNode: halfNode, x: -1000, y: 0, speed: speed)
+        setupOrange(fullNode: fullNode, x: -1000, y: 0, speed: speed)
         
         self.fullNode.scale(to: CGSize(width: 420*0.7, height: 424*0.7))
-        self.halfNode.scale(to: CGSize(width: 420*0.7, height: 424*0.7))
 
         
         
@@ -38,23 +35,18 @@ class Orange: Spawnable {
         orangeArray.append(fullNode)
         
         scene?.addChild(fullNode)
-        scene?.addChild(halfNode)
         
         
         
     }
     
-    func setupOrange(fullNode: SKSpriteNode, halfNode: SKSpriteNode, x: CGFloat, y: CGFloat, speed: CGFloat) {
+    func setupOrange(fullNode: SKSpriteNode, x: CGFloat, y: CGFloat, speed: CGFloat) {
         
         fullNode.position = CGPoint(x: x, y: y)
         fullNode.zPosition = 4
 //        fullNode.scale(to: CGSize(width: 200, height: 200))
 
-        halfNode.position.x = fullNode.position.x
-        halfNode.position.y = fullNode.position.y
-        halfNode.zPosition = 6
-//        halfNode.scale(to: CGSize(width: 200, height: 200))
-        
+
         
         fullNode.physicsBody = SKPhysicsBody(texture: fullNode
             .texture!, size: fullNode.texture!.size())
@@ -112,7 +104,6 @@ class Orange: Spawnable {
         
         
         
-        halfNode.position.y = fullNode.position.y - 5
         
         
     }
