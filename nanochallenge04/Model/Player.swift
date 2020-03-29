@@ -48,6 +48,9 @@ class Player: Updatable {
     var refPosX: CGFloat = 0
     
     
+    var b1 = false
+    var b2 = false
+    
     
     let limitAngle = CGFloat(Double.pi/6)
     let speedLimit = CGFloat(6)
@@ -87,7 +90,17 @@ class Player: Updatable {
     func update(_ deltaTime: CGFloat) {
         
         if !isDead {
-            self.node.physicsBody?.velocity = CGVector(dx: -xSpeed * self.node.zRotation, dy: 0)
+            self.node.physicsBody?.velocity.dx = -xSpeed * self.node.zRotation
+            if b1 != b2 {
+                self.node.position.y += 6
+                if self.node.position.y > -250 {
+                    b2.toggle()
+                }
+            } else {
+                if self.node.position.y > -640 {
+                    self.node.position.y -= 0.8
+                }
+            }
         }
         
        

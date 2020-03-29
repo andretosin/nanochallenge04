@@ -51,11 +51,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 flightSlowdown = 2.0
                 rock.isSpawnActive = false
                 orange.isSpawnActive = false
+                player.b1.toggle()
             } else {
                 flightSlowdown = 0.6
                 rock.isSpawnActive = true
                 orange.isSpawnActive = true
-
             }
         }
     }
@@ -128,6 +128,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         }
         let deltaTime = currentTime - lastTime
 
+        
+        print(player.node.position.y)
+        
         if flightSpeed > 1000 {
             if flightSpeed > 1200 {
                 if flightSpeed > 1400 {
@@ -215,7 +218,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 firstContactFlagPlayerOrange = true
                 
                 
-                self.flightSpeed += 300
+                self.flightSpeed += 2000
                 
                
                 if self.flightSpeed > 2000 {
