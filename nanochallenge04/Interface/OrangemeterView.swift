@@ -90,6 +90,7 @@ struct OrangemeterView: View {
                         MyButton(label: "100%", font: .headline) { withAnimation(.easeInOut(duration: 1.0)) { self.percent = 1.0 } }
                     }
                 }
+                .opacity(0.0)
 //                Image("OrangemeterFull")
 //                    .resizable()
 //                    .scaledToFit()

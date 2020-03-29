@@ -76,6 +76,21 @@ class Orange: Spawnable {
                         self.resetFlagFunc()
                         orange.position.y = 1200
                         orange.position.x = CGFloat.random(in: CGFloat(-300)...CGFloat(300))
+                        
+                        let spawnPadding: CGFloat = 400
+                        for node in scene!.children {
+                            if node.name == "rockTrue" {
+                                if abs(node.position.y - orange.position.y) < spawnPadding {
+                                    print("spawnou laranja perto de pedra")
+                                    while abs(node.position.x - orange.position.x) < spawnPadding {
+                                        orange.position.x = CGFloat.random(in: -400...400)
+                                    }
+                                }
+                            }
+                        }
+                        
+                        
+                        
                         orange.physicsBody?.velocity = CGVector(dx: 0, dy: -speed)
                         orange.name = "orangeTrue"
                     }

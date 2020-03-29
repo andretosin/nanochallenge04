@@ -152,13 +152,16 @@ struct MenuView: View {
                                         .foregroundColor(.white)
                                         .shadow(color: Color.black.opacity(0.75), radius: 1, x: -1, y: 1)
                                     .fixedSize()
-                                    Text("\(self.totalStarsCollected)")
+                                    ZStack {
+                                       Text("\(self.totalStarsCollected)")
                                         .font(.custom("nulshock", size: geo.size.width/18))
                                         .foregroundColor(.white)
                                         .bold()
                                         .shadow(color: Color.black.opacity(0.75), radius: 1, x: -1, y: 1)
                                         .fixedSize()
-                                    .animation(.spring(response: 0.0, dampingFraction:0.2))
+                                        .animation(.spring(response: 0.0, dampingFraction:0.2))
+                                    }
+                                    
                                 }
                                 .padding(.trailing, 20)
                                 .padding(.leading, 15)
@@ -442,7 +445,7 @@ struct MenuView: View {
                     
                                              if self.buttonIsShown == false {
                                                     ZStack {
-                                                        Text("\(self.orangeSlices)")
+//                                                        Text("\(self.orangeSlices)")
                                                         OrangemeterView(slices: self.orangeSlices)
 //                                                        Circle()
                                                             .shadow(color: Color.black.opacity(0.4), radius: 4, x: 2, y: 0)

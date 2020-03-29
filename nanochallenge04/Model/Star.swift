@@ -147,6 +147,7 @@ class Star: Spawnable {
                     star.position.y = 1200
                     star.position.x = CGFloat.random(in: -400...400)
 
+                    
                     for node in scene!.children {
                         if node.name == "rockTrue" {
                             if abs(node.position.y - star.position.y) < spawnPadding {
@@ -156,6 +157,8 @@ class Star: Spawnable {
                             }
                         }
                     }
+                    
+                    
                     star.physicsBody?.velocity = CGVector(dx: 0, dy: -speed)
                     star.name = "starTrue"
                     return
