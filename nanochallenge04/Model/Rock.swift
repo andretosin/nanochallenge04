@@ -78,7 +78,7 @@ class Rock: Spawnable {
                         
                         // verificar se não vai spawnar em cima de uma estrela
                         for node in scene!.children {
-                            if node.name == "starTrue" {
+                            if node.name == "starTrue" || node.name == "orangeTrue"{
                                 let spawnPadding: CGFloat = 300
                                 if abs(node.position.y - rock.position.y) < spawnPadding {
                                     while abs(node.position.x - rock.position.x) < spawnPadding {
@@ -87,6 +87,9 @@ class Rock: Spawnable {
                                 }
                             }
                         }
+                        
+                        // verificar se nao vai spawnar em cima de um tunel
+                        
                         
                         
                         

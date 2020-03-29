@@ -45,6 +45,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var lastTime: TimeInterval = TimeInterval(0)
     let notification = UIImpactFeedbackGenerator(style: .heavy)
     var didGetBoost = false
+    var slices = 0
     
     override func didMove(to view: SKView) {
         
@@ -107,32 +108,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             return
         }
         let deltaTime = currentTime - lastTime
-//        print("speed: \(flightSpeed)")
-        if flightSpeed > 1000 {
-            if flightSpeed > 1200 {
-                if flightSpeed > 1400 {
-                    if flightSpeed > 1600 {
-                        if flightSpeed > 1800 {
-                            if flightSpeed >= 2000 {
-                                gameDelegate?.updateSlices(slices: 6)
-                            } else {
-                                gameDelegate?.updateSlices(slices: 5)
-                            }
-                        } else {
-                            gameDelegate?.updateSlices(slices: 4)
-                        }
-                    } else {
-                        gameDelegate?.updateSlices(slices: 3)
-                    }
-                } else {
-                    gameDelegate?.updateSlices(slices: 2)
-                }
-            } else {
-                gameDelegate?.updateSlices(slices: 1)
-            }
-        } else {
-            gameDelegate?.updateSlices(slices: 0)
-        }
+
         
         if gameStarted {
             player.update(CGFloat(deltaTime))
@@ -192,10 +168,20 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             if !firstContactFlagPlayerOrange {
                 firstContactFlagPlayerOrange = true
                 self.flightSpeed += 300
+                
+                if slices == 0 {
+                    gameDelegate?.updateSlices(slices: 3)
+                    slices = 3
+                } else if slices == 3 {
+                    gameDelegate?.updateSlices(slices: 0)
+                    slices = 0
+                }
+                
+                
+                
                 if self.flightSpeed > 2000 {
                     self.flightSpeed = 2000
                 }
-                setSpeeds(self.flightSpeed)
             }
             
             
@@ -367,6 +353,34 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         audioPlayerPads.numberOfLoops = -1
     }
     
+    func setSlices() {
+            print("speed: \(flightSpeed)")
+            if flightSpeed > 1000 {
+                if flightSpeed > 1200 {
+                    if flightSpeed > 1400 {
+                        if flightSpeed > 1600 {
+                            if flightSpeed > 1800 {
+                                if flightSpeed >= 2000 {
+                                    gameDelegate?.updateSlices(slices: 6)
+                                } else {
+                                    gameDelegate?.updateSlices(slices: 5)
+                                }
+                            } else {
+                                gameDelegate?.updateSlices(slices: 4)
+                            }
+                        } else {
+                            gameDelegate?.updateSlices(slices: 3)
+                        }
+                    } else {
+                        gameDelegate?.updateSlices(slices: 2)
+                    }
+                } else {
+                    gameDelegate?.updateSlices(slices: 1)
+                }
+            } else {
+                gameDelegate?.updateSlices(slices: 0)
+            }
+    }
     
     
     func mute() {
