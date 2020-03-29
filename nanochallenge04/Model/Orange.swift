@@ -11,7 +11,7 @@ import SpriteKit
 class Orange: Spawnable {
     
     var lastTime: TimeInterval = TimeInterval(0)
-    var timeInterval: Double = Double.random(in: Double(2)...Double(10))
+    var timeInterval: Double = Double.random(in: Double(5)...Double(10))
     var scene: SKScene?
     let fullTexture = SKTexture(imageNamed: "OneRing")
     var isSpawnActive = false
@@ -95,7 +95,7 @@ class Orange: Spawnable {
                         orange.name = "orangeTrue"
                     }
                 }
-                timeInterval = Double.random(in: 2...2)
+                timeInterval = Double.random(in: 2...4)
             }
         }
         
@@ -112,15 +112,5 @@ class Orange: Spawnable {
                 orange.physicsBody?.velocity = CGVector(dx: 0, dy: -speed)
             }
         }
-        
-        
-        
-        
-        
-        
-        
-        
-        
     }
-    
 }

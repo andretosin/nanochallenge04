@@ -44,8 +44,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var audioPlayerPads: AVAudioPlayer!
     var lastTime: TimeInterval = TimeInterval(0)
     let notification = UIImpactFeedbackGenerator(style: .heavy)
-    var didGetBoost = false
+    var isBoostActive = false
     var slices = 0
+    var flightSlowdown: CGFloat = 0.6
     
     override func didMove(to view: SKView) {
         
@@ -63,7 +64,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         }
         
         self.physicsWorld.contactDelegate = self
-        view.showsPhysics = false
+        view.showsPhysics = true
         
         setAudioPlayers()
         
@@ -132,6 +133,13 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 gameDelegate?.updateSlices(slices: 1)
             }
         } else {
+            if isBoostActive {
+                isBoostActive = false
+                player.node.physicsBody?.collisionBitMask = ContactMask.rock.rawValue
+                flightSlowdown = 0.6
+                rock.isSpawnActive = true
+                orange.isSpawnActive = true
+            }
             gameDelegate?.updateSlices(slices: 0)
         }
         
@@ -142,7 +150,15 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             orange.update(currentTime)
             rock.playerPosX = player.node.position.x
             if self.flightSpeed > 1000 {
-                self.flightSpeed -= 1.0
+                self.flightSpeed -= flightSlowdown
+                
+            }
+            if isBoostActive {
+                player.node.physicsBody?.collisionBitMask = 0
+                rock.isSpawnActive = false
+                orange.isSpawnActive = false
+                flightSpeed = 3000
+                flightSlowdown = CGFloat(2.0)
             }
             
             
@@ -192,10 +208,14 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             // se encosotu numa laranja
             if !firstContactFlagPlayerOrange {
                 firstContactFlagPlayerOrange = true
+                
+                
                 self.flightSpeed += 200
                 
                
-                
+                if self.flightSpeed > 2000 {
+                    isBoostActive = true
+                }
                 
                 
                 if self.flightSpeed > 2200 {

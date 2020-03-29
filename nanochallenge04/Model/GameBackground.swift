@@ -15,8 +15,6 @@ class GameBackground: Updatable {
 
         
         
-        self.node.position.y -= 0
-//        print(self.node.position.y)
         if self.node.position.y < -1000 {
             self.node.position.y = 0
         }
