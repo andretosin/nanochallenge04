@@ -218,7 +218,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 firstContactFlagPlayerOrange = true
                 
                 
-                self.flightSpeed += 2000
+                self.flightSpeed += 300 
                 
                
                 if self.flightSpeed > 2000 {
