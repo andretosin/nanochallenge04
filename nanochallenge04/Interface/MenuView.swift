@@ -307,7 +307,7 @@ struct MenuView: View {
                             ButtonConfView(content: ButtonType(iconName: "RocketB")) {
                                 self.chooseRocket.toggle()
                             }
-                            ButtonConfView(content: ButtonType(iconName: "EmblemB"))
+                            ButtonConfView(content: ButtonType(iconName: "PowerUp"))
                             ButtonConfView(content: ButtonType(iconName: "RankingB"))
                             ButtonConfView(content: ButtonType(iconName: "SoundOnB")) {
                                 self.isMuted.toggle()
