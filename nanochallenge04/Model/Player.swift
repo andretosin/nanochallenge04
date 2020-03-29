@@ -93,21 +93,16 @@ class Player: Updatable {
         
         if applyTorqueRight {
             if self.node.position.x < CGFloat(positionLimit) {
-//                if self.node.position.x - refPosX + 80 + xSpeed/15 < 5 {
-                    if self.node.zRotation > -limitAngle {
-                        self.node.physicsBody?.angularDamping = 0
-                        if abs(self.node.physicsBody!.angularVelocity) < speedLimit {
-                            self.node.physicsBody?.applyTorque(-torque)
-                        }
-                        self.node.texture = leftTexture
-                        
-                    } else {
-                        self.node.physicsBody?.angularDamping = damping
+                if self.node.zRotation > -limitAngle {
+                    self.node.physicsBody?.angularDamping = 0
+                    if abs(self.node.physicsBody!.angularVelocity) < speedLimit {
+                        self.node.physicsBody?.applyTorque(-torque)
                     }
-//                } else {
-//                    isIdle = true
-//                    applyTorqueRight = false
-//                }
+                    self.node.texture = leftTexture
+                    
+                } else {
+                    self.node.physicsBody?.angularDamping = damping
+                }
             } else {
                 isIdle = true
                 applyTorqueRight = false
@@ -118,20 +113,15 @@ class Player: Updatable {
         
         if applyTorqueLeft {
             if self.node.position.x > CGFloat(-positionLimit) {
-//                if self.node.position.x - refPosX - 80 - xSpeed/15 > 5 {
-                    if self.node.zRotation < limitAngle {
-                        self.node.physicsBody?.angularDamping = 0
-                        if abs(self.node.physicsBody!.angularVelocity) < speedLimit {
-                            self.node.physicsBody?.applyTorque(torque)
-                        }
-                        self.node.texture = rightTexture
-                    } else {
-                        self.node.physicsBody?.angularDamping = damping
+                if self.node.zRotation < limitAngle {
+                    self.node.physicsBody?.angularDamping = 0
+                    if abs(self.node.physicsBody!.angularVelocity) < speedLimit {
+                        self.node.physicsBody?.applyTorque(torque)
                     }
-//                } else {
-//                    isIdle = true
-//                    applyTorqueLeft = false
-//                }
+                    self.node.texture = rightTexture
+                } else {
+                    self.node.physicsBody?.angularDamping = damping
+                }
             } else {
                 isIdle = true
                 applyTorqueLeft = false
@@ -141,16 +131,12 @@ class Player: Updatable {
         if isIdle && self.node.zRotation != 0 {
             if self.node.zRotation > 0.2 {
                 self.node.physicsBody?.angularDamping = 0
-                //                if abs(self.node.physicsBody!.angularVelocity) < speedLimit {
                 self.node.physicsBody?.applyTorque(-torque/1.5)
                 self.node.texture = leftTexture
-                //                }
             } else if self.node.zRotation < -0.2 {
                 self.node.physicsBody?.angularDamping = 0
-                //                if abs(self.node.physicsBody!.angularVelocity) < speedLimit {
                 self.node.physicsBody?.applyTorque(torque/1.5)
                 self.node.texture = rightTexture
-                //                }
             } else {
                 self.node.zRotation = 0
                 self.node.physicsBody?.angularVelocity = 0

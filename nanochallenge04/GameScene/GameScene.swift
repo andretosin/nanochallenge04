@@ -109,6 +109,31 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         }
         let deltaTime = currentTime - lastTime
 
+        if flightSpeed > 1000 {
+            if flightSpeed > 1200 {
+                if flightSpeed > 1400 {
+                    if flightSpeed > 1600 {
+                        if flightSpeed > 1800 {
+                            if flightSpeed >= 2000 {
+                                gameDelegate?.updateSlices(slices: 6)
+                            } else {
+                                gameDelegate?.updateSlices(slices: 5)
+                            }
+                        } else {
+                            gameDelegate?.updateSlices(slices: 4)
+                        }
+                    } else {
+                        gameDelegate?.updateSlices(slices: 3)
+                    }
+                } else {
+                    gameDelegate?.updateSlices(slices: 2)
+                }
+            } else {
+                gameDelegate?.updateSlices(slices: 1)
+            }
+        } else {
+            gameDelegate?.updateSlices(slices: 0)
+        }
         
         if gameStarted {
             player.update(CGFloat(deltaTime))
@@ -167,20 +192,14 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             // se encosotu numa laranja
             if !firstContactFlagPlayerOrange {
                 firstContactFlagPlayerOrange = true
-                self.flightSpeed += 300
+                self.flightSpeed += 200
                 
-                if slices == 0 {
-                    gameDelegate?.updateSlices(slices: 3)
-                    slices = 3
-                } else if slices == 3 {
-                    gameDelegate?.updateSlices(slices: 0)
-                    slices = 0
-                }
+               
                 
                 
                 
-                if self.flightSpeed > 2000 {
-                    self.flightSpeed = 2000
+                if self.flightSpeed > 2200 {
+                    self.flightSpeed = 2200
                 }
             }
             
