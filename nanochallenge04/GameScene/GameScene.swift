@@ -332,14 +332,12 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     func startRun(totalStars: Int) {
         if !gameStarted {
             gameStarted = true
-            //        isPlayerDead = false
             player.isDead = false
             player.node.physicsBody?.isDynamic = true
             self.totalStars = totalStars
             flightSpeed = 1000
             player.node.position = CGPoint(x: 0, y: -640)
             player.node.physicsBody?.velocity = CGVector(dx: 0, dy: 0)
-            //        player.node.physicsBody?.allowsRotation = true
             firstContactFlagPlayerRock = false
             star.isSpawnActive = true
             orange.isSpawnActive = true
@@ -353,7 +351,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             lblDistance.text = "\(flightDistance)"
             playPads()
         }
-        //        print("startou run \(totalStars)")
     }
     
     func endRun() {

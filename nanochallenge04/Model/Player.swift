@@ -14,31 +14,12 @@ import UIKit
 class Player: Updatable {
     
     
-    
-    //    var rollingRight: Bool = false
-    //    var rollingLeft: Bool = false
-    //    var resetPos: Bool = false {
-    //        didSet {
-    //            torqueApplied = false
-    //        }
-    //    }
-    //    var lastTime = TimeInterval(0)
-    //    var torqueApplied: Bool = false
-    //    let zRotationAngle = CGFloat(Double.pi/4)
-    //    let notification = UIImpactFeedbackGenerator(style: .heavy)
-    //    let rollRate: CGFloat = 50
-    //    var accelerateRight: Bool = false
-    //    var accelerateLeft: Bool = false
-    
-    
-    
-    
-    
     var scene: GameScene!
-    var node: SKSpriteNode = SKSpriteNode(imageNamed: "RocketOff-1")
-    var leftTexture = SKTexture(imageNamed: "RocketLeft-1")
-    var rightTexture = SKTexture(imageNamed: "RocketRight-1")
-    var offTexture = SKTexture(imageNamed: "RocketOff-1")
+    var node: SKSpriteNode = SKSpriteNode(imageNamed: "RocketOff-2")
+    var leftTexture = SKTexture(imageNamed: "RocketLeft-2")
+    var rightTexture = SKTexture(imageNamed: "RocketRight-2")
+    var offTexture = SKTexture(imageNamed: "RocketOff-2")
+    var collisionMask = SKTexture(imageNamed: "RocketMask-2")
     
     
     var applyTorqueLeft: Bool = false
@@ -57,20 +38,21 @@ class Player: Updatable {
     let positionLimit = CGFloat(350)
     let damping = CGFloat(30)
     var xSpeed = CGFloat(1000)
-    var torque = CGFloat(30)
+    var torque = CGFloat(20)
 
     
     
     internal init(scene: GameScene?) {
         self.configurePhysics()
-        self.node.scale(to: CGSize(width: 250, height: 250))
+        self.node.scale(to: CGSize(width: 314/1.4, height: 428/1.4))
         self.node.position = CGPoint(x: 0, y: -50)
         self.node.zPosition = 2
         scene?.addChild(self.node)
     }
     
     func configurePhysics() {
-        self.node.physicsBody = SKPhysicsBody(texture: self.node.texture!, size: self.node.texture!.size())
+        
+        self.node.physicsBody = SKPhysicsBody(texture: self.collisionMask, size: self.collisionMask.size())
         let body = self.node.physicsBody
         body?.categoryBitMask = ContactMask.player.rawValue
         body?.contactTestBitMask = ContactMask.star.rawValue
@@ -85,6 +67,7 @@ class Player: Updatable {
         self.leftTexture = SKTexture(imageNamed: "RocketLeft-" + String(index))
         self.rightTexture = SKTexture(imageNamed: "RocketRight-" + String(index))
         self.offTexture = SKTexture(imageNamed: "RocketOff-" + String(index))
+        self.collisionMask = SKTexture(imageNamed: "RocketMask-" + String(index))
     }
     
     func update(_ deltaTime: CGFloat) {
