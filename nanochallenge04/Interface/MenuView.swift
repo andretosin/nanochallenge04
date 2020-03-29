@@ -206,7 +206,7 @@ struct MenuView: View {
                                         }
                                     }
                                     .padding(.trailing, geo.size.width/28)
-                                    .offset(y: 0.001 * -geo.size.width)
+                                    .offset(y: 0.005 * -geo.size.width)
                                 }
                                 .opacity(self.buttonIsShown ? 1.0 : 0.0)
                                 .onTapGesture {
