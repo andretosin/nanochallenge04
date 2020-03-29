@@ -10,7 +10,6 @@ import SpriteKit
 
 
 class Rock: Spawnable {
-    var node = SKSpriteNode(imageNamed: "Rock")
     var scene: SKScene?
     var isSpawnActive = false
     var rockArray: [SKSpriteNode] = []
@@ -35,7 +34,9 @@ class Rock: Spawnable {
     
     
     func setupRock(_ rockNode: SKSpriteNode, x: CGFloat, y: CGFloat, speed: CGFloat) {
-        rockNode.physicsBody = SKPhysicsBody(circleOfRadius: rockNode.texture!.size().width/2)
+        
+        let collisionMask = SKTexture(imageNamed: "RockMask")
+        rockNode.physicsBody = SKPhysicsBody(texture: collisionMask, size: collisionMask.size())
         rockNode.physicsBody?.categoryBitMask = ContactMask.rock.rawValue
         rockNode.physicsBody?.contactTestBitMask = ContactMask.player.rawValue
         rockNode.physicsBody?.collisionBitMask = 0
