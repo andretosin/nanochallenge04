@@ -44,7 +44,25 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var audioPlayerPads: AVAudioPlayer!
     var lastTime: TimeInterval = TimeInterval(0)
     let notification = UIImpactFeedbackGenerator(style: .heavy)
-    var isBoostActive = false
+    var isBoostActive = false {
+        didSet {
+            if isBoostActive {
+                flightSpeed = 3000
+                flightSlowdown = 2.0
+                rock.isSpawnActive = false
+                orange.isSpawnActive = false
+            } else {
+                flightSlowdown = 0.6
+                rock.isSpawnActive = true
+                orange.isSpawnActive = true
+
+            }
+        }
+    }
+    
+    
+    
+    
     var slices = 0
     var flightSlowdown: CGFloat = 0.6
     
@@ -133,13 +151,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 gameDelegate?.updateSlices(slices: 1)
             }
         } else {
-            if isBoostActive {
-                isBoostActive = false
-                player.node.physicsBody?.collisionBitMask = ContactMask.rock.rawValue
-                flightSlowdown = 0.6
-                rock.isSpawnActive = true
-                orange.isSpawnActive = true
-            }
+            isBoostActive = false
             gameDelegate?.updateSlices(slices: 0)
         }
         
@@ -151,15 +163,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             rock.playerPosX = player.node.position.x
             if self.flightSpeed > 1000 {
                 self.flightSpeed -= flightSlowdown
-                
             }
-            if isBoostActive {
-                player.node.physicsBody?.collisionBitMask = 0
-                rock.isSpawnActive = false
-                orange.isSpawnActive = false
-                flightSpeed = 3000
-                flightSlowdown = CGFloat(2.0)
-            }
+            
             
             
             //            if self.flightSpeed > 1000 {
@@ -210,7 +215,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 firstContactFlagPlayerOrange = true
                 
                 
-                self.flightSpeed += 200
+                self.flightSpeed += 2000
                 
                
                 if self.flightSpeed > 2000 {

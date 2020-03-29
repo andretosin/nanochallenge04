@@ -48,6 +48,7 @@ class Player: Updatable {
     var refPosX: CGFloat = 0
     
     
+    
     let limitAngle = CGFloat(Double.pi/6)
     let speedLimit = CGFloat(6)
     let positionLimit = CGFloat(350)
@@ -89,6 +90,7 @@ class Player: Updatable {
             self.node.physicsBody?.velocity = CGVector(dx: -xSpeed * self.node.zRotation, dy: 0)
         }
         
+       
       
         
         if applyTorqueRight {
