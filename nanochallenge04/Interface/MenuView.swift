@@ -85,7 +85,7 @@ struct MenuView: View {
                                     Image(systemName: "flag.fill")
                                         .font(.system(size: geo.size.width/22))
                                         .foregroundColor(.white)
-                                        .shadow(color: Color.black.opacity(0.75), radius: 1, x: -1, y: 1)
+//                                        .shadow(color: Color.black.opacity(0.75), radius: 1, x: -1, y: 1)
                                     HStack (spacing: geo.size.width/120) {
                                         Text("\(Int(self.highScore))")
                                             .font(.custom("nulshock", size: geo.size.width/18))
@@ -94,7 +94,7 @@ struct MenuView: View {
                                             .bold()
                                             
                                             .multilineTextAlignment(.leading)
-                                            .shadow(color: Color.black.opacity(0.75), radius: 1, x: -1, y: 1)
+//                                            .shadow(color: Color.black.opacity(0.75), radius: 1, x: -1, y: 1)
                                             .animation(.spring(response: 0.0, dampingFraction:0.2))
                                         .fixedSize()
                                         Text("ly")
@@ -103,7 +103,7 @@ struct MenuView: View {
                                             .foregroundColor(.white)
                                             .bold()
                                             .padding(.top, geo.size.width/60)
-                                            .shadow(color: Color.black.opacity(0.75), radius: 1, x: -1, y: 1)
+//                                            .shadow(color: Color.black.opacity(0.75), radius: 1, x: -1, y: 1)
                                         .fixedSize()
                                         .animation(.spring(response: 0.0, dampingFraction:0.2))
                                     }
@@ -150,14 +150,14 @@ struct MenuView: View {
                                     Image(systemName: "star.fill")
                                         .font(.system(size: geo.size.width/22, weight: .bold))
                                         .foregroundColor(.white)
-                                        .shadow(color: Color.black.opacity(0.75), radius: 1, x: -1, y: 1)
+//                                        .shadow(color: Color.black.opacity(0.75), radius: 1, x: -1, y: 1)
                                     .fixedSize()
                                     ZStack {
                                        Text("\(self.totalStarsCollected)")
                                         .font(.custom("nulshock", size: geo.size.width/18))
                                         .foregroundColor(.white)
                                         .bold()
-                                        .shadow(color: Color.black.opacity(0.75), radius: 1, x: -1, y: 1)
+//                                        .shadow(color: Color.black.opacity(0.75), radius: 1, x: -1, y: 1)
                                         .fixedSize()
                                         .animation(.spring(response: 0.0, dampingFraction:0.2))
                                     }
@@ -202,7 +202,8 @@ struct MenuView: View {
                                                 .font(.system(size: geo.size.width/18, weight: .regular))
                                                 //                                            .padding(.trailing, geo.size.width/40)
                                                 .foregroundColor(.white)
-                                                .shadow(color: Color.black.opacity(0.75), radius: 1, x: -1, y: 1)
+                                                .shadow(color: Color("CosmicPurple").opacity(0.75), radius: 2, x: -2, y: 2)
+//                                                .shadow(color: Color.black.opacity(0.75), radius: 1, x: -1, y: 1)
                                         
                                                 .fixedSize()
                                             
@@ -227,7 +228,7 @@ struct MenuView: View {
                             
                             ZStack {
                                 if self.showLogo {
-                                    Image("PurpleLogo")
+                                    Image("JuicyLogoPurple")
                                         .resizable()
                                         .scaledToFit()
                                         .frame(width: geo.size.width/1.3)
@@ -390,6 +391,7 @@ struct MenuView: View {
                     Circle()
                         .offset(y: 1.18 * self.topMenu)
                         .shadow(color: Color.black.opacity(0.75), radius: 1, x: -1, y: 1)
+                        
                         .foregroundColor(Color("LowerPurple"))
                         .frame(width: geo.size.width/3.35)
                         .opacity(self.buttonIsShown ? 1.0 : 0.0)
@@ -407,7 +409,9 @@ struct MenuView: View {
                         .foregroundColor(Color.white)
                         .offset(x: 0.03 * self.topMenu, y: 1.2 * self.topMenu)
                         //                                                .offset(x: self.topMenu, y: self.topMenu)
-                        .shadow(color: Color.black.opacity(0.5), radius: 1, x: 1, y: 1)
+                        .shadow(color: Color("CosmicPurple").opacity(0.75), radius: 2, x: -2, y: 2)
+                        
+//                        .shadow(color: Color.black.opacity(0.5), radius: 1, x: 1, y: 1)
                         //                        .frame(width: geo.size.width/6, height: geo.size.width/8)
                         //                        .rotationEffect(.degrees(-270))
                         .padding(30)
