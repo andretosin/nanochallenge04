@@ -81,7 +81,6 @@ class Orange: Spawnable {
                         for node in scene!.children {
                             if node.name == "rockTrue" {
                                 if abs(node.position.y - orange.position.y) < spawnPadding {
-                                    print("spawnou laranja perto de pedra")
                                     while abs(node.position.x - orange.position.x) < spawnPadding {
                                         orange.position.x = CGFloat.random(in: -400...400)
                                     }
