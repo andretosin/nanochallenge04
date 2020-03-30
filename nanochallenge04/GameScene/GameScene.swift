@@ -165,8 +165,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             player.update(CGFloat(deltaTime))
             rock.update(currentTime)
             star.update(currentTime)
-            orange.update(currentTime)
-            powerup.update(currentTime)
+//            orange.update(currentTime)
+//            powerup.update(currentTime)
             rock.playerPosX = player.node.position.x
             if self.flightSpeed > 1000 {
                 self.flightSpeed -= flightSlowdown

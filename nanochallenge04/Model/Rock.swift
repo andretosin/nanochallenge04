@@ -15,14 +15,14 @@ class Rock: Spawnable {
     var rockArray: [SKSpriteNode] = []
     var speed: CGFloat = 1000
     var playerPosX: CGFloat = 0
-    var timeInterval: Double = 2
+    var timeInterval: Double = 1.5
     
     internal init(scene: SKScene?) {
         self.scene = scene
         let texture = SKTexture(imageNamed: "Rock")
         
         // adiciona 3 pedras e deixa elas guardadas para serem posicionadas
-        for _ in 1...3 {
+        for _ in 1...5 {
             let rockNode = SKSpriteNode(texture: texture)
             setupRock(rockNode, x: 1000, y: 0, speed: speed)
             rockArray.append(rockNode)
@@ -71,33 +71,32 @@ class Rock: Spawnable {
                 for rock in rockArray {
                     if rock.name == "rockFalse" {
                         // spawnar pedra
-                        rock.name = "rockTrue"
-                        rock.physicsBody?.isDynamic = true
-                        rock.position.x = CGFloat.random(in: playerPosX-5 ... playerPosX + 5)
-                        rock.position.y = 1200
-                        
-                        
-                        // verificar se não vai spawnar em cima de uma estrela
-                        for node in scene!.children {
-                            if node.name == "starTrue" || node.name == "orangeTrue" || node.name == "powerupTrue" {
-                                let spawnPadding: CGFloat = 300
-                                if abs(node.position.y - rock.position.y) < spawnPadding {
-                                    while abs(node.position.x - rock.position.x) < spawnPadding {
-                                        rock.position.x = CGFloat.random(in: -400...400)
+                        let dice = Int.random(in: 1...1)
+                        if dice == 1 {
+                            rock.name = "rockTrue"
+                            rock.physicsBody?.isDynamic = true
+                            rock.position.x = CGFloat.random(in: -400 ... 400)
+//                            rock.position.x = CGFloat.random(in: playerPosX-5 ... playerPosX + 5)
+                            
+                            rock.position.y = 1200
+                            
+                            
+                            // verificar se não vai spawnar em cima de uma estrela
+                            for node in scene!.children {
+                                if node.name == "starTrue" || node.name == "orangeTrue" || node.name == "powerupTrue" {
+                                    let spawnPadding: CGFloat = 300
+                                    if abs(node.position.y - rock.position.y) < spawnPadding {
+                                        while abs(node.position.x - rock.position.x) < spawnPadding {
+                                            rock.position.x = CGFloat.random(in: -400...400)
+                                        }
                                     }
                                 }
                             }
+                            rock.physicsBody?.velocity = CGVector(dx: 0, dy: -speed)
                         }
                         
-                        // verificar se nao vai spawnar em cima de um tunel
-                        
-                        
-                        
-                        
-                        rock.physicsBody?.velocity = CGVector(dx: 0, dy: -speed)
-                        
                         // sorteia um tempo para spawnar a nova pedra
-                        timeInterval = Double.random(in: (2000/3)/Double(speed)...2000/Double(speed))
+                        timeInterval = Double.random(in: (2000/4)/Double(speed)...(2000/2)/Double(speed))
                         return
                     }
                 }

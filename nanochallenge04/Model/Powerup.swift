@@ -100,5 +100,11 @@ class PowerUp: Spawnable {
             }
         }
         
+        for powerup in powerUpArray {
+            if powerup.name == "powerupTrue" {
+                powerup.physicsBody?.velocity = CGVector(dx: 0, dy: -speed)
+            }
+        }
+        
     }
 }
