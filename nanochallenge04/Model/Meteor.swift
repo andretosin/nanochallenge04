@@ -79,8 +79,7 @@ class Meteor: Spawnable {
         // quando sair da tela, coloca na espera
         for meteor in meteorArray {
             if meteor.position.y < -1500 {
-                meteor.position = CGPoint(x: 1001, y: 0)
-                meteor.name = "meteorFalse"
+                resetPos(meteor)
             }
         }
         
@@ -91,4 +90,18 @@ class Meteor: Spawnable {
             }
         }
     }
+    
+    func resetPos(_ meteor: SKSpriteNode) {
+        meteor.position = CGPoint(x: 1001, y: 0)
+        meteor.name = "meteorFalse"
+    }
+    
+    func resetAllPos() {
+        for meteor in meteorArray {
+            resetPos(meteor)
+        }
+    }
+    
+    
+    
 }

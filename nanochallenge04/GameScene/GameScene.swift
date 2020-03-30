@@ -88,7 +88,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         }
         
         self.physicsWorld.contactDelegate = self
-        view.showsPhysics = false
+        view.showsPhysics = true
         
         setAudioPlayers()
         
@@ -344,6 +344,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             powerup.isSpawnActive = true
             meteor.isSpawnActive = true
             rock.resetAllPos()
+            meteor.resetAllPos()
             setSpeeds(flightSpeed)
             flightDistance = 0
             flightIncrement = 0
