@@ -26,6 +26,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var orange: Orange!
     var player: Player!
     var powerup: PowerUp!
+    var meteor: Meteor!
     var totalStars: Int! = 0
     var isPlayerDead: Bool = false
     var isSoundMuted: Bool = false
@@ -53,12 +54,14 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 rock.isSpawnActive = false
                 orange.isSpawnActive = false
                 powerup.isSpawnActive = false
+                meteor.isSpawnActive = false
                 player.b1.toggle()
             } else {
                 flightSlowdown = 0.6
                 rock.isSpawnActive = true
                 orange.isSpawnActive = true
                 powerup.isSpawnActive = true
+                meteor.isSpawnActive = true
             }
         }
     }
@@ -115,6 +118,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             self.firstContactFlagPlayerOrange = false
         })
         powerup = PowerUp(scene: self)
+        meteor = Meteor(scene: self)
         
         audioPlayerPads.play()
         audioPlayerAmbience.play()
@@ -164,10 +168,12 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         if gameStarted {
             player.update(CGFloat(deltaTime))
             rock.update(currentTime)
-            star.update(currentTime)
+//            star.update(currentTime)
+            meteor.update(currentTime)
 //            orange.update(currentTime)
 //            powerup.update(currentTime)
-            rock.playerPosX = player.node.position.x
+            meteor.playerPosX = player.node.position.x
+            
             if self.flightSpeed > 1000 {
                 self.flightSpeed -= flightSlowdown
             }
@@ -336,6 +342,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             orange.isSpawnActive = true
             rock.isSpawnActive = true
             powerup.isSpawnActive = true
+            meteor.isSpawnActive = true
             rock.resetAllPos()
             setSpeeds(flightSpeed)
             flightDistance = 0
@@ -368,6 +375,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         //        player.torque = speed/16
         orange.speed = speed
         powerup.speed = speed
+        meteor.speed = speed
     }
     
     
@@ -391,37 +399,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         audioPlayerPads.volume = 0.0
         audioPlayerPads.numberOfLoops = -1
     }
-    
-    func setSlices() {
-            print("speed: \(flightSpeed)")
-            if flightSpeed > 1000 {
-                if flightSpeed > 1200 {
-                    if flightSpeed > 1400 {
-                        if flightSpeed > 1600 {
-                            if flightSpeed > 1800 {
-                                if flightSpeed >= 2000 {
-                                    gameDelegate?.updateSlices(slices: 6)
-                                } else {
-                                    gameDelegate?.updateSlices(slices: 5)
-                                }
-                            } else {
-                                gameDelegate?.updateSlices(slices: 4)
-                            }
-                        } else {
-                            gameDelegate?.updateSlices(slices: 3)
-                        }
-                    } else {
-                        gameDelegate?.updateSlices(slices: 2)
-                    }
-                } else {
-                    gameDelegate?.updateSlices(slices: 1)
-                }
-            } else {
-                gameDelegate?.updateSlices(slices: 0)
-            }
-    }
-    
-    
+        
     func mute() {
         audioPlayerAmbience.setVolume(0.0, fadeDuration: 0.1)
     }

@@ -16,6 +16,8 @@ class Rock: Spawnable {
     var speed: CGFloat = 1000
     var playerPosX: CGFloat = 0
     var timeInterval: Double = 1.5
+    var lastTime: TimeInterval = TimeInterval(0)
+
     
     internal init(scene: SKScene?) {
         self.scene = scene
@@ -30,7 +32,6 @@ class Rock: Spawnable {
         }  
     }
     
-    var lastTime: TimeInterval = TimeInterval(0)
     
     
     func setupRock(_ rockNode: SKSpriteNode, x: CGFloat, y: CGFloat, speed: CGFloat) {
