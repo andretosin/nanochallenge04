@@ -17,12 +17,12 @@ class Rock: Spawnable {
     var playerPosX: CGFloat = 0
     var timeInterval: Double = 1.5
     var lastTime: TimeInterval = TimeInterval(0)
-    
+    var spawnChance = 100
     
     internal init(scene: SKScene?) {
         self.scene = scene
-    
-
+        
+        
         
         // adiciona 3 pedras e deixa elas guardadas para serem posicionadas
         for _ in 1...5 {
@@ -59,6 +59,44 @@ class Rock: Spawnable {
     }
     
     
+    func rollChance(spawnChance: Int) -> Bool {
+        if spawnChance == 100 { return true }
+        else if spawnChance == 90 {
+            let dice = Int.random(in: 1...10)
+            if dice != 10 { return true } else { return false }
+        } else if spawnChance == 80 {
+            let dice = Int.random(in: 1...10)
+            if dice <= 8 { return true } else { return false }
+        }
+        else if spawnChance == 70 {
+            let dice = Int.random(in: 1...10)
+            if dice <= 7 { return true } else { return false }
+        }
+        else if spawnChance == 60 {
+            let dice = Int.random(in: 1...10)
+            if dice <= 6 { return true } else { return false }
+        }
+        else if spawnChance == 50 {
+            let dice = Int.random(in: 1...10)
+            if dice <= 5 { return true } else { return false }
+        }
+        else if spawnChance == 40 {
+            let dice = Int.random(in: 1...10)
+            if dice <= 4 { return true } else { return false }
+        }
+        else if spawnChance == 30 {
+            let dice = Int.random(in: 1...10)
+            if dice <= 3 { return true } else { return false }
+        }
+        else if spawnChance == 20 {
+            let dice = Int.random(in: 1...10)
+            if dice <= 2 { return true } else { return false }
+        }
+        else if spawnChance == 10 {
+            let dice = Int.random(in: 1...10)
+            if dice <= 1 { return true } else { return false }
+        } else { return false }
+    }
     
     
     func update(_  currentTime: TimeInterval) {
@@ -74,12 +112,12 @@ class Rock: Spawnable {
                 for rock in rockArray {
                     if rock.name == "rockFalse" {
                         // spawnar pedra
-                        let dice = Int.random(in: 1...1)
-                        if dice == 1 {
+                        
+                        if rollChance(spawnChance: spawnChance) {
                             rock.name = "rockTrue"
                             rock.physicsBody?.isDynamic = true
                             rock.position.x = CGFloat.random(in: -400 ... 400)
-//                            rock.position.x = CGFloat.random(in: playerPosX-5 ... playerPosX + 5)
+                            //                            rock.position.x = CGFloat.random(in: playerPosX-5 ... playerPosX + 5)
                             
                             rock.position.y = 1200
                             

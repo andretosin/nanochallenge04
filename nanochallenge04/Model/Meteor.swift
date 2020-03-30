@@ -16,6 +16,7 @@ class Meteor: Spawnable {
     var playerPosX: CGFloat = 0
     var timeInterval: Double = 1.5
     var lastTime: TimeInterval = TimeInterval(0)
+    var spawnChance = 100
 
     
     internal init(scene: SKScene?) {
@@ -50,6 +51,45 @@ class Meteor: Spawnable {
     }
     
     
+    func rollChance(spawnChance: Int) -> Bool {
+        if spawnChance == 100 { return true }
+        else if spawnChance == 90 {
+            let dice = Int.random(in: 1...10)
+            if dice != 10 { return true } else { return false }
+        } else if spawnChance == 80 {
+            let dice = Int.random(in: 1...10)
+            if dice <= 8 { return true } else { return false }
+        }
+        else if spawnChance == 70 {
+            let dice = Int.random(in: 1...10)
+            if dice <= 7 { return true } else { return false }
+        }
+        else if spawnChance == 60 {
+            let dice = Int.random(in: 1...10)
+            if dice <= 6 { return true } else { return false }
+        }
+        else if spawnChance == 50 {
+            let dice = Int.random(in: 1...10)
+            if dice <= 5 { return true } else { return false }
+        }
+        else if spawnChance == 40 {
+            let dice = Int.random(in: 1...10)
+            if dice <= 4 { return true } else { return false }
+        }
+        else if spawnChance == 30 {
+            let dice = Int.random(in: 1...10)
+            if dice <= 3 { return true } else { return false }
+        }
+        else if spawnChance == 20 {
+            let dice = Int.random(in: 1...10)
+            if dice <= 2 { return true } else { return false }
+        }
+        else if spawnChance == 10 {
+            let dice = Int.random(in: 1...10)
+            if dice <= 1 { return true } else { return false }
+        } else { return false }
+    }
+    
     func update(_ currentTime: TimeInterval) {
         if lastTime == 0 {
             lastTime = currentTime
@@ -63,8 +103,7 @@ class Meteor: Spawnable {
                 for meteor in meteorArray {
                     if meteor.name == "meteorFalse" {
                         // spawnar meteoro
-                        let dice = Int.random(in: 1...1)
-                        if dice == 1 {
+                        if rollChance(spawnChance: spawnChance) {
                             meteor.name = "meteorTrue"
                             meteor.physicsBody?.isDynamic = true
                             meteor.position = CGPoint(x: playerPosX, y: 1200)
