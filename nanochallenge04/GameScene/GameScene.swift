@@ -25,6 +25,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var star: Star!
     var orange: Orange!
     var player: Player!
+    var powerup: PowerUp!
     var totalStars: Int! = 0
     var isPlayerDead: Bool = false
     var isSoundMuted: Bool = false
@@ -51,11 +52,13 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 flightSlowdown = 2.0
                 rock.isSpawnActive = false
                 orange.isSpawnActive = false
+                powerup.isSpawnActive = false
                 player.b1.toggle()
             } else {
                 flightSlowdown = 0.6
                 rock.isSpawnActive = true
                 orange.isSpawnActive = true
+                powerup.isSpawnActive = true
             }
         }
     }
@@ -111,6 +114,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         orange = Orange(scene: self, resetFlag: {
             self.firstContactFlagPlayerOrange = false
         })
+        powerup = PowerUp(scene: self)
         
         audioPlayerPads.play()
         audioPlayerAmbience.play()
@@ -129,7 +133,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         let deltaTime = currentTime - lastTime
 
         
-        print(player.node.position.y)
         
         if flightSpeed > 1000 {
             if flightSpeed > 1200 {
@@ -163,26 +166,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             rock.update(currentTime)
             star.update(currentTime)
             orange.update(currentTime)
+            powerup.update(currentTime)
             rock.playerPosX = player.node.position.x
             if self.flightSpeed > 1000 {
                 self.flightSpeed -= flightSlowdown
             }
-            
-            
-            
-            //            if self.flightSpeed > 1000 {
-            //                if self.flightSpeed >= 1600 {
-            //                    if self.flightSpeed >= 2200 {
-            //                        gameDelegate?.updateSlices(slices: 3)
-            //                    } else {
-            //                        gameDelegate?.updateSlices(slices: 2)
-            //                    }
-            //                } else {
-            //                    gameDelegate?.updateSlices(slices: 1)
-            //                }
-            //            } else {
-            //                gameDelegate?.updateSlices(slices: 0)
-            //            }
             
             if !player.isDead {
                 self.flightIncrement = rock.speed
@@ -231,6 +219,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 }
             }
             
+
             
             
         case ContactMask.player.rawValue | ContactMask.rock.rawValue:
@@ -256,6 +245,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                     self.endRun()
                 }
             }
+            
+        case ContactMask.watermelon.rawValue | ContactMask.player.rawValue:
+            // se encostou numa melancia
+            print("encostou na melancia")
         default:
             print("Unknown collision ocurred")
         }
@@ -342,6 +335,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             star.isSpawnActive = true
             orange.isSpawnActive = true
             rock.isSpawnActive = true
+            powerup.isSpawnActive = true
             rock.resetAllPos()
             setSpeeds(flightSpeed)
             flightDistance = 0
@@ -373,6 +367,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         player.xSpeed = speed
         //        player.torque = speed/16
         orange.speed = speed
+        powerup.speed = speed
     }
     
     

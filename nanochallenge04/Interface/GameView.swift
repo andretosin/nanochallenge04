@@ -68,7 +68,7 @@ struct GameView: UIViewControllerRepresentable {
         func updateSlices(slices: Int) {
             DispatchQueue.main.async {
                 withAnimation {
-                    self.parent.slices = slices
+//                    self.parent.slices = slices
                 }
             }
         }

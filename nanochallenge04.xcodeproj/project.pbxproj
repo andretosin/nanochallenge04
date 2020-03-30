@@ -30,6 +30,7 @@
 		F98D33F5241022E900A12F15 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F98D33F3241022E900A12F15 /* Main.storyboard */; };
 		F98D33F7241022EB00A12F15 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F98D33F6241022EB00A12F15 /* Assets.xcassets */; };
 		F98D33FA241022EB00A12F15 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F98D33F8241022EB00A12F15 /* LaunchScreen.storyboard */; };
+		F9EBD9C42431868E008ABAD6 /* Powerup.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9EBD9C32431868E008ABAD6 /* Powerup.swift */; };
 		F9EEDD86241AAB9400AB586C /* Rock.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9EEDD85241AAB9400AB586C /* Rock.swift */; };
 		F9EEDD88241AC5B500AB586C /* Star.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9EEDD87241AC5B400AB586C /* Star.swift */; };
 		F9EEDD8E241D5CBF00AB586C /* Stars.sks in Resources */ = {isa = PBXBuildFile; fileRef = F9EEDD8C241D5CBF00AB586C /* Stars.sks */; };
@@ -68,6 +69,7 @@
 		F98D33F6241022EB00A12F15 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F98D33F9241022EB00A12F15 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		F98D33FB241022EB00A12F15 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F9EBD9C32431868E008ABAD6 /* Powerup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Powerup.swift; sourceTree = "<group>"; };
 		F9EEDD85241AAB9400AB586C /* Rock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Rock.swift; sourceTree = "<group>"; };
 		F9EEDD87241AC5B400AB586C /* Star.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Star.swift; sourceTree = "<group>"; };
 		F9EEDD8C241D5CBF00AB586C /* Stars.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Stars.sks; sourceTree = "<group>"; };
@@ -172,6 +174,7 @@
 				F958DC9B2412D271007FECFE /* Player.swift */,
 				F9F5300524181B9300276183 /* GameBackground.swift */,
 				F9FA492D242D3796000E16C9 /* Orange.swift */,
+				F9EBD9C32431868E008ABAD6 /* Powerup.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -276,6 +279,7 @@
 				F98D33F0241022E900A12F15 /* GameScene.swift in Sources */,
 				F9F5300624181B9300276183 /* GameBackground.swift in Sources */,
 				F9F530082418212600276183 /* ContactMask.swift in Sources */,
+				F9EBD9C42431868E008ABAD6 /* Powerup.swift in Sources */,
 				3F1E98B324284B6A0092375E /* TriggerButtonView.swift in Sources */,
 				3F1E98AD2425E57A0092375E /* RocketView.swift in Sources */,
 				3F6D9521241DA72800684229 /* MenuView.swift in Sources */,

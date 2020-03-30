@@ -33,12 +33,12 @@ class Player: Updatable {
     var b2 = false
     
     
-    let limitAngle = CGFloat(Double.pi/6)
+    let limitAngle = CGFloat(Double.pi/7)
     let speedLimit = CGFloat(6)
     let positionLimit = CGFloat(350)
     let damping = CGFloat(30)
     var xSpeed = CGFloat(1000)
-    var torque = CGFloat(20)
+    var torque = CGFloat(5)
 
     
     
@@ -74,6 +74,18 @@ class Player: Updatable {
         
         if !isDead {
             self.node.physicsBody?.velocity.dx = -xSpeed * self.node.zRotation
+            
+            if isIdle {
+                if abs(self.node.zRotation) > limitAngle + 0.2{
+                    if self.node.zRotation > 0 {
+                        self.node.zRotation = limitAngle + 0.2
+                    } else {
+                        self.node.zRotation = -limitAngle - 0.2
+                    }
+                }
+            }
+            
+            
             if b1 != b2 {
                 self.node.position.y += 6
                 if self.node.position.y > -250 {
@@ -88,20 +100,30 @@ class Player: Updatable {
         
        
       
-        
+        // ir p direita
         if applyTorqueRight {
             if self.node.position.x < CGFloat(positionLimit) {
+                // se ainda tem espaço para ir para a direita
                 if self.node.zRotation > -limitAngle {
-                    self.node.physicsBody?.angularDamping = 0
-                    if abs(self.node.physicsBody!.angularVelocity) < speedLimit {
-                        self.node.physicsBody?.applyTorque(-torque)
-                    }
-                    self.node.texture = leftTexture
-                    
+//                    if self.node.zRotation <= 0 {  ##############################################
+                        // se o angulo de rotação for maior que o angulo limite ~(-0,52)
+                        self.node.physicsBody?.angularDamping = 0 // zera o atrito
+                        if abs(self.node.physicsBody!.angularVelocity) < speedLimit {
+                            // se ainda nao acelerou ate o maximo, aplique o torque
+                            self.node.physicsBody?.applyTorque(-torque)
+                        }
+                        self.node.texture = leftTexture
+//                    } else {  ##############################################
+//                        // se o angulo ultrapassou o meio para a esquerda  ##############################################
+//                        self.node.zRotation = 0  ##############################################
+//                        self.node.physicsBody?.angularVelocity = 0  ##############################################
+//                    }  ##############################################
                 } else {
+                    // senão, aplique o atrito para parar
                     self.node.physicsBody?.angularDamping = damping
                 }
             } else {
+                // senão, pare
                 isIdle = true
                 applyTorqueRight = false
             }
@@ -109,14 +131,20 @@ class Player: Updatable {
         
         
         
+        // ir p esquerda
         if applyTorqueLeft {
             if self.node.position.x > CGFloat(-positionLimit) {
                 if self.node.zRotation < limitAngle {
-                    self.node.physicsBody?.angularDamping = 0
-                    if abs(self.node.physicsBody!.angularVelocity) < speedLimit {
-                        self.node.physicsBody?.applyTorque(torque)
-                    }
-                    self.node.texture = rightTexture
+//                    if self.node.zRotation >= 0 {  ##############################################
+                        self.node.physicsBody?.angularDamping = 0
+                        if abs(self.node.physicsBody!.angularVelocity) < speedLimit {
+                            self.node.physicsBody?.applyTorque(torque)
+                        }
+                        self.node.texture = rightTexture
+//                    } else {  ##############################################
+//                        self.node.zRotation = 0  ##############################################
+//                        self.node.physicsBody?.angularVelocity = 0  ##############################################
+//                    }  ##############################################
                 } else {
                     self.node.physicsBody?.angularDamping = damping
                 }
@@ -127,14 +155,15 @@ class Player: Updatable {
         }
         
         if isIdle && self.node.zRotation != 0 {
-            if self.node.zRotation > 0.2 {
+            if self.node.zRotation > 0.1 {
                 self.node.physicsBody?.angularDamping = 0
                 self.node.physicsBody?.applyTorque(-torque/1.5)
                 self.node.texture = leftTexture
-            } else if self.node.zRotation < -0.2 {
+            } else if self.node.zRotation < -0.1 {
                 self.node.physicsBody?.angularDamping = 0
                 self.node.physicsBody?.applyTorque(torque/1.5)
                 self.node.texture = rightTexture
+                
             } else {
                 self.node.zRotation = 0
                 self.node.physicsBody?.angularVelocity = 0
