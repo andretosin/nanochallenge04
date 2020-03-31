@@ -78,7 +78,7 @@ struct MenuView: View {
                                         if self.isPlaying {
                                             Text(self.distance)
                                                 .font(.custom("nulshock", size: geo.size.width/18))
-                                                
+                                                .font(Font.body.monospacedDigit())
                                                 .foregroundColor(.white)
                                                 .bold()
                                                 
@@ -274,6 +274,7 @@ struct MenuView: View {
                                                     .foregroundColor(Color("CosmicPurple"))
                                                     .bold()
                                                     .offset(y: geo.size.width/48)
+                                                    .shadow(color: Color.black.opacity(0.25), radius: 1, x: -1, y: 1)
 //                                                    .padding(.top, geo.size.width/11)
 //                                                    .frame(width: geo.size.width/10)
 //                                                .fixedSize()
@@ -281,6 +282,7 @@ struct MenuView: View {
                                                 .font(.custom("Audiowide-Regular", size: geo.size.width/20))
                                                 .foregroundColor(Color("CosmicPurple"))
                                                 .bold()
+                                                    .shadow(color: Color.black.opacity(0.25), radius: 1, x: -1, y: 1)
                                                 }
 //                                                .frame(alignment: Alignment.bottomLeading)
                                                 .offset(y: geo.size.width/37)
@@ -298,6 +300,7 @@ struct MenuView: View {
                                                     .foregroundColor(Color("CosmicPurple"))
                                                     .bold()
                                                     .shadow(color: Color.black.opacity(0.75), radius: 1, x: -1, y: 1)
+                                                    
 //                                                    .fixedSize(horizontal: true, vertical: false)
                                                 .fixedSize()
                                                 
