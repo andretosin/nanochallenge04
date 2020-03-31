@@ -30,8 +30,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var totalStars: Int! = 0
     var isPlayerDead: Bool = false
     var isSoundMuted: Bool = false
-    var lblScore = SKLabelNode()
-    var lblDistance = SKLabelNode()
     var particles = SKEmitterNode()
     var gameStarted = false
     var flightIncrement: CGFloat = 0
@@ -100,13 +98,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         particles.particleSpeed = 1000
         addChild(particles)
         
-        
-        lblScore = self.childNode(withName: "lblScore") as! SKLabelNode
-        lblScore.text = "\(currentScore)"
-        
-        lblDistance = self.childNode(withName: "lblDistance") as! SKLabelNode
-        lblDistance.text = "\(flightDistance)"
-        
         // carrega o nó do jogador vindo da gamescene.sks
         player = Player(scene: self)
         //        player.node.position = CGPoint(x: 0, y: -50)
@@ -125,18 +116,12 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
     }
     
-    
-    
-    
-    
     override func update(_ currentTime: TimeInterval) {
         if lastTime == 0 {
             lastTime = currentTime
             return
         }
         let deltaTime = currentTime - lastTime
-
-        
         
         if flightSpeed > 1000 {
             if flightSpeed > 1200 {
@@ -152,7 +137,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
 
                                 if !isBoostActive {
                                     print("level 5")
-                                    rock.spawnChance = 50
+                                    rock.spawnChance = 40
                                     meteor.spawnChance = 50
                                     orange.singleChance = 35
                                     orange.doubleChance = 70
@@ -164,7 +149,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
 
                             if !isBoostActive {
                                 //                            print("level 4")
-                                rock.spawnChance = 60
+                                rock.spawnChance = 50
                                 meteor.spawnChance = 60
                                 orange.singleChance = 40
                                 orange.doubleChance = 80
@@ -178,7 +163,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
 
                         if !isBoostActive {
                             //                        print("level 3")
-                            rock.spawnChance = 70
+                            rock.spawnChance = 60
                             meteor.spawnChance = 70
                             star.spawnChance = 70
                             star.normalChance = 100
@@ -244,8 +229,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             if !player.isDead {
                 self.flightIncrement = rock.speed
                 self.flightDistance += flightIncrement
-                self.lblDistance.text = "\(Int(flightDistance/20000))"
-                self.lblDistance.alpha = 1
+                
+                gameDelegate?.updateLabels(flightDistance: "\(Int(flightDistance/20000))", currentScore: String(self.currentScore))
+                
             }
         } else {
             self.player.node.position = CGPoint(x: 0, y: -50)
@@ -267,7 +253,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                         node.name = "starNormalResetPos"
                         notification.impactOccurred()
                         currentScore += 1
-                        lblScore.text = "\(currentScore)"
                     }
                 }
             }
@@ -279,7 +264,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                         node.name = "starDoubleResetPos"
                         notification.impactOccurred()
                         currentScore += 2
-                        lblScore.text = "\(currentScore)"
                     }
                 }
             }
@@ -451,8 +435,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             flightDistance = 0
             flightIncrement = 0
             currentScore = 0
-            lblScore.text = "\(currentScore)"
-            lblDistance.text = "\(flightDistance)"
             playPads()
         }
     }

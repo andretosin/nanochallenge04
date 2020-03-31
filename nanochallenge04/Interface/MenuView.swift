@@ -74,7 +74,7 @@ struct MenuView: View {
                                     
                                     HStack (spacing: geo.size.width/120) {
                                         if self.isPlaying {
-                                            Text("00")
+                                            Text(self.distance)
                                                 .font(.custom("nulshock", size: geo.size.width/18))
                                                 
                                                 .foregroundColor(.white)
@@ -146,7 +146,7 @@ struct MenuView: View {
                                         .fixedSize()
                                     ZStack {
                                         if self.isPlaying {
-                                            Text("00")
+                                            Text(self.stars)
                                                 .font(.custom("nulshock", size: geo.size.width/18))
                                                 
                                                 .foregroundColor(.white)
