@@ -251,7 +251,7 @@ struct MenuView: View {
                                                     .bold()
                                                     .shadow(color: Color.black.opacity(0.75), radius: 1, x: -1, y: 1)
                                                     .padding(.top, geo.size.width/60)
-                                                    .fixedSize(horizontal: true, vertical: false)
+//                                                    .fixedSize(horizontal: true, vertical: false)
                                                     .fixedSize()
                                                 Text("ly")
                                                     .font(.custom("Audiowide-Regular", size: geo.size.width/12))
@@ -276,7 +276,7 @@ struct MenuView: View {
                                                     .foregroundColor(Color("CosmicPurple"))
                                                     .bold()
                                                     .shadow(color: Color.black.opacity(0.75), radius: 1, x: -1, y: 1)
-                                                    .fixedSize(horizontal: true, vertical: false)
+//                                                    .fixedSize(horizontal: true, vertical: false)
                                                 .fixedSize()
                                                 
                                             }
