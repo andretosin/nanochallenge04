@@ -261,14 +261,18 @@ struct MenuView: View {
                                                     .padding(.top, geo.size.width/60)
 //                                                    .fixedSize(horizontal: true, vertical: false)
                                                     .fixedSize()
-                                                Text("ly")
-                                                    .font(.custom("Audiowide-Regular", size: geo.size.width/12))
+                                                Text("""
+light
+years
+""")
+                                                    .font(.custom("Audiowide-Regular", size: geo.size.width/18))
                                                     .foregroundColor(Color("CosmicPurple"))
                                                     .bold()
-                                                    .padding(.top, geo.size.width/11)
-                                                    .frame(width: geo.size.width/10)
+//                                                    .padding(.top, geo.size.width/11)
+//                                                    .frame(width: geo.size.width/10)
                                                 .fixedSize()
-                                            }.offset(x: geo.size.width/20)
+                                            }
+                                            .offset(x: geo.size.width/20)
                                                 .onAppear() {
                                                     
                                             }
