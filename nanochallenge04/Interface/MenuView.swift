@@ -120,10 +120,13 @@ struct MenuView: View {
                                 .padding(.vertical, 10)
                                 .background(Capsule()
                                 .fill(self.buttonIsShown ? Color("CosmicPurple") : Color("LowerPurple"))
+                                    .opacity(self.buttonIsShown ? 1.0 : 0.5)
                                 )
                                     .padding(.leading, 20)
                                     .frame(height: geo.size.height/10, alignment: .leading)
-                                    .clipShape(Capsule())
+                                    .clipShape(Capsule()
+                                )
+                                     
                                     
 //                                    .opacity(self.buttonIsShown ? 1.0 : 0.5)
                                     .shadow(color: Color("CosmicPurple").opacity(0.3), radius: 2, x: 0, y: 0)
@@ -172,29 +175,22 @@ struct MenuView: View {
                                 .padding(.leading, 15)
                                 .padding(.vertical, 10)
 //                                .opacity(self.buttonIsShown ? 1.0 : 0.0)
-                                .onTapGesture {
-                                    withAnimation {
-                                        
-                                    }
-                                }
+                           
                                 
                                 .background(Capsule()
+                                    
                                 .fill(self.buttonIsShown ? Color("CosmicPurple") : Color("LowerPurple"))
-                                    
-                                    
+                                    .opacity(self.buttonIsShown ? 1.0 : 0.5)
                                 )
-//                                    .opacity(self.buttonIsShown ? 1.0 : 0.0)
-//                                    .onTapGesture {
-//                                        withAnimation {
-//                                        }
-//                                }
+                                    
                                 .padding(.trailing, self.buttonIsShown ? geo.size.width/9.5 : 0)
                                     //                                .padding(.trailing, self.adsIsShown ? geo.size.width/3.5 : 0)
                                     .shadow(color: Color("CosmicPurple").opacity(0.3), radius: 2, x: 0, y: 0)
                                     //                                .shadow(color: Color.black.opacity(0.4), radius: 4, x: 2, y: 0)
                                     .clipShape(Capsule())
                                     .background(Capsule()
-                                        .fill(Color("LowerPurple"))
+                                        .fill(Color("LowerPurple")
+                                    .opacity(self.buttonIsShown ? 1.0 : 0.0))
                                         .shadow(color: Color("CosmicPurple").opacity(0.3), radius: 2, x: 0, y: 0)
                                 )
                                 
