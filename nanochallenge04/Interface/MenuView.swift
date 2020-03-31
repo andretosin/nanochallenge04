@@ -259,6 +259,7 @@ struct MenuView: View {
                                                     .bold()
                                                     .padding(.top, geo.size.width/11)
                                                     .frame(width: geo.size.width/10)
+                                                .fixedSize()
                                             }.offset(x: geo.size.width/20)
                                                 .onAppear() {
                                                     
@@ -269,12 +270,14 @@ struct MenuView: View {
                                                     .font(.system(size: geo.size.width/15, weight: .bold))
                                                     .foregroundColor(Color("CosmicPurple"))
                                                     .shadow(color: Color.black.opacity(0.75), radius: 1, x: -1, y: 1)
+                                                .fixedSize()
                                                 Text("\(self.lastStarsCollected)")
                                                     .font(.custom("nulshock", size: geo.size.width/10))
                                                     .foregroundColor(Color("CosmicPurple"))
                                                     .bold()
                                                     .shadow(color: Color.black.opacity(0.75), radius: 1, x: -1, y: 1)
                                                     .fixedSize(horizontal: true, vertical: false)
+                                                .fixedSize()
                                                 
                                             }
                                         }

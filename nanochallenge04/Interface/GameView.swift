@@ -70,14 +70,14 @@ struct GameView: UIViewControllerRepresentable {
         func updateSlices(slices: Int) {
             DispatchQueue.main.async {
                 withAnimation {
-                    self.parent.slices = slices
+//                    self.parent.slices = slices
                 }
             }
         }
         
         func updateLabels(flightDistance: String, currentScore: String) {
-            self.parent.distance = flightDistance
-            self.parent.stars = currentScore
+//            self.parent.distance = flightDistance
+//            self.parent.stars = currentScore
         }
         
         func endRun(lastDistance: CGFloat, starsCollected: Int, totalStars: Int) {
