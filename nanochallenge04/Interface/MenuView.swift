@@ -39,6 +39,7 @@ struct MenuView: View {
     @State private var orangeSlices: Int = 0
     @State private var distance: String = "a"
     @State private var stars: String = "a"
+    @State private var showPopup = false
     
     var body: some
         View {
@@ -85,6 +86,15 @@ struct MenuView: View {
                                                 .animation(.spring(response: 0.0, dampingFraction:0.2))
                                                 .fixedSize()
                                                 .opacity(1.0)
+                                            Text("ly")
+                                                                                           
+                                                                                           .font(.custom("Audiowide-Regular", size: geo.size.width/30))
+                                                                                           .foregroundColor(.white)
+                                                                                           .bold()
+                                                                                           .padding(.top, geo.size.width/60)
+                                                                                           //                                            .shadow(color: Color.black.opacity(0.75), radius: 1, x: -1, y: 1)
+                                                                                           .fixedSize()
+                                                                                           .animation(.spring(response: 0.0, dampingFraction:0.2))
                                         } else {
                                             Text("\(Int(self.highScore))")
                                                 .font(.custom("nulshock", size: geo.size.width/18))
@@ -196,11 +206,12 @@ struct MenuView: View {
                                 
                                 VStack (alignment: .trailing, spacing: 0) {
                                     Button(action: {
+                                        self.showPopup = true
                                         print("Store button tapped!")
                                         //                                        self.showModal = true
                                     }) {
-                                        HStack (spacing: 0) {
-                                            Image(systemName: "bag.fill")
+                                        HStack (spacing: 0) {                                            Image(systemName: "bag.fill")
+                                            
                                                 .font(.system(size: geo.size.width/18, weight: .regular))
                                                 //                                            .padding(.trailing, geo.size.width/40)
                                                 .foregroundColor(.white)
@@ -208,8 +219,8 @@ struct MenuView: View {
                                                 //                                                .shadow(color: Color.black.opacity(0.75), radius: 1, x: -1, y: 1)
                                                 
                                                 .fixedSize()
-                                            
                                         }
+
                                     }
                                     .padding(.trailing, geo.size.width/28)
                                     .offset(y: 0.005 * -geo.size.width)
@@ -221,6 +232,7 @@ struct MenuView: View {
                                     }
                                 }
                             }
+                            
                             //                            .frame(height: geo.size.height/10, alignment: .trailing)
                             
                         }
@@ -462,6 +474,10 @@ struct MenuView: View {
                                 .offset(y: -geo.size.width/1.13)
                         }
                         //                                                    Spacer()
+                    }
+                    if self.showPopup {
+                            PopUpView()
+                            
                     }
                 }
             }
