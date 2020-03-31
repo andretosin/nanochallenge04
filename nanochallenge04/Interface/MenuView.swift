@@ -476,8 +476,7 @@ struct MenuView: View {
                         //                                                    Spacer()
                     }
                     if self.showPopup {
-                            PopUpView()
-                            
+                        PopUpView(showPopup: self.$showPopup)
                     }
                 }
             }
