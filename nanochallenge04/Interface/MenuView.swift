@@ -105,6 +105,7 @@ struct MenuView: View {
                                                 .animation(.spring(response: 0.0, dampingFraction:0.2))
                                         }
                                     }
+//                                    .opacity(1.0)
                                 }
                                 .onTapGesture {
                                     withAnimation {
@@ -118,10 +119,11 @@ struct MenuView: View {
                                 .background(Capsule()
                                 .fill(self.buttonIsShown ? Color("CosmicPurple") : Color("LowerPurple"))
                                 )
-                                    
                                     .padding(.leading, 20)
                                     .frame(height: geo.size.height/10, alignment: .leading)
                                     .clipShape(Capsule())
+                                    
+//                                    .opacity(self.buttonIsShown ? 1.0 : 0.5)
                                     .shadow(color: Color("CosmicPurple").opacity(0.3), radius: 2, x: 0, y: 0)
                                     
                                     .onTapGesture {
@@ -225,7 +227,7 @@ struct MenuView: View {
                             
                         }
                         .padding(.trailing, 20)
-                        .opacity(self.buttonIsShown ? 1.0 : 0.5)
+//                        .opacity(self.buttonIsShown ? 1.0 : 0.5)
                         VStack (spacing: geo.size.width/100) {
                             
                             ZStack {
