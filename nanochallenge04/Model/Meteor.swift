@@ -52,42 +52,8 @@ class Meteor: Spawnable {
     
     
     func rollChance(spawnChance: Int) -> Bool {
-        if spawnChance == 100 { return true }
-        else if spawnChance == 90 {
-            let dice = Int.random(in: 1...10)
-            if dice != 10 { return true } else { return false }
-        } else if spawnChance == 80 {
-            let dice = Int.random(in: 1...10)
-            if dice <= 8 { return true } else { return false }
-        }
-        else if spawnChance == 70 {
-            let dice = Int.random(in: 1...10)
-            if dice <= 7 { return true } else { return false }
-        }
-        else if spawnChance == 60 {
-            let dice = Int.random(in: 1...10)
-            if dice <= 6 { return true } else { return false }
-        }
-        else if spawnChance == 50 {
-            let dice = Int.random(in: 1...10)
-            if dice <= 5 { return true } else { return false }
-        }
-        else if spawnChance == 40 {
-            let dice = Int.random(in: 1...10)
-            if dice <= 4 { return true } else { return false }
-        }
-        else if spawnChance == 30 {
-            let dice = Int.random(in: 1...10)
-            if dice <= 3 { return true } else { return false }
-        }
-        else if spawnChance == 20 {
-            let dice = Int.random(in: 1...10)
-            if dice <= 2 { return true } else { return false }
-        }
-        else if spawnChance == 10 {
-            let dice = Int.random(in: 1...10)
-            if dice <= 1 { return true } else { return false }
-        } else { return false }
+        let dice = Int.random(in: 1...100)
+        if dice <= spawnChance { return true } else { return false }
     }
     
     func update(_ currentTime: TimeInterval) {

@@ -145,43 +145,52 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                         if flightSpeed > 1800 {
                             if flightSpeed >= 2000 {
                                 gameDelegate?.updateSlices(slices: 6)
-                                print("level 6")
+//                                print("level 6")
                             } else {
                                 gameDelegate?.updateSlices(slices: 5)
                                 print("level 5")
+                                rock.spawnChance = 50
+                                meteor.spawnChance = 50
                             }
                         } else {
                             gameDelegate?.updateSlices(slices: 4)
-                            print("level 4")
+//                            print("level 4")
+                            rock.spawnChance = 60
+                            meteor.spawnChance = 60
                         }
                     } else {
                         gameDelegate?.updateSlices(slices: 3)
-                        print("level 3")
+//                        print("level 3")
+                        rock.spawnChance = 70
+                        meteor.spawnChance = 70
                     }
                 } else {
                     gameDelegate?.updateSlices(slices: 2)
-                    print("level 2")
+//                    print("level 2")
+                    rock.spawnChance = 80
+                    meteor.spawnChance = 80
                 }
             } else {
                 gameDelegate?.updateSlices(slices: 1)
-                print("level 1")
-                rock.spawnChance = 50
-                meteor.spawnChance = 50
+//                print("level 1")
+                rock.spawnChance = 90
+                meteor.spawnChance = 90
                 
             }
         } else {
             isBoostActive = false
             gameDelegate?.updateSlices(slices: 0)
-            print("level 0")
+//            print("level 0")
             rock.spawnChance = 100
+            meteor.spawnChance = 100
 
         }
         
         if gameStarted {
             player.update(CGFloat(deltaTime))
-            rock.update(currentTime)
+//            rock.update(currentTime)
 //            star.update(currentTime)
-            meteor.update(currentTime)
+//            meteor.update(currentTime)
             orange.update(currentTime)
 //            powerup.update(currentTime)
             meteor.playerPosX = player.node.position.x
@@ -218,24 +227,49 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                     }
                 }
             }
-        case ContactMask.player.rawValue | ContactMask.orange.rawValue:
+        case ContactMask.player.rawValue | ContactMask.orangeSingle.rawValue:
             // se encosotu numa laranja
             if !firstContactFlagPlayerOrange {
+
                 firstContactFlagPlayerOrange = true
-                
-                
                 self.flightSpeed += 200
-                
-               
                 if self.flightSpeed > 2000 {
                     isBoostActive = true
                 }
-                
-                
                 if self.flightSpeed > 2200 {
                     self.flightSpeed = 2200
                 }
             }
+            case ContactMask.player.rawValue | ContactMask.orangeDouble.rawValue:
+            // se encosotu numa laranja
+
+            if !firstContactFlagPlayerOrange {
+
+                firstContactFlagPlayerOrange = true
+                self.flightSpeed += 300
+                if self.flightSpeed > 2000 {
+                    isBoostActive = true
+                }
+                if self.flightSpeed > 2200 {
+                    self.flightSpeed = 2200
+                }
+            }
+
+            case ContactMask.player.rawValue | ContactMask.orangeTriple.rawValue:
+            // se encosotu numa laranja
+
+            if !firstContactFlagPlayerOrange {
+
+                firstContactFlagPlayerOrange = true
+                self.flightSpeed += 400
+                if self.flightSpeed > 2000 {
+                    isBoostActive = true
+                }
+                if self.flightSpeed > 2200 {
+                    self.flightSpeed = 2200
+                }
+            }
+
             
 
             
