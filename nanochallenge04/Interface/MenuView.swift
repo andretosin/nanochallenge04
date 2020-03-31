@@ -37,13 +37,15 @@ struct MenuView: View {
     @State private var showOptions: Bool = false
     @State private var shipIndex = 1
     @State private var orangeSlices: Int = 0
+    @State private var distance: String = "a"
+    @State private var stars: String = "a"
     
     var body: some
         View {
         GeometryReader { geo in
             ZStack {
                 BGView()
-                GameView(isPlaying: self.$isPlaying, isMuted: self.$isMuted, lastDis: self.$lastDistance, starsCollec: self.$lastStarsCollected, highscore: self.$highScore, totalStars: self.$totalStarsCollected, showText: self.$showText, shipIndex: self.$shipIndex, slices: self.$orangeSlices)
+                GameView(isPlaying: self.$isPlaying, isMuted: self.$isMuted, lastDis: self.$lastDistance, starsCollec: self.$lastStarsCollected, highscore: self.$highScore, totalStars: self.$totalStarsCollected, showText: self.$showText, shipIndex: self.$shipIndex, slices: self.$orangeSlices, distance: self.$distance, stars: self.$stars)
                     
                     .edgesIgnoringSafeArea(.all)
                     .mask(

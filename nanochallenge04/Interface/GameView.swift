@@ -25,6 +25,8 @@ struct GameView: UIViewControllerRepresentable {
     @Binding var showText: Bool
     @Binding var shipIndex: Int
     @Binding var slices: Int
+    @Binding var distance: String
+    @Binding var stars: String
     
     func makeUIViewController(context: Context) -> GameViewController {
         GameViewController(gameDelegate: context.coordinator)
@@ -74,7 +76,8 @@ struct GameView: UIViewControllerRepresentable {
         }
         
         func updateLabels(flightDistance: String, currentScore: String) {
-            
+            self.parent.distance = flightDistance
+            self.parent.stars = currentScore
         }
         
         func endRun(lastDistance: CGFloat, starsCollected: Int, totalStars: Int) {
