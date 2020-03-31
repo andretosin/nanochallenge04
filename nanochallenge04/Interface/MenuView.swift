@@ -323,10 +323,15 @@ struct MenuView: View {
                             .frame(minHeight: 0, maxHeight: .infinity)
                         HStack (spacing: 30) {
                             ButtonConfView(content: ButtonType(iconName: "RocketB")) {
-                                self.chooseRocket.toggle()
+//                                self.chooseRocket.toggle()
+                                self.showPopup = true
                             }
-                            ButtonConfView(content: ButtonType(iconName: "PowerUp"))
-                            ButtonConfView(content: ButtonType(iconName: "RankingB"))
+                            ButtonConfView(content: ButtonType(iconName: "PowerUp")) {
+                            self.showPopup = true
+                            }
+                            ButtonConfView(content: ButtonType(iconName: "RankingB")) {
+                                self.showPopup = true
+                            }
                             ButtonConfView(content: ButtonType(iconName: "SoundOnB")) {
                                 self.isMuted.toggle()
                             }
