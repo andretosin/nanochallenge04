@@ -11,7 +11,7 @@ import SpriteKit
 class Orange: Spawnable {
     
     var lastTime: TimeInterval = TimeInterval(0)
-    var timeInterval: Double = Double.random(in: Double(5)...Double(10))
+    var timeInterval: Double = Double.random(in: Double(1)...Double(3))
     var scene: SKScene?
     let oneRingTexture = SKTexture(imageNamed: "OneRing")
     let doubleRingTexture = SKTexture(imageNamed: "DoubleRing")
@@ -22,6 +22,7 @@ class Orange: Spawnable {
     var speed = CGFloat(1000)
     var resetFlagFunc: (() -> Void)!
     
+    var spawnChance = 100
     var singleChance = 34
     var doubleChance = 33
     var tripleChance = 33
@@ -90,82 +91,84 @@ class Orange: Spawnable {
             lastTime = currentTime
             if isSpawnActive {
                 
-                
                 let dice = Int.random(in: 1...100)
-                if dice <= singleChance {
-                    // spawne single
-                    for orange in orangeArray {
-                        if orange.name == "orangeSingleFalse" {
-                            print("spawnou single")
-                            self.resetFlagFunc()
-                            orange.position = CGPoint(x: CGFloat.random(in: CGFloat(-300)...CGFloat(300)), y: 1200)
-                            
-                            let spawnPadding: CGFloat = 400
-                            for node in scene!.children {
-                                if node.name == "rockTrue" {
-                                    if abs(node.position.y - orange.position.y) < spawnPadding {
-                                        while abs(node.position.x - orange.position.x) < spawnPadding {
-                                            orange.position.x = CGFloat.random(in: -400...400)
-                                        }
-                                    }
-                                }
-                            }
-                            orange.physicsBody?.velocity = CGVector(dx: 0, dy: -speed)
-                            orange.name = "orangeSingleTrue"
-                        }
-                    }
-                    
-                    
-                    
-                    
-                } else if dice <= doubleChance {
-                    // spawne double
-                    for orange in orangeArray {
-                        if orange.name == "orangeDoubleFalse" {
-                            print("spawnou double")
-                            self.resetFlagFunc()
-                            orange.position = CGPoint(x: CGFloat.random(in: CGFloat(-300)...CGFloat(300)), y: 1200)
-                            let spawnPadding: CGFloat = 400
-                            for node in scene!.children {
-                                if node.name == "rockTrue" {
-                                    if abs(node.position.y - orange.position.y) < spawnPadding {
-                                        while abs(node.position.x - orange.position.x) < spawnPadding {
-                                            orange.position.x = CGFloat.random(in: -400...400)
-                                        }
-                                    }
-                                }
-                            }
-                            orange.physicsBody?.velocity = CGVector(dx: 0, dy: -speed)
-                            orange.name = "orangeDoubleTrue"
-                        }
-                    }
-                    
-                    
+                if dice <= spawnChance {
                 
-                    
-                } else {
-                    // spawne triple
-                    for orange in orangeArray {
-                        if orange.name == "orangeTripleFalse" {
-                            print("spawnou triple")
-                            self.resetFlagFunc()
-                            orange.position = CGPoint(x: CGFloat.random(in: CGFloat(-300)...CGFloat(300)), y: 1200)
-                            let spawnPadding: CGFloat = 400
-                            for node in scene!.children {
-                                if node.name == "rockTrue" {
-                                    if abs(node.position.y - orange.position.y) < spawnPadding {
-                                        while abs(node.position.x - orange.position.x) < spawnPadding {
-                                            orange.position.x = CGFloat.random(in: -400...400)
+                    let dice = Int.random(in: 1...100)
+                    if dice <= singleChance {
+                        // spawne single
+                        for orange in orangeArray {
+                            if orange.name == "orangeSingleFalse" {
+                                print("spawnou single")
+                                self.resetFlagFunc()
+                                orange.position = CGPoint(x: CGFloat.random(in: CGFloat(-300)...CGFloat(300)), y: 1200)
+                                
+                                let spawnPadding: CGFloat = 400
+                                for node in scene!.children {
+                                    if node.name == "rockTrue" {
+                                        if abs(node.position.y - orange.position.y) < spawnPadding {
+                                            while abs(node.position.x - orange.position.x) < spawnPadding {
+                                                orange.position.x = CGFloat.random(in: -400...400)
+                                            }
                                         }
                                     }
                                 }
+                                orange.physicsBody?.velocity = CGVector(dx: 0, dy: -speed)
+                                orange.name = "orangeSingleTrue"
                             }
-                            orange.physicsBody?.velocity = CGVector(dx: 0, dy: -speed)
-                            orange.name = "orangeTripleTrue"
+                        }
+                        
+                        
+                        
+                        
+                    } else if dice <= doubleChance {
+                        // spawne double
+                        for orange in orangeArray {
+                            if orange.name == "orangeDoubleFalse" {
+                                print("spawnou double")
+                                self.resetFlagFunc()
+                                orange.position = CGPoint(x: CGFloat.random(in: CGFloat(-300)...CGFloat(300)), y: 1200)
+                                let spawnPadding: CGFloat = 400
+                                for node in scene!.children {
+                                    if node.name == "rockTrue" {
+                                        if abs(node.position.y - orange.position.y) < spawnPadding {
+                                            while abs(node.position.x - orange.position.x) < spawnPadding {
+                                                orange.position.x = CGFloat.random(in: -400...400)
+                                            }
+                                        }
+                                    }
+                                }
+                                orange.physicsBody?.velocity = CGVector(dx: 0, dy: -speed)
+                                orange.name = "orangeDoubleTrue"
+                            }
+                        }
+                        
+                        
+                    
+                        
+                    } else {
+                        // spawne triple
+                        for orange in orangeArray {
+                            if orange.name == "orangeTripleFalse" {
+                                print("spawnou triple")
+                                self.resetFlagFunc()
+                                orange.position = CGPoint(x: CGFloat.random(in: CGFloat(-300)...CGFloat(300)), y: 1200)
+                                let spawnPadding: CGFloat = 400
+                                for node in scene!.children {
+                                    if node.name == "rockTrue" {
+                                        if abs(node.position.y - orange.position.y) < spawnPadding {
+                                            while abs(node.position.x - orange.position.x) < spawnPadding {
+                                                orange.position.x = CGFloat.random(in: -400...400)
+                                            }
+                                        }
+                                    }
+                                }
+                                orange.physicsBody?.velocity = CGVector(dx: 0, dy: -speed)
+                                orange.name = "orangeTripleTrue"
+                            }
                         }
                     }
                 }
-                
                 timeInterval = Double.random(in: 4...8)
                 
                 

@@ -18,8 +18,8 @@ class Star: Spawnable {
     var starCount = 1
     var timeInterval: Double = Double.random(in: Double(1)...Double(3))
     var resetPos = false
-    var normalChance = 10
-    var spawnChance = 0
+    var normalChance = 90
+    var spawnChance = 100
     
 
     
