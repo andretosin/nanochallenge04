@@ -17,17 +17,45 @@ struct PopUpView: View {
                 .opacity(0.4)
                 .edgesIgnoringSafeArea(.all)
                 .onTapGesture { self.showPopup = false }
+            
             VStack(spacing: 20) {
+                HStack {
+                    Spacer()
                 Text("Oops... our bad")
                     .font(.custom("nulshock", size: 18))
                     .foregroundColor(Color("CosmicPurple"))
                     .bold()
-                    .padding()
-                    .frame(maxWidth: .infinity)
-                    .background(Color.yellow)
+                    .padding(.vertical, 10)
+                    .offset(x: 15)
+                    Spacer()
+                    Button(action: {
+                        self.showPopup = false
+                        print("Close pop-up!")
+                        //                                        self.showModal = true
+                    }) {
+                        HStack (spacing: 0) {
+                            Image(systemName: "xmark.circle.fill")
+                                                   .font(.system(size: 26, weight: .bold))
+                                                   .foregroundColor(Color("CosmicPurple"))
+                                                   .padding(.trailing, 10)
+                        }
+
+                    }
+                    
+                    
+                   
+                }
+                
+                .frame(maxWidth: .infinity)
+                .background(Color.yellow)
+                    Spacer()
+                    Image(systemName: "exclamationmark.triangle.fill")
+                        .font(.system(size: 70, weight: .bold))
+                        .foregroundColor(Color("CosmicPurple"))
+                    
                 Spacer()
                 Text("""
-We are still working on this feature!
+We're still working on this feature!
 Come back later
 """)
 //                    .font(.custom("nulshock", size: 18))
@@ -35,11 +63,13 @@ Come back later
                     .bold()
                     .multilineTextAlignment(.center)
                 .frame(maxWidth: .infinity)
-                
+                    .fixedSize()
                 Spacer()
-                Button("Close") {
-                    self.showPopup = false
-                }.padding(.bottom)
+                Spacer()
+                
+//                Button("Close") {
+//                    self.showPopup = false
+//                }.padding(.bottom)
             }
             .frame(height: 300)
             .background(Color.white)
