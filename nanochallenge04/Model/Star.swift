@@ -18,27 +18,49 @@ class Star: Spawnable {
     var starCount = 1
     var timeInterval: Double = Double.random(in: Double(1)...Double(3))
     var resetPos = false
+    var normalChance = 10
+    var spawnChance = 0
+    
+
     
     internal init(scene: SKScene?) {
         self.scene = scene
-        let texture = SKTexture(imageNamed: "Star")
+
+        for _ in 1...1 {
+            let starNormalNode = SKSpriteNode(imageNamed: "Star")
+            setupStar(starNormalNode, x: -1000, y: 0, speed: speed, name: "starNormalFalse", contactMask: ContactMask.starNormal.rawValue)
+            starArray.append(starNormalNode)
+            scene?.addChild(starNormalNode)
+            
+            let starDoubleNode = SKSpriteNode(imageNamed: "StarDouble")
+            setupStar(starDoubleNode, x: -1000, y: 0, speed: speed, name: "starDoubleFalse", contactMask: ContactMask.starDouble.rawValue)
+            starArray.append(starDoubleNode)
+            scene?.addChild(starDoubleNode)
+        }
+        
+    
+        
+        
+        
+        
+        
         
         // adiciona 3 estrelas e deixa elas guardadas para serem posicionadas
-        for _ in 1...3 {
-            let starNode = SKSpriteNode(texture: texture)
-            setupStar(starNode, x: 1001, y: 0, speed: 1500)
-            starArray.append(starNode)
-            scene?.addChild(starNode)
-        }
+//        for _ in 1...3 {
+//            let starNode = SKSpriteNode(texture: texture)
+//            setupStar(starNode, x: 1001, y: 0, speed: 1500)
+//            starArray.append(starNode)
+//            scene?.addChild(starNode)
+//        }
     }
     
-    func setupStar(_ starNode: SKSpriteNode, x: CGFloat, y: CGFloat, speed: CGFloat) {
+    func setupStar(_ starNode: SKSpriteNode, x: CGFloat, y: CGFloat, speed: CGFloat, name: String, contactMask: UInt32) {
 
         let collisionMask = SKTexture(imageNamed: "starCollisionMask")
         starNode.physicsBody = SKPhysicsBody(texture: collisionMask, size: collisionMask.size())
         
         
-        starNode.physicsBody?.categoryBitMask = ContactMask.star.rawValue
+        starNode.physicsBody?.categoryBitMask = contactMask
         starNode.physicsBody?.contactTestBitMask = ContactMask.player.rawValue
         starNode.physicsBody?.collisionBitMask = 0
         starNode.scale(to: CGSize(width: 260, height: 260))
@@ -51,7 +73,7 @@ class Star: Spawnable {
         starNode.physicsBody?.friction = 0
         starNode.physicsBody?.restitution = 0
         starNode.physicsBody?.mass = 0
-        starNode.name = "starFalse"
+        starNode.name = name
     }
     
     func update(_  currentTime: TimeInterval) {
@@ -65,28 +87,85 @@ class Star: Spawnable {
         if deltaTime > timeInterval {
             lastTime = currentTime
             if isSpawnActive {
-                let dice = Int.random(in: 1...20)
-                // 5% de chance de spawnar uma fileira de estrelas
-                if dice == 20 {
-                    spawnGroup(1)
-                } else {
-                    spawnGroup(2)
+                // rola a chance de spawnar
+                let dice = Int.random(in: 1...100)
+                if dice <= spawnChance {
+                    // rola a chance de qual vai ser spawnada
+                    let dice = Int.random(in: 1...100)
+                    if dice <= normalChance {
+                        
+                        // spawn normal
+                        for star in starArray {
+                            if star.name == "starNormalFalse" {
+                                let spawnPadding: CGFloat = 300
+                                star.position = CGPoint(x: CGFloat.random(in: -400...400), y: 1200)
+                                for node in scene!.children {
+                                    if node.name == "rockTrue" {
+                                        if abs(node.position.y - star.position.y) < spawnPadding {
+                                            while abs(node.position.x - star.position.x) < spawnPadding {
+                                                star.position.x = CGFloat.random(in: -400...400)
+                                            }
+                                        }
+                                    }
+                                }
+                                star.physicsBody?.velocity = CGVector(dx: 0, dy: -speed)
+                                star.name = "starNormalTrue"
+                            }
+                        }
+                        
+                    } else {
+                        // spawn doble
+                        for star in starArray {
+                            if star.name == "starDoubleFalse" {
+                                let spawnPadding: CGFloat = 300
+                                star.position = CGPoint(x: CGFloat.random(in: -400...400), y: 1200)
+                                for node in scene!.children {
+                                    if node.name == "rockTrue" {
+                                        if abs(node.position.y - star.position.y) < spawnPadding {
+                                            while abs(node.position.x - star.position.x) < spawnPadding {
+                                                star.position.x = CGFloat.random(in: -400...400)
+                                            }
+                                        }
+                                    }
+                                }
+                                star.physicsBody?.velocity = CGVector(dx: 0, dy: -speed)
+                                star.name = "starDoubleTrue"
+                            }
+                        }
+                    }
+                    
+                    timeInterval = Double.random(in: 2...2)
+                    return
                 }
-                timeInterval = Double.random(in: 1.5...2.5)
             }
         }
         
         // se a estrela já saiu da tela, coloca ela na posição de espera
         for star in starArray {
-            if star.position.y < -1500 || star.name == "starResetPos" {
+            if star.position.y < -1500 {
+                if star.name == "starNormalTrue" {
+                    star.position.x = 1001
+                    star.position.y = 0
+                    star.name = "starNormalFalse"
+                } else if star.name == "starDoubleTrue" {
+                    star.position.x = 1001
+                    star.position.y = 0
+                    star.name = "starDoubleFalse"
+                }
+            }
+            if star.name == "starNormalResetPos" {
                 star.position.x = 1001
                 star.position.y = 0
-                star.name = "starFalse"
+                star.name = "starNormalFalse"
+            } else if star.name == "starDoubleResetPos" {
+                star.position.x = 1001
+                star.position.y = 0
+                star.name = "starDoubleFalse"
             }
         }
         
         for star in starArray {
-            if star.name == "starTrue" {
+            if star.name == "starNormalTrue" || star.name == "starDoubleTrue" {
                 star.physicsBody?.velocity = CGVector(dx: 0, dy: -speed)
             }
         }

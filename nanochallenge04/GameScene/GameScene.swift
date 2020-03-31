@@ -57,7 +57,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 meteor.isSpawnActive = false
                 player.b1.toggle()
             } else {
-                flightSlowdown = 0.5
+                flightSlowdown = 0.2
                 rock.isSpawnActive = true
                 orange.isSpawnActive = true
                 powerup.isSpawnActive = true
@@ -70,7 +70,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     
     var slices = 0
-    var flightSlowdown: CGFloat = 0.5
+    var flightSlowdown: CGFloat = 0.2
     
     override func didMove(to view: SKView) {
         
@@ -145,54 +145,96 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                         if flightSpeed > 1800 {
                             if flightSpeed >= 2000 {
                                 gameDelegate?.updateSlices(slices: 6)
-//                                print("level 6")
+                                //                                print("level 6")
+                                star.normalChance = 0
                             } else {
                                 gameDelegate?.updateSlices(slices: 5)
-                                print("level 5")
-                                rock.spawnChance = 50
-                                meteor.spawnChance = 50
+
+                                if !isBoostActive {
+                                    print("level 5")
+                                    rock.spawnChance = 50
+                                    meteor.spawnChance = 50
+                                    orange.singleChance = 35
+                                    orange.doubleChance = 70
+                                    orange.tripleChance = 100
+                                }
                             }
                         } else {
                             gameDelegate?.updateSlices(slices: 4)
-//                            print("level 4")
-                            rock.spawnChance = 60
-                            meteor.spawnChance = 60
+
+                            if !isBoostActive {
+                                //                            print("level 4")
+                                rock.spawnChance = 60
+                                meteor.spawnChance = 60
+                                orange.singleChance = 40
+                                orange.doubleChance = 80
+                                orange.tripleChance = 100
+                                star.spawnChance = 100
+                                star.normalChance = 80
+                            }
                         }
                     } else {
                         gameDelegate?.updateSlices(slices: 3)
-//                        print("level 3")
-                        rock.spawnChance = 70
-                        meteor.spawnChance = 70
+
+                        if !isBoostActive {
+                            //                        print("level 3")
+                            rock.spawnChance = 70
+                            meteor.spawnChance = 70
+                            star.spawnChance = 70
+                            star.normalChance = 100
+                            orange.singleChance = 45
+                            orange.doubleChance = 90
+                            orange.tripleChance = 10
+                        }
                     }
                 } else {
                     gameDelegate?.updateSlices(slices: 2)
-//                    print("level 2")
-                    rock.spawnChance = 80
-                    meteor.spawnChance = 80
+
+                    if !isBoostActive {
+                        //                    print("level 2")
+                        rock.spawnChance = 80
+                        meteor.spawnChance = 80
+                        star.isSpawnActive = true
+                        star.normalChance = 100
+                        orange.singleChance = 60
+                        orange.doubleChance = 90
+                        orange.tripleChance = 100
+                    }
                 }
             } else {
                 gameDelegate?.updateSlices(slices: 1)
-//                print("level 1")
-                rock.spawnChance = 90
-                meteor.spawnChance = 90
-                
+
+                if !isBoostActive {
+                    //                print("level 1")
+                    rock.spawnChance = 90
+                    meteor.spawnChance = 90
+                    star.isSpawnActive = false
+                    orange.singleChance = 80
+                    orange.doubleChance = 95
+                    orange.tripleChance = 100
+                }
             }
         } else {
-            isBoostActive = false
             gameDelegate?.updateSlices(slices: 0)
-//            print("level 0")
+
+            isBoostActive = false
+            //            print("level 0")
             rock.spawnChance = 100
             meteor.spawnChance = 100
-
+            star.spawnChance = 90
+            star.normalChance = 50
+            orange.singleChance = 100
+            orange.doubleChance = 0
+            orange.tripleChance = 0
         }
         
         if gameStarted {
             player.update(CGFloat(deltaTime))
-//            rock.update(currentTime)
-//            star.update(currentTime)
-//            meteor.update(currentTime)
+            rock.update(currentTime)
+            star.update(currentTime)
+            meteor.update(currentTime)
             orange.update(currentTime)
-//            powerup.update(currentTime)
+            //            powerup.update(currentTime)
             meteor.playerPosX = player.node.position.x
             
             if self.flightSpeed > 1000 {
@@ -210,19 +252,33 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         }
     }
     
+    
+    
     // MARK: - ContactDelegate
     
     func didBegin(_ contact: SKPhysicsContact) {
         let contactMask = contact.bodyA.categoryBitMask | contact.bodyB.categoryBitMask
         switch contactMask {
-        case ContactMask.player.rawValue | ContactMask.star.rawValue:
-            // se enconstou numa estrela
+        case ContactMask.player.rawValue | ContactMask.starNormal.rawValue:
+            // se enconstou numa estrela normal
             for node in children {
-                if node.name == "starTrue" {
+                if node.name == "starNormalTrue" {
                     if node.position.y < (player.node.position.y + player.node.size.height) && node.position.y > player.node.position.y {
-                        node.name = "starResetPos"
+                        node.name = "starNormalResetPos"
                         notification.impactOccurred()
                         currentScore += 1
+                        lblScore.text = "\(currentScore)"
+                    }
+                }
+            }
+        case ContactMask.player.rawValue | ContactMask.starDouble.rawValue:
+            // se enconstou numa estrela double
+            for node in children {
+                if node.name == "starDoubleTrue" {
+                    if node.position.y < (player.node.position.y + player.node.size.height) && node.position.y > player.node.position.y {
+                        node.name = "starDoubleResetPos"
+                        notification.impactOccurred()
+                        currentScore += 2
                         lblScore.text = "\(currentScore)"
                     }
                 }
@@ -384,7 +440,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             player.node.position = CGPoint(x: 0, y: -640)
             player.node.physicsBody?.velocity = CGVector(dx: 0, dy: 0)
             firstContactFlagPlayerRock = false
-            star.isSpawnActive = true
+            star.isSpawnActive = false
             orange.isSpawnActive = true
             rock.isSpawnActive = true
             powerup.isSpawnActive = true

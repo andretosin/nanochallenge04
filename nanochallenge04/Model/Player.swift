@@ -55,7 +55,7 @@ class Player: Updatable {
         self.node.physicsBody = SKPhysicsBody(texture: self.collisionMask, size: self.collisionMask.size())
         let body = self.node.physicsBody
         body?.categoryBitMask = ContactMask.player.rawValue
-        body?.contactTestBitMask = ContactMask.star.rawValue
+        body?.contactTestBitMask = ContactMask.starNormal.rawValue | ContactMask.starDouble.rawValue
         body?.collisionBitMask = ContactMask.rock.rawValue
         body?.isDynamic = true
         body?.affectedByGravity = false
