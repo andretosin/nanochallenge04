@@ -86,7 +86,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         }
         
         self.physicsWorld.contactDelegate = self
-        view.showsPhysics = true
+        view.showsPhysics = false
         
         setAudioPlayers()
         
@@ -132,6 +132,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                                 gameDelegate?.updateSlices(slices: 6)
                                 //                                print("level 6")
                                 star.normalChance = 0
+                                star.spawnChance = 100
                             } else {
                                 gameDelegate?.updateSlices(slices: 5)
 
@@ -142,6 +143,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                                     orange.singleChance = 35
                                     orange.doubleChance = 70
                                     orange.tripleChance = 100
+                                    star.spawnChance = 100
+                                    star.normalChance = 50
                                 }
                             }
                         } else {
