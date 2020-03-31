@@ -48,14 +48,15 @@ struct GameView: UIViewControllerRepresentable {
             uiViewController.gameScene.unmute()
         }
         
-        if shipIndex == 1 {
-            uiViewController.gameScene.player.setSkin(index: 2)
-        }
-        if shipIndex == 2 {
-            uiViewController.gameScene.player.setSkin(index: 1)
-        }
-        
-        
+//        colocar skin 1
+//        if shipIndex == 1 {
+//            uiViewController.gameScene.player.setSkin(index: 2)
+//        }
+//
+//        colocar skin 2
+//        if shipIndex == 2 {
+//            uiViewController.gameScene.player.setSkin(index: 1)
+//        }
         
     }
     
@@ -68,16 +69,16 @@ struct GameView: UIViewControllerRepresentable {
         
         
         func updateSlices(slices: Int) {
-            DispatchQueue.main.async {
+            DispatchQueue.global().async {
                 withAnimation {
-//                    self.parent.slices = slices
+                    self.parent.slices = slices
                 }
             }
         }
         
         func updateLabels(flightDistance: String, currentScore: String) {
-//            self.parent.distance = flightDistance
-//            self.parent.stars = currentScore
+                self.parent.distance = flightDistance
+                self.parent.stars = currentScore
         }
         
         func endRun(lastDistance: CGFloat, starsCollected: Int, totalStars: Int) {
