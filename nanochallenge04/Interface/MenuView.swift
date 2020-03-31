@@ -261,16 +261,21 @@ struct MenuView: View {
                                                     .padding(.top, geo.size.width/60)
 //                                                    .fixedSize(horizontal: true, vertical: false)
                                                     .fixedSize()
-                                                Text("""
-light
-years
-""")
+                                                VStack (alignment: .leading) {
+                                                Text("light")
                                                     .font(.custom("Audiowide-Regular", size: geo.size.width/18))
                                                     .foregroundColor(Color("CosmicPurple"))
                                                     .bold()
 //                                                    .padding(.top, geo.size.width/11)
 //                                                    .frame(width: geo.size.width/10)
-                                                .fixedSize()
+//                                                .fixedSize()
+                                                Text("years")
+                                                .font(.custom("Audiowide-Regular", size: geo.size.width/18))
+                                                .foregroundColor(Color("CosmicPurple"))
+                                                .bold()
+                                                }
+//                                                .frame(alignment: Alignment.bottomLeading)
+                                                .offset(y: geo.size.width/48)
                                             }
                                             .offset(x: geo.size.width/20)
                                                 .onAppear() {
@@ -511,3 +516,9 @@ years
 //    }
 //}
 
+
+struct MenuView_Previews: PreviewProvider {
+    static var previews: some View {
+        /*@START_MENU_TOKEN@*/Text("Hello, World!")/*@END_MENU_TOKEN@*/
+    }
+}
