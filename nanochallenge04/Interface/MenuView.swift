@@ -40,6 +40,7 @@ struct MenuView: View {
     @State private var distance: String = "a"
     @State private var stars: String = "a"
     @State private var showPopup = false
+    @State private var newRecord = false
     
     var body: some
         View {
@@ -252,7 +253,13 @@ struct MenuView: View {
                                 HStack (spacing: geo.size.width/120) {
                                     VStack {
                                         VStack (spacing: -10) {
-                                            HStack (spacing: 0) {
+                                            ZStack {
+                                                if self.newRecord {
+                                                Image(systemName: "flag.fill")
+                                                .font(.system(size: geo.size.width/22))
+                                                .foregroundColor(.white)
+                                                }
+                                            HStack (spacing: 5) {
                                                 Text("\(Int(self.lastDistance))")
                                                     .font(.custom("nulshock", size: geo.size.width/5))
                                                     .foregroundColor(Color("CosmicPurple"))
@@ -263,25 +270,23 @@ struct MenuView: View {
                                                     .fixedSize()
                                                 VStack (alignment: .leading) {
                                                 Text("light")
-                                                    .font(.custom("Audiowide-Regular", size: geo.size.width/18))
+                                                    .font(.custom("Audiowide-Regular", size: geo.size.width/20))
                                                     .foregroundColor(Color("CosmicPurple"))
                                                     .bold()
+                                                    .offset(y: geo.size.width/48)
 //                                                    .padding(.top, geo.size.width/11)
 //                                                    .frame(width: geo.size.width/10)
 //                                                .fixedSize()
                                                 Text("years")
-                                                .font(.custom("Audiowide-Regular", size: geo.size.width/18))
+                                                .font(.custom("Audiowide-Regular", size: geo.size.width/20))
                                                 .foregroundColor(Color("CosmicPurple"))
                                                 .bold()
                                                 }
 //                                                .frame(alignment: Alignment.bottomLeading)
-                                                .offset(y: geo.size.width/48)
+                                                .offset(y: geo.size.width/37)
                                             }
                                             .offset(x: geo.size.width/20)
-                                                .onAppear() {
-                                                    
                                             }
-                                            
                                             HStack {
                                                 Image(systemName: "star.fill")
                                                     .font(.system(size: geo.size.width/15, weight: .bold))
