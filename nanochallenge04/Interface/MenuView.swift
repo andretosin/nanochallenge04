@@ -73,29 +73,51 @@ struct MenuView: View {
                                     Image(systemName: "flag.fill")
                                         .font(.system(size: geo.size.width/22))
                                         .foregroundColor(.white)
-                                    
                                     HStack (spacing: geo.size.width/120) {
                                         if self.isPlaying {
-                                            Text(self.distance)
-                                                .font(.custom("nulshock", size: geo.size.width/18))
-                                                .font(Font.body.monospacedDigit())
+                                            ZStack {
+                                                Text(self.distance)
+                                                    .font(.custom("nulshock", size: geo.size.width/18))
+                                                    .font(Font.body.monospacedDigit())
+                                                    .foregroundColor(.white)
+                                                    .bold()
+                                                    .lineLimit(nil)
+                                                    .multilineTextAlignment(.trailing)
+                                                    .animation(.spring(response: 0.0, dampingFraction:0.2))
+//                                                    .fixedSize()
+
+                                                    .frame(alignment: .trailing)
+                                                    
+                                                    .opacity(1.0)
+                                                if Int(self.distance) ?? 0 < 10 {
+                                                    Text("0")
+                                                        .font(.custom("nulshock", size: geo.size.width/18))
+                                                        .opacity(0.0)
+                                                } else {
+                                                    if Int(self.distance) ?? 10 < 100 {
+                                                        Text("00")
+                                                            .font(.custom("nulshock", size: geo.size.width/18))
+                                                            .opacity(0.0)
+                                                    } else {
+                                                    if Int(self.distance) ?? 100 < 1000 {
+                                                        Text("000")
+                                                            .font(.custom("nulshock", size: geo.size.width/19))
+                                                            .opacity(0.0)
+                                                    }
+                                                    }
+                                                }
+                                            
+                                            }
+                                            
+                                            Text("ly")
+                                                
+                                                .font(.custom("Audiowide-Regular", size: geo.size.width/30))
                                                 .foregroundColor(.white)
                                                 .bold()
-                                                
-                                                .multilineTextAlignment(.leading)
+                                                .padding(.top, geo.size.width/60)
                                                 //                                            .shadow(color: Color.black.opacity(0.75), radius: 1, x: -1, y: 1)
-                                                .animation(.spring(response: 0.0, dampingFraction:0.2))
                                                 .fixedSize()
-                                                .opacity(1.0)
-                                            Text("ly")
-                                                                                           
-                                                                                           .font(.custom("Audiowide-Regular", size: geo.size.width/30))
-                                                                                           .foregroundColor(.white)
-                                                                                           .bold()
-                                                                                           .padding(.top, geo.size.width/60)
-                                                                                           //                                            .shadow(color: Color.black.opacity(0.75), radius: 1, x: -1, y: 1)
-                                                                                           .fixedSize()
-                                                                                           .animation(.spring(response: 0.0, dampingFraction:0.2))
+                                                .animation(.spring(response: 0.0, dampingFraction:0.2))
                                         } else {
                                             Text("\(Int(self.highScore))")
                                                 .font(.custom("nulshock", size: geo.size.width/18))
@@ -118,7 +140,7 @@ struct MenuView: View {
                                                 .animation(.spring(response: 0.0, dampingFraction:0.2))
                                         }
                                     }
-//                                    .opacity(1.0)
+                                    //                                    .opacity(1.0)
                                 }
                                 .onTapGesture {
                                     withAnimation {
@@ -131,15 +153,15 @@ struct MenuView: View {
                                 .padding(.vertical, 10)
                                 .background(Capsule()
                                 .fill(self.buttonIsShown ? Color("CosmicPurple") : Color("LowerPurple"))
-                                    .opacity(self.buttonIsShown ? 1.0 : 0.5)
+                                .opacity(self.buttonIsShown ? 1.0 : 0.5)
                                 )
                                     .padding(.leading, 20)
                                     .frame(height: geo.size.height/10, alignment: .leading)
                                     .clipShape(Capsule()
                                 )
-                                     
                                     
-//                                    .opacity(self.buttonIsShown ? 1.0 : 0.5)
+                                    
+                                    //                                    .opacity(self.buttonIsShown ? 1.0 : 0.5)
                                     .shadow(color: Color("CosmicPurple").opacity(0.3), radius: 2, x: 0, y: 0)
                                     
                                     .onTapGesture {
@@ -172,36 +194,36 @@ struct MenuView: View {
                                                 .fixedSize()
                                                 .opacity(1.0)
                                         } else {
-                                        Text("\(self.totalStarsCollected)")
-                                            .font(.custom("nulshock", size: geo.size.width/18))
-                                            .foregroundColor(.white)
-                                            .bold()
-                                            //                                        .shadow(color: Color.black.opacity(0.75), radius: 1, x: -1, y: 1)
-                                            .fixedSize()
-                                            .animation(.spring(response: 0.0, dampingFraction:0.2))
+                                            Text("\(self.totalStarsCollected)")
+                                                .font(.custom("nulshock", size: geo.size.width/18))
+                                                .foregroundColor(.white)
+                                                .bold()
+                                                //                                        .shadow(color: Color.black.opacity(0.75), radius: 1, x: -1, y: 1)
+                                                .fixedSize()
+                                                .animation(.spring(response: 0.0, dampingFraction:0.2))
                                         }
                                     }
                                 }
                                 .padding(.trailing, 20)
                                 .padding(.leading, 15)
                                 .padding(.vertical, 10)
-//                                .opacity(self.buttonIsShown ? 1.0 : 0.0)
-                           
-                                
-                                .background(Capsule()
+                                    //                                .opacity(self.buttonIsShown ? 1.0 : 0.0)
                                     
-                                .fill(self.buttonIsShown ? Color("CosmicPurple") : Color("LowerPurple"))
-                                    .opacity(self.buttonIsShown ? 1.0 : 0.5)
+                                    
+                                    .background(Capsule()
+                                        
+                                        .fill(self.buttonIsShown ? Color("CosmicPurple") : Color("LowerPurple"))
+                                        .opacity(self.buttonIsShown ? 1.0 : 0.5)
                                 )
                                     
-                                .padding(.trailing, self.buttonIsShown ? geo.size.width/9.5 : 0)
+                                    .padding(.trailing, self.buttonIsShown ? geo.size.width/9.5 : 0)
                                     //                                .padding(.trailing, self.adsIsShown ? geo.size.width/3.5 : 0)
                                     .shadow(color: Color("CosmicPurple").opacity(0.3), radius: 2, x: 0, y: 0)
                                     //                                .shadow(color: Color.black.opacity(0.4), radius: 4, x: 2, y: 0)
                                     .clipShape(Capsule())
                                     .background(Capsule()
                                         .fill(Color("LowerPurple")
-                                    .opacity(self.buttonIsShown ? 1.0 : 0.0))
+                                            .opacity(self.buttonIsShown ? 1.0 : 0.0))
                                         .shadow(color: Color("CosmicPurple").opacity(0.3), radius: 2, x: 0, y: 0)
                                 )
                                 
@@ -213,15 +235,15 @@ struct MenuView: View {
                                     }) {
                                         HStack (spacing: 0) {                                            Image(systemName: "bag.fill")
                                             
-                                                .font(.system(size: geo.size.width/18, weight: .regular))
-                                                //                                            .padding(.trailing, geo.size.width/40)
-                                                .foregroundColor(.white)
-                                                .shadow(color: Color("CosmicPurple").opacity(0.75), radius: 2, x: -2, y: 2)
-                                                //                                                .shadow(color: Color.black.opacity(0.75), radius: 1, x: -1, y: 1)
-                                                
-                                                .fixedSize()
+                                            .font(.system(size: geo.size.width/18, weight: .regular))
+                                            //                                            .padding(.trailing, geo.size.width/40)
+                                            .foregroundColor(.white)
+                                            .shadow(color: Color("CosmicPurple").opacity(0.75), radius: 2, x: -2, y: 2)
+                                            //                                                .shadow(color: Color.black.opacity(0.75), radius: 1, x: -1, y: 1)
+                                            
+                                            .fixedSize()
                                         }
-
+                                        
                                     }
                                     .padding(.trailing, geo.size.width/28)
                                     .offset(y: 0.005 * -geo.size.width)
@@ -238,7 +260,7 @@ struct MenuView: View {
                             
                         }
                         .padding(.trailing, 20)
-//                        .opacity(self.buttonIsShown ? 1.0 : 0.5)
+                        //                        .opacity(self.buttonIsShown ? 1.0 : 0.5)
                         VStack (spacing: geo.size.width/100) {
                             
                             ZStack {
@@ -255,54 +277,54 @@ struct MenuView: View {
                                         VStack (spacing: -10) {
                                             ZStack {
                                                 if self.newRecord {
-                                                Image(systemName: "flag.fill")
-                                                .font(.system(size: geo.size.width/22))
-                                                .foregroundColor(.white)
+                                                    Image(systemName: "flag.fill")
+                                                        .font(.system(size: geo.size.width/22))
+                                                        .foregroundColor(.white)
                                                 }
-                                            HStack (spacing: 5) {
-                                                Text("\(Int(self.lastDistance))")
-                                                    .font(.custom("nulshock", size: geo.size.width/5))
-                                                    .foregroundColor(Color("CosmicPurple"))
-                                                    .bold()
-                                                    .shadow(color: Color.black.opacity(0.75), radius: 1, x: -1, y: 1)
-                                                    .padding(.top, geo.size.width/60)
-//                                                    .fixedSize(horizontal: true, vertical: false)
-                                                    .fixedSize()
-                                                VStack (alignment: .leading) {
-                                                Text("light")
-                                                    .font(.custom("Audiowide-Regular", size: geo.size.width/20))
-                                                    .foregroundColor(Color("CosmicPurple"))
-                                                    .bold()
-                                                    .offset(y: geo.size.width/48)
-                                                    .shadow(color: Color.black.opacity(0.25), radius: 1, x: -1, y: 1)
-//                                                    .padding(.top, geo.size.width/11)
-//                                                    .frame(width: geo.size.width/10)
-//                                                .fixedSize()
-                                                Text("years")
-                                                .font(.custom("Audiowide-Regular", size: geo.size.width/20))
-                                                .foregroundColor(Color("CosmicPurple"))
-                                                .bold()
-                                                    .shadow(color: Color.black.opacity(0.25), radius: 1, x: -1, y: 1)
+                                                HStack (spacing: 5) {
+                                                    Text("\(Int(self.lastDistance))")
+                                                        .font(.custom("nulshock", size: geo.size.width/5))
+                                                        .foregroundColor(Color("CosmicPurple"))
+                                                        .bold()
+                                                        .shadow(color: Color.black.opacity(0.75), radius: 1, x: -1, y: 1)
+                                                        .padding(.top, geo.size.width/60)
+                                                        //                                                    .fixedSize(horizontal: true, vertical: false)
+                                                        .fixedSize()
+                                                    VStack (alignment: .leading) {
+                                                        Text("light")
+                                                            .font(.custom("Audiowide-Regular", size: geo.size.width/20))
+                                                            .foregroundColor(Color("CosmicPurple"))
+                                                            .bold()
+                                                            .offset(y: geo.size.width/48)
+                                                            .shadow(color: Color.black.opacity(0.25), radius: 1, x: -1, y: 1)
+                                                        //                                                    .padding(.top, geo.size.width/11)
+                                                        //                                                    .frame(width: geo.size.width/10)
+                                                        //                                                .fixedSize()
+                                                        Text("years")
+                                                            .font(.custom("Audiowide-Regular", size: geo.size.width/20))
+                                                            .foregroundColor(Color("CosmicPurple"))
+                                                            .bold()
+                                                            .shadow(color: Color.black.opacity(0.25), radius: 1, x: -1, y: 1)
+                                                    }
+                                                        //                                                .frame(alignment: Alignment.bottomLeading)
+                                                        .offset(y: geo.size.width/37)
                                                 }
-//                                                .frame(alignment: Alignment.bottomLeading)
-                                                .offset(y: geo.size.width/37)
-                                            }
-                                            .offset(x: geo.size.width/20)
+                                                .offset(x: geo.size.width/20)
                                             }
                                             HStack {
                                                 Image(systemName: "star.fill")
                                                     .font(.system(size: geo.size.width/15, weight: .bold))
                                                     .foregroundColor(Color("CosmicPurple"))
                                                     .shadow(color: Color.black.opacity(0.75), radius: 1, x: -1, y: 1)
-                                                .fixedSize()
+                                                    .fixedSize()
                                                 Text("\(self.lastStarsCollected)")
                                                     .font(.custom("nulshock", size: geo.size.width/10))
                                                     .foregroundColor(Color("CosmicPurple"))
                                                     .bold()
                                                     .shadow(color: Color.black.opacity(0.75), radius: 1, x: -1, y: 1)
                                                     
-//                                                    .fixedSize(horizontal: true, vertical: false)
-                                                .fixedSize()
+                                                    //                                                    .fixedSize(horizontal: true, vertical: false)
+                                                    .fixedSize()
                                                 
                                             }
                                         }
@@ -340,11 +362,11 @@ struct MenuView: View {
                             .frame(minHeight: 0, maxHeight: .infinity)
                         HStack (spacing: 30) {
                             ButtonConfView(content: ButtonType(iconName: "RocketB")) {
-//                                self.chooseRocket.toggle()
+                                //                                self.chooseRocket.toggle()
                                 self.showPopup = true
                             }
                             ButtonConfView(content: ButtonType(iconName: "PowerUp")) {
-                            self.showPopup = true
+                                self.showPopup = true
                             }
                             ButtonConfView(content: ButtonType(iconName: "RankingB")) {
                                 self.showPopup = true
