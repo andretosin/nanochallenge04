@@ -144,7 +144,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         audioPlayerPads.play()
         audioPlayerAmbience.play()
         
-       
+        
         
     }
     
@@ -175,25 +175,56 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             meteor.playerPosX = player.node.position.x
             
             lightYears = lightYears * 10
-            if lightYears >= 15 && lightYears < 30 {
+            if lightYears >= 10 && lightYears < 15 {
                 rock.isSpawnActive = true
                 rock.spawnChance = 20
-            } else if lightYears >= 30 && lightYears < 100 {
+            } else if lightYears >= 15 && lightYears < 25 {
+                //                rock.isSpawnActive = true
+                rock.spawnChance = 50
+            } else if lightYears >= 25 && lightYears < 40 {
                 rock.spawnChance = 45
                 orange.isSpawnActive = true
                 orange.singleChance = 100
                 orange.spawnChance = 60
+                meteor.isSpawnActive = true
+                meteor.spawnChance = 80
+            } else if lightYears >= 40 && lightYears < 50 {
+                rock.spawnChance = 45
+                orange.isSpawnActive = true
+                orange.singleChance = 100
+                orange.spawnChance = 80
+                meteor.isSpawnActive = true
+                meteor.spawnChance = 40
+            } else if lightYears >= 50 && lightYears < 60 {
+                rock.spawnChance = 40
+                orange.isSpawnActive = true
+                orange.singleChance = 100
+                orange.spawnChance = 70
+            } else if lightYears >= 60 && lightYears < 80 {
+                rock.spawnChance = 50
+                orange.isSpawnActive = true
+                orange.singleChance = 100
+                orange.spawnChance = 90
+                //                meteor.isSpawnActive = true
+                meteor.spawnChance = 80
+            } else if lightYears >= 80 && lightYears < 100 {
+                rock.spawnChance = 55
+                orange.isSpawnActive = true
+                orange.singleChance = 100
+                orange.spawnChance = 80
+                //                meteor.isSpawnActive = true
+                meteor.spawnChance = 80
             } else if lightYears >= 100 && lightYears < 150 {
                 rock.spawnChance = 80
                 orange.singleChance = 80
                 orange.doubleChance = 100
-                orange.spawnChance = 80
+                orange.spawnChance = 90
             } else if lightYears >= 150 && lightYears < 200 {
                 rock.spawnChance = 100
                 orange.singleChance = 60
                 orange.spawnChance = 100
                 orange.doubleChance = 30
-                meteor.isSpawnActive = true
+                //                meteor.isSpawnActive = true
                 meteor.spawnChance = 20
             } else if lightYears >= 200 && lightYears < 250 {
                 meteor.spawnChance = 40
@@ -265,11 +296,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                     self.flightSpeed = 2200
                 }
             }
-            case ContactMask.player.rawValue | ContactMask.orangeDouble.rawValue:
+        case ContactMask.player.rawValue | ContactMask.orangeDouble.rawValue:
             // se encosotu numa laranja
-
+            
             if !firstContactFlagPlayerOrange {
-
+                
                 firstContactFlagPlayerOrange = true
                 self.flightSpeed += 300
                 if self.flightSpeed > 2000 {
@@ -279,12 +310,12 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                     self.flightSpeed = 2200
                 }
             }
-
-            case ContactMask.player.rawValue | ContactMask.orangeTriple.rawValue:
+            
+        case ContactMask.player.rawValue | ContactMask.orangeTriple.rawValue:
             // se encosotu numa laranja
-
+            
             if !firstContactFlagPlayerOrange {
-
+                
                 firstContactFlagPlayerOrange = true
                 self.flightSpeed += 400
                 if self.flightSpeed > 2000 {
@@ -294,33 +325,33 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                     self.flightSpeed = 2200
                 }
             }
-
             
-
+            
+            
             
             
         case ContactMask.player.rawValue | ContactMask.rock.rawValue:
             // se encostou numa pedra
             if !firstContactFlagPlayerRock {
                 if !isBoostActive {
-                firstContactFlagPlayerRock = true
-                player.isDead = true
-                star.isSpawnActive = false
-                rock.isSpawnActive = false
-                orange.isSpawnActive = false
-                player.isDead = true
-                //                player.node.physicsBody?.allowsRotation = false
-                totalStars += self.currentScore
-                deathCount += 1
-                player.node.physicsBody?.velocity = CGVector(dx: 0, dy: 0)
-                
-                // salva a quantidade de moedas
-                let defaults = UserDefaults.standard
-                defaults.set(totalStars, forKey: "starsCollected")
-                
-                // pequeno delay após morrer para voltar par ao menu
-                DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-                    self.endRun()
+                    firstContactFlagPlayerRock = true
+                    player.isDead = true
+                    star.isSpawnActive = false
+                    rock.isSpawnActive = false
+                    orange.isSpawnActive = false
+                    player.isDead = true
+                    //                player.node.physicsBody?.allowsRotation = false
+                    totalStars += self.currentScore
+                    deathCount += 1
+                    player.node.physicsBody?.velocity = CGVector(dx: 0, dy: 0)
+                    
+                    // salva a quantidade de moedas
+                    let defaults = UserDefaults.standard
+                    defaults.set(totalStars, forKey: "starsCollected")
+                    
+                    // pequeno delay após morrer para voltar par ao menu
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                        self.endRun()
                     }
                 }
             }
@@ -350,7 +381,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             if !player.isDead {
                 for touch in touches {
                     let location = touch.location(in: self)
-   
+                    
                     if location.x > 0 {
                         player.applyTorqueRight = true
                     } else {
@@ -417,7 +448,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     func endRun() {
-    
+        
         
         
         gameStarted = false
@@ -457,36 +488,36 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                             // fs > 1800
                             if flightSpeed > 2000 {
                                 // fs > 2000
-//                                gameDelegate?.updateSlices(slices: 6)
+                                //                                gameDelegate?.updateSlices(slices: 6)
                                 return 6
                             } else {
                                 // fs < 2000
-//                                gameDelegate?.updateSlices(slices: 5)
+                                //                                gameDelegate?.updateSlices(slices: 5)
                                 return 5
                             }
                         } else {
                             // fs < 1800
-//                            gameDelegate?.updateSlices(slices: 4)
+                            //                            gameDelegate?.updateSlices(slices: 4)
                             return 4
                         }
                     } else {
                         // fs < 1600
-//                        gameDelegate?.updateSlices(slices: 3)
+                        //                        gameDelegate?.updateSlices(slices: 3)
                         return 3
                     }
                 } else {
                     // fs < 14000
-//                    gameDelegate?.updateSlices(slices: 2)
+                    //                    gameDelegate?.updateSlices(slices: 2)
                     return 2
                 }
             } else {
                 // fs < 1200
-//                gameDelegate?.updateSlices(slices: 1)
+                //                gameDelegate?.updateSlices(slices: 1)
                 return 1
             }
         } else {
             // fs < 1000
-//            gameDelegate?.updateSlices(slices: 0)
+            //            gameDelegate?.updateSlices(slices: 0)
             return 0
         }
     }
@@ -511,7 +542,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         audioPlayerPads.volume = 0.0
         audioPlayerPads.numberOfLoops = -1
     }
-        
+    
     func mute() {
         audioPlayerAmbience.setVolume(0.0, fadeDuration: 0.1)
     }
