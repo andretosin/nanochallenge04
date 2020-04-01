@@ -74,6 +74,7 @@ class ViewController: UIViewController, GKGameCenterControllerDelegate {
         // Add 10 points to current score
         score += 10
 //        scoreLabel.text = "\(score)"
+        print("Best Score submitted to your Leaderboard!")
      
         // Submit score to GC leaderboard
         let bestScoreInt = GKScore(leaderboardIdentifier: LEADERBOARD_ID)
