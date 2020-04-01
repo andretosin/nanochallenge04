@@ -15,11 +15,11 @@ class Player: Updatable {
     
     
     var scene: GameScene!
-    var node: SKSpriteNode = SKSpriteNode(imageNamed: "RocketOff-2")
-    var leftTexture = SKTexture(imageNamed: "RocketLeft-2")
-    var rightTexture = SKTexture(imageNamed: "RocketRight-2")
-    var offTexture = SKTexture(imageNamed: "RocketOff-2")
-    var collisionMask = SKTexture(imageNamed: "RocketMask-2")
+    var node: SKSpriteNode = SKSpriteNode(imageNamed: "RocketAsset")
+    var leftTexture = SKTexture(imageNamed: "RocketAsset")
+    var rightTexture = SKTexture(imageNamed: "RocketAsset")
+    var offTexture = SKTexture(imageNamed: "RocketAsset")
+    var collisionMask = SKTexture(imageNamed: "RocketAsset ")
     
     
     var applyTorqueLeft: Bool = false
@@ -44,7 +44,7 @@ class Player: Updatable {
     
     internal init(scene: GameScene?) {
         self.configurePhysics()
-        self.node.scale(to: CGSize(width: 314/1.4, height: 428/1.4))
+        self.node.scale(to: CGSize(width: 214/1.2, height: 369/1.2))
         self.node.position = CGPoint(x: 0, y: -50)
         self.node.zPosition = 2
         scene?.addChild(self.node)
