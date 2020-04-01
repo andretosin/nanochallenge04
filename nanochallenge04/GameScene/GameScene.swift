@@ -9,6 +9,12 @@
 import SpriteKit
 import AVFoundation
 
+extension CGFloat {
+    func format(f: String) -> String {
+        return String(format: "%\(f)f", self)
+    }
+}
+
 protocol GameDelegate {
     func endRun(lastDistance: CGFloat, starsCollected: Int, totalStars: Int)
     func updateLabels(flightDistance: String, currentScore: String)
@@ -137,7 +143,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             return
         }
         let deltaTime = currentTime - lastTime
-        let lightYears = flightDistance/20000
+        let lightYears = flightDistance/200000
         
         let auxSlices = getSlices()
         if auxSlices != slices {
@@ -198,7 +204,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             if !player.isDead {
                 self.flightIncrement = rock.speed
                 self.flightDistance += flightIncrement
-                gameDelegate?.updateLabels(flightDistance: "\(Int(lightYears))", currentScore: String(self.currentScore))
+                gameDelegate?.updateLabels(flightDistance: "\(lightYears.format(f: ".1"))", currentScore: String(self.currentScore))
             }
         } else {
             self.player.node.position = CGPoint(x: 0, y: -50)
@@ -418,7 +424,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         rock.speed = speed
         star.speed = speed
         player.xSpeed = speed
-        //        player.torque = speed/16
         orange.speed = speed
         meteor.speed = speed
     }
