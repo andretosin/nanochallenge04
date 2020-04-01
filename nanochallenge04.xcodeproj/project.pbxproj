@@ -16,6 +16,7 @@
 		3F56E9A324201CCC002C7010 /* Circle2View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F56E9A224201CCC002C7010 /* Circle2View.swift */; };
 		3F56E9A524214CC3002C7010 /* ButtonConfView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F56E9A424214CC3002C7010 /* ButtonConfView.swift */; };
 		3F64AA64243392B900D6F3DF /* PopUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F64AA63243392B900D6F3DF /* PopUpView.swift */; };
+		3F67D71824352BE00094421B /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F67D71724352BE00094421B /* GameKit.framework */; };
 		3F6D9521241DA72800684229 /* MenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F6D9520241DA72800684229 /* MenuView.swift */; };
 		3FF59579241DB94700143510 /* GameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FF59578241DB94700143510 /* GameView.swift */; };
 		3FF5957B241DBCD800143510 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FF5957A241DBCD800143510 /* ViewController.swift */; };
@@ -56,6 +57,7 @@
 		3F56E9A224201CCC002C7010 /* Circle2View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Circle2View.swift; sourceTree = "<group>"; };
 		3F56E9A424214CC3002C7010 /* ButtonConfView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonConfView.swift; sourceTree = "<group>"; };
 		3F64AA63243392B900D6F3DF /* PopUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopUpView.swift; sourceTree = "<group>"; };
+		3F67D71724352BE00094421B /* GameKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameKit.framework; path = System/Library/Frameworks/GameKit.framework; sourceTree = SDKROOT; };
 		3F6D9520241DA72800684229 /* MenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuView.swift; sourceTree = "<group>"; };
 		3FF59578241DB94700143510 /* GameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameView.swift; sourceTree = "<group>"; };
 		3FF5957A241DBCD800143510 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -96,6 +98,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				58BC1590BAE0981C3E59C05B /* Pods_nanochallenge04.framework in Frameworks */,
+				3F67D71824352BE00094421B /* GameKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -132,6 +135,7 @@
 		8E8FC81DB7563B61BAB11EFB /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				3F67D71724352BE00094421B /* GameKit.framework */,
 				526EA79EF71283E191DE39B0 /* Pods_nanochallenge04.framework */,
 			);
 			name = Frameworks;
@@ -515,7 +519,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 15;
-				DEVELOPMENT_TEAM = Y8J5WK586H;
+				DEVELOPMENT_TEAM = ZAZRKU3BQ9;
 				INFOPLIST_FILE = nanochallenge04/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -537,7 +541,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 15;
-				DEVELOPMENT_TEAM = Y8J5WK586H;
+				DEVELOPMENT_TEAM = ZAZRKU3BQ9;
 				INFOPLIST_FILE = nanochallenge04/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
