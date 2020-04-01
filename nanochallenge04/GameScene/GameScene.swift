@@ -174,7 +174,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             } else if lightYears >= 100 && lightYears < 150 {
                 rock.spawnChance = 80
                 orange.singleChance = 80
-                orange.doubleChance = 20
+                orange.doubleChance = 100
                 orange.spawnChance = 80
             } else if lightYears >= 150 && lightYears < 200 {
                 rock.spawnChance = 100

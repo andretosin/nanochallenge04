@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -19,6 +19,7 @@
 		3F6D9521241DA72800684229 /* MenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F6D9520241DA72800684229 /* MenuView.swift */; };
 		3FF59579241DB94700143510 /* GameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FF59578241DB94700143510 /* GameView.swift */; };
 		3FF5957B241DBCD800143510 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FF5957A241DBCD800143510 /* ViewController.swift */; };
+		58BC1590BAE0981C3E59C05B /* Pods_nanochallenge04.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 526EA79EF71283E191DE39B0 /* Pods_nanochallenge04.framework */; };
 		F93C7E1C2423BC620098FFB5 /* ambience.wav in Resources */ = {isa = PBXBuildFile; fileRef = F93C7E1A2423BC620098FFB5 /* ambience.wav */; };
 		F93C7E1D2423BC620098FFB5 /* pads.wav in Resources */ = {isa = PBXBuildFile; fileRef = F93C7E1B2423BC620098FFB5 /* pads.wav */; };
 		F958DC9C2412D271007FECFE /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = F958DC9B2412D271007FECFE /* Player.swift */; };
@@ -58,6 +59,9 @@
 		3F6D9520241DA72800684229 /* MenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuView.swift; sourceTree = "<group>"; };
 		3FF59578241DB94700143510 /* GameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameView.swift; sourceTree = "<group>"; };
 		3FF5957A241DBCD800143510 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		526EA79EF71283E191DE39B0 /* Pods_nanochallenge04.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_nanochallenge04.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		740AF3A80EBE6C533C13857B /* Pods-nanochallenge04.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-nanochallenge04.release.xcconfig"; path = "Target Support Files/Pods-nanochallenge04/Pods-nanochallenge04.release.xcconfig"; sourceTree = "<group>"; };
+		92EC8D94F85C454752762AA9 /* Pods-nanochallenge04.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-nanochallenge04.debug.xcconfig"; path = "Target Support Files/Pods-nanochallenge04/Pods-nanochallenge04.debug.xcconfig"; sourceTree = "<group>"; };
 		F93C7E1A2423BC620098FFB5 /* ambience.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = ambience.wav; sourceTree = "<group>"; };
 		F93C7E1B2423BC620098FFB5 /* pads.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = pads.wav; sourceTree = "<group>"; };
 		F958DC9B2412D271007FECFE /* Player.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
@@ -91,6 +95,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				58BC1590BAE0981C3E59C05B /* Pods_nanochallenge04.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -124,6 +129,23 @@
 			path = Fonts;
 			sourceTree = "<group>";
 		};
+		8E8FC81DB7563B61BAB11EFB /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				526EA79EF71283E191DE39B0 /* Pods_nanochallenge04.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		D515DAF839D666129DB5E539 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				92EC8D94F85C454752762AA9 /* Pods-nanochallenge04.debug.xcconfig */,
+				740AF3A80EBE6C533C13857B /* Pods-nanochallenge04.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
 		F93D1603242144510073D4D8 /* Sound */ = {
 			isa = PBXGroup;
 			children = (
@@ -138,6 +160,8 @@
 			children = (
 				F98D33E8241022E900A12F15 /* nanochallenge04 */,
 				F98D33E7241022E900A12F15 /* Products */,
+				D515DAF839D666129DB5E539 /* Pods */,
+				8E8FC81DB7563B61BAB11EFB /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -204,9 +228,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = F98D33FE241022EB00A12F15 /* Build configuration list for PBXNativeTarget "nanochallenge04" */;
 			buildPhases = (
+				4ECF035447895C155E83A8C7 /* [CP] Check Pods Manifest.lock */,
 				F98D33E2241022E900A12F15 /* Sources */,
 				F98D33E3241022E900A12F15 /* Frameworks */,
 				F98D33E4241022E900A12F15 /* Resources */,
+				8AC2AF129ED6CFC76CAA42FC /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -270,6 +296,48 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		4ECF035447895C155E83A8C7 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-nanochallenge04-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		8AC2AF129ED6CFC76CAA42FC /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-nanochallenge04/Pods-nanochallenge04-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-nanochallenge04/Pods-nanochallenge04-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-nanochallenge04/Pods-nanochallenge04-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		F98D33E2241022E900A12F15 /* Sources */ = {
@@ -442,11 +510,12 @@
 		};
 		F98D33FF241022EB00A12F15 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 92EC8D94F85C454752762AA9 /* Pods-nanochallenge04.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 15;
-				DEVELOPMENT_TEAM = ZAZRKU3BQ9;
+				DEVELOPMENT_TEAM = Y8J5WK586H;
 				INFOPLIST_FILE = nanochallenge04/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -463,6 +532,7 @@
 		};
 		F98D3400241022EB00A12F15 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 740AF3A80EBE6C533C13857B /* Pods-nanochallenge04.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
