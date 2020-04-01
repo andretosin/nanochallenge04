@@ -17,6 +17,7 @@
 		3F56E9A524214CC3002C7010 /* ButtonConfView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F56E9A424214CC3002C7010 /* ButtonConfView.swift */; };
 		3F64AA64243392B900D6F3DF /* PopUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F64AA63243392B900D6F3DF /* PopUpView.swift */; };
 		3F67D71824352BE00094421B /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F67D71724352BE00094421B /* GameKit.framework */; };
+		3F67D71A243537770094421B /* ShowRankings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F67D719243537770094421B /* ShowRankings.swift */; };
 		3F6D9521241DA72800684229 /* MenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F6D9520241DA72800684229 /* MenuView.swift */; };
 		3FF59579241DB94700143510 /* GameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FF59578241DB94700143510 /* GameView.swift */; };
 		3FF5957B241DBCD800143510 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FF5957A241DBCD800143510 /* ViewController.swift */; };
@@ -58,6 +59,7 @@
 		3F56E9A424214CC3002C7010 /* ButtonConfView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonConfView.swift; sourceTree = "<group>"; };
 		3F64AA63243392B900D6F3DF /* PopUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopUpView.swift; sourceTree = "<group>"; };
 		3F67D71724352BE00094421B /* GameKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameKit.framework; path = System/Library/Frameworks/GameKit.framework; sourceTree = SDKROOT; };
+		3F67D719243537770094421B /* ShowRankings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowRankings.swift; sourceTree = "<group>"; };
 		3F6D9520241DA72800684229 /* MenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuView.swift; sourceTree = "<group>"; };
 		3FF59578241DB94700143510 /* GameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameView.swift; sourceTree = "<group>"; };
 		3FF5957A241DBCD800143510 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -119,6 +121,7 @@
 				3F56E9A224201CCC002C7010 /* Circle2View.swift */,
 				3F1E98AE24272F330092375E /* CarouselView.swift */,
 				3F0F7910242D4959002C5DFE /* OrangemeterView.swift */,
+				3F67D719243537770094421B /* ShowRankings.swift */,
 			);
 			path = Interface;
 			sourceTree = "<group>";
@@ -359,6 +362,7 @@
 				F9F530082418212600276183 /* ContactMask.swift in Sources */,
 				F9EBD9C42431868E008ABAD6 /* Powerup.swift in Sources */,
 				3F1E98B324284B6A0092375E /* TriggerButtonView.swift in Sources */,
+				3F67D71A243537770094421B /* ShowRankings.swift in Sources */,
 				F9AC8210243294280010F7C3 /* Meteor.swift in Sources */,
 				3F1E98AD2425E57A0092375E /* RocketView.swift in Sources */,
 				3F6D9521241DA72800684229 /* MenuView.swift in Sources */,

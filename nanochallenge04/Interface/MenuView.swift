@@ -41,6 +41,9 @@ struct MenuView: View {
     @State private var stars: String = "a"
     @State private var showPopup = false
     @State private var newRecord = false
+    @State private var showRanking = false
+    
+    
     
     var body: some
         View {
@@ -388,7 +391,7 @@ struct MenuView: View {
                                 self.showPopup = true
                             }
                             ButtonConfView(content: ButtonType(iconName: "RankingB")) {
-                                self.showPopup = true
+                                self.showRanking = true
                             }
                             ButtonConfView(content: ButtonType(iconName: "SoundOnB")) {
                                 self.isMuted.toggle()
@@ -540,6 +543,10 @@ struct MenuView: View {
                     }
                     if self.showPopup {
                         PopUpView(showPopup: self.$showPopup)
+                    }
+                    
+                    if self.showRanking {
+                        ShowRankings()
                     }
                 }
             }
