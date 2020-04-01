@@ -94,17 +94,17 @@ struct MenuView: View {
                                                     
                                                     .opacity(1.0)
                                                 if Int(self.distance) ?? 0 < 10 {
-                                                    Text("000")
+                                                    Text("00")
                                                         .font(.custom("nulshock", size: geo.size.width/20))
                                                         .opacity(0.0)
                                                 } else {
                                                     if Int(self.distance) ?? 10 < 100 {
-                                                        Text("0000")
+                                                        Text("000")
                                                             .font(.custom("nulshock", size: geo.size.width/20))
                                                             .opacity(0.0)
                                                     } else {
                                                     if Int(self.distance) ?? 100 < 1000 {
-                                                        Text("00000")
+                                                        Text("0000")
                                                             .font(.custom("nulshock", size: geo.size.width/20))
                                                             .opacity(0.0)
                                                     }
