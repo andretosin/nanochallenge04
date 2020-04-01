@@ -74,6 +74,7 @@ struct MenuView: View {
                                         .font(.system(size: geo.size.width/22))
                                         .foregroundColor(.white)
                                     HStack (spacing: geo.size.width/120) {
+//                                        Spacer()
                                         if self.isPlaying {
                                             ZStack {
                                                 Text(self.distance)
@@ -90,18 +91,18 @@ struct MenuView: View {
                                                     
                                                     .opacity(1.0)
                                                 if Int(self.distance) ?? 0 < 10 {
-                                                    Text("0")
-                                                        .font(.custom("nulshock", size: geo.size.width/18))
+                                                    Text("000")
+                                                        .font(.custom("nulshock", size: geo.size.width/20))
                                                         .opacity(0.0)
                                                 } else {
                                                     if Int(self.distance) ?? 10 < 100 {
-                                                        Text("00")
-                                                            .font(.custom("nulshock", size: geo.size.width/18))
+                                                        Text("0000")
+                                                            .font(.custom("nulshock", size: geo.size.width/20))
                                                             .opacity(0.0)
                                                     } else {
                                                     if Int(self.distance) ?? 100 < 1000 {
-                                                        Text("000")
-                                                            .font(.custom("nulshock", size: geo.size.width/19))
+                                                        Text("00000")
+                                                            .font(.custom("nulshock", size: geo.size.width/20))
                                                             .opacity(0.0)
                                                     }
                                                     }
@@ -193,6 +194,24 @@ struct MenuView: View {
                                                 .animation(.spring(response: 0.0, dampingFraction:0.2))
                                                 .fixedSize()
                                                 .opacity(1.0)
+                                            if Int(self.stars) ?? 0 < 10 {
+                                                Text("0")
+                                                    .font(.custom("nulshock", size: geo.size.width/18))
+                                                    .opacity(0.0)
+                                            } else {
+                                                if Int(self.stars) ?? 10 < 100 {
+                                                    Text("00")
+                                                        .font(.custom("nulshock", size: geo.size.width/18))
+                                                        .opacity(0.0)
+                                                } else {
+                                                if Int(self.stars) ?? 100 < 1000 {
+                                                    Text("000")
+                                                        .font(.custom("nulshock", size: geo.size.width/19))
+                                                        .opacity(0.0)
+                                                }
+                                                }
+                                            }
+
                                         } else {
                                             Text("\(self.totalStarsCollected)")
                                                 .font(.custom("nulshock", size: geo.size.width/18))
