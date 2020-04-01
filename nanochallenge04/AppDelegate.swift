@@ -5,9 +5,13 @@
 //  Created by Andre Tosin on 04/03/20.
 //  Copyright © 2020 Apple Developer Academy. All rights reserved.
 //
+// APP ID: ca-app-pub-6710438178084678~1970026090
+// AD ID:  ca-app-pub-6710438178084678/5829735278
+
 
 import UIKit
 import SwiftUI
+import GoogleMobileAds
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -24,6 +28,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         self.window?.rootViewController = hostVc
         self.window?.makeKeyAndVisible()
+        
+        GADMobileAds.sharedInstance().start(completionHandler: nil)
         
         return true
     }
