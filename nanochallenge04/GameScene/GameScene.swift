@@ -8,6 +8,7 @@
 
 import SpriteKit
 import AVFoundation
+import GoogleMobileAds
 
 extension CGFloat {
     func format(f: String) -> String {
@@ -21,11 +22,19 @@ protocol GameDelegate {
     func updateSlices(slices: Int)
 }
 
+protocol GameAdDelegate {
+    func showAd()
+}
+
+
+
 class GameScene: SKScene, SKPhysicsContactDelegate {
     
+    var intersticial: GADInterstitial!
     var firstContactFlagPlayerRock: Bool = false
     var firstContactFlagPlayerOrange: Bool = false
     var gameDelegate: GameDelegate?
+    var gameAdDelegate: GameAdDelegate?
     var background: GameBackground!
     var rock: Rock!
     var star: Star!
@@ -108,7 +117,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         }
         
         self.physicsWorld.contactDelegate = self
-        view.showsPhysics = false
+        view.showsPhysics = true
         
         setAudioPlayers()
         
@@ -135,6 +144,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         audioPlayerPads.play()
         audioPlayerAmbience.play()
         
+       
+        
     }
     
     override func update(_ currentTime: TimeInterval) {
@@ -143,7 +154,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             return
         }
         let deltaTime = currentTime - lastTime
-        let lightYears = flightDistance/200000
+        var lightYears = flightDistance/200000
         
         let auxSlices = getSlices()
         if auxSlices != slices {
@@ -163,6 +174,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             orange.update(currentTime)
             meteor.playerPosX = player.node.position.x
             
+            lightYears = lightYears * 10
             if lightYears >= 15 && lightYears < 30 {
                 rock.isSpawnActive = true
                 rock.spawnChance = 20
@@ -192,6 +204,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 orange.singleChance = 10
                 orange.doubleChance = 30
             }
+            lightYears = lightYears/10
             
             if self.flightSpeed > 1000 {
                 self.flightSpeed -= flightSlowdown
@@ -204,7 +217,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             if !player.isDead {
                 self.flightIncrement = rock.speed
                 self.flightDistance += flightIncrement
-                gameDelegate?.updateLabels(flightDistance: "\(lightYears.format(f: ".1"))", currentScore: String(self.currentScore))
+                gameDelegate?.updateLabels(flightDistance: "\(Int((lightYears*10)))", currentScore: String(self.currentScore))
             }
         } else {
             self.player.node.position = CGPoint(x: 0, y: -50)
@@ -404,17 +417,20 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     func endRun() {
+    
+        
+        
         gameStarted = false
         player.isIdle = true
         player.node.physicsBody?.isDynamic = false
-        gameDelegate?.endRun(lastDistance: self.flightDistance/20000, starsCollected: self.currentScore, totalStars: totalStars)
+        gameDelegate?.endRun(lastDistance: (flightDistance/20000), starsCollected: self.currentScore, totalStars: totalStars)
         player.node.physicsBody?.velocity = CGVector(dx: 0, dy: 0)
         player.node.position = CGPoint(x: 0, y: 0)
         player.node.zRotation = 0
         player.node.physicsBody?.angularVelocity = 0
         stopPads()
-        if deathCount > 3 {
-            print("print ad")
+        if deathCount > 2 {
+            gameAdDelegate?.showAd()
             deathCount = 0
         }
     }

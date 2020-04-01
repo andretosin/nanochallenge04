@@ -48,6 +48,8 @@ struct GameView: UIViewControllerRepresentable {
             uiViewController.gameScene.unmute()
         }
         
+        
+        
 //        colocar skin 1
 //        if shipIndex == 1 {
 //            uiViewController.gameScene.player.setSkin(index: 2)
@@ -61,12 +63,17 @@ struct GameView: UIViewControllerRepresentable {
     }
     
     class Coordinator: NSObject, GameDelegate {
+        
+        
         var parent: GameView
         
         init(parent: GameView) {
             self.parent = parent
         }
         
+        func showAd() {
+            
+        }
         
         func updateSlices(slices: Int) {
             DispatchQueue.global().async {
