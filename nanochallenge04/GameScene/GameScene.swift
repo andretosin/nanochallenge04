@@ -80,6 +80,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     var slices = 0
     var flightSlowdown: CGFloat = 0.2
+    var deathCount = 0 {
+        didSet {
+            print(self.deathCount)
+        }
+    }
     
     override func didMove(to view: SKView) {
         
@@ -287,7 +292,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 player.isDead = true
                 //                player.node.physicsBody?.allowsRotation = false
                 totalStars += self.currentScore
-                
+                deathCount += 1
                 player.node.physicsBody?.velocity = CGVector(dx: 0, dy: 0)
                 
                 // salva a quantidade de moedas
@@ -402,7 +407,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         player.node.zRotation = 0
         player.node.physicsBody?.angularVelocity = 0
         stopPads()
-        
+        if deathCount > 3 {
+            print("print ad")
+            deathCount = 0
+        }
     }
     
     func setSpeeds(_ speed: CGFloat) {
