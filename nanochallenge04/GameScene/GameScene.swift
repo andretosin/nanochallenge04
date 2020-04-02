@@ -229,17 +229,18 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 rock.spawnChance = 100
                 orange.singleChance = 60
                 orange.spawnChance = 100
-                orange.doubleChance = 30
+                orange.doubleChance = 100
                 //                meteor.isSpawnActive = true
                 meteor.spawnChance = 20
             } else if lightYears >= 200 && lightYears < 250 {
                 meteor.spawnChance = 60
                 orange.singleChance = 30
                 orange.doubleChance = 40
+//                orange.tripleChance = 30
             } else {
                 meteor.spawnChance = 60
-                orange.singleChance = 10
-                orange.doubleChance = 30
+                orange.singleChance = 50
+                orange.doubleChance = 90
             }
             lightYears = lightYears/10
             

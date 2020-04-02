@@ -94,19 +94,22 @@ struct MenuView: View {
                                                     
                                                     .opacity(1.0)
                                                 if Int(self.distance) ?? 0 < 10 {
-                                                    Text("00")
-                                                        .font(.custom("nulshock", size: geo.size.width/20))
+                                                    Text("0")
+                                                        .font(.custom("nulshock", size: geo.size.width/17))
                                                         .opacity(0.0)
+                                                    .animation(.spring(response: 0.0, dampingFraction:0.2))
                                                 } else {
                                                     if Int(self.distance) ?? 10 < 100 {
-                                                        Text("000")
-                                                            .font(.custom("nulshock", size: geo.size.width/20))
+                                                        Text("00")
+                                                            .font(.custom("nulshock", size: geo.size.width/17))
                                                             .opacity(0.0)
+                                                        .animation(.spring(response: 0.0, dampingFraction:0.2))
                                                     } else {
                                                     if Int(self.distance) ?? 100 < 1000 {
-                                                        Text("0000")
-                                                            .font(.custom("nulshock", size: geo.size.width/20))
+                                                        Text("000")
+                                                            .font(.custom("nulshock", size: geo.size.width/17))
                                                             .opacity(0.0)
+                                                        .animation(.spring(response: 0.0, dampingFraction:0.2))
                                                     }
                                                     }
                                                 }
