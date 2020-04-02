@@ -64,7 +64,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             if isBoostActive {
                 flightSpeed = 3000
                 flightSlowdown = 2.0
-                print("dROP0EI TUDO ALOW")
                 rock.isSpawnActive = true
                 orange.isSpawnActive = false
                 meteor.isSpawnActive = false
@@ -82,7 +81,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 rock.isSpawnActive = true
                 orange.isSpawnActive = true
                 meteor.isSpawnActive = true
-                print("OPA, CAGADA")
                 
                 // ativa colisao
                 for rock in rock.rockArray {
@@ -97,11 +95,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     var slices = 0
     var flightSlowdown: CGFloat = 0.2
-    var deathCount = 0 {
-        didSet {
-            print(self.deathCount)
-        }
-    }
+    var deathCount = 0 
     
     override func didMove(to view: SKView) {
         
@@ -164,7 +158,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         }
         slices = auxSlices
         
-        print(flightSpeed)
         
         
         
