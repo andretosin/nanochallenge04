@@ -400,7 +400,7 @@ struct MenuView: View {
                                 self.showPopup = true
                             }
                             ButtonConfView(content: ButtonType(iconName: "RankingB")) {
-                                self.showRanking = true
+                                self.showPopup = true
                             }
                             ButtonConfView(content: ButtonType(iconName: "SoundOnB")) {
                                 self.isMuted.toggle()
