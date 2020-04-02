@@ -6,7 +6,7 @@
 //  Copyright © 2020 Apple Developer Academy. All rights reserved.
 //
 // APP ID: ca-app-pub-6710438178084678~1970026090
-// AD ID:  ca-app-pub-6710438178084678/5829735278/
+// AD ID:  ca-app-pub-6710438178084678/5829735278
 // TEST AD:ca-app-pub-3940256099942544/4411468910
 
 

@@ -169,7 +169,7 @@ class Orange: Spawnable {
                         }
                     }
                 }
-                timeInterval = Double.random(in: 4...8)
+                timeInterval = Double.random(in: 2...5)
                 
                 
                 
