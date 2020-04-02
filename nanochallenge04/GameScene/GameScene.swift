@@ -181,13 +181,19 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             } else if lightYears >= 15 && lightYears < 25 {
                 //                rock.isSpawnActive = true
                 rock.spawnChance = 50
-            } else if lightYears >= 25 && lightYears < 40 {
-                rock.spawnChance = 45
+            } else if lightYears >= 25 && lightYears < 26 {
+                rock.spawnChance = 25
+                meteor.isSpawnActive = true
+                meteor.spawnChance = 100
+            } else if lightYears >= 26 && lightYears < 28 {
+                rock.spawnChance = 35
+                meteor.isSpawnActive = false
                 orange.isSpawnActive = true
                 orange.singleChance = 100
-                orange.spawnChance = 60
-                meteor.isSpawnActive = true
-                meteor.spawnChance = 80
+                orange.spawnChance = 100
+            } else if lightYears >= 28 && lightYears < 40 {
+                rock.spawnChance = 70
+                orange.isSpawnActive = false
             } else if lightYears >= 40 && lightYears < 50 {
                 rock.spawnChance = 45
                 orange.isSpawnActive = true
@@ -208,7 +214,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 //                meteor.isSpawnActive = true
                 meteor.spawnChance = 80
             } else if lightYears >= 80 && lightYears < 100 {
-                rock.spawnChance = 55
+                rock.spawnChance = 65
                 orange.isSpawnActive = true
                 orange.singleChance = 100
                 orange.spawnChance = 80
@@ -227,7 +233,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 //                meteor.isSpawnActive = true
                 meteor.spawnChance = 20
             } else if lightYears >= 200 && lightYears < 250 {
-                meteor.spawnChance = 40
+                meteor.spawnChance = 60
                 orange.singleChance = 30
                 orange.doubleChance = 40
             } else {
