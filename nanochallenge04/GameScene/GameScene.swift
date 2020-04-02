@@ -181,11 +181,79 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             
             
             if !isBoostActive {
-                // sr rodolfo, favor subistituir os leveis aqui, considere apagar as linhas 185, 168 e 186.
-                if lightYears >= 10 && lightYears < 250 {
+                           if lightYears >= 10 && lightYears < 15 {
+                                rock.isSpawnActive = true
+                                rock.spawnChance = 20
+                            } else if lightYears >= 15 && lightYears < 25 {
+                                //                rock.isSpawnActive = true
+                                rock.spawnChance = 50
+                            } else if lightYears >= 25 && lightYears < 28 {
+                                rock.spawnChance = 25
+                                meteor.isSpawnActive = true
+                                meteor.spawnChance = 100
+                            } else if lightYears >= 28 && lightYears < 34 {
+                                rock.spawnChance = 35
+                                meteor.isSpawnActive = false
+                                orange.isSpawnActive = true
+                                orange.singleChance = 100
+                                orange.spawnChance = 100
+                            } else if lightYears >= 34 && lightYears < 40 {
+                                rock.spawnChance = 70
+                                orange.isSpawnActive = false
+                            } else if lightYears >= 40 && lightYears < 50 {
+                                rock.spawnChance = 45
+                                orange.isSpawnActive = true
+                                orange.singleChance = 100
+                                orange.spawnChance = 80
+                                meteor.isSpawnActive = true
+                                meteor.spawnChance = 40
+                            } else if lightYears >= 50 && lightYears < 60 {
+                                rock.spawnChance = 40
+                                orange.isSpawnActive = true
+                                orange.singleChance = 100
+                                orange.spawnChance = 70
+                            } else if lightYears >= 60 && lightYears < 80 {
+                                rock.spawnChance = 50
+                                orange.isSpawnActive = true
+                                orange.singleChance = 100
+                                orange.spawnChance = 90
+                                //                meteor.isSpawnActive = true
+                                meteor.spawnChance = 80
+                            } else if lightYears >= 80 && lightYears < 100 {
+                                rock.spawnChance = 65
+                                orange.isSpawnActive = true
+                                orange.singleChance = 100
+                                orange.spawnChance = 80
+                                //                meteor.isSpawnActive = true
+                                meteor.spawnChance = 80
+                            } else if lightYears >= 100 && lightYears < 150 {
+                                rock.spawnChance = 80
+                                orange.singleChance = 80
+                                orange.doubleChance = 100
+                                orange.spawnChance = 90
+                            } else if lightYears >= 150 && lightYears < 200 {
+                                rock.spawnChance = 100
+                                orange.singleChance = 60
+                                orange.spawnChance = 100
+                                orange.doubleChance = 100
+                                //                meteor.isSpawnActive = true
+                                meteor.spawnChance = 20
+                            } else if lightYears >= 200 && lightYears < 250 {
+                                meteor.spawnChance = 60
+                                orange.singleChance = 30
+                                orange.doubleChance = 40
+                //                orange.tripleChance = 30
+                            } else {
+                                meteor.spawnChance = 60
+                                orange.singleChance = 50
+                                orange.doubleChance = 90
+                            }
+                            } else {
+                                meteor.isSpawnActive = false
+                                rock.isSpawnActive = false
+                                orange.isSpawnActive = false
+                            }
                     
-                }
-            }
             
             
             lightYears = lightYears/10
