@@ -126,7 +126,6 @@ class Orange: Spawnable {
                         // spawne single
                         for orange in orangeArray {
                             if orange.name == "orangeSingleFalse" {
-                                print("spawnou single")
                                 self.resetFlagFunc()
                                 orange.position = CGPoint(x: CGFloat.random(in: CGFloat(-300)...CGFloat(300)), y: 1200)
                                 
@@ -152,7 +151,6 @@ class Orange: Spawnable {
                         // spawne double
                         for orange in orangeArray {
                             if orange.name == "orangeDoubleFalse" {
-                                print("spawnou double")
                                 self.resetFlagFunc()
                                 orange.position = CGPoint(x: CGFloat.random(in: CGFloat(-300)...CGFloat(300)), y: 1200)
                                 let spawnPadding: CGFloat = 400
@@ -177,7 +175,6 @@ class Orange: Spawnable {
                         // spawne triple
                         for orange in orangeArray {
                             if orange.name == "orangeTripleFalse" {
-                                print("spawnou triple")
                                 self.resetFlagFunc()
                                 orange.position = CGPoint(x: CGFloat.random(in: CGFloat(-300)...CGFloat(300)), y: 1200)
                                 let spawnPadding: CGFloat = 400
