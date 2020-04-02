@@ -175,6 +175,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             meteor.playerPosX = player.node.position.x
             
             lightYears = lightYears * 10
+            if !isBoostActive {
             if lightYears >= 10 && lightYears < 15 {
                 rock.isSpawnActive = true
                 rock.spawnChance = 20
@@ -241,6 +242,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 meteor.spawnChance = 60
                 orange.singleChance = 50
                 orange.doubleChance = 90
+            }
+            } else {
+                meteor.isSpawnActive = false
+                rock.isSpawnActive = false
+                orange.isSpawnActive = false
             }
             lightYears = lightYears/10
             

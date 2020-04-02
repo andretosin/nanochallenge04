@@ -82,6 +82,7 @@ struct MenuView: View {
                                             ZStack {
                                                 Text(self.distance)
                                                     .font(.custom("nulshock", size: geo.size.width/18))
+
                                                     .font(Font.body.monospacedDigit())
                                                     .foregroundColor(.white)
                                                     .bold()
@@ -128,7 +129,8 @@ struct MenuView: View {
                                         } else {
                                             Text("\(Int(self.highScore))")
                                                 .font(.custom("nulshock", size: geo.size.width/18))
-                                                
+                                                .font(Font.body.monospacedDigit())
+
                                                 .foregroundColor(.white)
                                                 .bold()
                                                 
@@ -191,7 +193,8 @@ struct MenuView: View {
                                         if self.isPlaying {
                                             Text(self.stars)
                                                 .font(.custom("nulshock", size: geo.size.width/18))
-                                                
+                                                .font(Font.body.monospacedDigit())
+
                                                 .foregroundColor(.white)
                                                 .bold()
                                                 
@@ -309,6 +312,7 @@ struct MenuView: View {
                                                 HStack (spacing: 5) {
                                                     Text("\(Int(self.lastDistance))")
                                                         .font(.custom("nulshock", size: geo.size.width/5))
+                                                        .font(Font.body.monospacedDigit())
                                                         .foregroundColor(Color("CosmicPurple"))
                                                         .bold()
                                                         .shadow(color: Color.black.opacity(0.75), radius: 1, x: -1, y: 1)
@@ -344,6 +348,8 @@ struct MenuView: View {
                                                     .fixedSize()
                                                 Text("\(self.lastStarsCollected)")
                                                     .font(.custom("nulshock", size: geo.size.width/10))
+                                                    .font(Font.body.monospacedDigit())
+
                                                     .foregroundColor(Color("CosmicPurple"))
                                                     .bold()
                                                     .shadow(color: Color.black.opacity(0.75), radius: 1, x: -1, y: 1)
