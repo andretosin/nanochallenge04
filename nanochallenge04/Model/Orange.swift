@@ -78,7 +78,31 @@ class Orange: Spawnable {
         
     }
     
-   
+    func fadeOut() {
+        for orange in orangeArray {
+            if (orange.name == "orangeSingleTrue" || orange.name == "orangeDoubleTrue" || orange.name == "orangeTripleTrue") && orange.position.y < -850 && orange.alpha != 0 {
+                
+                let dropOpacity = SKAction.fadeAlpha(to: 0.0, duration: 0.1)
+                orange.run(dropOpacity)
+                
+                
+//                orange.alpha = 0.2
+            }
+        }
+    }
+    
+    func animateDissapear() {
+        for orange in orangeArray {
+            if orange.name == "orangeSingleTrue" || orange.name == "orangeDoubleTrue" || orange.name == "orangeTripleTrue" {
+                
+                let sizeScale = SKAction.scale(by: 2.0, duration: 0.1)
+                let alphaAnimation = SKAction.fadeOut(withDuration: 0.1)
+                
+                
+                orange.run(SKAction.sequence([sizeScale, alphaAnimation]))
+            }
+        }
+    }
     
     func update(_ currentTime: TimeInterval) {
         if lastTime == 0 {
@@ -86,6 +110,9 @@ class Orange: Spawnable {
             return
         }
         let deltaTime = currentTime - lastTime
+        
+        
+        fadeOut()
         
         if deltaTime > timeInterval {
             lastTime = currentTime
@@ -213,14 +240,20 @@ class Orange: Spawnable {
                     orange.name = "orangeSingleFalse"
                     orange.position.x = -1200
                     orange.position.y = 0
+                    orange.alpha = 1
+                    orange.scale(to: CGSize(width: 425, height: 189))
                 } else if orange.name == "orangeDoubleTrue" {
                     orange.name = "orangeDoubleFalse"
                     orange.position.x = -1200
                     orange.position.y = 0
+                    orange.alpha = 1
+                    orange.scale(to: CGSize(width: 426, height: 268))
                 } else if orange.name == "orangeTripleTrue" {
                     orange.name = "orangeTripleFalse"
                     orange.position.x = -1200
                     orange.position.y = 0
+                    orange.alpha = 1
+                    orange.scale(to: CGSize(width: 430, height: 349))
                 }
             }
         }
