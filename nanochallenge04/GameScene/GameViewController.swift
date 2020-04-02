@@ -102,7 +102,7 @@ extension GameViewController: GADInterstitialDelegate {
     }
     
     func createAndLoadInterstitial() -> GADInterstitial {
-        let interstitial = GADInterstitial(adUnitID: "ca-app-pub-3940256099942544/4411468910")
+        let interstitial = GADInterstitial(adUnitID: "ca-app-pub-6710438178084678/5829735278")
         interstitial.delegate = self
         interstitial.load(GADRequest())
         return interstitial

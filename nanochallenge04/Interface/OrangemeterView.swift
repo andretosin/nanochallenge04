@@ -53,26 +53,26 @@ struct Indicator: View {
     }
 }
 
-struct MyButton: View {
-    let label: String
-    var font: Font = .title
-    var textColor: Color = .white
-    let action: () -> ()
-    
-    var body: some View {
-        Button(action: {
-            self.action()
-        }, label: {
-            Text(label)
-                .font(font)
-                .padding(10)
-                .frame(width: 70)
-                .background(RoundedRectangle(cornerRadius: 10).foregroundColor(Color.green).shadow(radius: 2))
-                .foregroundColor(textColor)
-            
-        })
-    }
-}
+//struct MyButton: View {
+//    let label: String
+//    var font: Font = .title
+//    var textColor: Color = .white
+//    let action: () -> ()
+//    
+//    var body: some View {
+//        Button(action: {
+//            self.action()
+//        }, label: {
+//            Text(label)
+//                .font(font)
+//                .padding(10)
+//                .frame(width: 70)
+//                .background(RoundedRectangle(cornerRadius: 10).foregroundColor(Color.green).shadow(radius: 2))
+//                .foregroundColor(textColor)
+//            
+//        })
+//    }
+//}
 
 struct OrangemeterView: View {
     @State var percent: CGFloat = 0
@@ -81,16 +81,6 @@ struct OrangemeterView: View {
     var body: some View {
         GeometryReader { goma in
             ZStack {
-                VStack {
-                    HStack(spacing: 10) {
-                        MyButton(label: "0%", font: .headline) { withAnimation(.easeInOut(duration: 1.0)) { self.percent = 0 } }
-
-                        Spacer()
-
-                        MyButton(label: "100%", font: .headline) { withAnimation(.easeInOut(duration: 1.0)) { self.percent = 1.0 } }
-                    }
-                }
-                .opacity(0.0)
 //                Image("OrangemeterFull")
 //                    .resizable()
 //                    .scaledToFit()

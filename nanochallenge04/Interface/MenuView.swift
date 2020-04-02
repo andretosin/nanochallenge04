@@ -525,30 +525,18 @@ struct MenuView: View {
                             }
                             
                     }
-                    //                    CarouselView(itemHeight: 400, views: [
-                    //                    AnyView(RocketView()),
-                    //                    AnyView(RocketView()),
-                    //                    AnyView(RocketView()),
-                    //                    AnyView(RocketView()),
-                    //                    AnyView(RocketView()),
-                    //                    AnyView(RocketView()),
-                    //                    ])
-                    //                    .background(Circle()
-                    //
-                    //                    .shadow(color: Color.black.opacity(0.75), radius: 1, x: -1, y: 1)
-                    //                    .foregroundColor(Color("LowerPurple")
-                    //                        )
                     
                     if self.buttonIsShown == false {
-                        ZStack {
-                            //                                                        Text("\(self.orangeSlices)")
+                        ZStack (alignment: .top) {
+                            VStack {
                             OrangemeterView(slices: self.orangeSlices)
                                 //                                                        Circle()
                                 .shadow(color: Color.black.opacity(0.4), radius: 4, x: 2, y: 0)
                                 .frame(width: 0.7 * geo.size.width)
-                                .offset(y: -geo.size.width/1.13)
+                                Spacer()
+                                    .frame(height: 0.9 * geo.size.height)
+                            }
                         }
-                        //                                                    Spacer()
                     }
                     if self.showPopup {
                         PopUpView(showPopup: self.$showPopup)
