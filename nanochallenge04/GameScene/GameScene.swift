@@ -117,7 +117,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         }
         
         self.physicsWorld.contactDelegate = self
-        view.showsPhysics = true
+        view.showsPhysics = false
         
         setAudioPlayers()
         
@@ -260,6 +260,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         } else {
             self.player.node.position = CGPoint(x: 0, y: -50)
             self.player.fireEmitter.position = CGPoint(x: 0, y: -50)
+            self.player.fireEmitter.zRotation = 0
         }
     }
     
@@ -296,6 +297,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             // se encosotu numa laranja
             if !firstContactFlagPlayerOrange {
                 firstContactFlagPlayerOrange = true
+                orange.animateDissapear()
                 self.flightSpeed += 200
                 if self.flightSpeed > 2000 {
                     isBoostActive = true
@@ -310,6 +312,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             if !firstContactFlagPlayerOrange {
                 
                 firstContactFlagPlayerOrange = true
+                orange.animateDissapear()
                 self.flightSpeed += 300
                 if self.flightSpeed > 2000 {
                     isBoostActive = true
@@ -325,6 +328,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             if !firstContactFlagPlayerOrange {
                 
                 firstContactFlagPlayerOrange = true
+                orange.animateDissapear()
                 self.flightSpeed += 400
                 if self.flightSpeed > 2000 {
                     isBoostActive = true
