@@ -57,8 +57,8 @@ class GameViewController: UIViewController, GameAdDelegate {
             gameScene.gameAdDelegate = self
         }
         sceneView.ignoresSiblingOrder = true
-        sceneView.showsFPS = true
-        sceneView.showsNodeCount = true
+        sceneView.showsFPS = false
+        sceneView.showsNodeCount = false
         sceneView.preferredFramesPerSecond = 60
         
         interstitial = createAndLoadInterstitial()
