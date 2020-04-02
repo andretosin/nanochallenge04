@@ -258,6 +258,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             }
         } else {
             self.player.node.position = CGPoint(x: 0, y: -50)
+            self.player.fireEmitter.position = CGPoint(x: 0, y: -50)
         }
     }
     

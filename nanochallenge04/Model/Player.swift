@@ -19,7 +19,10 @@ class Player: Updatable {
     var leftTexture = SKTexture(imageNamed: "RocketAsset")
     var rightTexture = SKTexture(imageNamed: "RocketAsset")
     var offTexture = SKTexture(imageNamed: "RocketAsset")
-    var collisionMask = SKTexture(imageNamed: "RocketAsset ")
+    var collisionMask = SKTexture(imageNamed: "RocketAssetMask")
+    
+    var fireEmitter: SKEmitterNode!
+    
     
     
     var applyTorqueLeft: Bool = false
@@ -38,7 +41,7 @@ class Player: Updatable {
     let positionLimit = CGFloat(350)
     let damping = CGFloat(30)
     var xSpeed = CGFloat(1000)
-    var torque = CGFloat(5)
+    var torque = CGFloat(10)
 
     
     
@@ -47,6 +50,17 @@ class Player: Updatable {
         self.node.scale(to: CGSize(width: 275/1.2, height: 389/1.2))
         self.node.position = CGPoint(x: 0, y: -50)
         self.node.zPosition = 2
+        
+        fireEmitter = SKEmitterNode(fileNamed: "FireEmitter")!
+        fireEmitter.position = self.node.position
+        fireEmitter.zPosition = 1
+        fireEmitter.particleSize = CGSize(width: 40, height: 40)
+        fireEmitter.advanceSimulationTime(5)
+        fireEmitter.particleSpeed = 200
+        scene?.addChild(fireEmitter)
+        
+        
+        
         scene?.addChild(self.node)
     }
     
@@ -72,8 +86,13 @@ class Player: Updatable {
     
     func update(_ deltaTime: CGFloat) {
         
+        fireEmitter.position = CGPoint(x: self.node.position.x, y: self.node.position.y)
+        fireEmitter.zRotation = self.node.zRotation
+        
+        
         if !isDead {
             self.node.physicsBody?.velocity.dx = -xSpeed * self.node.zRotation
+            
             
             if isIdle {
                 if abs(self.node.zRotation) > limitAngle + 0.2{
