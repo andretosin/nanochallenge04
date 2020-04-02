@@ -26,6 +26,8 @@
 		F93C7E1D2423BC620098FFB5 /* pads.wav in Resources */ = {isa = PBXBuildFile; fileRef = F93C7E1B2423BC620098FFB5 /* pads.wav */; };
 		F958DC9C2412D271007FECFE /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = F958DC9B2412D271007FECFE /* Player.swift */; };
 		F958DC9E2412DC5D007FECFE /* Protocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = F958DC9D2412DC5D007FECFE /* Protocols.swift */; };
+		F96D5ABF243557BE008D328F /* FireEmitter.sks in Resources */ = {isa = PBXBuildFile; fileRef = F96D5ABE243557BE008D328F /* FireEmitter.sks */; };
+		F96D5AC324355C32008D328F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F96D5AC124355C32008D328F /* Assets.xcassets */; };
 		F98D33EA241022E900A12F15 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F98D33E9241022E900A12F15 /* AppDelegate.swift */; };
 		F98D33EC241022E900A12F15 /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = F98D33EB241022E900A12F15 /* GameScene.sks */; };
 		F98D33EE241022E900A12F15 /* Actions.sks in Resources */ = {isa = PBXBuildFile; fileRef = F98D33ED241022E900A12F15 /* Actions.sks */; };
@@ -70,6 +72,8 @@
 		F93C7E1B2423BC620098FFB5 /* pads.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = pads.wav; sourceTree = "<group>"; };
 		F958DC9B2412D271007FECFE /* Player.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
 		F958DC9D2412DC5D007FECFE /* Protocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Protocols.swift; sourceTree = "<group>"; };
+		F96D5ABE243557BE008D328F /* FireEmitter.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = FireEmitter.sks; sourceTree = "<group>"; };
+		F96D5AC124355C32008D328F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F98D33E6241022E900A12F15 /* Juicy Way.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Juicy Way.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F98D33E9241022E900A12F15 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F98D33EB241022E900A12F15 /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene.sks; sourceTree = "<group>"; };
@@ -224,6 +228,8 @@
 				F98D33F1241022E900A12F15 /* GameViewController.swift */,
 				3FF5957A241DBCD800143510 /* ViewController.swift */,
 				F9EEDD8C241D5CBF00AB586C /* Stars.sks */,
+				F96D5ABE243557BE008D328F /* FireEmitter.sks */,
+				F96D5AC124355C32008D328F /* Assets.xcassets */,
 			);
 			path = GameScene;
 			sourceTree = "<group>";
@@ -290,7 +296,9 @@
 			files = (
 				F98D33F5241022E900A12F15 /* Main.storyboard in Resources */,
 				F9EEDD93241DC19E00AB586C /* nulshock.ttf in Resources */,
+				F96D5ABF243557BE008D328F /* FireEmitter.sks in Resources */,
 				F93C7E1D2423BC620098FFB5 /* pads.wav in Resources */,
+				F96D5AC324355C32008D328F /* Assets.xcassets in Resources */,
 				F98D33EC241022E900A12F15 /* GameScene.sks in Resources */,
 				F98D33F7241022EB00A12F15 /* Assets.xcassets in Resources */,
 				F93C7E1C2423BC620098FFB5 /* ambience.wav in Resources */,
@@ -523,7 +531,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 15;
-				DEVELOPMENT_TEAM = ZAZRKU3BQ9;
+				DEVELOPMENT_TEAM = Y8J5WK586H;
 				INFOPLIST_FILE = nanochallenge04/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -545,7 +553,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 15;
-				DEVELOPMENT_TEAM = ZAZRKU3BQ9;
+				DEVELOPMENT_TEAM = Y8J5WK586H;
 				INFOPLIST_FILE = nanochallenge04/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
