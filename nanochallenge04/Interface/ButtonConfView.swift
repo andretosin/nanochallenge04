@@ -49,6 +49,31 @@ struct ColorfulBackground<S: Shape>: View {
     }
 }
 
+struct ColorfulBackground2<S: Shape>: View {
+    var isHighlighted: Bool
+    var shape: S
+    
+    var body: some View {
+        ZStack {
+//            if isHighlighted {
+//                shape
+//                    .fill(Color("LowerPurple"))
+////                    .overlay(shape.stroke(LinearGradient(Color.lightStart, Color.lightEnd), lineWidth: 4))
+////                    .shadow(color: Color.black.opacity(0.75), radius: 1, x: 1, y: -1)
+////                    .shadow(color: Color.black.opacity(0.75), radius: 1, x: -1, y: 1)
+//                .shadow(color: Color("CosmicPurple").opacity(0.75), radius: 2, x: -2, y: 2)
+//            } else {
+                shape
+                    .fill(Color("CosmicPurple"))
+//                    .overlay(shape.stroke(LinearGradient(Color.lightStart, Color.lightEnd), lineWidth: 4))
+//                    .shadow(color: Color.darkStart, radius: 10, x: -10, y: -10)
+//                    .shadow(color: Color.darkEnd, radius: 10, x: 10, y: 10)
+                   .shadow(color: Color("CosmicPurple").opacity(0.75), radius: 2, x: -2, y: 2)
+            }
+        }
+    }
+//}
+
 struct ColorfulToggleStyle: ToggleStyle {
     @State var showDetails = false
     var showSkins: () -> Void
@@ -68,6 +93,29 @@ struct ColorfulToggleStyle: ToggleStyle {
         }
         .background(
             ColorfulBackground(isHighlighted: configuration.isOn, shape: Circle())
+        )
+    }
+}
+
+struct ColorfulToggleStyle2: ToggleStyle {
+    @State var showDetails = false
+    var showSkins: () -> Void
+    
+    func makeBody(configuration: Self.Configuration) -> some View {
+        Button(action: {
+            print("Button is clicked")
+            configuration.isOn.toggle()
+            self.showDetails.toggle()
+            print("showDetailsTogged")
+            self.showSkins()
+        }) {
+            
+            configuration.label
+                .padding(10)
+                .contentShape(Circle())
+        }
+        .background(
+            ColorfulBackground2(isHighlighted: configuration.isOn, shape: Circle())
         )
     }
 }
@@ -93,6 +141,22 @@ struct ButtonConfView: View {
                         .foregroundColor(Color.white)
                 }
             .toggleStyle(ColorfulToggleStyle(showSkins: buttonAction))
+        }
+}
+
+struct ButtonConfView2: View {
+    
+    @State public var content: ButtonType
+    @State private var isToggled = false
+    var buttonAction: () -> Void = {}
+    var body: some View {
+            Toggle(isOn: self.$isToggled) {
+                    Image("\(self.content.iconName)")
+                        .resizable()
+                        .scaledToFit()
+                        .foregroundColor(Color.white)
+                }
+            .toggleStyle(ColorfulToggleStyle2(showSkins: buttonAction))
         }
 }
 

@@ -11,20 +11,20 @@ import SwiftUI
 import GameKit
 
 
-class ViewController: UIViewController, GKGameCenterControllerDelegate {
-    // Delegate to dismiss the GC controller
-    func gameCenterViewControllerDidFinish(_ gameCenterViewController: GKGameCenterViewController) {
-        gameCenterViewController.dismiss(animated: true, completion: nil)
-    }
-    
-    /* Variables */
-    var gcEnabled = Bool() // Check if the user has Game Center enabled
-    var gcDefaultLeaderBoard = String() // Check the default leaderboardID
-         
-    var score = 0
-         
-    // IMPORTANT: replace the red string below with your own Leaderboard ID (the one you've set in iTunes Connect)
-    let LEADERBOARD_ID = "com.rodolfodiniz.JuicyWay"
+class ViewController: UIViewController {
+//    // Delegate to dismiss the GC controller
+//    func gameCenterViewControllerDidFinish(_ gameCenterViewController: GKGameCenterViewController) {
+//        gameCenterViewController.dismiss(animated: true, completion: nil)
+//    }
+//
+//    /* Variables */
+//    var gcEnabled = Bool() // Check if the user has Game Center enabled
+//    var gcDefaultLeaderBoard = String() // Check the default leaderboardID
+//
+//    var score = 0
+//
+//    // IMPORTANT: replace the red string below with your own Leaderboard ID (the one you've set in iTunes Connect)
+//    let LEADERBOARD_ID = "com.rodolfodiniz.JuicyWay"
     
     @IBOutlet weak var containerView: UIView!
     override func viewDidLoad() {
@@ -32,7 +32,7 @@ class ViewController: UIViewController, GKGameCenterControllerDelegate {
         super.viewDidLoad()
         
         // Call the GC authentication controller
-        authenticateLocalPlayer()
+//        authenticateLocalPlayer()
 //        let childView = GameViewController()
 //        let childView = UIHostingController(rootView: MenuView())
 //        addChild(childView)
@@ -41,58 +41,58 @@ class ViewController: UIViewController, GKGameCenterControllerDelegate {
 //        childView.didMove(toParent: self)
         
     }
-    // MARK: - AUTHENTICATE LOCAL PLAYER
-    func authenticateLocalPlayer() {
-        let localPlayer: GKLocalPlayer = GKLocalPlayer.local
-             
-        localPlayer.authenticateHandler = {(ViewController, error) -> Void in
-            if((ViewController) != nil) {
-                // 1. Show login if player is not logged in
-                self.present(ViewController!, animated: true, completion: nil)
-            } else if (localPlayer.isAuthenticated) {
-                // 2. Player is already authenticated & logged in, load game center
-                self.gcEnabled = true
-                     
-                // Get the default leaderboard ID
-                localPlayer.loadDefaultLeaderboardIdentifier(completionHandler: { (leaderboardIdentifer, error) in
-                    if error != nil { print(error)
-                    } else { self.gcDefaultLeaderBoard = leaderboardIdentifer! }
-                })
+//    // MARK: - AUTHENTICATE LOCAL PLAYER
+//    func authenticateLocalPlayer() {
+//        let localPlayer: GKLocalPlayer = GKLocalPlayer.local
+//
+//        localPlayer.authenticateHandler = {(ViewController, error) -> Void in
+//            if((ViewController) != nil) {
+//                // 1. Show login if player is not logged in
+//                self.present(ViewController!, animated: true, completion: nil)
+//            } else if (localPlayer.isAuthenticated) {
+//                // 2. Player is already authenticated & logged in, load game center
+//                self.gcEnabled = true
+//
+//                // Get the default leaderboard ID
+//                localPlayer.loadDefaultLeaderboardIdentifier(completionHandler: { (leaderboardIdentifer, error) in
+//                    if error != nil { print(error)
+//                    } else { self.gcDefaultLeaderBoard = leaderboardIdentifer! }
+//                })
                  
-            } else {
-                // 3. Game center is not enabled on the users device
-                self.gcEnabled = false
-                print("Local player could not be authenticated!")
-                print(error)
-            }
-            
-        }
-        
-    }
-    // MARK: - ADD 10 POINTS TO THE SCORE AND SUBMIT THE UPDATED SCORE TO GAME CENTER
-    @IBAction func addScoreAndSubmitToGC(_ sender: AnyObject) {
-        // Add 10 points to current score
-        score += 10
-//        scoreLabel.text = "\(score)"
-        print("Best Score submitted to your Leaderboard!")
-     
-        // Submit score to GC leaderboard
-        let bestScoreInt = GKScore(leaderboardIdentifier: LEADERBOARD_ID)
-        bestScoreInt.value = Int64(score)
-        GKScore.report([bestScoreInt]) { (error) in
-            if error != nil {
-                print(error!.localizedDescription)
-            } else {
-                print("Best Score submitted to your Leaderboard!")
-            }
-        }
-    }
-    // MARK: - OPEN GAME CENTER LEADERBOARD
-    @IBAction func checkGCLeaderboard(_ sender: AnyObject) {
-        let gcVC = GKGameCenterViewController()
-        gcVC.gameCenterDelegate = self
-        gcVC.viewState = .leaderboards
-        gcVC.leaderboardIdentifier = LEADERBOARD_ID
-        present(gcVC, animated: true, completion: nil)
-    }
+//            } else {
+//                // 3. Game center is not enabled on the users device
+//                self.gcEnabled = false
+//                print("Local player could not be authenticated!")
+//                print(error)
+//            }
+//
+//        }
+//
+//    }
+//    // MARK: - ADD 10 POINTS TO THE SCORE AND SUBMIT THE UPDATED SCORE TO GAME CENTER
+//    @IBAction func addScoreAndSubmitToGC(_ sender: AnyObject) {
+//        // Add 10 points to current score
+//        score += 10
+////        scoreLabel.text = "\(score)"
+//        print("Best Score submitted to your Leaderboard!")
+//
+//        // Submit score to GC leaderboard
+//        let bestScoreInt = GKScore(leaderboardIdentifier: LEADERBOARD_ID)
+//        bestScoreInt.value = Int64(score)
+//        GKScore.report([bestScoreInt]) { (error) in
+//            if error != nil {
+//                print(error!.localizedDescription)
+//            } else {
+//                print("Best Score submitted to your Leaderboard!")
+//            }
+//        }
+//    }
+//    // MARK: - OPEN GAME CENTER LEADERBOARD
+//    @IBAction func checkGCLeaderboard(_ sender: AnyObject) {
+//        let gcVC = GKGameCenterViewController()
+//        gcVC.gameCenterDelegate = self
+//        gcVC.viewState = .leaderboards
+//        gcVC.leaderboardIdentifier = LEADERBOARD_ID
+//        present(gcVC, animated: true, completion: nil)
+//    }
 }

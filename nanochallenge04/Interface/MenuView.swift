@@ -392,14 +392,14 @@ struct MenuView: View {
                         Spacer()
                             .frame(minHeight: 0, maxHeight: .infinity)
                         HStack (spacing: 30) {
-                            ButtonConfView(content: ButtonType(iconName: "RocketB")) {
+                            ButtonConfView2(content: ButtonType(iconName: "RocketB")) {
                                 //                                self.chooseRocket.toggle()
                                 self.showPopup = true
                             }
-                            ButtonConfView(content: ButtonType(iconName: "PowerUp")) {
+                            ButtonConfView2(content: ButtonType(iconName: "PowerUp")) {
                                 self.showPopup = true
                             }
-                            ButtonConfView(content: ButtonType(iconName: "RankingB")) {
+                            ButtonConfView2(content: ButtonType(iconName: "RankingB")) {
                                 self.showPopup = true
                             }
                             ButtonConfView(content: ButtonType(iconName: "SoundOnB")) {
@@ -542,9 +542,9 @@ struct MenuView: View {
                         PopUpView(showPopup: self.$showPopup)
                     }
                     
-                    if self.showRanking {
-                        ShowRankings()
-                    }
+//                    if self.showRanking {
+//                        ShowRankings()
+//                    }
                 }
             }
             
