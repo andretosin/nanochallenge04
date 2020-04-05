@@ -11,7 +11,7 @@ import SwiftUI
 struct Circle2View: View {
     var body: some View {
         Circle()
-        .padding()
+//        .padding()
     }
 }
 

@@ -50,8 +50,9 @@ struct MenuView: View {
         GeometryReader { geo in
             ZStack {
                 BGView()
+                
                 GameView(isPlaying: self.$isPlaying, isMuted: self.$isMuted, lastDis: self.$lastDistance, starsCollec: self.$lastStarsCollected, highscore: self.$highScore, totalStars: self.$totalStarsCollected, showText: self.$showText, shipIndex: self.$shipIndex, slices: self.$orangeSlices, distance: self.$distance, stars: self.$stars)
-                    
+                
                     .edgesIgnoringSafeArea(.all)
                     .mask(
                         ZStack (alignment: .top) {
@@ -59,15 +60,62 @@ struct MenuView: View {
                             Circle2View()
                                 .offset(y: 0.3 * self.topMenu)
                                 .padding(self.isPlaying ? -geo.size.height : geo.size.width/10)
+                            .padding()
                             //                                .padding(.top, 20)
                             Circle2View()
                                 .offset(y: 1.18 * self.topMenu)
                                 .padding(self.isPlaying ? -geo.size.height : geo.size.width/3.6)
+                            .padding()
                             
                             //                                .padding(100)
                             //                                    .padding(geo.size.width/120)
+                            
                         }
+                        
                 )
+                
+                                       if self.chooseRocket {
+                //                            VStack {
+                //                                Spacer()
+                //                                //                                .frame(height:30)
+                //                                Text("Rocket 01").font(.system(size: 50, weight: .semibold)).multilineTextAlignment(.center)
+                //                                //                                Spacer()
+                //
+                //
+                //                            }
+                //
+                                            CarouselView(itemHeight: 400, views: [
+                                                AnyView(Image("RocketNew1").resizable().scaledToFit()),
+                                                AnyView(Image("RocketNew3").resizable().scaledToFit()),
+                                                AnyView(Image("RocketNew2").resizable().scaledToFit()),
+                                                AnyView(Image("RocketNew1").resizable().scaledToFit()),
+                                                AnyView(Image("RocketNew3").resizable().scaledToFit()),
+                                                AnyView(Image("RocketNew2").resizable().scaledToFit()),
+                //                                AnyView(Image("RocketOff-2")),
+                //                                AnyView(Image("RocketFull-1")),
+                //                                AnyView(Image("RocketOff-2")),
+                //                                AnyView(Image("RocketFull-1")),
+                                            ]) { index in
+                                                self.shipIndex = index
+                                            }
+                                        .mask(
+                                                ZStack (alignment: .top) {
+                                                    
+                                                    Circle2View()
+                                                        .offset(y: 0.3 * self.topMenu)
+                                                        .padding(geo.size.width/100)
+                                                    //                                .padding(.top, 20)
+//                                                    Circle2View()
+//                                                        .offset(y: 1.18 * self.topMenu)
+//                                                        .padding(self.isPlaying ? -geo.size.height : geo.size.width/3.6)
+                                                    
+                                                    //                                .padding(100)
+                                                    //                                    .padding(geo.size.width/120)
+                                                    
+                                                }
+                                                
+                                        )
+                }
                 ZStack {
                     VStack {
                         HStack {
@@ -392,9 +440,9 @@ struct MenuView: View {
                         Spacer()
                             .frame(minHeight: 0, maxHeight: .infinity)
                         HStack (spacing: 30) {
-                            ButtonConfView2(content: ButtonType(iconName: "RocketB")) {
-                                //                                self.chooseRocket.toggle()
-                                self.showPopup = true
+                            ButtonConfView(content: ButtonType(iconName: "RocketB")) {
+                                                                self.chooseRocket.toggle()
+//                                self.showPopup = true
                             }
                             ButtonConfView2(content: ButtonType(iconName: "PowerUp")) {
                                 self.showPopup = true
@@ -422,29 +470,29 @@ struct MenuView: View {
                     
                     ZStack {
                         if self.chooseRocket {
-                            VStack {
-                                Spacer()
-                                //                                .frame(height:30)
-                                Text("Rocket 01").font(.system(size: 50, weight: .semibold)).multilineTextAlignment(.center)
-                                //                                Spacer()
-                                
-                                
-                            }
-                            
-                            CarouselView(itemHeight: 400, views: [
-                                AnyView(Image("RocketFull-2")),
-                                AnyView(Image("RocketFull-1")),
-                                AnyView(Image("RocketOff-2")),
-                                AnyView(Image("RocketFull-1")),
-                                AnyView(Image("RocketOff-2")),
-                                AnyView(Image("RocketFull-1")),
-                                AnyView(Image("RocketOff-2")),
-                                AnyView(Image("RocketFull-1")),
-                                AnyView(Image("RocketOff-2")),
-                                AnyView(Image("RocketFull-1")),
-                            ]) { index in
-                                self.shipIndex = index
-                            }
+//                            VStack {
+//                                Spacer()
+//                                //                                .frame(height:30)
+//                                Text("Rocket 01").font(.system(size: 50, weight: .semibold)).multilineTextAlignment(.center)
+//                                //                                Spacer()
+//
+//
+//                            }
+//
+//                            CarouselView(itemHeight: 400, views: [
+//                                AnyView(Image("RocketNew1").resizable().scaledToFit()),
+//                                AnyView(Image("RocketNew3").resizable().scaledToFit()),
+//                                AnyView(Image("RocketNew2").resizable().scaledToFit()),
+//                                AnyView(Image("RocketNew1").resizable().scaledToFit()),
+//                                AnyView(Image("RocketNew3").resizable().scaledToFit()),
+//                                AnyView(Image("RocketNew2").resizable().scaledToFit()),
+////                                AnyView(Image("RocketOff-2")),
+////                                AnyView(Image("RocketFull-1")),
+////                                AnyView(Image("RocketOff-2")),
+////                                AnyView(Image("RocketFull-1")),
+//                            ]) { index in
+//                                self.shipIndex = index
+//                            }
                             HStack {
                                 Button(action: {
                                     print("Delete tapped!")

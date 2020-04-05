@@ -45,18 +45,17 @@ struct CarouselView: View {
                 
                 ZStack{
                     ForEach(0..<views.count){i in
+                        
                         VStack{
                             Spacer()
                             self.views[i]
                                 //Text("\(i)")
                             
-                            .frame(width: 300, height: self.getHeight(i))
+                                .frame(width: 300, height: self.getHeight(i)/1.6)
                             .animation(.interpolatingSpring(stiffness: 300.0, damping: 30.0, initialVelocity: 10.0))
 //                                .background(Color.white)
                             .cornerRadius(10)
                             .shadow(radius: 3)
-                                
-                                
                             .opacity(self.getOpacity(i))
                             .animation(.interpolatingSpring(stiffness: 300.0, damping: 30.0, initialVelocity: 10.0))
                             .offset(x: self.getOffset(i))
@@ -74,8 +73,8 @@ struct CarouselView: View {
                             
                         }
                     }
-
                 }
+                     
                 .gesture(
                     DragGesture()
                         .updating($dragState) { drag, state, transaction in

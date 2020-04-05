@@ -15,11 +15,11 @@ class Player: Updatable {
     
     
     var scene: GameScene!
-    var node: SKSpriteNode = SKSpriteNode(imageNamed: "RocketNew1")
-    var leftTexture = SKTexture(imageNamed: "RocketNew1")
-    var rightTexture = SKTexture(imageNamed: "RocketNew1")
-    var offTexture = SKTexture(imageNamed: "RocketNew1")
-    var collisionMask = SKTexture(imageNamed: "RocketNew1Mask")
+    var node: SKSpriteNode = SKSpriteNode(imageNamed: "RocketNew3")
+    var leftTexture = SKTexture(imageNamed: "RocketNew3")
+    var rightTexture = SKTexture(imageNamed: "RocketNew3")
+    var offTexture = SKTexture(imageNamed: "RocketNew3")
+    var collisionMask = SKTexture(imageNamed: "RocketNew3Mask")
     
     var fireEmitter: SKEmitterNode!
     
