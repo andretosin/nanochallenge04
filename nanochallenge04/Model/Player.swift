@@ -15,11 +15,11 @@ class Player: Updatable {
     
     
     var scene: GameScene!
-    var node: SKSpriteNode = SKSpriteNode(imageNamed: "RocketAsset")
-    var leftTexture = SKTexture(imageNamed: "RocketAsset")
-    var rightTexture = SKTexture(imageNamed: "RocketAsset")
-    var offTexture = SKTexture(imageNamed: "RocketAsset")
-    var collisionMask = SKTexture(imageNamed: "RocketAssetMask")
+    var node: SKSpriteNode = SKSpriteNode(imageNamed: "RocketNew1")
+    var leftTexture = SKTexture(imageNamed: "RocketNew1")
+    var rightTexture = SKTexture(imageNamed: "RocketNew1")
+    var offTexture = SKTexture(imageNamed: "RocketNew1")
+    var collisionMask = SKTexture(imageNamed: "RocketNew1Mask")
     
     var fireEmitter: SKEmitterNode!
     
@@ -47,7 +47,7 @@ class Player: Updatable {
     
     internal init(scene: GameScene?) {
         self.configurePhysics()
-        self.node.scale(to: CGSize(width: 275/1.2, height: 389/1.2))
+        self.node.scale(to: CGSize(width: 645/1.6, height: 645/1.6))
         self.node.position = CGPoint(x: 0, y: -50)
         self.node.zPosition = 2
         
