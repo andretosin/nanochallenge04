@@ -19,4 +19,5 @@ enum ContactMask: UInt32 {
     case orangeDouble =     0b10000000
     case orangeTriple =     0b100000000
     case starDouble =       0b1000000000
+    case collisionNode =    0b10000000000
 }

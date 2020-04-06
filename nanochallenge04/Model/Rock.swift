@@ -82,8 +82,9 @@ class Rock: Spawnable {
                         if rollChance(spawnChance: spawnChance) {
                             rock.name = "rockTrue"
                             rock.physicsBody?.isDynamic = true
-                            rock.position.x = CGFloat.random(in: -400 ... 400)
-                            //                            rock.position.x = CGFloat.random(in: playerPosX-5 ... playerPosX + 5)
+                            let randomX = CGFloat.random(in: -400 ... 400)
+                            rock.position.x = randomX
+                            
                             
                             rock.position.y = 1200
                             

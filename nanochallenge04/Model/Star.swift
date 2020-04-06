@@ -61,7 +61,7 @@ class Star: Spawnable {
         
         
         starNode.physicsBody?.categoryBitMask = contactMask
-        starNode.physicsBody?.contactTestBitMask = ContactMask.player.rawValue
+        starNode.physicsBody?.contactTestBitMask = ContactMask.player.rawValue | ContactMask.collisionNode.rawValue
         starNode.physicsBody?.collisionBitMask = 0
         starNode.scale(to: CGSize(width: 260, height: 260))
         starNode.physicsBody?.affectedByGravity = false
@@ -162,14 +162,12 @@ class Star: Spawnable {
                 star.position.y = 0
                 star.name = "starDoubleFalse"
             }
-        }
-        
-        for star in starArray {
             if star.name == "starNormalTrue" || star.name == "starDoubleTrue" {
                 star.physicsBody?.velocity = CGVector(dx: 0, dy: -speed)
             }
         }
     }
+    
     
     
     func spawnGroup(_ id: Int) {

@@ -113,7 +113,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         }
         
         self.physicsWorld.contactDelegate = self
-        view.showsPhysics = false
+        view.showsPhysics = true
         
         setAudioPlayers()
         
@@ -139,6 +139,18 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         audioPlayerPads.play()
         audioPlayerAmbience.play()
+        
+        
+//        let collisionNode = SKShapeNode(rect: CGRect(x: -500, y: -50, width: 1000, height: 100))
+//        collisionNode.fillColor = .red
+//        collisionNode.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: 1000, height: 100))
+//        collisionNode.physicsBody?.affectedByGravity = false
+//        collisionNode.physicsBody?.categoryBitMask = ContactMask.collisionNode.rawValue
+//        collisionNode.physicsBody?.collisionBitMask = 0
+//        collisionNode.physicsBody?.contactTestBitMask = ContactMask.starNormal.rawValue
+//        scene?.addChild(collisionNode)
+        
+        
         
         
         
@@ -174,79 +186,79 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             
             
             if !isBoostActive {
-                           if lightYears >= 10 && lightYears < 15 {
-                                rock.isSpawnActive = true
-                                rock.spawnChance = 20
-                            } else if lightYears >= 15 && lightYears < 25 {
-                                //                rock.isSpawnActive = true
-                                rock.spawnChance = 50
-                            } else if lightYears >= 25 && lightYears < 28 {
-                                rock.spawnChance = 25
-                                meteor.isSpawnActive = true
-                                meteor.spawnChance = 100
-                            } else if lightYears >= 28 && lightYears < 34 {
-                                rock.spawnChance = 35
-                                meteor.isSpawnActive = false
-                                orange.isSpawnActive = true
-                                orange.singleChance = 100
-                                orange.spawnChance = 100
-                            } else if lightYears >= 34 && lightYears < 40 {
-                                rock.spawnChance = 70
-                                orange.isSpawnActive = false
-                            } else if lightYears >= 40 && lightYears < 50 {
-                                rock.spawnChance = 45
-                                orange.isSpawnActive = true
-                                orange.singleChance = 100
-                                orange.spawnChance = 80
-                                meteor.isSpawnActive = true
-                                meteor.spawnChance = 40
-                            } else if lightYears >= 50 && lightYears < 60 {
-                                rock.spawnChance = 40
-                                orange.isSpawnActive = true
-                                orange.singleChance = 100
-                                orange.spawnChance = 70
-                            } else if lightYears >= 60 && lightYears < 80 {
-                                rock.spawnChance = 50
-                                orange.isSpawnActive = true
-                                orange.singleChance = 100
-                                orange.spawnChance = 90
-                                //                meteor.isSpawnActive = true
-                                meteor.spawnChance = 80
-                            } else if lightYears >= 80 && lightYears < 100 {
-                                rock.spawnChance = 65
-                                orange.isSpawnActive = true
-                                orange.singleChance = 100
-                                orange.spawnChance = 80
-                                //                meteor.isSpawnActive = true
-                                meteor.spawnChance = 80
-                            } else if lightYears >= 100 && lightYears < 150 {
-                                rock.spawnChance = 80
-                                orange.singleChance = 80
-                                orange.doubleChance = 100
-                                orange.spawnChance = 90
-                            } else if lightYears >= 150 && lightYears < 200 {
-                                rock.spawnChance = 100
-                                orange.singleChance = 60
-                                orange.spawnChance = 100
-                                orange.doubleChance = 100
-                                //                meteor.isSpawnActive = true
-                                meteor.spawnChance = 20
-                            } else if lightYears >= 200 && lightYears < 250 {
-                                meteor.spawnChance = 60
-                                orange.singleChance = 30
-                                orange.doubleChance = 40
-                //                orange.tripleChance = 30
-                            } else {
-                                meteor.spawnChance = 60
-                                orange.singleChance = 50
-                                orange.doubleChance = 90
-                            }
-                            } else {
-                                meteor.isSpawnActive = false
-                                rock.isSpawnActive = false
-                                orange.isSpawnActive = false
-                            }
-                    
+                if lightYears >= 10 && lightYears < 15 {
+                    rock.isSpawnActive = true
+                    rock.spawnChance = 20
+                } else if lightYears >= 15 && lightYears < 25 {
+                    //                rock.isSpawnActive = true
+                    rock.spawnChance = 50
+                } else if lightYears >= 25 && lightYears < 28 {
+                    rock.spawnChance = 25
+                    meteor.isSpawnActive = true
+                    meteor.spawnChance = 100
+                } else if lightYears >= 28 && lightYears < 34 {
+                    rock.spawnChance = 35
+                    meteor.isSpawnActive = false
+                    orange.isSpawnActive = true
+                    orange.singleChance = 100
+                    orange.spawnChance = 100
+                } else if lightYears >= 34 && lightYears < 40 {
+                    rock.spawnChance = 70
+                    orange.isSpawnActive = false
+                } else if lightYears >= 40 && lightYears < 50 {
+                    rock.spawnChance = 45
+                    orange.isSpawnActive = true
+                    orange.singleChance = 100
+                    orange.spawnChance = 80
+                    meteor.isSpawnActive = true
+                    meteor.spawnChance = 40
+                } else if lightYears >= 50 && lightYears < 60 {
+                    rock.spawnChance = 40
+                    orange.isSpawnActive = true
+                    orange.singleChance = 100
+                    orange.spawnChance = 70
+                } else if lightYears >= 60 && lightYears < 80 {
+                    rock.spawnChance = 50
+                    orange.isSpawnActive = true
+                    orange.singleChance = 100
+                    orange.spawnChance = 90
+                    //                meteor.isSpawnActive = true
+                    meteor.spawnChance = 80
+                } else if lightYears >= 80 && lightYears < 100 {
+                    rock.spawnChance = 65
+                    orange.isSpawnActive = true
+                    orange.singleChance = 100
+                    orange.spawnChance = 80
+                    //                meteor.isSpawnActive = true
+                    meteor.spawnChance = 80
+                } else if lightYears >= 100 && lightYears < 150 {
+                    rock.spawnChance = 80
+                    orange.singleChance = 80
+                    orange.doubleChance = 100
+                    orange.spawnChance = 90
+                } else if lightYears >= 150 && lightYears < 200 {
+                    rock.spawnChance = 100
+                    orange.singleChance = 60
+                    orange.spawnChance = 100
+                    orange.doubleChance = 100
+                    //                meteor.isSpawnActive = true
+                    meteor.spawnChance = 20
+                } else if lightYears >= 200 && lightYears < 250 {
+                    meteor.spawnChance = 60
+                    orange.singleChance = 30
+                    orange.doubleChance = 40
+                    //                orange.tripleChance = 30
+                } else {
+                    meteor.spawnChance = 60
+                    orange.singleChance = 50
+                    orange.doubleChance = 90
+                }
+            } else {
+                meteor.isSpawnActive = false
+                rock.isSpawnActive = false
+                orange.isSpawnActive = false
+            }
+            
             
             
             lightYears = lightYears/10
@@ -301,7 +313,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 }
             }
         case ContactMask.player.rawValue | ContactMask.orangeSingle.rawValue:
-            // se encosotu numa laranja
+            // se encosotu numa laranja unica
             if !firstContactFlagPlayerOrange {
                 firstContactFlagPlayerOrange = true
                 orange.animateDissapear()
@@ -314,10 +326,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 }
             }
         case ContactMask.player.rawValue | ContactMask.orangeDouble.rawValue:
-            // se encosotu numa laranja
-            
+            // se encosotu numa laranja dupla
             if !firstContactFlagPlayerOrange {
-                
                 firstContactFlagPlayerOrange = true
                 orange.animateDissapear()
                 self.flightSpeed += 300
@@ -328,12 +338,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                     self.flightSpeed = 2200
                 }
             }
-            
         case ContactMask.player.rawValue | ContactMask.orangeTriple.rawValue:
-            // se encosotu numa laranja
-            
+            // se encosotu numa laranja tripla
             if !firstContactFlagPlayerOrange {
-                
+
                 firstContactFlagPlayerOrange = true
                 orange.animateDissapear()
                 self.flightSpeed += 400
@@ -344,11 +352,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                     self.flightSpeed = 2200
                 }
             }
-            
-            
-            
-            
-            
         case ContactMask.player.rawValue | ContactMask.rock.rawValue:
             // se encostou numa pedra
             if !firstContactFlagPlayerRock {
@@ -367,7 +370,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                     // salva a quantidade de moedas
                     let defaults = UserDefaults.standard
                     defaults.set(totalStars, forKey: "starsCollected")
-                    
+            
                     // pequeno delay após morrer para voltar par ao menu
                     DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
                         self.endRun()
@@ -378,6 +381,18 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         case ContactMask.watermelon.rawValue | ContactMask.player.rawValue:
             // se encostou numa melancia
             print("encostou na melancia")
+        case ContactMask.starNormal.rawValue | ContactMask.collisionNode.rawValue:
+            for node in children {
+                if node.name == "starNormalTrue" {
+                    if node.position.y < (player.node.position.y + player.node.size.height) && node.position.y > player.node.position.y {
+                        node.name = "starNormalResetPos"
+                    }
+                }
+            }
+            notification.impactOccurred()
+
+
+
         default:
             print("Unknown collision ocurred")
         }
