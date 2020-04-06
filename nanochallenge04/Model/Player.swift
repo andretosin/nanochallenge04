@@ -74,6 +74,7 @@ class Player: Updatable {
         body?.isDynamic = true
         body?.affectedByGravity = false
         body?.allowsRotation = true
+        body?.mass = 3
     }
     
     func setSkin(index: Int) {

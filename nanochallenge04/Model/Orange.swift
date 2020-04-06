@@ -82,8 +82,8 @@ class Orange: Spawnable {
         for orange in orangeArray {
             if (orange.name == "orangeSingleTrue" || orange.name == "orangeDoubleTrue" || orange.name == "orangeTripleTrue") && orange.position.y < -850 && orange.alpha != 0 {
                 
-                let dropOpacity = SKAction.fadeAlpha(to: 0.0, duration: 0.1)
-                orange.run(dropOpacity)
+//                let dropOpacity = SKAction.fadeAlpha(to: 0.0, duration: 0.1)
+//                orange.run(dropOpacity)
                 
                 
 //                orange.alpha = 0.2
