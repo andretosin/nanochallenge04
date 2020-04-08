@@ -22,6 +22,7 @@ class Orange: Spawnable {
     var speed = CGFloat(1000)
     var resetFlagFunc: (() -> Void)!
     
+    
     var spawnChance = 100
     var singleChance = 34
     var doubleChance = 33
@@ -81,11 +82,8 @@ class Orange: Spawnable {
     func fadeOut() {
         for orange in orangeArray {
             if (orange.name == "orangeSingleTrue" || orange.name == "orangeDoubleTrue" || orange.name == "orangeTripleTrue") && orange.position.y < -850 && orange.alpha != 0 {
-                
 //                let dropOpacity = SKAction.fadeAlpha(to: 0.0, duration: 0.1)
 //                orange.run(dropOpacity)
-                
-                
 //                orange.alpha = 0.2
             }
         }

@@ -42,6 +42,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var player: Player!
     var powerup: PowerUp!
     var meteor: Meteor!
+    var dangerNode: SKSpriteNode!
+    var blinkAnimation: SKAction!
     var totalStars: Int! = 0
     var isPlayerDead: Bool = false
     var isSoundMuted: Bool = false
@@ -135,7 +137,14 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         orange = Orange(scene: self, resetFlag: {
             self.firstContactFlagPlayerOrange = false
         })
-        meteor = Meteor(scene: self)
+        meteor = Meteor(scene: self, blinkWarning: { pos in
+            self.dangerNode.position.x = pos
+            self.dangerNode.run(self.blinkAnimation)
+        })
+        
+        blinkAnimation = SKAction.sequence([SKAction.fadeIn(withDuration: 0.2), SKAction.fadeOut(withDuration: 0.2),
+                                            SKAction.fadeIn(withDuration: 0.2), SKAction.fadeOut(withDuration: 0.2),
+                                            SKAction.fadeIn(withDuration: 0.2), SKAction.fadeOut(withDuration: 0.2)])
         
         audioPlayerPads.play()
         audioPlayerAmbience.play()
@@ -149,6 +158,12 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
 //        collisionNode.physicsBody?.collisionBitMask = 0
 //        collisionNode.physicsBody?.contactTestBitMask = ContactMask.starNormal.rawValue
 //        scene?.addChild(collisionNode)
+        
+        dangerNode = SKSpriteNode(imageNamed: "warning")
+        dangerNode.position = CGPoint(x: 0, y: 700)
+        dangerNode.zPosition = 10
+        dangerNode.alpha = 0
+        scene?.addChild(dangerNode)
         
         
         

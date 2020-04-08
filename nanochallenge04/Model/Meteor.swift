@@ -17,10 +17,13 @@ class Meteor: Spawnable {
     var timeInterval: Double = 1.5
     var lastTime: TimeInterval = TimeInterval(0)
     var spawnChance = 100
+    var blinkWarning: ((CGFloat) -> Void)
+
 
     
-    internal init(scene: SKScene?) {
+    internal init(scene: SKScene?, blinkWarning: @escaping (CGFloat) -> Void) {
         self.scene = scene
+        self.blinkWarning = blinkWarning
         let texture = SKTexture(imageNamed: "Rock")
         
         for _ in 1...1 {
@@ -72,8 +75,9 @@ class Meteor: Spawnable {
                         if rollChance(spawnChance: spawnChance) {
                             meteor.name = "meteorTrue"
                             meteor.physicsBody?.isDynamic = true
-                            meteor.position = CGPoint(x: playerPosX, y: 1200)
+                            meteor.position = CGPoint(x: playerPosX, y: 3500)
                             meteor.physicsBody?.velocity = CGVector(dx: 0, dy: -speed * 1.5)
+                            blinkWarning(playerPosX)
                         }
                         timeInterval = Double(2)
                     }
