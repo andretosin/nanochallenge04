@@ -99,6 +99,7 @@ class Star: Spawnable {
                             if star.name == "starNormalFalse" {
                                 let spawnPadding: CGFloat = 300
                                 star.position = CGPoint(x: CGFloat.random(in: -400...400), y: 1200)
+                                star.zRotation = CGFloat.random(in: 0...2*CGFloat.pi)
                                 for node in scene!.children {
                                     if node.name == "rockTrue" {
                                         if abs(node.position.y - star.position.y) < spawnPadding {
@@ -119,6 +120,8 @@ class Star: Spawnable {
                             if star.name == "starDoubleFalse" {
                                 let spawnPadding: CGFloat = 300
                                 star.position = CGPoint(x: CGFloat.random(in: -400...400), y: 1200)
+                                star.zRotation = CGFloat.random(in: 0...2*CGFloat.pi)
+
                                 for node in scene!.children {
                                     if node.name == "rockTrue" {
                                         if abs(node.position.y - star.position.y) < spawnPadding {

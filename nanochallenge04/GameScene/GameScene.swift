@@ -178,17 +178,14 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         }
         let deltaTime = currentTime - lastTime
         var lightYears = flightDistance/200000
-        
+
         let auxSlices = getSlices()
         if auxSlices != slices {
             gameDelegate?.updateSlices(slices: auxSlices)
         }
         slices = auxSlices
-        
-        
-        
-        
-        
+//
+//
         if gameStarted {
             player.update(CGFloat(deltaTime))
             rock.update(currentTime)
@@ -196,10 +193,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             meteor.update(currentTime)
             orange.update(currentTime)
             meteor.playerPosX = player.node.position.x
-            
+//
             lightYears = lightYears * 10
-            
-            
+//
+//
             if !isBoostActive {
                 if lightYears >= 10 && lightYears < 15 {
                     rock.isSpawnActive = true
@@ -273,23 +270,22 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 rock.isSpawnActive = false
                 orange.isSpawnActive = false
             }
-            
-            
-            
+
+
             lightYears = lightYears/10
-            
+
             if self.flightSpeed > 1000 {
                 self.flightSpeed -= flightSlowdown
             }
-            
+
             if self.flightSpeed < 1001 && isBoostActive {
                 isBoostActive = false
             }
-            
+
             if !player.isDead {
                 self.flightIncrement = rock.speed
                 self.flightDistance += flightIncrement
-                gameDelegate?.updateLabels(flightDistance: "\(Int((lightYears*10)))", currentScore: String(self.currentScore))
+//                gameDelegate?.updateLabels(flightDistance: "\(Int((lightYears*10)))", currentScore: String(self.currentScore))
             }
         } else {
             self.player.node.position = CGPoint(x: 0, y: -50)
@@ -497,9 +493,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     func endRun() {
-        
-        
-        
         gameStarted = false
         player.isIdle = true
         player.node.physicsBody?.isDynamic = false

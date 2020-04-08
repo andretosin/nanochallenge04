@@ -36,17 +36,20 @@ struct GameView: UIViewControllerRepresentable {
         // executar funções no jogo vindo do menu
         if isPlaying {
             uiViewController.gameScene.startRun(totalStars: totalStars)
-        } else {
+            print("tentou começar")
+        }
+        else {
             uiViewController.gameScene.endRun()
+            print("tentou acabar")
         }
-        
-        if isMuted {
-            uiViewController.gameScene.isSoundMuted = true
-            uiViewController.gameScene.mute()
-        } else {
-            uiViewController.gameScene.isSoundMuted = false
-            uiViewController.gameScene.unmute()
-        }
+//
+//        if isMuted {
+//            uiViewController.gameScene.isSoundMuted = true
+//            uiViewController.gameScene.mute()
+//        } else {
+//            uiViewController.gameScene.isSoundMuted = false
+//            uiViewController.gameScene.unmute()
+//        }
         
         
         
