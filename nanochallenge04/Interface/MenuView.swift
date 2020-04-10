@@ -573,7 +573,6 @@ struct MenuView: View {
                             }
                             
                     }
-                    
                     if self.buttonIsShown == false {
                         ZStack (alignment: .top) {
                             VStack {
