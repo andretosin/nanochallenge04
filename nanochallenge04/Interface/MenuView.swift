@@ -43,6 +43,8 @@ struct MenuView: View {
     @State private var newRecord = false
     @State private var showRanking = false
     
+    //    @State private var shouldAnimate = true
+    @State var showSplash = true
     
     
     var body: some
@@ -50,23 +52,19 @@ struct MenuView: View {
         GeometryReader { geo in
             ZStack {
                 BGView()
-                
                 GameView(isPlaying: self.$isPlaying, isMuted: self.$isMuted, lastDis: self.$lastDistance, starsCollec: self.$lastStarsCollected, highscore: self.$highScore, totalStars: self.$totalStarsCollected, showText: self.$showText, shipIndex: self.$shipIndex, slices: self.$orangeSlices, distance: self.$distance, stars: self.$stars)
-                
                     .edgesIgnoringSafeArea(.all)
                     .mask(
                         ZStack (alignment: .top) {
-                            
                             Circle2View()
                                 .offset(y: 0.3 * self.topMenu)
                                 .padding(self.isPlaying ? -geo.size.height : geo.size.width/10)
-                            .padding()
+                                .padding()
                             //                                .padding(.top, 20)
                             Circle2View()
                                 .offset(y: 1.18 * self.topMenu)
                                 .padding(self.isPlaying ? -geo.size.height : geo.size.width/3.6)
-                            .padding()
-                            
+                                .padding()
                             //                                .padding(100)
                             //                                    .padding(geo.size.width/120)
                             
@@ -74,47 +72,47 @@ struct MenuView: View {
                         
                 )
                 
-                                       if self.chooseRocket {
-                //                            VStack {
-                //                                Spacer()
-                //                                //                                .frame(height:30)
-                //                                Text("Rocket 01").font(.system(size: 50, weight: .semibold)).multilineTextAlignment(.center)
-                //                                //                                Spacer()
-                //
-                //
-                //                            }
-                //
-                                            CarouselView(itemHeight: 400, views: [
-                                                AnyView(Image("RocketNew1").resizable().scaledToFit()),
-                                                AnyView(Image("RocketNew3").resizable().scaledToFit()),
-                                                AnyView(Image("RocketNew2").resizable().scaledToFit()),
-                                                AnyView(Image("RocketNew1").resizable().scaledToFit()),
-                                                AnyView(Image("RocketNew3").resizable().scaledToFit()),
-                                                AnyView(Image("RocketNew2").resizable().scaledToFit()),
-                //                                AnyView(Image("RocketOff-2")),
-                //                                AnyView(Image("RocketFull-1")),
-                //                                AnyView(Image("RocketOff-2")),
-                //                                AnyView(Image("RocketFull-1")),
-                                            ]) { index in
-                                                self.shipIndex = index
-                                            }
-                                        .mask(
-                                                ZStack (alignment: .top) {
-                                                    
-                                                    Circle2View()
-                                                        .offset(y: 0.3 * self.topMenu)
-                                                        .padding(geo.size.width/100)
-                                                    //                                .padding(.top, 20)
-//                                                    Circle2View()
-//                                                        .offset(y: 1.18 * self.topMenu)
-//                                                        .padding(self.isPlaying ? -geo.size.height : geo.size.width/3.6)
-                                                    
-                                                    //                                .padding(100)
-                                                    //                                    .padding(geo.size.width/120)
-                                                    
-                                                }
-                                                
-                                        )
+                if self.chooseRocket {
+                    //                            VStack {
+                    //                                Spacer()
+                    //                                //                                .frame(height:30)
+                    //                                Text("Rocket 01").font(.system(size: 50, weight: .semibold)).multilineTextAlignment(.center)
+                    //                                //                                Spacer()
+                    //
+                    //
+                    //                            }
+                    //
+                    CarouselView(itemHeight: 400, views: [
+                        AnyView(Image("RocketNew1").resizable().scaledToFit()),
+                        AnyView(Image("RocketNew3").resizable().scaledToFit()),
+                        AnyView(Image("RocketNew2").resizable().scaledToFit()),
+                        AnyView(Image("RocketNew1").resizable().scaledToFit()),
+                        AnyView(Image("RocketNew3").resizable().scaledToFit()),
+                        AnyView(Image("RocketNew2").resizable().scaledToFit()),
+                        //                                AnyView(Image("RocketOff-2")),
+                        //                                AnyView(Image("RocketFull-1")),
+                        //                                AnyView(Image("RocketOff-2")),
+                        //                                AnyView(Image("RocketFull-1")),
+                    ]) { index in
+                        self.shipIndex = index
+                    }
+                    .mask(
+                        ZStack (alignment: .top) {
+                            
+                            Circle2View()
+                                .offset(y: 0.3 * self.topMenu)
+                                .padding(geo.size.width/100)
+                            //                                .padding(.top, 20)
+                            //                                                    Circle2View()
+                            //                                                        .offset(y: 1.18 * self.topMenu)
+                            //                                                        .padding(self.isPlaying ? -geo.size.height : geo.size.width/3.6)
+                            
+                            //                                .padding(100)
+                            //                                    .padding(geo.size.width/120)
+                            
+                        }
+                        
+                    )
                 }
                 ZStack {
                     VStack {
@@ -125,20 +123,20 @@ struct MenuView: View {
                                         .font(.system(size: geo.size.width/22))
                                         .foregroundColor(.white)
                                     HStack (spacing: geo.size.width/120) {
-//                                        Spacer()
+                                        //                                        Spacer()
                                         if self.isPlaying {
                                             ZStack {
                                                 Text(self.distance)
                                                     .font(.custom("nulshock", size: geo.size.width/18))
-
+                                                    
                                                     .font(Font.body.monospacedDigit())
                                                     .foregroundColor(.white)
                                                     .bold()
                                                     .lineLimit(nil)
                                                     .multilineTextAlignment(.trailing)
                                                     .animation(.spring(response: 0.0, dampingFraction:0.2))
-//                                                    .fixedSize()
-
+                                                    //                                                    .fixedSize()
+                                                    
                                                     .frame(alignment: .trailing)
                                                     
                                                     .opacity(1.0)
@@ -146,23 +144,23 @@ struct MenuView: View {
                                                     Text("0")
                                                         .font(.custom("nulshock", size: geo.size.width/17))
                                                         .opacity(0.0)
-                                                    .animation(.spring(response: 0.0, dampingFraction:0.2))
+                                                        .animation(.spring(response: 0.0, dampingFraction:0.2))
                                                 } else {
                                                     if Int(self.distance) ?? 10 < 100 {
                                                         Text("00")
                                                             .font(.custom("nulshock", size: geo.size.width/17))
                                                             .opacity(0.0)
-                                                        .animation(.spring(response: 0.0, dampingFraction:0.2))
+                                                            .animation(.spring(response: 0.0, dampingFraction:0.2))
                                                     } else {
-                                                    if Int(self.distance) ?? 100 < 1000 {
-                                                        Text("000")
-                                                            .font(.custom("nulshock", size: geo.size.width/17))
-                                                            .opacity(0.0)
-                                                        .animation(.spring(response: 0.0, dampingFraction:0.2))
-                                                    }
+                                                        if Int(self.distance) ?? 100 < 1000 {
+                                                            Text("000")
+                                                                .font(.custom("nulshock", size: geo.size.width/17))
+                                                                .opacity(0.0)
+                                                                .animation(.spring(response: 0.0, dampingFraction:0.2))
+                                                        }
                                                     }
                                                 }
-                                            
+                                                
                                             }
                                             
                                             Text("ly")
@@ -178,7 +176,7 @@ struct MenuView: View {
                                             Text("\(Int(self.highScore))")
                                                 .font(.custom("nulshock", size: geo.size.width/18))
                                                 .font(Font.body.monospacedDigit())
-
+                                                
                                                 .foregroundColor(.white)
                                                 .bold()
                                                 
@@ -242,7 +240,7 @@ struct MenuView: View {
                                             Text(self.stars)
                                                 .font(.custom("nulshock", size: geo.size.width/18))
                                                 .font(Font.body.monospacedDigit())
-
+                                                
                                                 .foregroundColor(.white)
                                                 .bold()
                                                 
@@ -261,14 +259,14 @@ struct MenuView: View {
                                                         .font(.custom("nulshock", size: geo.size.width/18))
                                                         .opacity(0.0)
                                                 } else {
-                                                if Int(self.stars) ?? 100 < 1000 {
-                                                    Text("000")
-                                                        .font(.custom("nulshock", size: geo.size.width/19))
-                                                        .opacity(0.0)
-                                                }
+                                                    if Int(self.stars) ?? 100 < 1000 {
+                                                        Text("000")
+                                                            .font(.custom("nulshock", size: geo.size.width/19))
+                                                            .opacity(0.0)
+                                                    }
                                                 }
                                             }
-
+                                            
                                         } else {
                                             Text("\(self.totalStarsCollected)")
                                                 .font(.custom("nulshock", size: geo.size.width/18))
@@ -397,7 +395,7 @@ struct MenuView: View {
                                                 Text("\(self.lastStarsCollected)")
                                                     .font(.custom("nulshock", size: geo.size.width/10))
                                                     .font(Font.body.monospacedDigit())
-
+                                                    
                                                     .foregroundColor(Color("CosmicPurple"))
                                                     .bold()
                                                     .shadow(color: Color.black.opacity(0.75), radius: 1, x: -1, y: 1)
@@ -441,8 +439,8 @@ struct MenuView: View {
                             .frame(minHeight: 0, maxHeight: .infinity)
                         HStack (spacing: 30) {
                             ButtonConfView(content: ButtonType(iconName: "RocketB")) {
-                                                                self.chooseRocket.toggle()
-//                                self.showPopup = true
+                                self.chooseRocket.toggle()
+                                //                                self.showPopup = true
                             }
                             ButtonConfView2(content: ButtonType(iconName: "PowerUp")) {
                                 self.showPopup = true
@@ -470,29 +468,29 @@ struct MenuView: View {
                     
                     ZStack {
                         if self.chooseRocket {
-//                            VStack {
-//                                Spacer()
-//                                //                                .frame(height:30)
-//                                Text("Rocket 01").font(.system(size: 50, weight: .semibold)).multilineTextAlignment(.center)
-//                                //                                Spacer()
-//
-//
-//                            }
-//
-//                            CarouselView(itemHeight: 400, views: [
-//                                AnyView(Image("RocketNew1").resizable().scaledToFit()),
-//                                AnyView(Image("RocketNew3").resizable().scaledToFit()),
-//                                AnyView(Image("RocketNew2").resizable().scaledToFit()),
-//                                AnyView(Image("RocketNew1").resizable().scaledToFit()),
-//                                AnyView(Image("RocketNew3").resizable().scaledToFit()),
-//                                AnyView(Image("RocketNew2").resizable().scaledToFit()),
-////                                AnyView(Image("RocketOff-2")),
-////                                AnyView(Image("RocketFull-1")),
-////                                AnyView(Image("RocketOff-2")),
-////                                AnyView(Image("RocketFull-1")),
-//                            ]) { index in
-//                                self.shipIndex = index
-//                            }
+                            //                            VStack {
+                            //                                Spacer()
+                            //                                //                                .frame(height:30)
+                            //                                Text("Rocket 01").font(.system(size: 50, weight: .semibold)).multilineTextAlignment(.center)
+                            //                                //                                Spacer()
+                            //
+                            //
+                            //                            }
+                            //
+                            //                            CarouselView(itemHeight: 400, views: [
+                            //                                AnyView(Image("RocketNew1").resizable().scaledToFit()),
+                            //                                AnyView(Image("RocketNew3").resizable().scaledToFit()),
+                            //                                AnyView(Image("RocketNew2").resizable().scaledToFit()),
+                            //                                AnyView(Image("RocketNew1").resizable().scaledToFit()),
+                            //                                AnyView(Image("RocketNew3").resizable().scaledToFit()),
+                            //                                AnyView(Image("RocketNew2").resizable().scaledToFit()),
+                            ////                                AnyView(Image("RocketOff-2")),
+                            ////                                AnyView(Image("RocketFull-1")),
+                            ////                                AnyView(Image("RocketOff-2")),
+                            ////                                AnyView(Image("RocketFull-1")),
+                            //                            ]) { index in
+                            //                                self.shipIndex = index
+                            //                            }
                             HStack {
                                 Button(action: {
                                     print("Delete tapped!")
@@ -569,17 +567,27 @@ struct MenuView: View {
                                 self.isPlaying = true
                                 self.showLogo = false
                                 print("triangle button tapped")
-                                
                             }
-                            
                     }
+//                    if self.showSplash == true {
+                    SplashScreenView()
+                        .opacity(self.showSplash ? 1 : 0)
+                          .onAppear {
+                            DispatchQueue.main.asyncAfter(deadline: .now() + 6) {
+                              SplashScreenView.shouldAnimate = false
+                              withAnimation() {
+                                self.showSplash = false
+                              }
+                            }
+                        }
+                    
                     if self.buttonIsShown == false {
                         ZStack (alignment: .top) {
                             VStack {
-                            OrangemeterView(slices: self.orangeSlices)
-                                //                                                        Circle()
-                                .shadow(color: Color.black.opacity(0.4), radius: 4, x: 2, y: 0)
-                                .frame(width: 0.7 * geo.size.width)
+                                OrangemeterView(slices: self.orangeSlices)
+                                    //                                                        Circle()
+                                    .shadow(color: Color.black.opacity(0.4), radius: 4, x: 2, y: 0)
+                                    .frame(width: 0.7 * geo.size.width)
                                 Spacer()
                                     .frame(height: 0.9 * geo.size.height)
                             }
@@ -589,9 +597,9 @@ struct MenuView: View {
                         PopUpView(showPopup: self.$showPopup)
                     }
                     
-//                    if self.showRanking {
-//                        ShowRankings()
-//                    }
+                    //                    if self.showRanking {
+                    //                        ShowRankings()
+                    //                    }
                 }
             }
             
