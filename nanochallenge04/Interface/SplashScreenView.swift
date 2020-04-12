@@ -68,7 +68,7 @@ struct ImageAnimated: UIViewRepresentable {
 
 struct SplashScreenView: View {
     static var shouldAnimate = true
-    
+    @State var showLogo = true
     var body: some View {
         GeometryReader { geo in
         ZStack {
@@ -307,6 +307,21 @@ struct SplashScreenView: View {
                                                                                    "JuicySequencia_00209"])
                 
                 .frame(width: geo.size.height/2, height: geo.size.height/3, alignment: .center)
+                
+            .opacity(self.showLogo ? 1 : 0)
+            
+              .onAppear {
+                
+                DispatchQueue.main.asyncAfter(deadline: .now() + 6) {
+                    
+                  self.showLogo = false
+//                  withAnimation() {
+//                    self.showSplash = false
+//                  }
+                }
+            }
+            .animation(.easeOut(duration: 0.5))
+              
             //        AnimatedImage()
             //
             //            .frame(width: 200)

@@ -582,7 +582,7 @@ struct MenuView: View {
                         .opacity(self.showSplash ? 1 : 0)
                         
                           .onAppear {
-                            DispatchQueue.main.asyncAfter(deadline: .now() + 6) {
+                            DispatchQueue.main.asyncAfter(deadline: .now() + 7) {
                               SplashScreenView.shouldAnimate = false
                               withAnimation() {
                                 self.showSplash = false
