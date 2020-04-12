@@ -569,9 +569,18 @@ struct MenuView: View {
                                 print("triangle button tapped")
                             }
                     }
+                    
+//                                    SplashBlackView()
+//                                     .opacity(self.showSplash ? 1 : 0)
+//                                    .onAppear {
+//                                         DispatchQueue.main.asyncAfter(deadline: .now() + 8) {
+//                                        }
+//                                    }
+                                        
 //                    if self.showSplash == true {
                     SplashScreenView()
                         .opacity(self.showSplash ? 1 : 0)
+                        
                           .onAppear {
                             DispatchQueue.main.asyncAfter(deadline: .now() + 6) {
                               SplashScreenView.shouldAnimate = false
@@ -580,6 +589,7 @@ struct MenuView: View {
                               }
                             }
                         }
+                
                     
                     if self.buttonIsShown == false {
                         ZStack (alignment: .top) {

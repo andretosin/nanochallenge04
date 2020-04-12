@@ -70,10 +70,11 @@ struct SplashScreenView: View {
     static var shouldAnimate = true
     
     var body: some View {
+        GeometryReader { geo in
         ZStack {
-            Color("CosmicPurple")
+            Color.black
                 .edgesIgnoringSafeArea(.all)
-            ImageAnimated(imageSize: CGSize(width: 300, height: 200), imageNames: ["JuicySequencia_00000",
+            ImageAnimated(imageSize: CGSize(width: geo.size.height/2, height: geo.size.height/3), imageNames: ["JuicySequencia_00000",
                                                                                    "JuicySequencia_00001",
                                                                                    "JuicySequencia_00002",
                                                                                    "JuicySequencia_00003",
@@ -305,11 +306,12 @@ struct SplashScreenView: View {
                                                                                    "JuicySequencia_00208",
                                                                                    "JuicySequencia_00209"])
                 
-                .frame(width: 300, height: 200, alignment: .center)
+                .frame(width: geo.size.height/2, height: geo.size.height/3, alignment: .center)
             //        AnimatedImage()
             //
             //            .frame(width: 200)
         }
+    }
     }
 }
 
