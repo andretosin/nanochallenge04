@@ -49,6 +49,7 @@ struct CarouselView: View {
                         VStack{
                             Spacer()
                             self.views[i]
+                                
                                 //Text("\(i)")
                             
                                 .frame(width: 300, height: self.getHeight(i)/1.6)
@@ -60,7 +61,9 @@ struct CarouselView: View {
                             .animation(.interpolatingSpring(stiffness: 300.0, damping: 30.0, initialVelocity: 10.0))
                             .offset(x: self.getOffset(i))
                             .animation(.interpolatingSpring(stiffness: 300.0, damping: 30.0, initialVelocity: 10.0))
+                           
                             Spacer()
+                            
                         }
                         .onTapGesture {
                             if self.carouselLocation % 2 == 0 {
@@ -70,9 +73,12 @@ struct CarouselView: View {
                                 // set skin 2
                                 self.selectShip(2)
                             }
-                            
+                                   
                         }
+                        Spacer()
+                         Text("Texto aqui")
                     }
+                    
                 }
                      
                 .gesture(
@@ -83,7 +89,7 @@ struct CarouselView: View {
                     .onEnded(onDragEnded)
                     
                 )
-                
+               
                 Spacer()
             }
             VStack{
